@@ -117,7 +117,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="col-md-12 text-center mb-md-0">
-                <span class="text-white"><a href="#">2024  <i class="fas fa-copyright text-light me-2"></i></a>PT ARKAMAYA GUNA SAHARSA</span>
+                <span class="text-white"><a href="#">2024  <i class="fas fa-copyright text-light me-2"></i></a>GSA</span>
             </div>
         </div>
     </div>
@@ -129,15 +129,16 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
 
 <!-- JavaScript Libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="{{ asset('assets/lib/wow/wow.min.js') }}"></script>
-<script src="{{ asset('assets/lib/easing/easing.min.js') }}"></script>
-<script src="{{ asset('assets/lib/waypoints/waypoints.min.js') }}"></script>
-<script src="{{ asset('assets/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('assets/js/main.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('assets/lib/wow/wow.min.js')}}"></script>
+<script src="{{ asset('assets/lib/easing/easing.min.js')}}"></script>
+<script src="{{ asset('assets/lib/waypoints/waypoints.min.js')}}"></script>
+<script src="{{ asset('assets/lib/counterup/counterup.min.js')}}"></script>
+<script src="{{ asset('assets/lib/lightbox/js/lightbox.min.js')}}"></script>
+<script src="{{ asset('assets/lib/owlcarousel/owl.carousel.min.js')}}"></script>
 
+<!-- Template Javascript -->
+<script src="{{ asset('assets/js/main.js')}}"></script>
 
 </body>
 
