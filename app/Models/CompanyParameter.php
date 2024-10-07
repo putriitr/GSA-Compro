@@ -13,21 +13,10 @@ class CompanyParameter extends Model
 
     // Define the fillable fields
     protected $fillable = [
-        'email',
-        'no_telepon',
-        'no_wa',
-        'alamat',
-        'maps',
-        'visi',
-        'misi',
-        'logo',
-        'instagram',
-        'linkedin',
-        'ekatalog',
-        'nama_perusahaan',
-        'sejarah_singkat',
-        'about_gambar',
-
+        'email', 'no_telepon', 'no_wa', 'alamat', 'maps', 'visi', 'logo',
+        'instagram', 'linkedin', 'ekatalog', 'nama_perusahaan', 'sejarah_singkat',
+        'about_gambar', 'whatsapp_1', 'whatsapp_2', 'visimisi_1', 'visimisi_2',
+        'visimisi_3', 'website', 'nomor_induk_berusaha', 'surat_keterangan',
     ];
 
 }

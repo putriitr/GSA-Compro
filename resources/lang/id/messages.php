@@ -8,7 +8,7 @@ return [
 
     'partnership' => 'Kerja Sama',
     'our_partners' => 'Mitra Kami',
-    'show_more' => 'Selanjutnya',
+    'show_more' => 'Selengkapnya',
     'show_less' => 'Kembali',
 
 
@@ -105,4 +105,12 @@ return [
     'description_product' => 'Deskripsi',
     'specification_product' => 'Spesifikasi',
     'click_here' => 'Klik Disini',
+
+    'NIB' => 'Nomor Induk Berusaha',
+    'SK' => 'Surat Keterangan',
+    'visimisi_1' => 'PROFESIONAL',
+    'visimisi_2' => 'KUALITAS TINGGI',
+    'visimisi_3' => 'KENYAMANAN',
+    'product_desc' => 'Kami menawarkan berbagai produk berkualitas tinggi yang dirancang untuk memenuhi kebutuhan Anda. Setiap produk kami dipilih dengan teliti, memberikan solusi terbaik dan inovatif untuk kehidupan sehari-hari. Jelajahi koleksi kami dan temukan apa yang Anda cari!',
+    'brands_desc' => 'Kami menjalin kemitraan strategis dengan berbagai industri untuk menghadirkan solusi inovatif. Dengan dukungan mitra kami, kami berkomitmen untuk memberikan produk dan layanan terbaik kepada pelanggan.'
 ];

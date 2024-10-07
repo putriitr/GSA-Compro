@@ -91,9 +91,9 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
 
                     <!-- Phone Number -->
                     @if(!empty($compro->no_telepon))
-                        <a href="tel:{{ $compro->no_telepon }}"><i class="fas fa-phone me-2"></i> {{ $compro->no_telepon }}</a>
+                        <a href="tel:{{ $compro->no_telepon }}"><i class="fab fa-whatsapp fa-2x"></i> {{ $compro->no_telepon }}</a>
                     @else
-                        <p><i class="fas fa-phone me-2"></i> {{ __('messages.phone_not_available') }}</p>
+                        <p><i class="fab fa-whatsapp fa-2x"></i>{{ __('messages.phone_not_available') }}</p>
                     @endif
 
                     <!-- WhatsApp -->
@@ -117,7 +117,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="col-md-12 text-center mb-md-0">
-                <span class="text-white"><a href="#">2024  <i class="fas fa-copyright text-light me-2"></i></a>GSA</span>
+                <span class="text-white"><a href="#">2024  <i class="fas fa-copyright text-light me-2"></i></a>PT. Gudang Solusi Acommerce</span>
             </div>
         </div>
     </div>
@@ -130,6 +130,8 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
 <!-- JavaScript Libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="{{ asset('assets/lib/wow/wow.min.js')}}"></script>
 <script src="{{ asset('assets/lib/easing/easing.min.js')}}"></script>
 <script src="{{ asset('assets/lib/waypoints/waypoints.min.js')}}"></script>

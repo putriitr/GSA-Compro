@@ -85,47 +85,11 @@
                 <div class="row g-5">
                     <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.2s">
                         <div>
-                            <h4 class="text-primary">About Us</h4>
+                            <h4 class="text-primary">{{ __('messages.about_us') }}</h4>
                             <h1 class="display-5 mb-4">{{ $company->nama_perusahaan ?? 'Gudang Solusi Acommerce' }}</h1>
-                            <p class="mb-5" style="text-align: justify;">{{ $company->sejarah_singkat ?? ' ' }}</p>
-                            <div class="row g-4">
-                                <div class="col-md-6">
-                                    <div class="d-flex">
-                                        <div class="me-3"><i class="fas fa-glass-cheers fa-3x text-primary"></i></div>
-                                        <div>
-                                            <h4>Food & Drinks</h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="d-flex">
-                                        <div class="me-3"><i class="fas fa-dot-circle fa-3x text-primary"></i></div>
-                                        <div>
-                                            <h4>Many Attractions</h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="d-flex">
-                                        <div class="me-3"><i class="fas fa-hand-holding-usd fa-3x text-primary"></i></div>
-                                        <div>
-                                            <h4>Affordable Price</h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="d-flex">
-                                        <div class="me-3"><i class="fas fa-lock fa-3x text-primary"></i></div>
-                                        <div>
-                                            <h4>Safety Lockers</h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <p class="mb-5" style="text-align: justify; font-size: 20px;">
+                                {{ $company->sejarah_singkat ?? ' ' }}</p>
+
                         </div>
                         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
                             <a class="btn btn-primary rounded-pill text-white py-3 px-5"
@@ -140,34 +104,6 @@
                                         <div class="rounded mb-4">
                                             <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('storage/bg.jpg') }}"
                                                 class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="row gx-4 gy-0">
-                                            <div class="col-6">
-                                                <div class="counter-item bg-primary rounded text-center p-4 h-100">
-                                                    <div class="counter-item-icon mx-auto mb-3">
-                                                        <i class="fas fa-thumbs-up fa-3x text-white"></i>
-                                                    </div>
-                                                    <div class="counter-counting mb-3">
-                                                        <span class="text-white fs-2 fw-bold"
-                                                            data-toggle="counter-up">150</span>
-                                                        <span class="h1 fw-bold text-white">K +</span>
-                                                    </div>
-                                                    <h5 class="text-white mb-0">Happy Visitors</h5>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="counter-item bg-dark rounded text-center p-4 h-100">
-                                                    <div class="counter-item-icon mx-auto mb-3">
-                                                        <i class="fas fa-certificate fa-3x text-white"></i>
-                                                    </div>
-                                                    <div class="counter-counting mb-3">
-                                                        <span class="text-white fs-2 fw-bold"
-                                                            data-toggle="counter-up">122</span>
-                                                        <span class="h1 fw-bold text-white"> +</span>
-                                                    </div>
-                                                    <h5 class="text-white mb-0">Awwards Winning</h5>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -184,156 +120,64 @@
     </div>
     <!-- About End -->
 
-
-    <!-- Team Start -->
-    <div class="container-fluid team pb-5">
-        <div class="container pb-5">
-            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-primary">{{ __('messages.tujuan_kami') }}</h4>
-                <h1 class="display-5 mb-4">{{ __('messages.visi_misi_perusahaan') }}</h1>
-                {{-- <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis
-                    cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt
-                    sint dolorem autem obcaecati, ipsam mollitia hic.
-                </p> --}}
-            </div>
-            <div class="row g-4 justify-content-center">
-                <!-- Card 1 -->
-                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="team-item p-4">
-                        <div class="team-content">
-                            <div class="d-flex justify-content-between border-bottom pb-4">
-                                <div class="text-start">
-                                    <h5 class="mb-0">EXCELLENT</h5>
-                                    <p class="mb-0">QUALITY</p>
-                                </div>
-                                <div>
-                                    <img src="{{ asset('storage/machine.jpg') }}" class="img-fluid rounded"
-                                        style="width: 120px; height: 120px;" alt="">
-                                </div>
-                            </div><br>
-                            <p class="text-center mb-0">Kami berkomitmen untuk terus berinovasi dan menghadirkan produk
-                                dengan kualitas terbaik, yang dirancang dengan presisi dan ketelitian tinggi.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="team-item p-4">
-                        <div class="team-content">
-                            <div class="d-flex justify-content-between border-bottom pb-4">
-                                <div class="text-start">
-                                    <h5 class="mb-0">EXCELLENT</h5>
-                                    <p class="mb-0">QUALITY</p>
-                                </div>
-                                <div>
-                                    <img src="{{ asset('storage/machine.jpg') }}" class="img-fluid rounded"
-                                        style="width: 120px; height: 120px;" alt="">
-                                </div>
-                            </div><br>
-                            <p class="text-center mb-0">Kami berkomitmen untuk terus berinovasi dan menghadirkan produk
-                                dengan kualitas terbaik, yang dirancang dengan presisi dan ketelitian tinggi.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="team-item p-4">
-                        <div class="team-content">
-                            <div class="d-flex justify-content-between border-bottom pb-4">
-                                <div class="text-start">
-                                    <h5 class="mb-0">EXCELLENT</h5>
-                                    <p class="mb-0">QUALITY</p>
-                                </div>
-                                <div>
-                                    <img src="{{ asset('storage/machine.jpg') }}" class="img-fluid rounded"
-                                        style="width: 120px; height: 120px;" alt="">
-                                </div>
-                            </div><br>
-                            <p class="text-center mb-0">Kami berkomitmen untuk terus berinovasi dan menghadirkan produk
-                                dengan kualitas terbaik, yang dirancang dengan presisi dan ketelitian tinggi.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    </div>
-    <!-- Team End -->
-
     <!-- Product Start -->
-    @if (!$produks->isEmpty())
-        <div class="container-fluid attractions py-5">
-            <div class="container attractions-section py-5">
-                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                    <h4 class="text-primary">{{ __('messages.find_products') }}</h4>
-                    <h1 class="display-5 text-white mb-4">{{ __('messages.our_products') }}</h1>
-                    <p class="text-white mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci
-                        facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa
-                        deserunt sint dolorem autem obcaecati, ipsam mollitia hic.
-                    </p>
-                </div>
+    <div class="container-fluid attractions py-5"
+        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/bg-product.jpg') }}');">
+        <div class="container attractions-section py-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">{{ __('messages.find_products') }}</h4>
+                <h1 class="display-5 text-white mb-4">{{ __('messages.our_products') }}</h1>
+                <p class="text-white mb-0">{{ __('messages.product_desc') }}</p>
+            </div>
+            @if (!$produks->isEmpty())
                 <div class="owl-carousel attractions-carousel wow fadeInUp" data-wow-delay="0.1s">
                     @foreach ($produks as $produk)
                         <div class="attractions-item wow fadeInUp" data-wow-delay="0.2s">
                             <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                class="img-fluid rounded w-100" alt="">
+                                class="img-fluid rounded w-100" alt=""
+                                style="width: 300px; height: 300px; object-fit: cover;">
                             <a href="{{ route('product.show', $produk->id) }}"
                                 class="attractions-name">{{ $produk->nama }}</a>
                         </div>
                     @endforeach
                 </div>
-            </div>
-            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                <a class="btn btn-primary rounded-pill text-white py-3 px-5"
-                    href="{{ route('product.index') }}">{{ __('messages.show_more') }}</a>
-            </div>
+            @endif
         </div>
-    @endif
+        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+            <a class="btn btn-primary rounded-pill text-white py-3 px-5"
+                href="{{ route('product.index') }}">{{ __('messages.show_more') }}</a>
+        </div>
+    </div><br><br><br><br><br>
     <!-- Product End -->
 
     <!-- Brand Start -->
-    @if ($partners->isNotEmpty())
-        <div class="container-fluid gallery pb-5">
-            <div class="container pb-5">
-                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                    <h4 class="text-primary">{{ __('messages.partnership') }}</h4>
-                    <h1 class="display-5 mb-4">{{ __('messages.our_partners') }}</h1>
-                    <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis
-                        cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt
-                        sint dolorem autem obcaecati, ipsam mollitia hic.
-                    </p>
-                </div>
-                <div class="container overflow-hidden">
-                    <div class="row g-4">
-                        @foreach ($partners as $key => $p)
-                            <div class="col-md-3 wow fadeInUp {{ $key >= 8 ? 'd-none' : '' }}" data-wow-delay="0.2s">
-                                <div class="gallery-item">
-                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
-                                        width="100%" height="100" style="object-fit:contain;">
-                                    <div class="search-icon">
-                                        <a href="{{ asset('storage/' . $p->gambar) }}" class="btn btn-light btn-lg-square rounded-circle"
-                                            data-lightbox="Gallery-1"><i class="fas fa-search-plus"></i></a>
-                                    </div>
+    <div class="container-fluid gallery pb-5">
+        <div class="container pb-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">{{ __('messages.partnership') }}</h4>
+                <h1 class="display-5 mb-4">{{ __('messages.our_partners') }}</h1>
+                <p class="mb-0">{{__('messages.brands_desc')}}</p>
+            </div>
+            @if ($partners->isNotEmpty())
+                <div class="owl-carousel owl-theme">
+                    @foreach ($partners as $p)
+                        <div class="item">
+                            <div class="gallery-item">
+                                <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
+                                    width="100%" height="100" style="object-fit:contain;">
+                                <div class="search-icon">
+                                    <a href="{{ asset('storage/' . $p->gambar) }}"
+                                        class="btn btn-light btn-lg-square rounded-circle" data-lightbox="Gallery-1"><i
+                                            class="fas fa-search-plus"></i></a>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
-                @if ($partners->count() > 4)
-                    <div class="text-center mt-4">
-                        <button id="show-more-partners" class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                        <button id="show-less-partners"
-                            class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
-                    </div>
-                @endif
-            </div>
+            @endif
         </div>
-    @endif
+    </div>
     <!-- Brand End -->
-
 
     {{-- <!-- Principal Section Start -->
     @if ($principals->isNotEmpty())
@@ -410,174 +254,34 @@
         });
     </script>
 
-
-
-
-    /
-
-    <!-- Map Start -->
-    <div class="container"
-        style="
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    background-color: #fff;
-    text-align: center; ">
-
-        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">{{ __('messages.our_loyal_customers') }}</h4>
-            </div>
-            <h1 class="display-3 mb-4">{{ __('messages.our_customers') }}</h1>
-        </div>
-
-        <hr>
-
-        <div id="umalo" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
-    </div> <br> <br>
-    <!-- Map End -->
+    <!-- Brand Section -->
+    <script>
+        $(document).ready(function() {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                autoplay: true,
+                autoplayTimeout: 3000, // 3 detik antar slide
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 2 // Untuk layar kecil (mobile)
+                    },
+                    768: {
+                        items: 4 // Untuk tablet
+                    },
+                    1000: {
+                        items: 6 // Untuk desktop, 6 item per baris
+                    }
+                }
+            });
+        });
+    </script>
 
     <!-- Include Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
-    <script>
-        // Inisialisasi peta
-        var map = L.map('umalo').setView([-2.548926, 118.0148634], 5); // Pusat Indonesia
-
-        //tile layer dari OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Terjemahan dari server untuk konten popup
-        let translationTemplate =
-            `{{ __('messages.members_in_province', ['count' => ':count', 'province' => ':province']) }}`;
-
-        function addMarker(lat, lng, province, userCount, users) {
-            var marker = L.marker([lat, lng]).addTo(map);
-
-            // Buat daftar pengguna
-            let userList = '<ul>';
-            users.forEach(function(user) {
-                userList += `<li>${user.nama_perusahaan} (Became a Member on: ${user.created_at})</li>`;
-            });
-            userList += '</ul>';
-
-            // Terjemahan dinamis
-            let popupText = translationTemplate
-                .replace(':count', userCount)
-                .replace(':province', province);
-
-            // Konten popup untuk marker
-            marker.bindPopup(`
-                <div class="info-window">
-                    <h3 class="popup-title">${province}</h3>
-                    <p class="popup-description">${popupText}</p>
-                    ${userList}
-                </div>
-            `);
-
-            // Tooltip
-            marker.bindTooltip(`<div>${province}</div>`, {
-                permanent: false,
-                direction: 'top',
-                offset: [0, -20],
-                className: 'marker-tooltip'
-            });
-
-            marker.on('mouseover', function(e) {
-                this.openTooltip();
-            });
-            marker.on('mouseout', function(e) {
-                this.closeTooltip();
-            });
-        }
-
-
-
-        fetch("{{ url('/locations') }}")
-            .then(response => response.json())
-            .then(data => {
-                console.log("Received Data:", data); // Debugging to check data
-                data.forEach(location => {
-                    if (location.user_count > 0) {
-                        console.log("Adding marker for:", location.province, "with", location.user_count,
-                            "users.");
-                        addMarker(location.latitude, location.longitude, location.province, location.user_count,
-                            location.user_data);
-                    }
-                });
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    </script>
-
-    <style>
-        .marker-tooltip {
-            background-color: #b3d9ff;
-            border: 1px solid #80b3ff;
-            padding: 5px;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            font-size: 12px;
-            color: #333;
-        }
-
-        .info-window img.popup-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 5px;
-        }
-
-        .popup-title {
-            font-size: 20px;
-            color: black;
-            font-weight: bold;
-        }
-
-        .popup-description,
-        .popup-address {
-            font-size: 12px;
-            color: #333;
-            margin-top: 10px;
-            text-align: justify;
-        }
-
-        /* Media query untuk perangkat dengan lebar maksimal 768px */
-        @media (max-width: 768px) {
-            .info-window {
-                padding: 10px;
-            }
-
-            .popup-title {
-                font-size: 18px;
-            }
-
-            .popup-description,
-            .popup-address {
-                font-size: 10px;
-            }
-
-            .info-window img.popup-image {
-                margin-bottom: 5px
-            }
-        }
-
-        /* Media query untuk perangkat dengan lebar maksimal 480px */
-        @media (max-width: 480px) {
-            .popup-title {
-                font-size: 16px;
-            }
-
-            .popup-description,
-            .popup-address {
-                font-size: 9px;
-            }
-        }
-    </style>
-    <!-- Map End -->
 
     <style>
         .logo-container {

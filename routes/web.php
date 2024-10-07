@@ -26,6 +26,7 @@
     use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
     use App\Http\Controllers\Admin\QnaGuest\QnaGuestController;
     use App\Http\Controllers\Member\QnaGuest1\QnaGuest1Controller;
+    use App\Http\Controllers\ContactPageController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -38,6 +39,7 @@
     Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get('/about', [HomeController::class, 'about'])->name('about');
+        Route::get('/contact', [ContactPageController::class, 'contact'])->name('contact.index');
         // Rute lainnya
         Route::get('/products', [ProdukMemberController::class, 'index'])->name('product.index');
         Route::get('/products/category/{id}', [ProdukMemberController::class, 'index'])->name('product.category');

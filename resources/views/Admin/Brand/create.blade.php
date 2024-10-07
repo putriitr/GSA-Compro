@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header">
-                <h1 class="h4">Tambah Merek/Mitra Baru</h1>
+                <h1 class="h4">Tambah Merek Baru</h1>
             </div>
 
             <div class="card-body">
@@ -47,7 +47,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Buat Merek/Mitra</button>
+                    <button type="submit" class="btn btn-primary">Buat Merek</button>
                 </form>
             </div>
         </div>

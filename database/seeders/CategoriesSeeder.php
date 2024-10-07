@@ -17,49 +17,67 @@ class CategoriesSeeder extends Seeder
     {
         DB::table('kategori')->insert([
             [
-                'nama' => 'Hidrolika',
+                'nama' => 'Tools & Welding Machine',
             ],
             [
-                'nama' => 'Beton',
+                'nama' => 'Workbench',
             ],
             [
-                'nama' => 'Tanah',
+                'nama' => 'CNC Machine',
             ],
             [
-                'nama' => 'Aspal',
+                'nama' => 'Alat Klimatologi & Geofisika',
             ],
             [
-                'nama' => 'Bebatuan',
+                'nama' => 'Alat Uji & Alat Ukur',
             ],
             [
-                'nama' => 'Manajemen Konstruksi',
+                'nama' => 'Alat Survei',
             ],
             [
-                'nama' => 'Semen',
+                'nama' => 'Tata Boga & Resto',
             ],
             [
-                'nama' => 'Kebumian',
+                'nama' => 'Tata Kecantikan',
             ],
             [
-                'nama' => 'Listrik',
+                'nama' => 'Tata Busana',
             ],
             [
-                'nama' => 'Mekanik',
+                'nama' => 'Barista',
             ],
             [
-                'nama' => 'Material',
+                'nama' => 'Machinery',
             ],
             [
-                'nama' => 'Industri',
+                'nama' => 'Elevator',
             ],
             [
-                'nama' => 'Kelautan',
+                'nama' => 'Alat Peraga',
             ],
             [
-                'nama' => 'Perkapalan',
+                'nama' => 'Alat Olahraga',
             ],
             [
-                'nama' => 'Perkeretaapian',
+                'nama' => 'Home Appliance',
+            ],
+            [
+                'nama' => 'Persalatan Elektronik',
+            ],
+            [
+                'nama' => 'Alat Laboratorium',
+            ],
+            [
+                'nama' => 'Kendaraan Bermotor',
+            ],
+            [
+                'nama' => 'Genset',
+            ],
+            [
+                'nama' => 'APAR & Brankas',
+            ],
+            [
+                'nama' => 'Power Tools',
             ],
         ]);
     }

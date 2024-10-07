@@ -8,19 +8,46 @@
     <textarea name="sejarah_singkat" class="form-control">{{ old('sejarah_singkat', $companyParameter->sejarah_singkat ?? '') }}</textarea>
 </div>
 
+<!-- WhatsApp 1 -->
 <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" name="email" class="form-control" value="{{ old('email', $companyParameter->email ?? '') }}" required>
+    <label for="whatsapp_1">WhatsApp 1</label>
+    <input type="text" class="form-control" id="whatsapp_1" name="whatsapp_1" value="{{ old('whatsapp_1', $companyParameter->whatsapp_1 ?? '') }}">
 </div>
 
+<!-- WhatsApp 2 -->
 <div class="form-group">
-    <label for="no_telepon">Nomor Telepon</label>
-    <input type="text" name="no_telepon" class="form-control" value="{{ old('no_telepon', $companyParameter->no_telepon ?? '') }}" required>
+    <label for="whatsapp_2">WhatsApp 2</label>
+    <input type="text" class="form-control" id="whatsapp_2" name="whatsapp_2" value="{{ old('whatsapp_2', $companyParameter->whatsapp_2 ?? '') }}">
 </div>
 
+<!-- Visi 1 -->
 <div class="form-group">
-    <label for="no_wa">WhatsApp</label>
-    <input type="text" name="no_wa" class="form-control" value="{{ old('no_wa', $companyParameter->no_wa ?? '') }}" required>
+    <label for="visimisi_1">Visi 1</label>
+    <textarea class="form-control" id="visimisi_1" name="visimisi_1">{{ old('visimisi_1', $companyParameter->visimisi_1 ?? '') }}</textarea>
+</div>
+
+<!-- Visi 2 -->
+<div class="form-group">
+    <label for="visimisi_2">Visi 2</label>
+    <textarea class="form-control" id="visimisi_2" name="visimisi_2">{{ old('visimisi_2', $companyParameter->visimisi_2 ?? '') }}</textarea>
+</div>
+
+<!-- Visi 3 -->
+<div class="form-group">
+    <label for="visimisi_3">Visi 3</label>
+    <textarea class="form-control" id="visimisi_3" name="visimisi_3">{{ old('visimisi_3', $companyParameter->visimisi_3 ?? '') }}</textarea>
+</div>
+
+<!-- NIB -->
+<div class="form-group">
+    <label for="nomor_induk_berusaha">Nomor Induk Berusaha (NIB)</label>
+    <input type="text" class="form-control" id="nomor_induk_berusaha" name="nomor_induk_berusaha" value="{{ old('nomor_induk_berusaha', $companyParameter->nomor_induk_berusaha ?? '') }}">
+</div>
+
+<!-- Surat Keterangan -->
+<div class="form-group">
+    <label for="surat_keterangan">Surat Keterangan (SK)</label>
+    <input type="text" class="form-control" id="surat_keterangan" name="surat_keterangan" value="{{ old('surat_keterangan', $companyParameter->surat_keterangan ?? '') }}">
 </div>
 
 <div class="form-group">
@@ -29,18 +56,18 @@
 </div>
 
 <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" name="email" class="form-control" value="{{ old('email', $companyParameter->email ?? '') }}" required>
+</div>
+
+<div class="form-group">
     <label for="maps">URL Lokasi</label>
     <input type="text" name="maps" class="form-control" value="{{ old('maps', $companyParameter->maps ?? '') }}">
 </div>
 
 <div class="form-group">
-    <label for="visi">Visi</label>
-    <textarea name="visi" class="form-control">{{ old('visi', $companyParameter->visi ?? '') }}</textarea>
-</div>
-
-<div class="form-group">
-    <label for="misi">Misi</label>
-    <textarea name="misi" class="form-control">{{ old('misi', $companyParameter->misi ?? '') }}</textarea>
+    <label for="website">Website</label>
+    <input type="url" name="website" class="form-control" value="{{ old('website', $companyParameter->website ?? '') }}">
 </div>
 
 <div class="form-group">

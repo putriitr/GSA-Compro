@@ -9,7 +9,7 @@
     />
     <link
       rel="icon"
-      href="{{asset('assets/img/kaiadmin/favicon.ico')}}"
+      href="{{asset('storage/logo-gsa2.png')}}"
 
       type="image/x-icon"
     />
@@ -24,7 +24,7 @@
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{asset('assets/css/admin/bootstrap.min.css')}}" />
-    
+
     <link rel="stylesheet" href="{{asset('assets/css/admin/plugins.min.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/admin/kaiadmin.min.css')}}" />
 

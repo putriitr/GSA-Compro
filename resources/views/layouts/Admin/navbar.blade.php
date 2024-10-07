@@ -5,7 +5,7 @@
         <div class="logo-header" data-background-color="dark">
           <a href="index.html" class="logo">
             <img
-              src="assets/img/kaiadmin/logo_light.svg"
+              src="{{ asset('storage/logo-gsa2.png')}}"
               alt="navbar brand"
               class="navbar-brand"
               height="20"
@@ -161,7 +161,7 @@
               >
                 <div class="avatar-sm">
                   <img
-                    src="{{ asset('assets/images/logo.png') }}"
+                    src="{{ asset('storage/user.png') }}"
                     alt="..."
                     class="avatar-img rounded-circle"
                   />
@@ -177,7 +177,7 @@
                     <div class="user-box">
                       <div class="avatar-lg">
                         <img
-                          src="{{ asset('assets/images/logo.png') }}"
+                          src="{{ asset('storage/user.png') }}"
                           alt="image profile"
                           class="avatar-img rounded"
                         />

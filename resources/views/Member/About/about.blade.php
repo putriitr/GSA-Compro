@@ -2,38 +2,110 @@
 
 @section('content')
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
+    <div class="container-fluid bg-breadcrumb"
+        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/page-header.jpg') }}');">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.about_us') }}</h1>
-                <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
-                    <li class="breadcrumb-item active text-primary">{{ __('messages.about_us') }}</li>
-                </ol>
+            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">About Us</h4>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item active text-primary">About</li>
+            </ol>
         </div>
     </div>
     <!-- Header End -->
 
     <!-- About Start -->
-    <div class="container-fluid about bg-light py-5">
-        <div class="container py-5">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.4s">
-                    <div class="section-title text-start mb-5">
-                        <h4 class="sub-title pe-3 mb-0">{{ __('messages.about_us') }}</h4>
-                        <h4 class="display-3 mb-4" style="font-size: 50px;">
-                            {{ $company->nama_perusahaan ?? 'Arkamaya Guna Saharsa' }}</h4>
-                        <p class="mb-4" style="text-align: justify;">
-                            {{ $company->sejarah_singkat ?? ' ' }}
-                        </p>
+    <br><br>
+    <div class="container-fluid about pb-5">
+        <div class="container pb-5">
+            <div class="row g-5">
+                <div class="row g-5">
+                    <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div>
+                            <h4 class="text-primary">{{ __('messages.about_us') }}</h4>
+                            <h1 class="display-5 mb-4">{{ $company->nama_perusahaan ?? 'Gudang Solusi Acommerce' }}</h1>
+                            <p class="mb-5" style="text-align: justify;">{{ $company->sejarah_singkat ?? ' ' }}</p>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="d-flex">
+                                        <div class="me-3"><i class="fas fa-glass-cheers fa-3x text-primary"></i></div>
+                                        <div>
+                                            <h4>Food & Drinks</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex">
+                                        <div class="me-3"><i class="fas fa-dot-circle fa-3x text-primary"></i></div>
+                                        <div>
+                                            <h4>Many Attractions</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex">
+                                        <div class="me-3"><i class="fas fa-hand-holding-usd fa-3x text-primary"></i></div>
+                                        <div>
+                                            <h4>Affordable Price</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex">
+                                        <div class="me-3"><i class="fas fa-lock fa-3x text-primary"></i></div>
+                                        <div>
+                                            <h4>Safety Lockers</h4>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
-                    <div class="about-img pb-5 ps-5">
-                        <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('assets/images/about.jpg') }}"
-                            class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
-                        <div class="about-img-inner">
-                            <img src="{{ $company && $company->logo ? asset('storage/' . $company->logo) : asset('assets/img/about.jpeg') }}"
-                                class="img-fluid rounded-circle w-100 h-100" alt="Image">
+                    <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="position-relative rounded">
+                            <div class="rounded" style="margin-top: 40px;">
+                                <div class="row g-0">
+                                    <div class="col-lg-12">
+                                        <div class="rounded mb-4">
+                                            <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('storage/bg.jpg') }}"
+                                                class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
+                                        </div>
+                                        <div class="row gx-4 gy-0">
+                                            <div class="col-6">
+                                                <div class="counter-item bg-primary rounded text-center p-4 h-100">
+                                                    <div class="counter-item-icon mx-auto mb-3">
+                                                        <i class="fas fa-file-alt fa-3x text-white"></i>
+
+                                                    </div>
+                                                    <div class="counter-counting mb-3">
+                                                        <span class="h4 fw-bold text-white">{{ __('messages.NIB') }}</span>
+                                                    </div>
+                                                    <h5 class="text-white mb-0">{{ $company->nomor_induk_berusaha }}</h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="counter-item bg-dark rounded text-center p-4 h-100">
+                                                    <div class="counter-item-icon mx-auto mb-3">
+                                                        <i class="fas fa-file-signature fa-3x text-white"></i>
+                                                    </div>
+                                                    <div class="counter-counting mb-3">
+                                                        <span class="h4 fw-bold text-white">{{ __('messages.SK') }}</span>
+                                                    </div>
+                                                    <h5 class="text-white mb-0">{{ $company->surat_keterangan }}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rounded bg-primary p-4 position-absolute d-flex justify-content-center"
+                                style="width: 90%; height: 80px; top: -40px; left: 50%; transform: translateX(-50%);">
+                                <h3 class="mb-0 text-white">Selling Advanced Product</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,460 +114,227 @@
     </div>
     <!-- About End -->
 
-    <!-- Vision Start -->
-    <div class="container-fluid team py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">{{ __('messages.tujuan_kami') }}</h4>
-                </div>
-                <h1 class="display-3 mb-4">{{ __('messages.visi_misi_perusahaan') }}</h1>
+    <!-- Feature Start -->
+    <div class="container-fluid feature pb-5">
+        <div class="container pb-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">{{ __('messages.tujuan_kami') }}</h4>
+                <h1 class="display-5 mb-4">{{ __('messages.visi_misi_perusahaan') }}</h1>
             </div>
-            <div class="row g-12 justify-content-center d-flex">
-                <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
-                    <div class="team-item rounded flex-fill"
-                        style="display: flex; flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-                        <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
-                            style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                            <h5>{{ __('messages.visi') }}</h5>
-                            <p class="mb-0" style="font-weight: bold;">{{ $company->visi ?? ' ' }}</p>
+            <div class="row g-4">
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="feature-item">
+                        <img src="{{ asset('assets/img/visi-1.jpg')}}" class="img-fluid rounded w-100" alt="Image">
+                        <div class="feature-content p-4">
+                            <div class="feature-content-inner" style="text-align: center;">
+                                <h2 style="font-weight: bold; margin-bottom: 3rem;" class="text-white">
+                                    {{ __('messages.visimisi_1') }}
+                                </h2>
+                                <p class="text-white">{{ $company->visimisi_1 }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-6 col-xl-6 d-flex" style="margin-bottom: 0.5rem;">
-                    <div class="team-item rounded flex-fill"
-                        style="display: flex; flex-direction: column; height: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
-                        <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4"
-                            style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                            <h5>{{ __('messages.misi') }}</h5>
-                            <p class="mb-0" style="font-weight: bold;">{{ $company->misi ?? ' ' }}</p>
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="feature-item">
+                        <img src="{{ asset('assets/img/visi-2.jpg') }}" class="img-fluid rounded w-100" alt="Image">
+                        <div class="feature-content p-4">
+                            <div class="feature-content-inner" style="text-align: center;">
+                                <h2 style="font-weight: bold; margin-bottom: 3rem;"class="text-white">{{ __('messages.visimisi_2') }}</h2>
+                                <p class="text-white">{{ $company->visimisi_1 }}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="feature-item">
+                        <img src="{{ asset('assets/img/visi-3.jpg') }}" class="img-fluid rounded w-100" alt="Image">
+                        <div class="feature-content p-4">
+                            <div class="feature-content-inner" style="text-align: center;">
+                                <h2 style="font-weight: bold; margin-bottom: 3rem;"class="text-white">{{ __('messages.visimisi_3') }}</h2>
+                                <p class="text-white">{{ $company->visimisi_1 }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Feature End -->
 
-
-    <!-- Vision End -->
-
-
-    <!-- Partner Section Start -->
-    @if ($principals->isNotEmpty())
-        <div class="container-fluid service mb-5">
-            <div class="container">
-                <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">{{ __('messages.partnership') }}</h4>
-                    </div>
-                    <h1 class="display-3 mb-4">{{ __('messages.our_partners') }}</h1>
-                </div>
-                <div class="container overflow-hidden">
-                    <div class="row gy-4">
-                        @foreach ($partners as $key => $p)
-                            <div class="col-6 col-md-4 col-xl-3 text-center partner-item {{ $key >= 8 ? 'd-none' : '' }}">
-                                <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}" width="100%"
-                                        height="100" style="object-fit:contain;">
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    @if ($partners->count() > 8)
-                        <div class="text-center mt-4">
-                            <button id="show-more-partners" class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                            <button id="show-less-partners" class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
+    <!-- Gallery Start -->
+    <div class="container-fluid gallery pb-5">
+        <div class="container pb-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">Our Gallery</h4>
+                <h1 class="display-5 mb-4">Captured Moments In Waterland</h1>
+                <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis
+                    cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint
+                    dolorem autem obcaecati, ipsam mollitia hic.
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="gallery-item">
+                        <img src="img/gallery-1.jpg" class="img-fluid rounded w-100 h-100" alt="">
+                        <div class="search-icon">
+                            <a href="img/gallery-1.jpg" class="btn btn-light btn-lg-square rounded-circle"
+                                data-lightbox="Gallery-1"><i class="fas fa-search-plus"></i></a>
                         </div>
-                    @endif
+                    </div>
+                </div>
+                <div class="col-3 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="gallery-item">
+                        <img src="img/gallery-2.jpg" class="img-fluid rounded w-100 h-100" alt="">
+                        <div class="search-icon">
+                            <a href="img/gallery-2.jpg" class="btn btn-light btn-lg-square rounded-circle"
+                                data-lightbox="Gallery-2"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="gallery-item">
+                        <img src="img/gallery-3.jpg" class="img-fluid rounded w-100 h-100" alt="">
+                        <div class="search-icon">
+                            <a href="img/gallery-3.jpg" class="btn btn-light btn-lg-square rounded-circle"
+                                data-lightbox="Gallery-3"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="gallery-item">
+                        <img src="img/gallery-4.jpg" class="img-fluid rounded w-100 h-100" alt="">
+                        <div class="search-icon">
+                            <a href="img/gallery-4.jpg" class="btn btn-light btn-lg-square rounded-circle"
+                                data-lightbox="Gallery-4"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="gallery-item">
+                        <img src="img/gallery-5.jpg" class="img-fluid rounded w-100 h-100" alt="">
+                        <div class="search-icon">
+                            <a href="img/gallery-5.jpg" class="btn btn-light btn-lg-square rounded-circle"
+                                data-lightbox="Gallery-5"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="gallery-item">
+                        <img src="img/gallery-6.jpg" class="img-fluid rounded w-100 h-100" alt="">
+                        <div class="search-icon">
+                            <a href="img/gallery-6.jpg" class="btn btn-light btn-lg-square rounded-circle"
+                                data-lightbox="Gallery-6"><i class="fas fa-search-plus"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    @endif
-    <!-- Partner Section End -->
+    </div>
+    <!-- Gallery End -->
 
-    <!-- Value Start -->
-    <div class="container-fluid feature py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">{{ __('messages.keyakinan_kami') }}</h4>
-                </div>
-                <h1 class="display-3 mb-4">{{ __('messages.keunggulan_perusahaan') }}</h1>
+    <!-- Team Start -->
+    <div class="container-fluid team pb-5">
+        <div class="container pb-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">Meet Our Team</h4>
+                <h1 class="display-5 mb-4">Our Waterland Park Dedicated Team Member</h1>
+                <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis
+                    cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint
+                    dolorem autem obcaecati, ipsam mollitia hic.
+                </p>
             </div>
-
-            <!-- Responsive Values Section -->
             <div class="row g-4 justify-content-center">
-                @php
-                    // Sample data for the loop, replace with dynamic data if necessary
-                    $values = [
-                        [
-                            'title' => __('messages.bekerja_cepat'),
-                            'image' => 'value (1).png',
-                            'description' => __('messages.bekerja_cepat_desc'),
-                        ],
-                        [
-                            'title' => __('messages.inovasi'),
-                            'image' => 'value (2).png',
-                            'description' => __('messages.inovasi_desc'),
-                        ],
-                        [
-                            'title' => __('messages.mandiri'),
-                            'image' => 'value (3).png',
-                            'description' => __('messages.mandiri_desc'),
-                        ],
-                        [
-                            'title' => __('messages.kualitas'),
-                            'image' => 'value (4).png',
-                            'description' => __('messages.kualitas_desc'),
-                        ],
-                        [
-                            'title' => __('messages.kepuasan_pelanggan'),
-                            'image' => 'value (5).png',
-                            'description' => __('messages.kepuasan_pelanggan_desc'),
-                        ],
-                        [
-                            'title' => __('messages.rasa_hormat'),
-                            'image' => 'value (6).png',
-                            'description' => __('messages.rasa_hormat_desc'),
-                        ],
-                    ];
-                @endphp
-
-                @foreach ($values as $key => $value)
-                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="feature-item p-4 h-100"
-                            style="height: 400px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
-                            <div class="feature-icon mb-4 text-center d-flex align-items-center justify-content-center">
-                                <div class="p-3 d-inline-flex bg-white rounded-circle"
-                                    style="box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-                                    <img src="{{ asset('assets/img/about/' . $value['image']) }}" alt="Icon"
-                                        style="width: 100px; height: 100px; object-fit: cover;">
+                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="team-item p-4">
+                        <div class="team-content">
+                            <div class="d-flex justify-content-between border-bottom pb-4">
+                                <div class="text-start">
+                                    <h4 class="mb-0">David James</h4>
+                                    <p class="mb-0">Profession</p>
+                                </div>
+                                <div>
+                                    <img src="img/team-1.jpg" class="img-fluid rounded"
+                                        style="width: 100px; height: 100px;" alt="">
                                 </div>
                             </div>
-                            <div class="feature-content text-center">
-                                <h5 class="mb-4 font-weight-bold">{{ $value['title'] }}</h5>
-                                <p class="mb-0">{{ $value['description'] }}</p>
+                            <div class="team-icon rounded-pill my-4 p-3">
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
+                                        class="fab fa-twitter"></i></a>
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-0" href=""><i
+                                        class="fab fa-instagram"></i></a>
                             </div>
+                            <p class="text-center mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem,
+                                quibusdam eveniet itaque provident sequi deserunt.
+                            </p>
                         </div>
                     </div>
-                @endforeach
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="team-item p-4">
+                        <div class="team-content">
+                            <div class="d-flex justify-content-between border-bottom pb-4">
+                                <div class="text-start">
+                                    <h4 class="mb-0">William John</h4>
+                                    <p class="mb-0">Profession</p>
+                                </div>
+                                <div>
+                                    <img src="img/team-2.jpg" class="img-fluid rounded"
+                                        style="width: 100px; height: 100px;" alt="">
+                                </div>
+                            </div>
+                            <div class="team-icon rounded-pill my-4 p-3">
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
+                                        class="fab fa-twitter"></i></a>
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-0" href=""><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                            <p class="text-center mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem,
+                                quibusdam eveniet itaque provident sequi deserunt.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="team-item p-4">
+                        <div class="team-content">
+                            <div class="d-flex justify-content-between border-bottom pb-4">
+                                <div class="text-start">
+                                    <h4 class="mb-0">Michael John</h4>
+                                    <p class="mb-0">Profession</p>
+                                </div>
+                                <div>
+                                    <img src="img/team-3.jpg" class="img-fluid rounded"
+                                        style="width: 100px; height: 100px;" alt="">
+                                </div>
+                            </div>
+                            <div class="team-icon rounded-pill my-4 p-3">
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
+                                        class="fab fa-twitter"></i></a>
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
+                                        class="fab fa-linkedin-in"></i></a>
+                                <a class="btn btn-primary btn-sm-square rounded-circle me-0" href=""><i
+                                        class="fab fa-instagram"></i></a>
+                            </div>
+                            <p class="text-center mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem,
+                                quibusdam eveniet itaque provident sequi deserunt.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- Value End -->
-
-    <!-- Custom CSS -->
-    <style>
-        /* Feature item consistent height */
-        .feature-item {
-            background-color: #fff;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        /* Icon and Image styling */
-        .feature-item img {
-            max-width: 100%;
-            object-fit: cover;
-        }
-
-        /* Hover effect on feature items */
-        .feature-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Responsive Behavior */
-        @media (max-width: 768px) {
-            .feature-item {
-                min-height: 300px;
-            }
-        }
-    </style>
-
-
-    <!-- Sales Channel Start -->
-    <div class="container-fluid team py-5">
-        <div class="container py-5">
-            <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="sub-style">
-                    <h4 class="sub-title px-3 mb-0">{{ __('messages.kemitraan') }}</h4>
-                </div>
-                <h1 class="display-3 mb-4">Saluran Penjualan</h1>
-            </div>
-            <div class="row g-3 justify-content-center">
-                <!-- Card 1 -->
-                <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
-                    <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
-                        <a href="{{ $company->ekatalog ?? '#' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
-                                <div class="d-flex align-items-center justify-content-center mb-3">
-                                    <img src="{{ asset('assets/img/e-katalog.png') }}" alt="E-Commerce" style="width: 55%; height: 50px;">
-                                </div>
-                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">
-                                    {{ __('messages.e_commerce') }}
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
-                    <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
-                        <!-- Card content as a trigger for the modal -->
-                        <div class="p-0 w-100 d-flex flex-column flex-grow-1 text-dark text-decoration-none" data-bs-toggle="modal" data-bs-target="#websiteModal">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
-                                <div class="d-flex align-items-center justify-content-center mb-3">
-                                    <i class="fa fa-globe fa-3x text-success"></i>
-                                    <h5 class="mb-0 font-weight-bold" style="font-size: 28px; margin-left: 15px;">
-                                        {{ __('messages.website_kami') }}
-                                    </h5>
-                                </div>
-                                <p class="mb-0" style="font-size: 15px;">{{ __('messages.website_resmi') }}</p>
-                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.website') }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Card 3 -->
-                <div class="col-md-12 col-lg-6 col-xl-4 mb-3">
-                    <div class="team-item rounded d-flex flex-column h-100 border-radius-15 box-shadow">
-                        <a href="https://wa.me/{{ $company->no_wa ? preg_replace('/\D/', '', $company->no_wa) : '' }}" target="_blank" class="d-flex flex-column flex-grow-1 text-decoration-none text-dark">
-                            <div class="team-content text-center border border-primary border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-center h-100">
-                                <div class="d-flex align-items-center justify-content-center mb-3">
-                                    <i class="fab fa-whatsapp fa-3x text-success"></i>
-                                    <h5 class="mb-0 font-weight-bold" style="font-size: 28px; margin-left: 15px;">
-                                        {{ $company->no_wa ?? ' ' }}
-                                    </h5>
-                                </div>
-                                <p class="mb-0" style="font-size: 13px;">{{ __('messages.whatsapp_resmi', ['company' => $company->nama_perusahaan ?? '']) }}</p>
-                                <p class="mb-0 font-weight-bold" style="font-size: 18px;">{{ __('messages.hubungi_langsung') }}</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="websiteModal" tabindex="-1" aria-labelledby="websiteModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="websiteModalLabel">{{ __('messages.website_information') }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Loop through the first two brands -->
-                            @foreach ($brand as $singleBrand)
-                                <h5>{{ $singleBrand->nama }}</h5>
-                                <p>{{ __('messages.visit_website', ['name' => $singleBrand->nama, 'url' => $singleBrand->url]) }}</p>
-                                <p>{{ $singleBrand->description ?? __('messages.no_additional_info') }}</p>
-                                <hr>
-                            @endforeach
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('messages.close') }}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- Sales Channel End -->
-
-    <!-- Map Start -->
-    <div class="container"
-        style="
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    background-color: #fff;
-    text-align: center; ">
-
-        <div class="section-title mb-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="sub-style">
-                <h4 class="sub-title px-3 mb-0">Para Pelanggan Terbaik Kami</h4>
-            </div>
-            <h1 class="display-3 mb-4">{{ __('messages.our_customers') }}</h1>
-        </div>
-        <hr>
-
-        <div id="umalo" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
-    </div> <br> <br>
-    <!-- Map End -->
-
-    <!-- Include Leaflet.js -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-
-    <script>
-        // Inisialisasi peta
-        var map = L.map('umalo').setView([-2.548926, 118.0148634], 5); // Pusat Indonesia
-
-        //tile layer dari OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        function addMarker(lat, lng, province, userCount, users) {
-            var marker = L.marker([lat, lng]).addTo(map);
-
-            // Build user info HTML
-            let userList = '<ul>';
-            users.forEach(function(user) {
-                userList += `<li>${user.nama_perusahaan} (Created on: ${user.created_at})</li>`;
-            });
-            userList += '</ul>';
-
-            // Popup content for marker
-            marker.bindPopup(`
-        <div class="info-window">
-            <h3 class="popup-title">${province}</h3>
-            <p class="popup-description">Kami memiliki ${userCount} member di ${province}:</p>
-            ${userList}
-        </div>
-    `);
-
-            // Adding tooltip
-            marker.bindTooltip(`<div>${province}</div>`, {
-                permanent: false,
-                direction: 'top',
-                offset: [0, -20],
-                className: 'marker-tooltip'
-            });
-            marker.on('mouseover', function(e) {
-                this.openTooltip();
-            });
-            marker.on('mouseout', function(e) {
-                this.closeTooltip();
-            });
-        }
-
-
-        // Fetch lokasi dari backend
-        // Fetch lokasi dari backend
-        fetch("{{ url('/locations') }}")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // for debugging
-                data.forEach(location => {
-                    addMarker(location.latitude, location.longitude, location.province, location.user_count,
-                        location.user_data);
-                });
-            })
-            .catch(error => console.error('Error:', error));
-    </script>
-
-    <style>
-        .marker-tooltip {
-            background-color: #b3d9ff;
-            border: 1px solid #80b3ff;
-            padding: 5px;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-            font-size: 12px;
-            color: #333;
-        }
-
-        .info-window img.popup-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 5px;
-        }
-
-        .popup-title {
-            font-size: 20px;
-            color: black;
-            font-weight: bold;
-        }
-
-        .popup-description,
-        .popup-address {
-            font-size: 12px;
-            color: #333;
-            margin-top: 10px;
-            text-align: justify;
-        }
-
-        /* Media query untuk perangkat dengan lebar maksimal 768px */
-        @media (max-width: 768px) {
-            .info-window {
-                padding: 10px;
-            }
-
-            .popup-title {
-                font-size: 18px;
-            }
-
-            .popup-description,
-            .popup-address {
-                font-size: 10px;
-            }
-
-            .info-window img.popup-image {
-                margin-bottom: 5px
-            }
-        }
-
-        /* Media query untuk perangkat dengan lebar maksimal 480px */
-        @media (max-width: 480px) {
-            .popup-title {
-                font-size: 16px;
-            }
-
-            .popup-description,
-            .popup-address {
-                font-size: 9px;
-            }
-        }
-    </style>
-    <!-- Map End -->
-
-    <script>
-        document.getElementById('show-more-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-partners').classList.remove('d-none');
-        });
-
-        document.getElementById('show-less-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item').forEach(function(item, index) {
-                if (index >= 8) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-partners').style.display = 'inline-block';
-        });
-
-        document.getElementById('show-more-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-principals').classList.remove('d-none');
-        });
-
-        document.getElementById('show-less-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item').forEach(function(item, index) {
-                if (index >= 10) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-principals').style.display = 'inline-block';
-        });
-    </script>
+    <!-- Team End -->
 @endsection

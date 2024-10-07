@@ -67,7 +67,7 @@
                     </div>
                 @endforeach
 
-                    <a href="#footer-section" id="contact-link"
+                    <a href="{{ route('contact')}}" id="contact-link"
                         class="nav-item nav-link">{{ __('messages.contact_us') }}</a>
                 </div>
 

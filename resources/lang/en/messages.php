@@ -104,4 +104,12 @@ return [
     'description_product' => 'Description',
     'specification_product' => 'Specification',
     'click_here' => 'Click Here',
+
+    'NIB' => 'Business Identification Number',
+    'SK' => 'Certificate Letter',
+    'visimisi_1' => 'PROFESSIONAL',
+    'visimisi_2' => 'EXCELLENT QUALITY',
+    'visimisi_3' => 'CONVENIENCE',
+    'product_desc' => 'We offer a range of high-quality products designed to meet your needs. Each of our products is carefully selected, providing the best and innovative solutions for everyday life. Browse our collection and find what you are looking for!',
+    'brands_desc' => 'We establish strategic partnerships with various industries to bring innovative solutions.With the support of our partners, we are committed to delivering the best products and services to our customers.”With the support of our partners, we are committed to delivering the best products and services to our customers.',
 ];

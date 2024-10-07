@@ -14,7 +14,7 @@
                         <div class="col col-stats ms-3 ms-sm-0">
                             <div class="numbers">
                                 <p class="card-category">Member</p>
-                                <h4 class="card-title">{{ $totalMembers }}</h4> <!-- Display the customer count -->
+                                <h4 class="card-title">{{ $totalMembers }}</h4>s
                             </div>
                         </div>
                     </div>

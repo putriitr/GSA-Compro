@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header">
-                <h1 class="h4">Edit Merek/Brand</h1>
+                <h1 class="h4">Edit Merek</h1>
             </div>
 
             <div class="card-body">
@@ -53,7 +53,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Perbaharui Merek/Mitra</button>
+                    <button type="submit" class="btn btn-primary">Perbaharui Merek</button>
                 </form>
             </div>
         </div>
