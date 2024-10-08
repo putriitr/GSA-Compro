@@ -67,7 +67,7 @@ return [
     'hubungi_langsung' => 'Hubungi Langsung',
 
     'quick_access' => 'Akses Cepat',
-    'brands_partners' => 'Merek & Mitra',
+    'our_brands' => 'Merek Produk Kami',
     'our_activity' => 'Aktivitas Kami',
     'find_products' => 'Temukan Produk',
     'our_products' => 'Produk Kami',
@@ -80,10 +80,10 @@ return [
     'whatsapp_not_available' => 'WhatsApp tidak tersedia',
 
     'leave_message' => 'Tinggalkan Pesan',
-    'full_name' => 'Nama Lengkap',
-    'email' => 'Email',
-    'company' => 'Perusahaan',
-    'phone' => 'Telepon',
+    'your_name' => 'Nama Anda',
+    'your_email' => 'Email Anda',
+    'your_company' => 'Perusahaan',
+    'phone' => 'Nomor Telepon',
     'your_message' => 'Pesan Anda',
     'send_message' => 'Kirim Pesan',
     'qna-guest' => 'Pertanyaan',
@@ -105,6 +105,7 @@ return [
     'description_product' => 'Deskripsi',
     'specification_product' => 'Spesifikasi',
     'click_here' => 'Klik Disini',
+    'address' => 'Alamat',
 
     'NIB' => 'Nomor Induk Berusaha',
     'SK' => 'Surat Keterangan',
@@ -112,5 +113,6 @@ return [
     'visimisi_2' => 'KUALITAS TINGGI',
     'visimisi_3' => 'KENYAMANAN',
     'product_desc' => 'Kami menawarkan berbagai produk berkualitas tinggi yang dirancang untuk memenuhi kebutuhan Anda. Setiap produk kami dipilih dengan teliti, memberikan solusi terbaik dan inovatif untuk kehidupan sehari-hari. Jelajahi koleksi kami dan temukan apa yang Anda cari!',
-    'brands_desc' => 'Kami menjalin kemitraan strategis dengan berbagai industri untuk menghadirkan solusi inovatif. Dengan dukungan mitra kami, kami berkomitmen untuk memberikan produk dan layanan terbaik kepada pelanggan.'
+    'brands_desc' => 'Kami menjalin kemitraan strategis dengan berbagai industri untuk menghadirkan solusi inovatif. Dengan dukungan mitra kami, kami berkomitmen untuk memberikan produk dan layanan terbaik kepada pelanggan.',
+    'contact_desc' => 'Jika Anda memiliki pertanyaan atau membutuhkan bantuan, silakan isi formulir kontak di bawah ini. Tim kami akan segera menghubungi Anda. Terima kasih atas kepercayaan Anda!',
 ];

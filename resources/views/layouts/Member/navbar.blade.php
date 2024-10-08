@@ -41,7 +41,7 @@
                     <a href="{{ route('activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
                     <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
 
-                    <div class="nav-item dropdown">
+                    {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0">
                             <a href="feature.html" class="dropdown-item">Our Feature</a>
@@ -52,7 +52,7 @@
                             <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             <a href="404.html" class="dropdown-item">404 Page</a>
                         </div>
-                    </div>
+                    </div> --}}
 
                     @foreach ($activeMetas as $type => $metas)
                     <div class="nav-item dropdown">

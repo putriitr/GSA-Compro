@@ -27,6 +27,8 @@
     use App\Http\Controllers\Admin\QnaGuest\QnaGuestController;
     use App\Http\Controllers\Member\QnaGuest1\QnaGuest1Controller;
     use App\Http\Controllers\ContactPageController;
+    use App\Http\Controllers\Admin\Activity\CategoryActivityController;
+
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -39,7 +41,7 @@
     Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get('/about', [HomeController::class, 'about'])->name('about');
-        Route::get('/contact', [ContactPageController::class, 'contact'])->name('contact.index');
+        Route::get('/contact', [ContactPageController::class, 'index'])->name('contact');
         // Rute lainnya
         Route::get('/products', [ProdukMemberController::class, 'index'])->name('product.index');
         Route::get('/products/category/{id}', [ProdukMemberController::class, 'index'])->name('product.category');
@@ -47,7 +49,7 @@
 
         Route::get('/products/filter/{id}', [ProdukMemberController::class, 'filterByCategory'])->name('filterByCategory');
 
-        Route::get('/activity', [ActivityMemberController::class, 'activity'])->name('activity');
+        Route::get('/activity', [ActivityController::class, 'activity'])->name('activity');
         Route::get('/activities/{activity}', [ActivityMemberController::class, 'show'])->name('activity.show');
         Route::get('/member/meta/{slug}', [MetaMemberController::class, 'showMetaBySlug'])->name('member.meta.show');
         Route::get('/member/meta', [MetaMemberController::class, 'showMeta'])->name('member.meta.index');
@@ -92,6 +94,7 @@
         Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
+            Route::resource('admin/activity/category-activity', CategoryActivityController::class)->names('admin.activity.category-activity');
             Route::resource('admin/members', MemberController::class);
             Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
             Route::post('members/{id}/store-products', [MemberController::class, 'storeProducts'])->name('members.store-products');

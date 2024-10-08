@@ -26,6 +26,15 @@
                     <label for="description" class="form-label">Deskripsi</label>
                     <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
                 </div>
+                <div class="mb-3">
+                    <label for="category_activities_id" class="form-label">Kategori</label>
+                    <select name="category_activities_id" id="category_activitiesa_id" class="form-control" required>
+                        <option value="">Pilih Kategori</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>

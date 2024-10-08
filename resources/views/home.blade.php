@@ -151,69 +151,34 @@
     <!-- Product End -->
 
     <!-- Brand Start -->
-    <div class="container-fluid gallery pb-5">
+    <div id="brand" class="container-fluid feature pb-5">
         <div class="container pb-5">
-            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-primary">{{ __('messages.partnership') }}</h4>
-                <h1 class="display-5 mb-4">{{ __('messages.our_partners') }}</h1>
-                <p class="mb-0">{{__('messages.brands_desc')}}</p>
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+                <h4 class="text-primary">{{ __('messages.our_brands') }}</h4>
+                <h1 class="display-5 mb-4">{{ __('messages.our_brands') }}</h1>
+                <p class="mb-0">{{ __('messages.brands_desc') }}</p>
             </div>
-            @if ($partners->isNotEmpty())
-                <div class="owl-carousel owl-theme">
-                    @foreach ($partners as $p)
-                        <div class="item">
-                            <div class="gallery-item">
-                                <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
-                                    width="100%" height="100" style="object-fit:contain;">
-                                <div class="search-icon">
-                                    <a href="{{ asset('storage/' . $p->gambar) }}"
-                                        class="btn btn-light btn-lg-square rounded-circle" data-lightbox="Gallery-1"><i
-                                            class="fas fa-search-plus"></i></a>
-                                </div>
+            @if ($principals->isNotEmpty())
+                <div class="row gy-4">
+                    @foreach ($principals as $p)
+                        <div class="col-6 col-md-4 col-xl-2 text-center principal-item">
+                            <div class="bg-white px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
+                                <img src="{{ asset($p->gambar ?? 'assets/img/default.jpg') }}" alt="{{ $p->nama }}" width="100%" height="45">
                             </div>
                         </div>
                     @endforeach
                 </div>
+                @if ($principals->count() > 8)
+                    <div class="text-center mt-4">
+                        <button id="show-more-principals" class="btn btn-primary">{{ __('messages.show_more') }}</button>
+                        <button id="show-less-principals"
+                            class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
+                    </div>
+                @endif
             @endif
         </div>
     </div>
     <!-- Brand End -->
-
-    {{-- <!-- Principal Section Start -->
-    @if ($principals->isNotEmpty())
-        <div class="container-fluid wow zoomInDown" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="section-title">
-                    <div class="sub-style">
-                        <h4 class="sub-title px-3 mb-0">{{ __('messages.trusted_collaboration') }}</h4>
-                    </div>
-                    <h1 class="display-3 mb-4">{{ __('messages.distributor_company') }}</h1>
-                </div>
-                <div class="container overflow-hidden">
-                    <div class="row gy-4">
-                        @foreach ($principals as $key => $p)
-                            <div
-                                class="col-6 col-md-4 col-xl-3 text-center principal-item {{ $key >= 10 ? 'd-none' : '' }}">
-                                <div class="bg-light px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                    <img src="{{ asset('storage/' . $p->gambar) }}" alt="{{ $p->name }}"
-                                        width="100%" height="65">
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    @if ($principals->count() > 8)
-                        <div class="text-center mt-4">
-                            <button id="show-more-principals"
-                                class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                            <button id="show-less-principals"
-                                class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    @endif
-    <!-- Principal Section End --> --}}
 
     <!-- Script to Show More and Show Less Items -->
     <script>

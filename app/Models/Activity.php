@@ -16,9 +16,15 @@ class Activity extends Model
         'date',
         'title',
         'description',
+        'category_activities_id'
     ];
 
     protected $casts = [
         'date' => 'datetime',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(CategoryActivity::class, 'category_activities_id');
+    }
 }

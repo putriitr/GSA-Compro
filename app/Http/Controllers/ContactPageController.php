@@ -9,7 +9,7 @@ class ContactPageController extends Controller
     public function index()
     {
         $contacts = ContactPage::all();
-        return view('contact', compact('contacts'));
+        return view('Member.Contact.contact');
     }
 
     public function create()

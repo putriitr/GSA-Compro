@@ -1,14 +1,19 @@
-@extends('layouts.customer.master')
+@extends('layouts.member.master')
+
+@php
+$compro = \App\Models\CompanyParameter::first();
+$brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
+@endphp
 
 @section('content')
  <!-- Header Start -->
- <div class="container-fluid bg-breadcrumb">
+ <div class="container-fluid bg-breadcrumb"
+        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/page-header.jpg') }}');">
     <div class="container text-center py-5" style="max-width: 900px;">
-        <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Contact Us</h4>
+        <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.contact_us') }}</h4>
         <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-            <li class="breadcrumb-item active text-primary">Contact</li>
+            <li class="breadcrumb-item"><a href="index.html">{{ __('messages.home') }}</a></li>
+            <li class="breadcrumb-item active text-primary">{{ __('messages.contact_us') }}</li>
         </ol>
     </div>
 </div>
@@ -21,8 +26,8 @@
             <div class="col-12 col-xl-6 wow fadeInUp" data-wow-delay="0.2s">
                 <div>
                     <div class="pb-5">
-                        <h4 class="text-primary">Get in Touch</h4>
-                        <p class="mb-0">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a class="text-primary fw-bold" href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
+                        <h4 class="text-primary">{{ __('messages.hubungi_langsung') }}</h4>
+                        <p class="mb-0">{{ __('messages.contact_desc') }}</p>
                     </div>
                     <div class="row g-4">
                         <div class="col-lg-6">
@@ -31,8 +36,8 @@
                                     <i class="fas fa-map-marker-alt fa-2x"></i>
                                 </div>
                                 <div>
-                                    <h4>Address</h4>
-                                    <p class="mb-0">123 Street New York.USA</p>
+                                    <h4>{{ __('messages.address') }}</h4>
+                                    <p class="mb-0">{{ $compro->alamat }}</p>
                                 </div>
                             </div>
                         </div>
@@ -42,30 +47,30 @@
                                     <i class="fas fa-envelope fa-2x"></i>
                                 </div>
                                 <div>
-                                    <h4>Mail Us</h4>
-                                    <p class="mb-0">info@example.com</p>
+                                    <h4>Email</h4>
+                                    <p class="mb-0">{{ $compro->email }}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="contact-add-item rounded bg-light p-4">
                                 <div class="contact-icon text-primary mb-4">
-                                    <i class="fa fa-phone-alt fa-2x"></i>
+                                    <i class="fab fa-whatsapp fa-2x"></i>
                                 </div>
                                 <div>
-                                    <h4>Telephone</h4>
-                                    <p class="mb-0">(+012) 3456 7890</p>
+                                    <h4>Whatsapp</h4>
+                                    <p class="mb-0">{{ $compro->no_wa }}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="contact-add-item rounded bg-light p-4">
                                 <div class="contact-icon text-primary mb-4">
-                                    <i class="fab fa-firefox-browser fa-2x"></i>
+                                    <i class="fas fa-globe fa-2x"></i>
                                 </div>
                                 <div>
-                                    <h4>Yoursite@ex.com</h4>
-                                    <p class="mb-0">(+012) 3456 7890</p>
+                                    <h4>Website</h4>
+                                    <p class="mb-0">{{ $compro->website }}</p>
                                 </div>
                             </div>
                         </div>
@@ -82,48 +87,42 @@
             </div>
             <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.4s">
                 <div class="bg-light p-5 rounded h-100">
-                    <h4 class="text-primary mb-4">Send Your Message</h4>
+                    <h4 class="text-primary mb-4">{{ __('messages.leave_message') }}</h4>
                     <form>
                         <div class="row g-4">
                             <div class="col-lg-12 col-xl-6">
                                 <div class="form-floating">
                                     <input type="text" class="form-control border-0" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
+                                    <label for="name">{{ __('messages.your_name') }}</label>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-xl-6">
                                 <div class="form-floating">
                                     <input type="email" class="form-control border-0" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
+                                    <label for="email">{{ __('messages.your_email') }}</label>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-xl-6">
                                 <div class="form-floating">
                                     <input type="phone" class="form-control border-0" id="phone" placeholder="Phone">
-                                    <label for="phone">Your Phone</label>
+                                    <label for="phone">{{ __('messages.phone') }}</label>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-xl-6">
                                 <div class="form-floating">
                                     <input type="text" class="form-control border-0" id="project" placeholder="Project">
-                                    <label for="project">Your Project</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control border-0" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
+                                    <label for="project">{{ __('messages.your_company') }}</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 160px"></textarea>
-                                    <label for="message">Message</label>
+                                    <label for="message">{{ __('messages.your_message') }}</label>
                                 </div>
 
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3">Send Message</button>
+                                <button class="btn btn-primary w-100 py-3">{{ __('messages.send_message') }}</button>
                             </div>
                         </div>
                     </form>

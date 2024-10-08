@@ -15,13 +15,13 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="first_name" class="form-label">{{ __('messages.full_name') }} <span class="text-danger">*</span></label>
+                                    <label for="first_name" class="form-label">{{ __('messages.your_name') }} <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="first_name" name="first_name" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">{{ __('messages.email') }} <span class="text-danger">*</span></label>
+                                    <label for="email" class="form-label">{{ __('messages.your_email') }} <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label for="company" class="form-label">{{ __('messages.company') }} <span class="text-danger">*</span></label>
+                                    <label for="company" class="form-label">{{ __('messages.your_company') }} <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="company" name="company" required>
                                 </div>
                             </div>

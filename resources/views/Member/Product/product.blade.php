@@ -1,25 +1,13 @@
 @extends('layouts.member.master')
 
 @section('content')
-    {{-- <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb" style="background-color: #f4f4f4;">
-        <div class="container text-center py-5" style="max-width: 900px;">
-            <h1 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Produk Kami</h1>
-            <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-dark">Beranda</a></li>
-                <li class="breadcrumb-item active text-primary">Produk</li>
-            </ol>
-        </div>
-    </div>
-    <!-- Header End --> --}}
-
     <div class="container mt-5">
         <div class="row">
             <!-- Sidebar Start -->
             <div class="col-lg-3">
                 <h4 class="mb-4 text-dark font-weight-bold">{{ __('messages.category') }}</h4>
                 <ul class="list-group mb-4 shadow-sm">
-                    @foreach($kategori as $kat)
+                    @foreach ($kategori as $kat)
                         <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
                             style="cursor: pointer; background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}; transition: background-color 0.3s ease, color 0.3s ease;"
                             onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
@@ -30,7 +18,6 @@
                     @endforeach
                 </ul>
             </div>
-
             <!-- Sidebar End -->
 
             <!-- Main Content Start -->
@@ -71,10 +58,10 @@
                     @endforeach
                 </div>
 
-<!-- Pagination Links -->
-<div class="d-flex justify-content-center mt-4">
-    {{ $produks->links() }} <!-- Menampilkan link pagination -->
-</div>
+                <!-- Pagination Links -->
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $produks->links() }} <!-- Menampilkan link pagination -->
+                </div>
 
             </div>
             <!-- Main Content End -->

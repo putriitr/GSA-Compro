@@ -204,7 +204,12 @@
                             </li>
                             <li>
                                 <a href="{{ route('admin.kategori.index') }}">
-                                    <span class="sub-item">Kategori</span>
+                                    <span class="sub-item">Kategori Produk</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.activity.category-activity.index') }}">
+                                    <span class="sub-item">Kategori Aktivitas</span>
                                 </a>
                             </li>
                             <li>

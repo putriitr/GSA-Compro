@@ -40,10 +40,6 @@ class BrandPartnerController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('public/partners', $filename); // Simpan ke storage
-            $partner->gambar = 'partners/' . $filename;
             $validated['gambar'] = $request->file('gambar')->store('uploads/brand', 'public');
         }
 
