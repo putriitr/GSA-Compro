@@ -31,6 +31,7 @@ class HomeController extends Controller
     {
         $produks = Produk::take(6)->get();
         $sliders = Slider::all();
+        $activities = Activity::all(); // Fetching activities
         $company = CompanyParameter::first(); // Single object, not a collection
         $brand = BrandPartner::where('type', 'brand')->get();
         $partners = BrandPartner::where('type', 'partner')->get();
@@ -50,8 +51,10 @@ class HomeController extends Controller
             $company->sejarah_singkat = TranslateHelper::translate($company->sejarah_singkat, $locale);
         }
 
-        return view('home', compact('produks', 'sliders', 'company', 'brand', 'partners', 'principals'));
+        // Pass the activities variable to the view
+        return view('home', compact('produks', 'sliders', 'company', 'brand', 'partners', 'principals', 'activities'));
     }
+
 
 
 
@@ -102,9 +105,6 @@ class HomeController extends Controller
             $company->misi = TranslateHelper::translate($company->misi, $locale);
         }
 
-        return view('member.about.about', compact('company','brand', 'partners', 'principals'));
+        return view('member.about.about', compact('company', 'brand', 'partners', 'principals'));
     }
-
-
-
 }

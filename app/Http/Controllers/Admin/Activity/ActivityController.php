@@ -12,7 +12,8 @@ class ActivityController extends Controller
     public function activity()
     {
         // Logic to retrieve activities or perform some action
-        return view('admin.activity.index'); // Adjust the view name as needed
+        $activities = Activity::all();
+        return view('admin.activity.index', compact('activities')); // Adjust the view name as needed
     }
 
 
@@ -45,14 +46,17 @@ class ActivityController extends Controller
         $request->image->move(public_path('images'), $imageName);
 
         // Simpan aktivitas baru ke database
-        $activity = Activity::create([
+        Activity::create([
             'image' => $imageName,
             'date' => $request->date,
             'title' => $request->title,
             'description' => $request->description,
             'category_activities_id' => $request->category_activities_id,
         ]);
+
+        return redirect()->route('admin.activity.index')->with('success', 'Activity created successfully.');
     }
+
 
     public function edit(Activity $activity)
     {
