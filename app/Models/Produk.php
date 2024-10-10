@@ -12,7 +12,7 @@ class Produk extends Model
     protected $table = 'produk';
 
 
-    protected $fillable = ['nama', 'merk', 'tipe', 'link', 'via','kegunaan', 'deskripsi', 'spesifikasi', 'user_manual','kategori_id'];
+    protected $fillable = ['nama', 'merk', 'tipe', 'link', 'tentang_produk','kegunaan', 'deskripsi', 'spesifikasi', 'user_manual','kategori_id'];
 
     public function images()
     {

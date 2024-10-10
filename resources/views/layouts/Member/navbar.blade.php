@@ -28,7 +28,7 @@
             <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center p-0">
                 <img src="{{ asset('storage/logo-gsa2.png') }}" alt="Logo" class="me-2"
                     style="height: auto; width: 180px;">
-                    <img src="{{ asset('storage/catalogue.png')}}" alt="Logo" class="me-2"
+                <img src="{{ asset('storage/catalogue.png') }}" alt="Logo" class="me-2"
                     style="height: auto; width: 150px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -41,33 +41,24 @@
                     <a href="{{ route('activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
                     <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
 
-                    {{-- <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="feature.html" class="dropdown-item">Our Feature</a>
-                            <a href="gallery.html" class="dropdown-item">Our Gallery</a>
-                            <a href="attraction.html" class="dropdown-item">Attractions</a>
-                            <a href="package.html" class="dropdown-item">Ticket Packages</a>
-                            <a href="team.html" class="dropdown-item">Our Team</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
-                        </div>
-                    </div> --}}
-
                     @foreach ($activeMetas as $type => $metas)
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}"
-                            aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
-                        <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown-{{ $type }}">
-                            @foreach ($metas as $meta)
-                                <a href="{{ route('member.meta.show', $meta->slug) }}"
-                                    class="dropdown-item">{{ $meta->title }}</a>
-                            @endforeach
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}"
+                                aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
+                            <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown-{{ $type }}">
+                                @foreach ($metas as $meta)
+                                    <a href="{{ route('member.meta.show', $meta->slug) }}"
+                                        class="dropdown-item">{{ $meta->title }}</a>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
-                    <a href="{{ route('contact')}}" id="contact-link"
+                    @auth
+                        <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
+                    @endauth
+
+                    <a href="{{ route('contact') }}" id="contact-link"
                         class="nav-item nav-link">{{ __('messages.contact_us') }}</a>
                 </div>
 
@@ -87,17 +78,19 @@
                             {{ __('messages.bahasa') }}
                         </a>
                         <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
-                            <img src="{{ asset('assets/kai/assets/img/flags/england.png') }}" alt="English">
+                            <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English">
                             {{ __('messages.english') }}
                         </a>
                     </div>
                 </div>
                 <div class="team-icon d-none d-xl-flex justify-content-center me-3">
-                    <a class="btn btn-square btn-light rounded-circle mx-1" href=""><i class="fas fa-map-marker-alt"></i></a>
-                    <a class="btn btn-square btn-light rounded-circle mx-1" href="mailto:info@gsacommerce.com"><i class="fas fa-envelope"></i></a>
+                    <a class="btn btn-square btn-light rounded-circle mx-1" href=""><i
+                            class="fas fa-map-marker-alt"></i></a>
+                    <a class="btn btn-square btn-light rounded-circle mx-1" href="mailto:info@gsacommerce.com"><i
+                            class="fas fa-envelope"></i></a>
                     <div class="btn-group">
-                        <!-- Hapus class 'dropdown-toggle' untuk menghilangkan ikon panah -->
-                        <a class="btn btn-square btn-light rounded-circle mx-1" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="btn btn-square btn-light rounded-circle mx-1" href="#" role="button"
+                            id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -111,41 +104,41 @@
                     </div>
                 </div>
                 @if (auth()->check())
-                            <div class="dropdown">
-                                <a href="#" class="dropdown-toggle" id="companyDropdown" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <small><i
-                                            class="fa fa-user text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle" id="companyDropdown" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <small><i
+                                    class="fa fa-user text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="companyDropdown">
+                            <!-- Show Profile -->
+                            <li>
+                                <a class="dropdown-item" href="{{ route('profile.show') }}">
+                                    <i class="fa fa-user me-2"></i>Profil
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="companyDropdown">
-                                    <!-- Show Profile -->
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('profile.show') }}">
-                                            <i class="fa fa-user me-2"></i>Profil
-                                        </a>
-                                    </li>
+                            </li>
 
-                                    <!-- Logout -->
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <i class="fa fa-sign-out-alt me-2"></i>Keluar
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <!-- Logout -->
+                            <li>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-sign-out-alt me-2"></i>Keluar
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
-                            <!-- Logout Form -->
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        @else
-                            <a href="{{ route('login') }}">
-                                <small class="btn btn-primary rounded-pill text-white py-1 px-1">
-                                    <i class="fa fa-sign-in-alt text-white me-2"></i>LOGIN
-                                </small>
-                            </a>
-                        @endif
+                    <!-- Logout Form -->
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                @else
+                    <a href="{{ route('login') }}">
+                        <small class="btn btn-primary rounded-pill text-white py-1 px-1">
+                            <i class="fa fa-sign-in-alt text-white me-2"></i>LOGIN
+                        </small>
+                    </a>
+                @endif
             </div>
         </nav>
     </div>

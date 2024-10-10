@@ -2,13 +2,14 @@
 
 @section('content')
 <!-- Header Start -->
-<div class="container-fluid bg-breadcrumb py-5">
-    <div class="container text-center" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">My Product</h3>
-        <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-            <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-white">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('/portal') }}" class="text-white">Portal Member</a></li>
-            <li class="breadcrumb-item active text-primary">My Product</li>
+<div class="container-fluid bg-breadcrumb"
+    style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/page-header.jpg') }}');">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.my_product') }}</h3>
+        <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+            <li class="breadcrumb-item"><a href="{{ url('/home') }}">{{ __('messages.home') }}</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/portal') }}">{{ __('messages.portal_member') }}</a></li>
+            <li class="breadcrumb-item active text-primary">{{ __('messages.my_product') }}</li>
         </ol>
     </div>
 </div>

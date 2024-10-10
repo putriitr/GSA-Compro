@@ -3,7 +3,6 @@
 @section('content')
     <div class="container mt-5">
         <div class="row">
-            <!-- Sidebar Start -->
             <div class="col-lg-3">
                 <h4 class="mb-4 text-dark font-weight-bold">{{ __('messages.category') }}</h4>
                 <ul class="list-group mb-4 shadow-sm">
@@ -23,49 +22,48 @@
             <!-- Main Content Start -->
             <div class="col-lg-9">
                 <div class="d-flex justify-content-between mb-4">
-                    <h3 class="font-weight-bold" style="color: #6196FF;">{{ __('messages.explore_product') }}</h3>
+                    <h3 class="display-6" style="color: #3CBEEE;">{{ __('messages.explore_product') }}</h3>
                     <select class="form-select w-25 border-0 bg-light shadow-sm">
                         <option selected>{{ __('messages.sort_by') }}</option>
                         <option value="1">{{ __('messages.newest') }}</option>
                         <option value="2">{{ __('messages.latest') }}</option>
                     </select>
                 </div>
-
-                <div class="row">
+                <div class="row g-4">
                     @foreach ($produks as $produk)
-                        <div class="col-md-4 mb-4">
-                            <div class="card product-card border-0 shadow-sm"
-                                style="overflow: hidden; transition: transform 0.3s ease; border-radius: 10px; height: 400px;">
-                                <a href="{{ route('product.show', $produk->id) }}">
-                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                        class="card-img-top" alt="{{ $produk->nama }}"
-                                        style="object-fit: contain; height: 250px; transition: transform 0.3s ease;">
-                                </a>
-                                <div class="card-body text-center">
+                        <div class="col-md-6 col-lg-4 bg-light wow fadeInUp" data-wow-delay="0.2s" style="border-radius: 15px; margin-left: 10px;">
+                            <div class="blog-item">
+                                <div class="blog-img">
+                                    <a href="{{ route('product.show', $produk->id) }}">
+                                        <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                            class="img-fluid w-100 rounded-top" alt="{{ $produk->nama }}"
+                                            style="margin-top: 15px; border-radius: 15px; width: 100%; height: 250px; object-fit: cover;">
+                                    </a>
+                                </div>
+                                <div class="blog-content p-4">
                                     @php
                                         $name = $produk->nama;
                                         $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
                                     @endphp
-                                    <h5 class="card-title text-dark font-weight-bold">{{ $limitedName }}</h5>
+                                    <a href="#" class="h4 d-inline-block mb-4">{{ $limitedName }}</a><br>
                                     <a href="{{ route('product.show', $produk->id) }}"
-                                        class="btn btn-outline-primary rounded-pill px-4 py-2 mt-3"
-                                        style="transition: background-color 0.3s ease; border-color: #6196FF; color:#6196FF;">
-                                        View Product →
-                                    </a>
+                                        class="btn btn-primary rounded-pill py-2 px-4">Read More<i
+                                            class="fas fa-arrow-right ms-2"></i></a>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
-
-                <!-- Pagination Links -->
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $produks->links() }} <!-- Menampilkan link pagination -->
-                </div>
-
             </div>
-            <!-- Main Content End -->
+
+            <!-- Pagination Links -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $produks->links() }} <!-- Menampilkan link pagination -->
+            </div>
+
         </div>
+        <!-- Main Content End -->
+    </div>
     </div>
 @endsection
 

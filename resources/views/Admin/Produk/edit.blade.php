@@ -79,11 +79,8 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="via">Via :</label>
-                                        <select name="via" class="form-control" required>
-                                            <option value="labtek" {{ old('via', $produk->via) == 'labtek' ? 'selected' : '' }}>Labtek</option>
-                                            <option value="labverse" {{ old('via', $produk->via) == 'labverse' ? 'selected' : '' }}>Labverse</option>
-                                        </select>
+                                        <label for="kegunaan">Tentang Produk :</label>
+                                        <textarea name="tentang_produk" class="form-control" required>{{ old('tentang_produk', $produk->tentang) }}</textarea>
                                     </div>
 
                                     <div class="form-group mb-3">
