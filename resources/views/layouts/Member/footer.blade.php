@@ -53,7 +53,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     <h4 class="mb-4 text-white">{{ __('messages.quick_access') }}</h4>
                     <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.about_us') }}</a>
                     <a href="{{ route('home') }}#merek-mitra"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_brands') }}</a>
-                    <a href="{{ route('activity') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_activity') }}</a>
+                    <a href="{{ route('member.activity') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_activity') }}</a>
                     <a href="{{ route('qnaguest1') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.qna-guest') }}</a>
                 </div>
             </div>

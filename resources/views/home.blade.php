@@ -89,7 +89,6 @@
                             <h1 class="display-5 mb-4">{{ $company->nama_perusahaan ?? 'Gudang Solusi Acommerce' }}</h1>
                             <p class="mb-5" style="text-align: justify; font-size: 20px;">
                                 {{ $company->sejarah_singkat ?? ' ' }}</p>
-
                         </div>
                         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
                             <a class="btn btn-primary rounded-pill text-white py-3 px-5"
@@ -103,7 +102,10 @@
                                     <div class="col-lg-12">
                                         <div class="rounded mb-4">
                                             <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('storage/bg.jpg') }}"
-                                                class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
+                                                class="img-fluid rounded w-100"
+                                                style="object-fit: cover; transition: transform 0.3s ease; cursor: pointer;"
+                                                alt="Image" onmouseover="this.style.transform='scale(1.1)'"
+                                                onmouseout="this.style.transform='scale(1)'">
                                         </div>
                                     </div>
                                 </div>
@@ -154,70 +156,51 @@
     <div id="brand" class="container-fluid feature pb-5">
         <div class="container pb-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-                <h4 class="text-primary">{{ __('messages.our_brands') }}</h4>
+                <h4 class="text-primary">{{ __('messages.our_brands1') }}</h4>
                 <h1 class="display-5 mb-4">{{ __('messages.our_brands') }}</h1>
                 <p class="mb-0">{{ __('messages.brands_desc') }}</p>
             </div>
-            @if ($principals->isNotEmpty())
-                <div class="row gy-4">
-                    @foreach ($principals as $p)
-                        <div class="col-6 col-md-4 col-xl-2 text-center principal-item">
-                            <div class="bg-white px-4 py-3 px-md-6 py-md-4 px-lg-8 py-lg-5">
-                                <img src="{{ asset($p->gambar ?? 'assets/img/default.jpg') }}" alt="{{ $p->nama }}" width="100%" height="45">
+            @if ($partners->isNotEmpty())
+                <!-- Carousel Container -->
+                <div class="carousel-container" style="overflow: hidden; position: relative;">
+                    <!-- First Row of Logos -->
+                    <div class="carousel-row"
+                        style="display: flex; white-space: nowrap; animation: marquee 40s linear infinite;">
+                        @foreach ($partners->slice(0, ceil($partners->count() / 2)) as $p)
+                            <!-- Baris 1: Ambil setengah pertama dari gambar -->
+                            <div class="col-2" style="flex: 0 0 auto; padding: 0 10px;">
+                                <div class="gallery-item">
+                                    <img src="{{ asset($p->gambar) }}"
+                                        style="border: 2px solid #3cbeee; object-fit: cover; height: 150px; width: 100%; transition: transform 0.3s ease;"
+                                        class="img-fluid rounded w-100 h-100" alt=""
+                                        onmouseover="this.style.transform='scale(1.05)';"
+                                        onmouseout="this.style.transform='scale(1)';">
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-                @if ($principals->count() > 8)
-                    <div class="text-center mt-4">
-                        <button id="show-more-principals" class="btn btn-primary">{{ __('messages.show_more') }}</button>
-                        <button id="show-less-principals"
-                            class="btn btn-secondary d-none">{{ __('messages.show_less') }}</button>
+                        @endforeach
                     </div>
-                @endif
+
+                    <!-- Second Row of Logos -->
+                    <div class="carousel-row"
+                        style="display: flex; white-space: nowrap; animation: marquee 40s linear infinite;">
+                        @foreach ($partners->slice(ceil($partners->count() / 2)) as $p)
+                            <!-- Baris 2: Ambil setengah kedua dari gambar -->
+                            <div class="col-2" style="flex: 0 0 auto; padding: 0 10px;">
+                                <div class="gallery-item">
+                                    <img src="{{ asset($p->gambar) }}"
+                                        style="border: 2px solid #3cbeee; object-fit: cover; height: 150px; width: 100%; transition: transform 0.3s ease;"
+                                        class="img-fluid rounded w-100 h-100" alt=""
+                                        onmouseover="this.style.transform='scale(1.05)';"
+                                        onmouseout="this.style.transform='scale(1)';">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             @endif
         </div>
     </div>
     <!-- Brand End -->
-
-    <!-- Script to Show More and Show Less Items -->
-    <script>
-        document.getElementById('show-more-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-partners').classList.remove('d-none');
-        });
-
-        document.getElementById('show-less-partners').addEventListener('click', function() {
-            document.querySelectorAll('.partner-item').forEach(function(item, index) {
-                if (index >= 8) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-partners').style.display = 'inline-block';
-        });
-
-        document.getElementById('show-more-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item.d-none').forEach(function(item) {
-                item.classList.remove('d-none');
-            });
-            this.style.display = 'none';
-            document.getElementById('show-less-principals').classList.remove('d-none');
-        });
-
-        document.getElementById('show-less-principals').addEventListener('click', function() {
-            document.querySelectorAll('.principal-item').forEach(function(item, index) {
-                if (index >= 8) {
-                    item.classList.add('d-none');
-                }
-            });
-            this.classList.add('d-none');
-            document.getElementById('show-more-principals').style.display = 'inline-block';
-        });
-    </script>
 
     <!-- Brand Section -->
     <script>
@@ -249,6 +232,34 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
     <style>
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .carousel-row {
+            display: flex;
+            white-space: nowrap;
+            margin-bottom: 20px;
+        }
+
+        .carousel-row img {
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 2px solid #3cbeee;
+            transition: transform 0.3s ease;
+        }
+
         .logo-container {
             width: 100%;
             overflow: hidden;

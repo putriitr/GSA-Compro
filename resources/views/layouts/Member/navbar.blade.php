@@ -38,7 +38,7 @@
                 <div class="navbar-nav mx-auto py-0">
                     <a href="{{ route('home') }}" class="nav-item nav-link">{{ __('messages.home') }}</a>
                     <a href="{{ route('about') }}" class="nav-item nav-link">{{ __('messages.about') }}</a>
-                    <a href="{{ route('activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
+                    <a href="{{ route('member.activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
                     <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
 
                     @foreach ($activeMetas as $type => $metas)

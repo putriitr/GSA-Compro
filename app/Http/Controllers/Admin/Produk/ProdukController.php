@@ -129,8 +129,6 @@ class ProdukController extends Controller
                 ]);
             }
         }
-
-
         return redirect()->route('admin.produk.index')->with('success', 'Produk created successfully.');
     }
 
@@ -226,8 +224,6 @@ class ProdukController extends Controller
             }
         }
 
-
-
         // Handle video upload
         if ($request->hasFile('video')) {
             foreach ($request->file('video') as $videoFile) {
@@ -283,11 +279,6 @@ class ProdukController extends Controller
                 ]);
             }
         }
-
-
-
-
-
         return redirect()->route('admin.produk.index')->with('success', 'Produk updated successfully.');
     }
 

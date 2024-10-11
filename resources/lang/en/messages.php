@@ -17,7 +17,7 @@ return [
     'ecommerce_title' => 'Our E-commerce',
     'explore_more_products' => 'Explore More Products',
 
-    'our_loyal_customers' => 'Our Loyal Customers',
+    'our_customers1' => 'Our  Appreciated Customers',
     'our_customers' => 'Our Customers',
 
     'members_in_province' => 'We have :count members in :province:',
@@ -32,8 +32,8 @@ return [
     'bahasa' => 'Bahasa',
     'english' => 'English',
 
-    'tujuan_kami' => 'Our Goals',
-    'visi_misi_perusahaan' => 'Company Vision & Mission',
+    'tujuan_kami' => 'Our Company Goals',
+    'visi_misi_perusahaan' => 'Vision & Mission',
     'visi' => 'Vision',
     'misi' => 'Mission',
 
@@ -52,6 +52,7 @@ return [
 
     'quick_access' => 'Quick Access',
     'our_brands' => 'Our Brands',
+    'our_brands1' => 'Get to know our trusted brands',
     'our_activity' => 'Our Activity',
     'find_products' => 'Find Products',
     'our_products' => 'Our Products',
@@ -116,6 +117,6 @@ return [
     'visimisi_2' => 'EXCELLENT QUALITY',
     'visimisi_3' => 'CONVENIENCE',
     'product_desc' => 'We offer a range of high-quality products designed to meet your needs. Each of our products is carefully selected, providing the best and innovative solutions for everyday life. Browse our collection and find what you are looking for!',
-    'brands_desc' => 'We establish strategic partnerships with various industries to bring innovative solutions.With the support of our partners, we are committed to delivering the best products and services to our customers.”With the support of our partners, we are committed to delivering the best products and services to our customers.',
+    'brands_desc' => 'We establish strategic partnerships with various industries to bring innovative solutions. With the support of our partners. We are committed to delivering the best products and services to our customers. With the support of our partners, we are committed to delivering the best products and services to our customers.',
     'contact_desc' => 'If you have any questions or need assistance, please fill out the contact form below. Our team will get back to you as soon as possible. Thank you for your trust!',
 ];

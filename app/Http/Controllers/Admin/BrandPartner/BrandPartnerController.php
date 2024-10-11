@@ -40,7 +40,11 @@ class BrandPartnerController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-            $validated['gambar'] = $request->file('gambar')->store('uploads/brand', 'public');
+            // Menyimpan gambar ke lokasi yang ditentukan
+            $file = $request->file('gambar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move('assets/img', $filename); // Menyimpan di D:\UMALO\GSA-Compro\public\assets\img
+            $validated['gambar'] = 'assets/img/' . $filename; // Simpan path di database
         }
 
         BrandPartner::create($validated);
@@ -81,10 +85,19 @@ class BrandPartnerController extends Controller
         $brandPartner = BrandPartner::findOrFail($id);
 
         if ($request->hasFile('gambar')) {
+            // Hapus gambar lama jika ada
             if ($brandPartner->gambar) {
-                Storage::delete('public/' . $brandPartner->gambar);
+                $oldImagePath = public_path($brandPartner->gambar); // Menggunakan public_path
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath); // Menghapus file lama
+                }
             }
-            $validated['gambar'] = $request->file('gambar')->store('uploads/brand', 'public');
+
+            // Menyimpan gambar baru ke lokasi yang ditentukan
+            $file = $request->file('gambar');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move('assets/img', $filename); // Menyimpan di D:\UMALO\GSA-Compro\public\assets\img
+            $validated['gambar'] = 'assets/img/' . $filename; // Simpan path di database
         }
 
         $brandPartner->update($validated);

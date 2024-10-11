@@ -18,7 +18,7 @@ return [
     'ecommerce_title' => 'E-commerce Kami',
     'explore_more_products' => 'Jelajahi Lebih Banyak Produk',
 
-    'our_loyal_customers' => 'Pelanggan Setia Kami',
+    'our_customers1' => 'Pelanggan Kami Yang Terhormat',
     'our_customers' => 'Pelanggan Kami',
 
     'members_in_province' => 'Kami memiliki :count member di :province:',
@@ -33,8 +33,8 @@ return [
     'bahasa' => 'Bahasa',
     'english' => 'English',
 
-    'tujuan_kami' => 'Tujuan Kami',
-    'visi_misi_perusahaan' => 'Visi & Misi Perusahaan',
+    'tujuan_kami' => 'Tujuan Perusahaan Kami',
+    'visi_misi_perusahaan' => 'Visi & Misi',
     'visi' => 'Visi',
     'misi' => 'Misi',
 

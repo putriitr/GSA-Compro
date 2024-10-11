@@ -21,7 +21,7 @@
 
                 <p><strong>Gambar : </strong></p>
                 @if($brandPartner->gambar)
-                    <img src="{{ asset('storage/' . $brandPartner->gambar) }}" alt="Image" width="200">
+                    <img src="{{ asset($brandPartner->gambar) }}" alt="Image" width="200">
                 @else
                     <p>Tidak ada gambar tersedia</p>
                 @endif

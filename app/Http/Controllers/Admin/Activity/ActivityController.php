@@ -9,12 +9,12 @@ use App\Models\CategoryActivity;
 
 class ActivityController extends Controller
 {
-    public function activity()
-    {
-        // Logic to retrieve activities or perform some action
-        $activities = Activity::all();
-        return view('admin.activity.index', compact('activities')); // Adjust the view name as needed
-    }
+    // public function activity()
+    // {
+    //     // Logic to retrieve activities or perform some action
+    //     $activities = Activity::all();
+    //     return view('admin.activity.index', compact('activities')); // Adjust the view name as needed
+    // }
 
 
     public function index()

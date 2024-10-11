@@ -72,14 +72,19 @@
                                     <div class="col-lg-12">
                                         <div class="rounded mb-4">
                                             <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('storage/bg.jpg') }}"
-                                                class="img-fluid rounded w-100" style="object-fit: cover;" alt="Image">
+                                                class="img-fluid rounded w-100"
+                                                style="object-fit: cover; transition: transform 0.3s ease; cursor: pointer;"
+                                                alt="Image" onmouseover="this.style.transform='scale(1.1)'"
+                                                onmouseout="this.style.transform='scale(1)'">
                                         </div>
                                         <div class="row gx-4 gy-0">
                                             <div class="col-6">
-                                                <div class="counter-item bg-primary rounded text-center p-4 h-100">
+                                                <div class="counter-item bg-primary rounded text-center p-4 h-100"
+                                                    style="transition: background-color 0.1s ease, box-shadow 0.5s ease, opacity 0.3s ease;"
+                                                    onmouseover="this.style.boxShadow='0 8px 20px rgba(0, 0, 0, 0.4)'; this.style.opacity='0.9'; this.style.backgroundColor='#0056b3';"
+                                                    onmouseout="this.style.boxShadow='none'; this.style.opacity='1'; this.style.backgroundColor='#0d6efd';">
                                                     <div class="counter-item-icon mx-auto mb-3">
                                                         <i class="fas fa-file-alt fa-3x text-white"></i>
-
                                                     </div>
                                                     <div class="counter-counting mb-3">
                                                         <span class="h4 fw-bold text-white">{{ __('messages.NIB') }}</span>
@@ -88,7 +93,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <div class="counter-item bg-dark rounded text-center p-4 h-100">
+                                                <div class="counter-item bg-dark rounded text-center p-4 h-100"
+                                                    style="transition: background-color 0.1s ease, box-shadow 0.5s ease, opacity 0.3s ease;"
+                                                    onmouseover="this.style.boxShadow='0 8px 20px rgba(0, 0, 0, 0.4)'; this.style.opacity='0.9'; this.style.backgroundColor='#333333';"
+                                                    onmouseout="this.style.boxShadow='none'; this.style.opacity='1'; this.style.backgroundColor='#000000';">
                                                     <div class="counter-item-icon mx-auto mb-3">
                                                         <i class="fas fa-file-signature fa-3x text-white"></i>
                                                     </div>
@@ -102,10 +110,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="rounded bg-primary p-4 position-absolute d-flex justify-content-center"
-                                style="width: 90%; height: 80px; top: -40px; left: 50%; transform: translateX(-50%);">
-                                <h3 class="mb-0 text-white">Selling Advanced Product</h3>
+                            <div class="rounded bg-primary p-4 position-absolute d-flex justify-content-center align-items-center"
+                                style="width: 70%; height: 60px; top: -30px; left: 50%; transform: translateX(-50%);">
+                                <h4 class="mb-0 text-white text-center">Selling Advanced Product</h4>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -123,10 +132,16 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="feature-item">
-                        <img src="{{ asset('assets/img/visi-1.jpg')}}" class="img-fluid rounded w-100" alt="Image">
+                    <div class="feature-item"
+                        style="position: relative; overflow: hidden; transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out; cursor: pointer;"
+                        onmouseover="this.style.transform='translateY(-25px)'; this.style.boxShadow='0 10px 20px rgba(0, 0, 0, 0.2)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                        <img src="{{ asset('assets/img/visi-1.jpg') }}" class="img-fluid rounded w-100" alt="Image"
+                            style="transition: transform 0.5s ease-in-out;" onmouseover="this.style.transform='scale(1.1)';"
+                            onmouseout="this.style.transform='scale(1)';">
                         <div class="feature-content p-4">
-                            <div class="feature-content-inner" style="text-align: center;">
+                            <div class="feature-content-inner"
+                                style="text-align: center; transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;">
                                 <h2 style="font-weight: bold; margin-bottom: 3rem;" class="text-white">
                                     {{ __('messages.visimisi_1') }}
                                 </h2>
@@ -136,23 +151,38 @@
                     </div>
                 </div>
                 <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="feature-item">
-                        <img src="{{ asset('assets/img/visi-2.jpg') }}" class="img-fluid rounded w-100" alt="Image">
+                    <div class="feature-item"
+                        style="position: relative; overflow: hidden; transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out; cursor: pointer;"
+                        onmouseover="this.style.transform='translateY(-25px)'; this.style.boxShadow='0 10px 20px rgba(0, 0, 0, 0.2)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                        <img src="{{ asset('assets/img/visi-2.jpg') }}" class="img-fluid rounded w-100" alt="Image"
+                            style="transition: transform 0.5s ease-in-out;"
+                            onmouseover="this.style.transform='scale(1.1)';"
+                            onmouseout="this.style.transform='scale(1)';">
                         <div class="feature-content p-4">
-                            <div class="feature-content-inner" style="text-align: center;">
-                                <h2 style="font-weight: bold; margin-bottom: 3rem;"class="text-white">{{ __('messages.visimisi_2') }}</h2>
+                            <div class="feature-content-inner"
+                                style="text-align: center; transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;">
+                                <h2 style="font-weight: bold; margin-bottom: 3rem;" class="text-white">
+                                    {{ __('messages.visimisi_2') }}</h2>
                                 <p class="text-white">{{ $company->visimisi_1 }}</p>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="feature-item">
-                        <img src="{{ asset('assets/img/visi-3.jpg') }}" class="img-fluid rounded w-100" alt="Image">
+                    <div class="feature-item"
+                        style="position: relative; overflow: hidden; transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out; cursor: pointer;"
+                        onmouseover="this.style.transform='translateY(-25px)'; this.style.boxShadow='0 10px 20px rgba(0, 0, 0, 0.2)';"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                        <img src="{{ asset('assets/img/visi-3.jpg') }}" class="img-fluid rounded w-100" alt="Image"
+                            style="transition: transform 0.5s ease-in-out;"
+                            onmouseover="this.style.transform='scale(1.1)';"
+                            onmouseout="this.style.transform='scale(1)';">
                         <div class="feature-content p-4">
-                            <div class="feature-content-inner" style="text-align: center;">
-                                <h2 style="font-weight: bold; margin-bottom: 3rem;"class="text-white">{{ __('messages.visimisi_3') }}</h2>
+                            <div class="feature-content-inner"
+                                style="text-align: center; transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;">
+                                <h2 style="font-weight: bold; margin-bottom: 3rem;" class="text-white">
+                                    {{ __('messages.visimisi_3') }}</h2>
                                 <p class="text-white">{{ $company->visimisi_1 }}</p>
                             </div>
                         </div>
@@ -163,178 +193,86 @@
     </div>
     <!-- Feature End -->
 
-    <!-- Gallery Start -->
-    <div class="container-fluid gallery pb-5">
+    <!-- User Start -->
+    <div class="container-fluid feature pb-5">
         <div class="container pb-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-primary">Our Gallery</h4>
-                <h1 class="display-5 mb-4">Captured Moments In Waterland</h1>
-                <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis
-                    cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint
-                    dolorem autem obcaecati, ipsam mollitia hic.
-                </p>
+                <h4 class="text-primary">{{ __('messages.our_customers1') }}</h4>
+                <h1 class="display-5 mb-4">{{ __('messages.our_customers') }}</h1>
             </div>
-            <div class="row g-4">
-                <div class="col-6 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="gallery-item">
-                        <img src="img/gallery-1.jpg" class="img-fluid rounded w-100 h-100" alt="">
-                        <div class="search-icon">
-                            <a href="img/gallery-1.jpg" class="btn btn-light btn-lg-square rounded-circle"
-                                data-lightbox="Gallery-1"><i class="fas fa-search-plus"></i></a>
-                        </div>
+            <div class="map-container"
+                style="background: url('{{ asset('assets/img/peta.png') }}'); background-size: cover; width: 100%; height: 400px; position: relative;">
+                <div class="map">
+                    <!-- Titik dan garis untuk pengguna 1 -->
+                    <div class="location" style="top: 30%; left: 40%;"></div>
+                    <div class="line" style="top: 30%; left: 40%; height: 100px; transform: translateX(-50%);"></div>
+                    <div class="label" style="top: 140px; left: 35%; transform: translateX(-50%);">
+                        <img src="{{ asset('storage/user.png') }}" alt="User 1"
+                            style="width: 50px; border-radius: 50%;">
+                        <p>User 1</p>
                     </div>
-                </div>
-                <div class="col-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="gallery-item">
-                        <img src="img/gallery-2.jpg" class="img-fluid rounded w-100 h-100" alt="">
-                        <div class="search-icon">
-                            <a href="img/gallery-2.jpg" class="btn btn-light btn-lg-square rounded-circle"
-                                data-lightbox="Gallery-2"><i class="fas fa-search-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="gallery-item">
-                        <img src="img/gallery-3.jpg" class="img-fluid rounded w-100 h-100" alt="">
-                        <div class="search-icon">
-                            <a href="img/gallery-3.jpg" class="btn btn-light btn-lg-square rounded-circle"
-                                data-lightbox="Gallery-3"><i class="fas fa-search-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="gallery-item">
-                        <img src="img/gallery-4.jpg" class="img-fluid rounded w-100 h-100" alt="">
-                        <div class="search-icon">
-                            <a href="img/gallery-4.jpg" class="btn btn-light btn-lg-square rounded-circle"
-                                data-lightbox="Gallery-4"><i class="fas fa-search-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="gallery-item">
-                        <img src="img/gallery-5.jpg" class="img-fluid rounded w-100 h-100" alt="">
-                        <div class="search-icon">
-                            <a href="img/gallery-5.jpg" class="btn btn-light btn-lg-square rounded-circle"
-                                data-lightbox="Gallery-5"><i class="fas fa-search-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="gallery-item">
-                        <img src="img/gallery-6.jpg" class="img-fluid rounded w-100 h-100" alt="">
-                        <div class="search-icon">
-                            <a href="img/gallery-6.jpg" class="btn btn-light btn-lg-square rounded-circle"
-                                data-lightbox="Gallery-6"><i class="fas fa-search-plus"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Gallery End -->
 
-    <!-- Team Start -->
-    <div class="container-fluid team pb-5">
-        <div class="container pb-5">
-            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-primary">Meet Our Team</h4>
-                <h1 class="display-5 mb-4">Our Waterland Park Dedicated Team Member</h1>
-                <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis
-                    cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint
-                    dolorem autem obcaecati, ipsam mollitia hic.
-                </p>
-            </div>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="team-item p-4">
-                        <div class="team-content">
-                            <div class="d-flex justify-content-between border-bottom pb-4">
-                                <div class="text-start">
-                                    <h4 class="mb-0">David James</h4>
-                                    <p class="mb-0">Profession</p>
-                                </div>
-                                <div>
-                                    <img src="img/team-1.jpg" class="img-fluid rounded"
-                                        style="width: 100px; height: 100px;" alt="">
-                                </div>
-                            </div>
-                            <div class="team-icon rounded-pill my-4 p-3">
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
-                                        class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-0" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                            <p class="text-center mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem,
-                                quibusdam eveniet itaque provident sequi deserunt.
-                            </p>
-                        </div>
+                    <!-- Titik dan garis untuk pengguna 2 -->
+                    <div class="location" style="top: 50%; left: 60%;"></div>
+                    <div class="line" style="top: 50%; left: 60%; height: 80px; transform: translateX(-50%);"></div>
+                    <div class="label" style="top: 140px; left: 55%; transform: translateX(-50%);">
+                        <img src="{{ asset('storage/user.png') }}" alt="User 2"
+                            style="width: 50px; border-radius: 50%;">
+                        <p>User 2</p>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.4s">
-                    <div class="team-item p-4">
-                        <div class="team-content">
-                            <div class="d-flex justify-content-between border-bottom pb-4">
-                                <div class="text-start">
-                                    <h4 class="mb-0">William John</h4>
-                                    <p class="mb-0">Profession</p>
-                                </div>
-                                <div>
-                                    <img src="img/team-2.jpg" class="img-fluid rounded"
-                                        style="width: 100px; height: 100px;" alt="">
-                                </div>
-                            </div>
-                            <div class="team-icon rounded-pill my-4 p-3">
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
-                                        class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-0" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                            <p class="text-center mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem,
-                                quibusdam eveniet itaque provident sequi deserunt.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-4 wow fadeInUp" data-wow-delay="0.6s">
-                    <div class="team-item p-4">
-                        <div class="team-content">
-                            <div class="d-flex justify-content-between border-bottom pb-4">
-                                <div class="text-start">
-                                    <h4 class="mb-0">Michael John</h4>
-                                    <p class="mb-0">Profession</p>
-                                </div>
-                                <div>
-                                    <img src="img/team-3.jpg" class="img-fluid rounded"
-                                        style="width: 100px; height: 100px;" alt="">
-                                </div>
-                            </div>
-                            <div class="team-icon rounded-pill my-4 p-3">
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-3" href=""><i
-                                        class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-primary btn-sm-square rounded-circle me-0" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                            <p class="text-center mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem,
-                                quibusdam eveniet itaque provident sequi deserunt.
-                            </p>
-                        </div>
-                    </div>
+
+                    <!-- Tambahkan lebih banyak lokasi sesuai kebutuhan -->
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Team End -->
+    </div><br><br><br><br>
+    <!-- User End -->
+
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .location {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            /* Warna titik */
+            border-radius: 50%;
+        }
+
+        .label {
+            position: absolute;
+            color: #000;
+            font-weight: bold;
+            background-color: white;
+            /* Warna latar belakang label */
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transform: translate(-50%, 0);
+            /* Memastikan label berada di tengah horizontal */
+        }
+
+        /* Garis penghubung */
+        .line {
+            position: absolute;
+            width: 2px;
+            background-color: black;
+            /* Warna garis */
+            transform: translateX(-50%);
+            /* Memastikan garis berada di tengah horizontal */
+        }
+    </style>
 @endsection
