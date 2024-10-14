@@ -4,28 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateUserLocationsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up()
     {
         Schema::create('user_locations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image'); // Menyimpan path gambar
-            $table->decimal('position_top', 5, 2); // Untuk posisi atas dalam persen
-            $table->decimal('position_left', 5, 2); // Untuk posisi kiri dalam persen
+            $table->string('image')->nullable(); // Jika ada gambar yang tidak wajib
+            $table->float('latitude', 10, 6); // 10 digit total dan 6 digit desimal
+            $table->float('longitude', 10, 6); // 10 digit total dan 6 digit desimal
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('user_locations');
     }
-};
+}

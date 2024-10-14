@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\UserLocation;
 use App\Http\Controllers\Controller;
 use App\Models\UserLocation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserLocationController extends Controller
 {
@@ -22,27 +23,22 @@ class UserLocationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'image' => 'required|image',
+            'name' => 'required|string|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
         ]);
 
-        $imagePath = $request->file('image')->store('images', 'public');
+        $path = $request->file('image')->store('images', 'public');
 
         UserLocation::create([
             'name' => $request->name,
-            'image' => $imagePath,
+            'image' => $path,
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
         ]);
 
-        return redirect()->route('userlocations.index')->with('success', 'Location created successfully.');
-    }
-
-    public function show(UserLocation $userLocation)
-    {
-        return view('admin.userlocation.show', compact('userLocation'));
+        return redirect()->route('userlocations.index')->with('success', 'Location added successfully.');
     }
 
     public function edit(UserLocation $userLocation)
@@ -54,20 +50,20 @@ class UserLocationController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('user_images');
+            Storage::disk('public')->delete($userLocation->image);
+            $path = $request->file('image')->store('images', 'public');
             $userLocation->image = $path;
         }
 
         $userLocation->name = $request->name;
-        $userLocation->position_top = $request->position_top;
-        $userLocation->position_left = $request->position_left;
-
+        $userLocation->latitude = $request->latitude;
+        $userLocation->longitude = $request->longitude;
         $userLocation->save();
 
         return redirect()->route('userlocations.index')->with('success', 'Location updated successfully.');
@@ -75,7 +71,9 @@ class UserLocationController extends Controller
 
     public function destroy(UserLocation $userLocation)
     {
+        Storage::disk('public')->delete($userLocation->image);
         $userLocation->delete();
+
         return redirect()->route('userlocations.index')->with('success', 'Location deleted successfully.');
     }
 }

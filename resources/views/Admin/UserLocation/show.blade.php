@@ -16,3 +16,4 @@
     <a href="{{ route('user_locations.index') }}" class="btn btn-secondary">Back</a>
 </div>
 @endsection
+s

@@ -95,6 +95,7 @@
         Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
+            Route::resource('userlocations', UserLocationController::class);
             Route::resource('admin/activity/category-activity', CategoryActivityController::class)->names('admin.activity.category-activity');
             Route::resource('admin/members', MemberController::class);
             Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
@@ -134,6 +135,5 @@
             Route::resource('admin/meta', MetaController::class)->names('admin.meta');
             Route::post('/froala/upload_image', [MetaController::class, 'uploadImage'])->name('froala.upload_image');
             Route::resource('admin/location', LocationController::class)->names('admin.location');
-            Route::resource('admin/userlocations', UserLocationController::class);
         });
     });
