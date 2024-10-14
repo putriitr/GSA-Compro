@@ -8,44 +8,45 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-md-6 col-lg-6 col-xl-4">
-                <div class="footer-item d-flex flex-column">
-                    <form action="{{ route('guest-messages.store') }}" method="POST" class="bg-light p-4 rounded">
-                        @csrf
-                        <h4 class="text-dark mb-4">{{ __('messages.leave_message') }}</h4>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="first_name" class="form-label">{{ __('messages.your_name') }} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">{{ __('messages.your_email') }} <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                </div>
-                            </div>
+                <div class="footer-item">
+                    <h4 class="text-white mb-4">{{ __('messages.pengaduan') }}</h4>
+                    <div class="opening-date mb-3 pb-3">
+                        <div class="opening-clock flex-shrink-0">
+                            <p class="mb-4 me-auto">Direktorat Jenderal Perlindungan Konsumen dan Tertib Niaga Kementerian Perdagangan RI</p>
                         </div>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="company" class="form-label">{{ __('messages.your_company') }} <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="company" name="company" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">{{ __('messages.phone') }} <span class="text-danger">*</span></label>
-                                    <input type="tel" id="no_wa" name="no_wa" class="form-control" required pattern="\d{10,12}" title="Nomor WhatsApp harus terdiri dari 10 hingga 12 digit angka" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="12">
-                                </div>
-                            </div>
+                        <div class="opening-clock flex-shrink-0">
+                            <p class="mb-0a">
+                                <i class="fa fa-map-marker-alt me-2"></i>
+                                <a href="https://www.google.com/maps?q=Gedung+I+Lantai+3+M.I.+Ridwan+Rais+No.+5,+Jakarta+Pusat+10110"
+                                   target="_blank"
+                                   style="text-decoration: none; color: inherit;">
+                                    Gedung I Lantai.3 M.I. Ridwan Rais No. 5, Jakarta Pusat 10110
+                                </a>
+                            </p>
                         </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">{{ __('messages.your_message') }} <span class="text-danger">*</span></label>
-                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                        <div class="opening-clock flex-shrink-0">
+                            <p class="mb-0">
+                                <i class="fab fa-whatsapp me-2"></i>
+                                <a href="tel:6281390069009" style="text-decoration: none; color: inherit;">+6281390069009</a>
+                            </p>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">{{ __('messages.send_message') }}</button>
-                    </form>
+                        <div class="opening-clock flex-shrink-0">
+                            <p class="mb-0">
+                                <i class="fas fa-envelope me-2"></i>
+                                <a href="mailto:pengaduan.konsumen@kemendag.go.id" style="text-decoration: none; color: inherit;">pengaduan.konsumen@kemendag.go.id</a>
+                            </p>
+                        </div>
+                        <div class="opening-clock flex-shrink-0">
+                            <p class="mb-0">
+                                <i class="fas fa-globe me-2"></i>
+                                <a href="http://simpktn.kemendag.go.id/" target="_blank" style="text-decoration: none; color: inherit;">http://simpktn.kemendag.go.id/</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-white mb-2">{{ __('messages.pembayaran') }}</p>
+                        <img src="{{ asset('storage/midtrans.png') }}" class="img-fluid" alt="Image" style="border-radius: 20px; height: 80px; width: 120px;">
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">
@@ -53,8 +54,9 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     <h4 class="mb-4 text-white">{{ __('messages.quick_access') }}</h4>
                     <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.about_us') }}</a>
                     <a href="{{ route('home') }}#merek-mitra"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_brands') }}</a>
+                    <a href="{{ route('qnaguest1') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.user') }}</a>
                     <a href="{{ route('member.activity') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_activity') }}</a>
-                    <a href="{{ route('qnaguest1') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.qna-guest') }}</a>
+                    <a href="{{ route('contact') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.contact_us') }}</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-2">
@@ -106,7 +108,6 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     @endif
                 </div>
             </div>
-
         </div>
     </div>
 </div>

@@ -31,6 +31,9 @@ return [
     'portal_member' => 'Member Portal',
     'bahasa' => 'Bahasa',
     'english' => 'English',
+    'user' => 'Our Users',
+    'pengaduan' => 'Customer Complaint Service',
+    'pembayaran' => 'Payment Accepted',
 
     'tujuan_kami' => 'Our Company Goals',
     'visi_misi_perusahaan' => 'Vision & Mission',
@@ -119,4 +122,5 @@ return [
     'product_desc' => 'We offer a range of high-quality products designed to meet your needs. Each of our products is carefully selected, providing the best and innovative solutions for everyday life. Browse our collection and find what you are looking for!',
     'brands_desc' => 'We establish strategic partnerships with various industries to bring innovative solutions. With the support of our partners. We are committed to delivering the best products and services to our customers. With the support of our partners, we are committed to delivering the best products and services to our customers.',
     'contact_desc' => 'If you have any questions or need assistance, please fill out the contact form below. Our team will get back to you as soon as possible. Thank you for your trust!',
+    'activity_desc' => 'We are committed to continuous innovation and growth through various corporate activities, including employee development programs, social activities, and industry collaborations. Every activity we undertake is designed to have a positive impact, both for the company and the wider community, and to support our vision and mission in achieving sustainability and long-term growth.',
 ];

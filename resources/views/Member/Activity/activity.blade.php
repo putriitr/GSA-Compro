@@ -18,12 +18,9 @@
     <div class="container-fluid blog py-5">
         <div class="container py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-primary">{{ __('messages.activity') }}</h4>
+                <h4 class="text-primary">{{ __('messages.company_activity') }}</h4>
                 <h1 class="display-5 mb-4">{{ __('messages.activity') }}</h1>
-                <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis
-                    cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint
-                    dolorem autem obcaecati, ipsam mollitia hic.
-                </p>
+                <p class="mb-0">{{ __('messages.activity_desc') }}</p>
             </div>
             <div class="row mb-4">
                 <!-- Showing X-Y of Z -->

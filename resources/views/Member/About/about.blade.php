@@ -211,17 +211,6 @@
                             style="width: 50px; border-radius: 50%;">
                         <p>User 1</p>
                     </div>
-
-                    <!-- Titik dan garis untuk pengguna 2 -->
-                    <div class="location" style="top: 50%; left: 60%;"></div>
-                    <div class="line" style="top: 50%; left: 60%; height: 80px; transform: translateX(-50%);"></div>
-                    <div class="label" style="top: 140px; left: 55%; transform: translateX(-50%);">
-                        <img src="{{ asset('storage/user.png') }}" alt="User 2"
-                            style="width: 50px; border-radius: 50%;">
-                        <p>User 2</p>
-                    </div>
-
-                    <!-- Tambahkan lebih banyak lokasi sesuai kebutuhan -->
                 </div>
             </div>
         </div>

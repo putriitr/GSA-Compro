@@ -28,38 +28,24 @@
     <div class="header-carousel owl-carousel">
         @if ($sliders->isEmpty())
             <div class="header-carousel-item">
-                <img src="{{ asset('storage/hero-img.jpg') }}" class="img-fluid w-100" alt="Default Image">
-                <div class="carousel-caption w-100">
-                    <div class="container py-4">
-                        <div class="row g-12">
-                            <div class="col-xl-12 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s"
-                                style="animation-delay: 1s;">
-                                <div class="text-start">
-                                    <h4 class="text-primary text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
-                                        {{ __('messages.company_name') }}
-                                    </h4>
-                                    <h1 class="display-4 text-uppercase text-white mb-4">
-                                        {{ __('messages.tagline') }}
-                                    </h1>
-                                    <p class="mb-4 fs-5 text-white">{{ __('messages.description') }}</p>
-                                    <a class="btn btn-primary rounded-pill text-white py-3 px-5"
-                                        href="{{ route('about') }}">
-                                        {{ __('messages.about_us') }}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                <img src="{{ asset('storage/bg-1.jpg') }}" class="img-fluid w-100" alt="Default Image">
+                <div class="carousel-caption"
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                    <div class="carousel-caption-content p-3">
+                        <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
+                            No slider available.
+                        </h5>
                     </div>
                 </div>
             </div>
         @else
-            <!-- Loop through sliders if data exists -->
             @foreach ($sliders as $slider)
-                <div class="header-carousel-item">
-                    <img src="{{ asset($slider->image_url) }}" class="img-fluid w-100" alt="Image">
-                    <div class="carousel-caption">
+                <div class="header-carousel-item" style="position: relative;">
+                    <img src="{{ asset($slider->image_url) }}" class="img-fluid w-100" alt="{{ $slider->title }}">
+                    <div class="carousel-caption"
+                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
                         <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
+                            <h5 class="text-white text-center text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
                                 {{ $slider->subtitle }}
                             </h5>
                             <h1 class="display-1 text-capitalize text-white mb-4">
@@ -75,7 +61,7 @@
             @endforeach
         @endif
     </div>
-
+    <!-- Carousel End -->
 
     <!-- About Start -->
     <br><br>
@@ -143,6 +129,8 @@
                         </div>
                     @endforeach
                 </div>
+            @else
+                <p class="text-white text-center">{{ __('messages.no_products_available') }}</p>
             @endif
         </div>
         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
@@ -163,38 +151,41 @@
             @if ($partners->isNotEmpty())
                 <!-- Carousel Container -->
                 <div class="carousel-container" style="overflow: hidden; position: relative;">
-                    <!-- First Row of Logos -->
-                    <div class="carousel-row"
-                        style="display: flex; white-space: nowrap; animation: marquee 40s linear infinite;">
-                        @foreach ($partners->slice(0, ceil($partners->count() / 2)) as $p)
-                            <!-- Baris 1: Ambil setengah pertama dari gambar -->
-                            <div class="col-2" style="flex: 0 0 auto; padding: 0 10px;">
-                                <div class="gallery-item">
-                                    <img src="{{ asset($p->gambar) }}"
-                                        style="border: 2px solid #3cbeee; object-fit: cover; height: 150px; width: 100%; transition: transform 0.3s ease;"
-                                        class="img-fluid rounded w-100 h-100" alt=""
-                                        onmouseover="this.style.transform='scale(1.05)';"
-                                        onmouseout="this.style.transform='scale(1)';">
+                    <!-- Container for both rows -->
+                    <div class="carousel-rows" style="display: flex; flex-direction: column;">
+                        <!-- First Row of Logos -->
+                        <div class="carousel-row"
+                            style="display: flex; white-space: nowrap; animation: marquee 45s linear infinite;">
+                            @foreach ($partners->slice(0, ceil($partners->count() / 2)) as $p)
+                                <!-- Baris 1: Ambil setengah pertama dari gambar -->
+                                <div class="col-2" style="flex: 0 0 auto; padding: 0 10px;">
+                                    <div class="gallery-item">
+                                        <img src="{{ asset($p->gambar) }}"
+                                            style="border: 2px solid #3cbeee; height:120px; width: 100%; transition: transform 0.3s ease;"
+                                            class="img-fluid rounded" alt=""
+                                            onmouseover="this.style.transform='scale(1.05)';"
+                                            onmouseout="this.style.transform='scale(1)';">
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
-                    </div>
+                            @endforeach
+                        </div>
 
-                    <!-- Second Row of Logos -->
-                    <div class="carousel-row"
-                        style="display: flex; white-space: nowrap; animation: marquee 40s linear infinite;">
-                        @foreach ($partners->slice(ceil($partners->count() / 2)) as $p)
-                            <!-- Baris 2: Ambil setengah kedua dari gambar -->
-                            <div class="col-2" style="flex: 0 0 auto; padding: 0 10px;">
-                                <div class="gallery-item">
-                                    <img src="{{ asset($p->gambar) }}"
-                                        style="border: 2px solid #3cbeee; object-fit: cover; height: 150px; width: 100%; transition: transform 0.3s ease;"
-                                        class="img-fluid rounded w-100 h-100" alt=""
-                                        onmouseover="this.style.transform='scale(1.05)';"
-                                        onmouseout="this.style.transform='scale(1)';">
+                        <!-- Second Row of Logos -->
+                        <div class="carousel-row"
+                            style="display: flex; white-space: nowrap; animation: marquee 45s linear infinite;">
+                            @foreach ($partners->slice(ceil($partners->count() / 2)) as $p)
+                                <!-- Baris 2: Ambil setengah kedua dari gambar -->
+                                <div class="col-2" style="flex: 0 0 auto; padding: 0 10px;">
+                                    <div class="gallery-item">
+                                        <img src="{{ asset($p->gambar) }}"
+                                            style="border: 2px solid #3cbeee; height: 120px; width: 100%; transition: transform 0.3s ease;"
+                                            class="img-fluid rounded" alt=""
+                                            onmouseover="this.style.transform='scale(1.05)';"
+                                            onmouseout="this.style.transform='scale(1)';">
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             @endif
@@ -202,8 +193,35 @@
     </div>
     <!-- Brand End -->
 
+
+
     <!-- Brand Section -->
     <script>
+        $('.attractions-carousel').owlCarousel({
+            items: 1, // Menampilkan produk sesuai jumlah sebenarnya
+            loop: false, // Mencegah pengulangan item
+            margin: 30,
+            nav: true,
+            dots: false,
+            autoplay: true,
+            autoplayTimeout: 3000,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                576: {
+                    items: 1
+                },
+                768: {
+                    items: 2
+                },
+                992: {
+                    items: 3
+                }
+            }
+        });
+
+
         $(document).ready(function() {
             $('.owl-carousel').owlCarousel({
                 loop: true,
@@ -238,14 +256,18 @@
             }
 
             100% {
-                transform: translateX(-100%);
+                transform: translateX(-50%);
             }
+        }
+
+        .carousel-container {
+            overflow: hidden;
         }
 
         .carousel-row {
             display: flex;
             white-space: nowrap;
-            margin-bottom: 20px;
+            padding: 15px;
         }
 
         .carousel-row img {

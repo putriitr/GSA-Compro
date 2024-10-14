@@ -68,7 +68,7 @@ return [
 
     'quick_access' => 'Akses Cepat',
     'our_brands' => 'Merek Produk Kami',
-    'our_activity' => 'Aktivitas Kami',
+    'company_activity' => 'Aktivitas Perusahaan',
     'find_products' => 'Temukan Produk',
     'our_products' => 'Produk Kami',
     'member_portal' => 'Masuk Member',
@@ -118,6 +118,7 @@ return [
     'tutor' => 'Video Cara Penggunaan',
     'monitoring' => 'Monitoring',
     'qna' => 'Pertanyaan & Jawaban',
+    'user' => 'Daftar Pengguna',
 
     'my_product_desc' => 'Lihat dan kelola produk-produk yang telah Anda beli di sistem kami.',
     'user_manual_desc' => 'Akses panduan pengguna untuk mempelajari cara menggunakan produk secara efektif.',
@@ -125,6 +126,8 @@ return [
     'tutor_desc' => 'Pelajari tutorial lengkap untuk memaksimalkan penggunaan produk Anda.',
     'monitoring_desc' => 'Pantau riwayat pembelian dan status terbaru dari produk yang Anda miliki.',
     'qna_desc' => 'Temukan jawaban terkait tata cara penggunaan produk Anda.',
+    'pengaduan' => 'Layanan Pengaduan Konsumen',
+    'pembayaran' => 'Menerima Pembayaran',
 
     'NIB' => 'Nomor Induk Berusaha',
     'SK' => 'Surat Keterangan',
@@ -134,4 +137,5 @@ return [
     'product_desc' => 'Kami menawarkan berbagai produk berkualitas tinggi yang dirancang untuk memenuhi kebutuhan Anda. Setiap produk kami dipilih dengan teliti, memberikan solusi terbaik dan inovatif untuk kehidupan sehari-hari. Jelajahi koleksi kami dan temukan apa yang Anda cari!',
     'brands_desc' => 'Kami menjalin kemitraan strategis dengan berbagai industri untuk menghadirkan solusi inovatif. Dengan dukungan mitra kami, kami berkomitmen untuk memberikan produk dan layanan terbaik kepada pelanggan.',
     'contact_desc' => 'Jika Anda memiliki pertanyaan atau membutuhkan bantuan, silakan isi formulir kontak di bawah ini. Tim kami akan segera menghubungi Anda. Terima kasih atas kepercayaan Anda!',
+    'activity_desc' => 'Kami berkomitmen untuk terus berinovasi dan berkembang melalui berbagai aktivitas perusahaan, termasuk program pengembangan karyawan, kegiatan sosial, dan kolaborasi industri. Setiap kegiatan yang kami lakukan dirancang untuk memberikan dampak positif, baik bagi perusahaan maupun masyarakat luas, serta mendukung visi dan misi kami dalam mencapai keberlanjutan dan pertumbuhan jangka panjang.'
 ];

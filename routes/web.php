@@ -28,6 +28,7 @@
     use App\Http\Controllers\Member\QnaGuest1\QnaGuest1Controller;
     use App\Http\Controllers\ContactPageController;
     use App\Http\Controllers\Admin\Activity\CategoryActivityController;
+    use App\Http\Controllers\Admin\UserLocation\UserLocationController;
 
     /*
     |--------------------------------------------------------------------------
@@ -133,5 +134,6 @@
             Route::resource('admin/meta', MetaController::class)->names('admin.meta');
             Route::post('/froala/upload_image', [MetaController::class, 'uploadImage'])->name('froala.upload_image');
             Route::resource('admin/location', LocationController::class)->names('admin.location');
+            Route::resource('admin/userlocations', UserLocationController::class);
         });
     });

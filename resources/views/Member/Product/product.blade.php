@@ -29,29 +29,30 @@
                         <option value="2">{{ __('messages.latest') }}</option>
                     </select>
                 </div>
-                <div class="row g-4">
+                <div class="row">
                     @foreach ($produks as $produk)
-                        <div class="col-md-6 col-lg-4 bg-light wow fadeInUp" data-wow-delay="0.2s" style="border-radius: 15px; margin-left: 10px;">
-                            <div class="blog-item">
-                                <div class="blog-img">
-                                    <a href="{{ route('product.show', $produk->id) }}">
-                                        <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                            class="img-fluid w-100 rounded-top" alt="{{ $produk->nama }}"
-                                            style="margin-top: 15px; border-radius: 15px; width: 100%; height: 250px; object-fit: cover;">
-                                    </a>
-                                </div>
-                                <div class="blog-content p-4">
-                                    @php
-                                        $name = $produk->nama;
-                                        $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
-                                    @endphp
-                                    <a href="#" class="h4 d-inline-block mb-4">{{ $limitedName }}</a><br>
-                                    <a href="{{ route('product.show', $produk->id) }}"
-                                        class="btn btn-primary rounded-pill py-2 px-4">Read More<i
-                                            class="fas fa-arrow-right ms-2"></i></a>
-                                </div>
+                    <div class="col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
+                        <div class="blog-item shadow-sm">
+                            <div class="blog-img">
+                                <a href="{{ route('product.show', $produk->id) }}">
+                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                        class="img-fluid w-100 rounded-top product-image" alt="{{ $produk->nama }}"
+                                        style="border-radius: 20px; width: 200px; height: 300px; object-fit: cover;">
+                                </a>
+                            </div>
+                            <hr class="divider"> <!-- Garis pemisah -->
+                            <div class="blog-content p-4">
+                                @php
+                                    $name = $produk->nama;
+                                    $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
+                                @endphp
+                                <a href="#" class="h4 d-inline-block mb-4">{{ $limitedName }}</a><br>
+                                <a href="{{ route('product.show', $produk->id) }}"
+                                    class="btn btn-primary rounded-pill py-2 px-4">Read More<i
+                                        class="fas fa-arrow-right ms-2"></i></a>
                             </div>
                         </div>
+                    </div>
                     @endforeach
                 </div>
             </div>
@@ -60,10 +61,8 @@
             <div class="d-flex justify-content-center mt-4">
                 {{ $produks->links() }} <!-- Menampilkan link pagination -->
             </div>
-
         </div>
         <!-- Main Content End -->
-    </div>
     </div>
 @endsection
 
@@ -101,13 +100,29 @@
         color: #fff;
     }
 
-    /* Image hover effects */
-    .product-card img {
-        transition: transform 0.3s ease;
+    /* General layout adjustments */
+    .blog-item {
+        border-radius: 15px; /* Untuk sudut yang lebih halus */
+        transition: transform 0.3s ease; /* Animasi saat hover */
+        border: 1px solid #3CBEEE; /* Garis pinggir biru */
+        background-color: #fff; /* Pastikan latar belakang item tetap putih */
+        overflow: hidden; /* Menghindari gambar yang membesar keluar dari card */
     }
 
-    .product-card:hover img {
-        transform: scale(1.05);
+    /* Hover effect for product cards */
+    .blog-item:hover {
+        transform: scale(1.05); /* Membesarkan card saat hover */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Efek bayangan saat hover */
+    }
+
+    /* Image hover effects */
+    .product-image {
+        transition: transform 0.3s ease; /* Animasi untuk gambar */
+    }
+
+    /* Remove the individual image hover effect */
+    .product-image:hover {
+        transform: none; /* Tidak ada transformasi untuk gambar saat hover */
     }
 
     /* Breadcrumbs */
