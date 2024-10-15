@@ -25,6 +25,7 @@ return [
 
     'home' => 'Home',
     'about' => 'About',
+    'company_activity' => 'Company Activities ',
     'activity' => 'Our Activities ',
     'products' => 'Products',
     'ecommerce' => 'E-Commerce',
@@ -67,8 +68,9 @@ return [
     'email_not_available' => 'Email not available',
     'phone_not_available' => 'Phone not available',
     'whatsapp_not_available' => 'WhatsApp not available',
+    'product_not_available' => 'No products available',
+    'slider_not_available' => 'No sliders available',
 
-    'leave_message' => 'Leave Message',
     'your_name' => 'Your Name',
     'first_name' => 'First Name',
     'last_name' => 'Last Name',
@@ -77,6 +79,7 @@ return [
     'phone' => 'Phone Number',
     'your_subject' => 'Your Subject',
     'your_message' => 'Your Message',
+    'leave_message' => 'Leave Message',
     'send_message' => 'Send Message',
     'qna-guest' => 'QnA',
 
@@ -123,4 +126,14 @@ return [
     'brands_desc' => 'We establish strategic partnerships with various industries to bring innovative solutions. With the support of our partners. We are committed to delivering the best products and services to our customers. With the support of our partners, we are committed to delivering the best products and services to our customers.',
     'contact_desc' => 'If you have any questions or need assistance, please fill out the contact form below. Our team will get back to you as soon as possible. Thank you for your trust!',
     'activity_desc' => 'We are committed to continuous innovation and growth through various corporate activities, including employee development programs, social activities, and industry collaborations. Every activity we undertake is designed to have a positive impact, both for the company and the wider community, and to support our vision and mission in achieving sustainability and long-term growth.',
+
+    'service1' => 'High Quality Products',
+    'service1_desc' => 'High quality products to meet your needs.',
+    'service2' => 'Fast Delivery',
+    'service2_desc' => 'Secure delivery and products arrive on time at your location.',
+    'service3' => 'Competitive Price',
+    'service3_desc' => 'Affordable prices with maintained quality.',
+    'service4' => 'Secure Transactions',
+    'service4_desc' => 'Guaranteed secure transactions and customer data protection.',
+
 ];

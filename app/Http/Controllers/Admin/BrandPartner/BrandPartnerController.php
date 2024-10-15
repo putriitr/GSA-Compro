@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class BrandPartnerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $brandPartners = BrandPartner::all();

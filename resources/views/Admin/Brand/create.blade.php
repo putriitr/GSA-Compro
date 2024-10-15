@@ -4,9 +4,8 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header">
-                <h1 class="h4">Tambah Merek Baru</h1>
+                <h1 class="h4">Tambah Mitra Baru</h1>
             </div>
-
             <div class="card-body">
                 <form action="{{ route('admin.brand.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -22,9 +21,7 @@
                     <div class="form-group mb-3">
                         <label for="type">Tipe</label>
                         <select name="type" class="form-control">
-                            <option value="brand">Merek</option>
                             <option value="partner">Mitra</option>
-                            <option value="principal">Induk Perusahaan</option>
                         </select>
                         @error('type')
                             <span class="text-danger">{{ $message }}</span>
@@ -47,7 +44,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Buat Merek</button>
+                    <button type="submit" class="btn btn-primary">Buat Mitra</button>
                 </form>
             </div>
         </div>

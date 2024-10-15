@@ -29,35 +29,46 @@
         @if ($sliders->isEmpty())
             <div class="header-carousel-item">
                 <img src="{{ asset('storage/bg-1.jpg') }}" class="img-fluid w-100" alt="Default Image">
-                <div class="carousel-caption"
-                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                    <div class="carousel-caption-content p-3">
-                        <h5 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
-                            No slider available.
-                        </h5>
+                <div class="carousel-caption d-flex align-items-center justify-content-center">
+                    <div class="container py-4">
+                        <div class="row g-5 align-items-center">
+                            <div class="col-xl-12 fadeInLeft animated text-center" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
+                                <div>
+                                    <h5 class="text-primary text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
+                                        {{ __('messages.slider_not_available') }}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         @else
             @foreach ($sliders as $slider)
-                <div class="header-carousel-item" style="position: relative;">
-                    <img src="{{ asset($slider->image_url) }}" class="img-fluid w-100" alt="{{ $slider->title }}">
-                    <div class="carousel-caption"
-                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                        <div class="carousel-caption-content p-3">
-                            <h5 class="text-white text-center text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
-                                {{ $slider->subtitle }}
-                            </h5>
-                            <h1 class="display-1 text-capitalize text-white mb-4">
-                                {{ $slider->title }}
-                            </h1>
-                            <p class="mb-5 fs-5">{{ $slider->description }}</p>
-                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ $slider->button_url }}">
-                                {{ $slider->button_text }}
-                            </a>
+            <div class="header-carousel-item">
+                <img src="{{ asset($slider->image_url) }}" class="img-fluid w-100" alt="{{ $slider->title }}">
+                <div class="carousel-caption d-flex align-items-center justify-content-center">
+                    <div class="container py-4">
+                        <div class="row g-5 align-items-center">
+                            <div class="col-xl-12 fadeInLeft animated text-center" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
+                                <div>
+                                    <h5 class="text-primary text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
+                                        {{ $slider->subtitle }}
+                                    </h5>
+                                    <h1 class="display-4 text-uppercase text-white mb-4">
+                                        {{ $slider->title }}
+                                    </h1>
+                                    <p class="mb-4 fs-5">{{ $slider->description }}</p>
+                                    <div class="d-flex justify-content-center">
+                                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ $slider->button_url }}">{{ $slider->button_text }}</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
             @endforeach
         @endif
     </div>
@@ -130,7 +141,7 @@
                     @endforeach
                 </div>
             @else
-                <p class="text-white text-center">{{ __('messages.no_products_available') }}</p>
+                <p class="text-white text-center">{{ __('messages.product_not_available') }}</p>
             @endif
         </div>
         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">

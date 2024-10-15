@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>Detail Brand</h1>
+        <h1>Detail Mitra</h1>
 
         <div class="card">
             <div class="card-header">

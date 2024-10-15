@@ -6,7 +6,6 @@
             <div class="card-header">
                 <h1 class="h4">Edit Slider</h1>
             </div>
-
             <div class="card-body">
                 <form action="{{ route('admin.slider.update', $slider->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf

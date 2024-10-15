@@ -28,37 +28,37 @@
                             <div class="row g-4">
                                 <div class="col-md-6">
                                     <div class="d-flex">
-                                        <div class="me-3"><i class="fas fa-glass-cheers fa-3x text-primary"></i></div>
+                                        <div class="me-3"><i class="fas fa-hammer fa-3x text-primary"></i></div>
                                         <div>
-                                            <h4>Food & Drinks</h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            <h4>{{ __('messages.service1') }}</h4>
+                                            <p>{{ __('messages.service1_desc') }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="d-flex">
-                                        <div class="me-3"><i class="fas fa-dot-circle fa-3x text-primary"></i></div>
+                                        <div class="me-3"><i class="fas fa-truck fa-3x text-primary"></i></div>
                                         <div>
-                                            <h4>Many Attractions</h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            <h4>{{ __('messages.service2') }}</h4>
+                                            <p>{{ __('messages.service2_desc') }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="d-flex">
-                                        <div class="me-3"><i class="fas fa-hand-holding-usd fa-3x text-primary"></i></div>
+                                        <div class="me-3"><i class="fas fa-tags fa-3x text-primary"></i></div>
                                         <div>
-                                            <h4>Affordable Price</h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            <h4>{{ __('messages.service3') }}</h4>
+                                            <p>{{ __('messages.service3_desc') }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="d-flex">
-                                        <div class="me-3"><i class="fas fa-lock fa-3x text-primary"></i></div>
+                                        <div class="me-3"><i class="fas fa-shield-alt fa-3x text-primary"></i></div>
                                         <div>
-                                            <h4>Safety Lockers</h4>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                            <h4>{{ __('messages.service4') }}</h4>
+                                            <p>{{ __('messages.service4_desc') }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -203,65 +203,79 @@
             <div class="map-container"
                 style="background: url('{{ asset('assets/img/peta.png') }}'); background-size: cover; width: 100%; height: 400px; position: relative;">
                 <div class="map">
-                    <!-- Titik dan garis untuk pengguna 1 -->
-                    <div class="location" style="top: 30%; left: 40%;"></div>
-                    <div class="line" style="top: 30%; left: 40%; height: 100px; transform: translateX(-50%);"></div>
-                    <div class="label" style="top: 140px; left: 35%; transform: translateX(-50%);">
-                        <img src="{{ asset('storage/user.png') }}" alt="User 1"
-                            style="width: 50px; border-radius: 50%;">
-                        <p>User 1</p>
-                    </div>
+                    @if ($userLocations ?? collect()->isEmpty())
+                        <p>{{ __('messages.no_locations_found') }}</p>
+                    @else
+                        @foreach ($userLocations as $location)
+                            <div class="location"
+                                style="top: {{ $location->latitude }}%; left: {{ $location->longitude }}%;"></div>
+                            <div class="line"
+                                style="top: {{ $location->latitude }}%; left: {{ $location->longitude }}%; height: 100px; transform: translateX(-50%);">
+                            </div>
+                            <div class="label"
+                                style="top: {{ $location->latitude + 100 }}px; left: {{ $location->longitude }}%; transform: translateX(-50%);">
+                                <img src="{{ asset('assets/img/' . $location->image) }}" alt="{{ $location->name }}"
+                                    style="width: 50px; border-radius: 50%;">
+                                <p>{{ $location->name }}</p>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
-    </div><br><br><br><br>
+    </div>
     <!-- User End -->
 
     <style>
-        body {
-            background-color: #f9f9f9;
-            font-family: Arial, sans-serif;
-        }
-
-        .map-container {
+        .map {
             position: relative;
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
+            height: 100%;
         }
 
         .location {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 10px;
+            /* Ubah sesuai ukuran yang diinginkan */
+            height: 10px;
+            /* Ubah sesuai ukuran yang diinginkan */
             background-color: red;
-            /* Warna titik */
+            /* Warna untuk menunjukkan lokasi */
             border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            /* Efek bayangan */
+        }
+
+        .line {
+            position: absolute;
+            width: 2px;
+            /* Lebar garis */
+            background-color: blue;
+            /* Warna garis */
+            z-index: 1;
+            /* Menempatkan garis di bawah label */
         }
 
         .label {
             position: absolute;
-            color: #000;
-            font-weight: bold;
-            background-color: white;
-            /* Warna latar belakang label */
-            padding: 5px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             text-align: center;
-            transform: translate(-50%, 0);
-            /* Memastikan label berada di tengah horizontal */
+            z-index: 2;
+            /* Menempatkan label di atas garis dan lokasi */
         }
 
-        /* Garis penghubung */
-        .line {
-            position: absolute;
-            width: 2px;
-            background-color: black;
-            /* Warna garis */
-            transform: translateX(-50%);
-            /* Memastikan garis berada di tengah horizontal */
+        .label img {
+            border-radius: 50%;
+            margin-bottom: 5px;
+            /* Jarak antara gambar dan nama */
         }
     </style>
+
+    <script>
+        document.querySelectorAll('.location').forEach(location => {
+            location.addEventListener('click', function() {
+                const label = this.nextElementSibling; // Ambil elemen label yang sesuai
+                alert(label.querySelector('p').textContent); // Tampilkan nama lokasi
+            });
+        });
+    </script>
 @endsection

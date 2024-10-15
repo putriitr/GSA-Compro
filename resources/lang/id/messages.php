@@ -26,6 +26,7 @@ return [
 
     'home' => 'Beranda',
     'about' => 'Tentang',
+    'company_activity' => 'Kegiatan Perusahaan',
     'activity' => 'Kegiatan Terkini',
     'products' => 'Produk',
     'ecommerce' => 'E-Commerce',
@@ -78,6 +79,8 @@ return [
     'email_not_available' => 'Email tidak tersedia',
     'phone_not_available' => 'Telepon tidak tersedia',
     'whatsapp_not_available' => 'WhatsApp tidak tersedia',
+    'product_not_available' => 'Produk tidak tersedia.',
+    'slider_not_available' => 'Slider tidak tersedia.',
 
     'leave_message' => 'Tinggalkan Pesan',
     'your_name' => 'Nama Anda',
@@ -137,5 +140,14 @@ return [
     'product_desc' => 'Kami menawarkan berbagai produk berkualitas tinggi yang dirancang untuk memenuhi kebutuhan Anda. Setiap produk kami dipilih dengan teliti, memberikan solusi terbaik dan inovatif untuk kehidupan sehari-hari. Jelajahi koleksi kami dan temukan apa yang Anda cari!',
     'brands_desc' => 'Kami menjalin kemitraan strategis dengan berbagai industri untuk menghadirkan solusi inovatif. Dengan dukungan mitra kami, kami berkomitmen untuk memberikan produk dan layanan terbaik kepada pelanggan.',
     'contact_desc' => 'Jika Anda memiliki pertanyaan atau membutuhkan bantuan, silakan isi formulir kontak di bawah ini. Tim kami akan segera menghubungi Anda. Terima kasih atas kepercayaan Anda!',
-    'activity_desc' => 'Kami berkomitmen untuk terus berinovasi dan berkembang melalui berbagai aktivitas perusahaan, termasuk program pengembangan karyawan, kegiatan sosial, dan kolaborasi industri. Setiap kegiatan yang kami lakukan dirancang untuk memberikan dampak positif, baik bagi perusahaan maupun masyarakat luas, serta mendukung visi dan misi kami dalam mencapai keberlanjutan dan pertumbuhan jangka panjang.'
+    'activity_desc' => 'Kami berkomitmen untuk terus berinovasi dan berkembang melalui berbagai aktivitas perusahaan, termasuk program pengembangan karyawan, kegiatan sosial, dan kolaborasi industri. Setiap kegiatan yang kami lakukan dirancang untuk memberikan dampak positif, baik bagi perusahaan maupun masyarakat luas, serta mendukung visi dan misi kami dalam mencapai keberlanjutan dan pertumbuhan jangka panjang.',
+
+    'service1' => 'Produk Kualitas Tinggi',
+    'service1_desc' => 'Produk berkualitas tinggi untuk memenuhi kebutuhan Anda.',
+    'service2' => 'Pengiriman Cepat',
+    'service2_desc' => 'Pengiriman aman dan produk tiba tepat waktu di lokasi Anda.',
+    'service3' => 'Harga Kompetitif',
+    'service3_desc' => 'Harga yang terjangkau dengan kualitas yang tetap terjaga.',
+    'service4' => 'Transaksi Aman',
+    'service4_desc' => 'Jaminan transaksi aman dan perlindungan data pelanggan.',
 ];

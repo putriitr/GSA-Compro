@@ -5,14 +5,13 @@ namespace App\Http\Controllers\Admin\UserLocation;
 use App\Http\Controllers\Controller;
 use App\Models\UserLocation;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class UserLocationController extends Controller
 {
     public function index()
     {
-        $locations = UserLocation::all();
-        return view('admin.userlocation.index', compact('locations'));
+        $userLocations = UserLocation::all();
+        return view('admin.userlocation.index', compact('userLocations'));
     }
 
     public function create()
@@ -25,55 +24,78 @@ class UserLocationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
+            'latitude' => 'required|string',
+            'longitude' => 'required|string',
         ]);
 
-        $path = $request->file('image')->store('images', 'public');
+        $userLocation = new UserLocation();
+        $userLocation->name = $request->name;
 
-        UserLocation::create([
-            'name' => $request->name,
-            'image' => $path,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
-        ]);
-
-        return redirect()->route('userlocations.index')->with('success', 'Location added successfully.');
-    }
-
-    public function edit(UserLocation $userLocation)
-    {
-        return view('admin.userlocation.edit', compact('userLocation'));
-    }
-
-    public function update(Request $request, UserLocation $userLocation)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'latitude' => 'required|numeric',
-            'longitude' => 'required|numeric',
-        ]);
-
+        // Simpan gambar ke public/assets/img
         if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($userLocation->image);
-            $path = $request->file('image')->store('images', 'public');
-            $userLocation->image = $path;
+            $filename = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('assets/img'), $filename);
+            $userLocation->image = $filename;
         }
 
-        $userLocation->name = $request->name;
         $userLocation->latitude = $request->latitude;
         $userLocation->longitude = $request->longitude;
         $userLocation->save();
 
-        return redirect()->route('userlocations.index')->with('success', 'Location updated successfully.');
+        return redirect()->route('userlocations.index')->with('success', 'Lokasi pengguna berhasil ditambahkan!');
     }
 
-    public function destroy(UserLocation $userLocation)
+    public function edit($id)
     {
-        Storage::disk('public')->delete($userLocation->image);
+        $userLocation = UserLocation::findOrFail($id);
+        return view('admin.userlocation.edit', compact('userLocation'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'latitude' => 'required|string',
+            'longitude' => 'required|string',
+        ]);
+
+        $userLocation = UserLocation::findOrFail($id);
+        $userLocation->name = $request->name;
+        $userLocation->latitude = $request->latitude;
+        $userLocation->longitude = $request->longitude;
+
+        if ($request->hasFile('image')) {
+            if ($userLocation->image) {
+                $oldImagePath = public_path('assets/img/' . $userLocation->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('assets/img'), $imageName);
+            $userLocation->image = $imageName;
+        }
+
+        $userLocation->save();
+
+        return redirect()->route('userlocations.index')->with('success', 'Lokasi pengguna berhasil diperbarui!');
+    }
+
+    public function destroy($id)
+    {
+        $userLocation = UserLocation::findOrFail($id);
+
+        if ($userLocation->image) {
+            $imagePath = public_path('assets/img/' . $userLocation->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
+        }
+
         $userLocation->delete();
 
-        return redirect()->route('userlocations.index')->with('success', 'Location deleted successfully.');
+        return redirect()->route('userlocations.index')->with('success', 'Lokasi pengguna berhasil dihapus!');
     }
 }

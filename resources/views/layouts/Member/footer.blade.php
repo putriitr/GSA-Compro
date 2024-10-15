@@ -8,6 +8,62 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-md-6 col-lg-6 col-xl-4">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">{{ __('messages.contact_info') }}</h4>
+                    <!-- Address -->
+                    @if(!empty($compro->alamat))
+                        <a href="#"><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}</a>
+                    @else
+                        <p><i class="fa fa-map-marker-alt me-2"></i> {{ __('messages.address_not_available') }}</p>
+                    @endif
+
+                    <!-- Email -->
+                    @if(!empty($compro->email))
+                        <a href="mailto:{{ $compro->email }}"><i class="fas fa-envelope me-2"></i> {{ $compro->email }}</a>
+                    @else
+                        <p><i class="fas fa-envelope me-2"></i> {{ __('messages.email_not_available') }}</p>
+                    @endif
+
+                    <!-- Phone Number -->
+                    @if(!empty($compro->no_telepon))
+                        <a href="tel:{{ $compro->no_telepon }}"><i class="fab fa-whatsapp fa-2x"></i> {{ $compro->no_telepon }}</a>
+                    @else
+                        <p><i class="fab fa-whatsapp fa-2x"></i>{{ __('messages.phone_not_available') }}</p>
+                    @endif
+
+                    <!-- WhatsApp -->
+                    @if(!empty($compro->no_wa))
+                        <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->no_wa) }}" class="mb-3">
+                            <i class="fab fa-whatsapp fa-2x"></i> {{ $compro->no_wa }}
+                        </a>
+                    @else
+                        <p><i class="fab fa-whatsapp fa-2x"></i> {{ __('messages.whatsapp_not_available') }}</p>
+                    @endif
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-2">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">{{ __('messages.quick_access') }}</h4>
+                    <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.about_us') }}</a>
+                    <a href="{{ route('home') }}#merek-mitra"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_brands') }}</a>
+                    <a href="{{ route('qnaguest1') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.user') }}</a>
+                    <a href="{{ route('member.activity') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_activity') }}</a>
+                    <a href="{{ route('contact') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.contact_us') }}</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-2">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">{{ __('messages.find_products') }}</h4>
+                    <a href="{{route('product.index')}}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_products') }}</a>
+                    <a href="{{ route('portal') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.member_portal') }}</a>
+                    @if($brand->isNotEmpty())
+                    @foreach($brand as $singleBrand)
+                        <a href="{{ $singleBrand->url }}"><i class="fas fa-angle-right me-2"></i> {{ $singleBrand->nama }}</a>
+                    @endforeach
+                @endif
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-4">
                 <div class="footer-item">
                     <h4 class="text-white mb-4">{{ __('messages.pengaduan') }}</h4>
                     <div class="opening-date mb-3 pb-3">
@@ -45,67 +101,8 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     </div>
                     <div>
                         <p class="text-white mb-2">{{ __('messages.pembayaran') }}</p>
-                        <img src="{{ asset('storage/midtrans.png') }}" class="img-fluid" alt="Image" style="border-radius: 20px; height: 80px; width: 120px;">
+                        <img src="{{ asset('storage/midtrans.png') }}" class="img-fluid" alt="Image" style="border-radius: 10px; height: 50px; width: auto;">
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-2">
-                <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">{{ __('messages.quick_access') }}</h4>
-                    <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.about_us') }}</a>
-                    <a href="{{ route('home') }}#merek-mitra"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_brands') }}</a>
-                    <a href="{{ route('qnaguest1') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.user') }}</a>
-                    <a href="{{ route('member.activity') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_activity') }}</a>
-                    <a href="{{ route('contact') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.contact_us') }}</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-2">
-                <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">{{ __('messages.find_products') }}</h4>
-                    <a href="{{route('product.index')}}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_products') }}</a>
-                    <a href="{{ route('portal') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.member_portal') }}</a>
-                    @if($brand->isNotEmpty())
-                    @foreach($brand as $singleBrand)
-                        <a href="{{ $singleBrand->url }}"><i class="fas fa-angle-right me-2"></i> {{ $singleBrand->nama }}</a>
-                    @endforeach
-                @endif
-
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-6 col-xl-4">
-                <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">{{ __('messages.contact_info') }}</h4>
-
-                    <!-- Address -->
-                    @if(!empty($compro->alamat))
-                        <a href="#"><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}</a>
-                    @else
-                        <p><i class="fa fa-map-marker-alt me-2"></i> {{ __('messages.address_not_available') }}</p>
-                    @endif
-
-                    <!-- Email -->
-                    @if(!empty($compro->email))
-                        <a href="mailto:{{ $compro->email }}"><i class="fas fa-envelope me-2"></i> {{ $compro->email }}</a>
-                    @else
-                        <p><i class="fas fa-envelope me-2"></i> {{ __('messages.email_not_available') }}</p>
-                    @endif
-
-                    <!-- Phone Number -->
-                    @if(!empty($compro->no_telepon))
-                        <a href="tel:{{ $compro->no_telepon }}"><i class="fab fa-whatsapp fa-2x"></i> {{ $compro->no_telepon }}</a>
-                    @else
-                        <p><i class="fab fa-whatsapp fa-2x"></i>{{ __('messages.phone_not_available') }}</p>
-                    @endif
-
-                    <!-- WhatsApp -->
-                    @if(!empty($compro->no_wa))
-                        <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->no_wa) }}" class="mb-3">
-                            <i class="fab fa-whatsapp fa-2x"></i> {{ $compro->no_wa }}
-                        </a>
-                    @else
-                        <p><i class="fab fa-whatsapp fa-2x"></i> {{ __('messages.whatsapp_not_available') }}</p>
-                    @endif
                 </div>
             </div>
         </div>

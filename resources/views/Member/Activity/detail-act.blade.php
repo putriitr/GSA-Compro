@@ -34,9 +34,9 @@
                             </div>
                         </div>
 
-                        <p class="mb-4"
+                        <h1 class="mb-4"
                             style="
-                                font-size: 0.875rem;
+                                font-size: 1.2rem;
                                 color: #6c757d;
                                 margin: 0;
                                 line-height: 1.5;
@@ -44,7 +44,7 @@
                                 margin-top: 10px; /* Kurangi jarak antara gambar dan deskripsi */
                             ">
                             {{ $activity->description }}
-                        </p>
+                        </h1>
                     </div>
                 </div>
             </div>

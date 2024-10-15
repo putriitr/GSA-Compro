@@ -11,9 +11,9 @@ class CreateUserLocationsTable extends Migration
         Schema::create('user_locations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image')->nullable(); // Jika ada gambar yang tidak wajib
-            $table->float('latitude', 10, 6); // 10 digit total dan 6 digit desimal
-            $table->float('longitude', 10, 6); // 10 digit total dan 6 digit desimal
+            $table->string('image')->nullable();
+            $table->string('latitude');
+            $table->string('longitude');
             $table->timestamps();
         });
     }

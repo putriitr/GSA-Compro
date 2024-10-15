@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header">
-                <h1 class="h4">Edit Merek</h1>
+                <h1 class="h4">Edit Mitra</h1>
             </div>
 
             <div class="card-body">
@@ -28,9 +28,7 @@
                     <div class="form-group mb-3">
                         <label for="type">Type</label>
                         <select name="type" class="form-control">
-                            <option value="brand" {{ $brandPartner->type == 'brand' ? 'selected' : '' }}>Merek</option>
                             <option value="partner" {{ $brandPartner->type == 'partner' ? 'selected' : '' }}>Mitra</option>
-                            <option value="principal" {{ $brandPartner->type == 'principal' ? 'selected' : '' }}>Induk Perusahaan</option>
                         </select>
                         @error('type')
                             <span class="text-danger">{{ $message }}</span>
@@ -53,7 +51,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Perbaharui Merek</button>
+                    <button type="submit" class="btn btn-primary">Perbaharui Mitra</button>
                 </form>
             </div>
         </div>
