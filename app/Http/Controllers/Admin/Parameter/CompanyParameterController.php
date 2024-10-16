@@ -90,6 +90,8 @@ class CompanyParameterController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $companyParameter = CompanyParameter::findOrFail($id);
+
         $validated = $request->validate([
             'nama_perusahaan' => 'required|string|max:255',
             'sejarah_singkat' => 'nullable|string',
@@ -110,8 +112,6 @@ class CompanyParameterController extends Controller
             'nomor_induk_berusaha' => 'nullable|string|max:255',
             'surat_keterangan' => 'nullable|string|max:255',
         ]);
-
-        $companyParameter = CompanyParameter::findOrFail($id);
 
         // Menangani upload dan penghapusan logo
         if ($request->hasFile('logo')) {

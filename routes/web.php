@@ -28,7 +28,6 @@
     use App\Http\Controllers\Member\QnaGuest1\QnaGuest1Controller;
     use App\Http\Controllers\ContactPageController;
     use App\Http\Controllers\Admin\Activity\CategoryActivityController;
-    use App\Http\Controllers\Admin\UserLocation\UserLocationController;
 
     /*
     |--------------------------------------------------------------------------
@@ -84,7 +83,6 @@
             Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
             Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
             Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
-            Route::get('/user-locations', [UserLocationController::class, 'index'])->name('user.locations');
             Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
             Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
             Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
@@ -95,9 +93,6 @@
         Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
-            Route::resource('userlocations', UserLocationController::class);
-            Route::get('/admin/userlocation/{id}/edit', [UserLocationController::class, 'edit'])->name('admin.userlocation.edit');
-            Route::put('/admin/userlocation/{id}', [UserLocationController::class, 'update'])->name('admin.userlocation.update');
             Route::resource('admin/activity/category-activity', CategoryActivityController::class)->names('admin.activity.category-activity');
             Route::resource('admin/members', MemberController::class);
             Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');

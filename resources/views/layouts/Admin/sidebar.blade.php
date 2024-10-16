@@ -164,7 +164,7 @@
                     <div class="collapse" id="information-section">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{ route('userlocations.index') }}">
+                                <a href="{{ route('admin.location.index') }}">
                                     <span class="sub-item">Lokasi Pengguna</span>
                                 </a>
                             </li>

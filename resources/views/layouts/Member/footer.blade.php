@@ -25,16 +25,16 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     @endif
 
                     <!-- Phone Number -->
-                    @if(!empty($compro->no_telepon))
-                        <a href="tel:{{ $compro->no_telepon }}"><i class="fab fa-whatsapp fa-2x"></i> {{ $compro->no_telepon }}</a>
+                    @if(!empty($compro->whatsapp_1))
+                        <a href="tel:{{ $compro->whatsapp_1 }}"><i class="fab fa-whatsapp fa-2x"></i> {{ $compro->whatsapp_1 }}</a>
                     @else
                         <p><i class="fab fa-whatsapp fa-2x"></i>{{ __('messages.phone_not_available') }}</p>
                     @endif
 
                     <!-- WhatsApp -->
-                    @if(!empty($compro->no_wa))
-                        <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->no_wa) }}" class="mb-3">
-                            <i class="fab fa-whatsapp fa-2x"></i> {{ $compro->no_wa }}
+                    @if(!empty($compro->whatsapp_2))
+                        <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->whatsapp_2) }}" class="mb-3">
+                            <i class="fab fa-whatsapp fa-2x"></i> {{ $compro->whatsapp_2 }}
                         </a>
                     @else
                         <p><i class="fab fa-whatsapp fa-2x"></i> {{ __('messages.whatsapp_not_available') }}</p>

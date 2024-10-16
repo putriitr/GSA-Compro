@@ -81,6 +81,7 @@ return [
     'whatsapp_not_available' => 'WhatsApp tidak tersedia',
     'product_not_available' => 'Produk tidak tersedia.',
     'slider_not_available' => 'Slider tidak tersedia.',
+    'brand_not_available' => 'Brand tidak tersedia',
 
     'leave_message' => 'Tinggalkan Pesan',
     'your_name' => 'Nama Anda',

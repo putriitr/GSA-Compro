@@ -65,8 +65,8 @@
 
                             <!-- Dynamic Activities -->
                             @foreach ($activities as $activity)
-                                <option value="{{ route('activity.show', $activity->id) }}"
-                                    {{ old('button_url') == route('activity.show', $activity->id) ? 'selected' : '' }}>
+                                <option value="{{ route('member.activity.show', $activity->id) }}"
+                                    {{ old('button_url') == route('member.activity.show', $activity->id) ? 'selected' : '' }}>
                                     {{ $activity->title }} (Activity)
                                 </option>
                             @endforeach

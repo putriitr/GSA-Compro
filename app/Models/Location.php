@@ -10,13 +10,14 @@ class Location extends Model
     use HasFactory;
 
     protected $fillable = [
-        'province',
+        'name',
+        'image',
         'latitude',
         'longitude',
     ];
 
     public function users()
-{
-    return $this->hasMany(User::class, 'location_id');
-}
+    {
+        return $this->hasMany(User::class, 'location_id');
+    }
 }

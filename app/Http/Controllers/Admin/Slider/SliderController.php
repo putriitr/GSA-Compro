@@ -33,8 +33,8 @@ class SliderController extends Controller
         ];
 
         $metas = Meta::where('start_date', '<=', today())
-                     ->where('end_date', '>=', today())
-                     ->get();
+            ->where('end_date', '>=', today())
+            ->get();
 
         return view('admin.slider.create', compact('activities', 'routes', 'metas'));
     }
@@ -52,13 +52,13 @@ class SliderController extends Controller
             'button_url' => 'required|string', // Modify to dynamic URL handling
         ]);
 
-        // Save image to public/uploads/slider
+        // Save image to public/assets/img/slider
         $image = $request->file('image_url');
         $imageName = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('uploads/slider'), $imageName);
-        $imagePath = 'uploads/slider/' . $imageName;
+        $image->move(public_path('assets/img/slider'), $imageName);
+        $imagePath = 'assets/img/slider/' . $imageName;
 
-        // Determine if the button URL comes from a pre-defined route or an activity
+        // Dynamic button URL handling
         if ($request->filled('activity_id')) {
             $activity = Activity::find($request->activity_id);
             $buttonUrl = route('activity.show', $activity->id);
@@ -70,18 +70,19 @@ class SliderController extends Controller
             $buttonUrl = $request->button_url;
         }
 
-
+        // Create the slider
         Slider::create([
             'image_url' => $imagePath,
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'description' => $request->description,
             'button_text' => $request->button_text,
-            'button_url' => $buttonUrl, // Dynamic button URL
+            'button_url' => $buttonUrl,
         ]);
 
         return redirect()->route('admin.slider.index')->with('success', 'Slider created successfully.');
     }
+
 
     // Show form to edit an existing slider
     public function edit($id)
@@ -95,10 +96,10 @@ class SliderController extends Controller
         ];
 
         $metas = Meta::where('start_date', '<=', today())
-                     ->where('end_date', '>=', today())
-                     ->get();
+            ->where('end_date', '>=', today())
+            ->get();
 
-        return view('admin.slider.edit', compact('slider', 'routes', 'activities','metas'));
+        return view('admin.slider.edit', compact('slider', 'routes', 'activities', 'metas'));
     }
 
     // Update slider
@@ -115,27 +116,32 @@ class SliderController extends Controller
             'button_url' => 'required|string',
         ]);
 
+        // Handle image upload if a new image is provided
         if ($request->hasFile('image_url')) {
             // Delete the old image
             if (File::exists(public_path($slider->image_url))) {
                 File::delete(public_path($slider->image_url));
             }
 
-            // Save new image to public/uploads/slider
+            // Save new image to public/assets/img/slider
             $image = $request->file('image_url');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('uploads/slider'), $imageName);
-            $slider->image_url = 'uploads/slider/' . $imageName;
+            $image->move(public_path('assets/img/slider'), $imageName);
+            $slider->image_url = 'assets/img/slider/' . $imageName;
         }
 
         // Dynamic button URL handling
         if ($request->filled('activity_id')) {
             $activity = Activity::find($request->activity_id);
             $slider->button_url = route('activity.show', $activity->id);
+        } elseif ($request->filled('meta_slug')) {
+            $meta = Meta::where('slug', $request->meta_slug)->firstOrFail();
+            $slider->button_url = route('member.meta.show', $meta->slug);
         } else {
             $slider->button_url = $request->button_url;
         }
 
+        // Update other fields
         $slider->title = $request->title;
         $slider->subtitle = $request->subtitle;
         $slider->description = $request->description;

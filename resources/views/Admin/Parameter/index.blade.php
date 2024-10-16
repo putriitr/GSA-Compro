@@ -18,9 +18,9 @@
                     <thead class="thead-dark">
                         <tr>
                             <th>Email</th>
-                            <th>Nomor Telepon</th>
-                            <th>WhatsApp</th>
                             <th>Alamat</th>
+                            <th>WhatsApp 1</th>
+                            <th>WhatsApp 2</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -28,8 +28,8 @@
                         @foreach($companyParameters as $parameter)
                             <tr>
                                 <td>{{ $parameter->email }}</td>
-                                <td>{{ $parameter->no_telepon }}</td>
-                                <td>{{ $parameter->no_wa }}</td>
+                                <td>{{ $parameter->whatsapp_1 }}</td>
+                                <td>{{ $parameter->whatsapp_2 }}</td>
                                 <td>{{ $parameter->alamat }}</td>
                                 <td>
                                     <a href="{{ route('parameter.edit', $parameter->id) }}" class="btn btn-warning btn-sm">Edit</a>

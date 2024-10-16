@@ -70,6 +70,7 @@ return [
     'whatsapp_not_available' => 'WhatsApp not available',
     'product_not_available' => 'No products available',
     'slider_not_available' => 'No sliders available',
+    'brand_not_available' => 'No brands available',
 
     'your_name' => 'Your Name',
     'first_name' => 'First Name',
