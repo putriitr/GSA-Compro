@@ -193,80 +193,66 @@
     <!-- Feature End -->
 
     <!-- Map Start -->
-    <div class="container-fluid feature pb-5" style=" border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 20px; background-color: #fff; text-align: center; ">
+    <div class="container-fluid feature pb-5"
+        style="border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 20px; background-color: #fff; text-align: center;">
         <div class="container pb-5" data-wow-delay="0.1s">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-                <h4 class="text-primary">{{ __('messages.our_brands1') }}</h4>
-                <h1 class="display-5 mb-4">{{ __('messages.our_brands') }}</h1>
-                <p class="mb-0">{{ __('messages.brands_desc') }}</p>
+                <h4 class="text-primary">{{ __('messages.our_customers1') }}</h4>
+                <h1 class="display-5 mb-4">{{ __('messages.our_customers') }}</h1>
+                <p class="mb-0">{{ __('messages.customer_desc') }}</p>
             </div>
         </div>
         <hr>
-        <div id="gsa" style=" width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
-    </div> <br> <br>
+        <div id="map" style="width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
+    </div>
+    <br><br>
     <!-- Map End -->
 
-    <!-- Include Leaflet.js -->
+    <!-- Include Leaflet.js and Pulse Icon -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-pulse-icon@1.0.0/dist/L.Icon.Pulse.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-pulse-icon@1.0.0/dist/L.Icon.Pulse.js"></script>
+
 
     <script>
-        // Inisialisasi peta
-        var map = L.map('gsa').setView([-1.8694501185333308, 115.36224445532018], 5); // Pusat Indonesia
+        document.addEventListener("DOMContentLoaded", function () {
+            // Inisialisasi peta
+            var map = L.map('map').setView([-1.8694501185333308, 115.36224445532018], 5);
 
-        //tile layer dari OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+            // Menambahkan layer tile ke peta
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
 
-        function addMarker(lat, lng, province, userCount, users) {
-            var marker = L.marker([lat, lng]).addTo(map);
-
-            // Build user info HTML
-            let userList = '<ul>';
-            users.forEach(function(user) {
-                userList += `<li>${user.nama_perusahaan} (Created on: ${user.created_at})</li>`;
+            // Ambil data lokasi dari backend menggunakan AJAX (contoh menggunakan jQuery)
+            $.ajax({
+                url: '/path/to/your/api/locations', // Gantilah dengan URL API Anda
+                method: 'GET',
+                success: function (data) {
+                    // Asumsikan data berbentuk array objek: [{latitude, longitude, name, image_url}, ...]
+                    data.forEach(function (location) {
+                        // Menambahkan marker ke peta dengan informasi dari data
+                        var marker = L.marker([location.latitude, location.longitude]).addTo(map)
+                            .bindPopup(
+                                `<div style="display: flex; align-items: center;">
+                                    <img src="${location.image_url}" alt="Image" style="width: 50px; height: 50px; margin-right: 10px;">
+                                    <div>
+                                        <b>${location.name}</b>
+                                    </div>
+                                </div>`
+                            );
+                    });
+                },
+                error: function (error) {
+                    console.error('Error fetching locations:', error);
+                }
             });
-            userList += '</ul>';
-
-            // Popup content for marker
-            marker.bindPopup(`
-        <div class="info-window">
-            <h3 class="popup-title">${province}</h3>
-            <p class="popup-description">Kami memiliki ${userCount} member di ${province}:</p>
-            ${userList}
-        </div>
-    `);
-
-            // Adding tooltip
-            marker.bindTooltip(`<div>${province}</div>`, {
-                permanent: false,
-                direction: 'top',
-                offset: [0, -20],
-                className: 'marker-tooltip'
-            });
-            marker.on('mouseover', function(e) {
-                this.openTooltip();
-            });
-            marker.on('mouseout', function(e) {
-                this.closeTooltip();
-            });
-        }
-
-
-        // Fetch lokasi dari backend
-        // Fetch lokasi dari backend
-        fetch("{{ url('/locations') }}")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data); // for debugging
-                data.forEach(location => {
-                    addMarker(location.latitude, location.longitude, location.province, location.user_count,
-                        location.user_data);
-                });
-            })
-            .catch(error => console.error('Error:', error));
+        });
     </script>
+
+
 
     <style>
         .marker-tooltip {

@@ -17,67 +17,55 @@ class CategoriesSeeder extends Seeder
     {
         DB::table('kategori')->insert([
             [
-                'nama' => 'Tools & Welding Machine',
+                'nama' => 'Cutting Tools',
             ],
             [
-                'nama' => 'Workbench',
+                'nama' => 'Fastening Tools',
             ],
             [
-                'nama' => 'CNC Machine',
+                'nama' => 'Mechanics Tools',
             ],
             [
-                'nama' => 'Alat Klimatologi & Geofisika',
+                'nama' => 'Holding Tools',
             ],
             [
-                'nama' => 'Alat Uji & Alat Ukur',
+                'nama' => 'Tool Storage & Assortment',
             ],
             [
-                'nama' => 'Alat Survei',
+                'nama' => 'Universal Drill & Bitt set',
             ],
             [
-                'nama' => 'Tata Boga & Resto',
+                'nama' => 'Stringking Tools',
             ],
             [
-                'nama' => 'Tata Kecantikan',
+                'nama' => 'Plumbing Tools',
             ],
             [
-                'nama' => 'Tata Busana',
+                'nama' => 'Machine',
             ],
             [
-                'nama' => 'Barista',
+                'nama' => 'Measuring Tools',
             ],
             [
-                'nama' => 'Machinery',
+                'nama' => 'Safety Equipment',
             ],
             [
-                'nama' => 'Elevator',
+                'nama' => 'VDE Tools',
             ],
             [
-                'nama' => 'Alat Peraga',
+                'nama' => 'Constructing Tools',
             ],
             [
-                'nama' => 'Alat Olahraga',
+                'nama' => 'Working Table',
             ],
             [
-                'nama' => 'Home Appliance',
+                'nama' => 'Finishing Tools',
             ],
             [
-                'nama' => 'Persalatan Elektronik',
+                'nama' => 'Sawing Tools',
             ],
             [
-                'nama' => 'Alat Laboratorium',
-            ],
-            [
-                'nama' => 'Kendaraan Bermotor',
-            ],
-            [
-                'nama' => 'Genset',
-            ],
-            [
-                'nama' => 'APAR & Brankas',
-            ],
-            [
-                'nama' => 'Power Tools',
+                'nama' => 'Other Products',
             ],
         ]);
     }

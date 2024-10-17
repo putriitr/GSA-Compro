@@ -33,30 +33,32 @@ class ActivityController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi input
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'image_url' => 'required|image',
             'date' => 'required|date',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'category_activities_id' => 'required|exists:category_activities,id',
         ]);
 
-        // Proses unggah gambar
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images'), $imageName);
+        // Save image to public/assets/img/activity
+        $image = $request->file('image_url');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('assets/img/activity'), $imageName);
+        $imagePath = 'assets/img/activity/' . $imageName;
 
-        // Simpan aktivitas baru ke database
+        // Membuat aktivitas baru
         Activity::create([
-            'image' => $imageName,
+            'image_url' => $imagePath, // Simpan ke 'image_url'
             'date' => $request->date,
             'title' => $request->title,
             'description' => $request->description,
             'category_activities_id' => $request->category_activities_id,
         ]);
 
-        return redirect()->route('admin.activity.index')->with('success', 'Activity created successfully.');
+        return redirect()->route('admin.activity.index')->with('success', 'Aktivitas berhasil ditambahkan!');
     }
-
 
     public function edit(Activity $activity)
     {
@@ -68,27 +70,31 @@ class ActivityController extends Controller
     public function update(Request $request, Activity $activity)
     {
         $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image_url' => 'nullable|image',
             'date' => 'required|date',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'category_activities_id' => 'required|exists:category_activities,id', // Validasi kategori
+            'category_activities_id' => 'required|exists:category_activities,id',
         ]);
 
-        if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('images'), $imageName);
-            $activity->image = $imageName;
+        if ($request->hasFile('image_url')) {
+            // Menyimpan gambar baru jika di-upload
+            $image = $request->file('image_url'); // Ganti 'image' dengan 'image_url'
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('assets/img/activity'), $imageName);
+            $activity->image_url = 'assets/img/activity/' . $imageName; // Ganti 'image' menjadi 'image_url'
         }
 
+        // Update data aktivitas
         $activity->date = $request->date;
         $activity->title = $request->title;
         $activity->description = $request->description;
         $activity->category_activities_id = $request->category_activities_id;
         $activity->save();
 
-        return redirect()->route('admin.activity.index')->with('success', 'Activity updated successfully.');
+        return redirect()->route('admin.activity.index')->with('success', 'Aktivitas berhasil diperbarui!');
     }
+
 
 
     public function show(Activity $activity)

@@ -27,12 +27,13 @@
     <!-- Carousel Start -->
     <div class="header-carousel owl-carousel">
         @if ($sliders->isEmpty())
-            <div class="header-carousel-item">
+            <div class="header-carousel-item  position-relative">
                 <img src="{{ asset('storage/bg-1.jpg') }}" class="img-fluid w-100" alt="Default Image">
-                <div class="carousel-caption d-flex align-items-center justify-content-center">
+                <div
+                    class="carousel-caption d-flex align-items-center justify-content-center position-absolute top-50 start-50 translate-middle">
                     <div class="container py-4">
                         <div class="row g-5 align-items-center">
-                            <div class="col-xl-12 fadeInLeft animated text-center" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
+                            <div class="col-xl-12 text-center">
                                 <div>
                                     <h5 class="text-primary text-uppercase fw-bold mb-4" style="letter-spacing: 2px;">
                                         {{ __('messages.slider_not_available') }}
@@ -47,7 +48,8 @@
             @foreach ($sliders as $slider)
                 <div class="header-carousel-item position-relative">
                     <img src="{{ asset($slider->image_url) }}" class="img-fluid w-100" alt="{{ $slider->title }}">
-                    <div class="carousel-caption d-flex align-items-center justify-content-center position-absolute top-50 start-50 translate-middle">
+                    <div
+                        class="carousel-caption d-flex align-items-center justify-content-center position-absolute top-50 start-50 translate-middle">
                         <div class="container py-4">
                             <div class="row g-5 align-items-center">
                                 <div class="col-xl-12 text-center">
@@ -60,7 +62,8 @@
                                         </h1>
                                         <p class="mb-4 fs-5">{{ $slider->description }}</p>
                                         <div class="d-flex justify-content-center">
-                                            <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ $slider->button_url }}">{{ $slider->button_text }}</a>
+                                            <a class="btn btn-primary rounded-pill text-white py-3 px-5"
+                                                href="{{ $slider->button_url }}">{{ $slider->button_text }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +89,8 @@
                             {{ $company->sejarah_singkat ?? ' ' }}</p>
                     </div>
                     <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
-                        <a class="btn btn-primary rounded-pill text-white py-3 px-5" href="{{ route('about') }}">{{ __('messages.about_us') }}</a>
+                        <a class="btn btn-primary rounded-pill text-white py-3 px-5"
+                            href="{{ route('about') }}">{{ __('messages.about_us') }}</a>
                     </div>
                 </div>
                 <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.4s">
@@ -96,16 +100,16 @@
                                 <div class="col-lg-12">
                                     <div class="rounded mb-4">
                                         <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('storage/bg.jpg') }}"
-                                             class="img-fluid rounded w-100"
-                                             style="object-fit: cover; transition: transform 0.3s ease; cursor: pointer;"
-                                             alt="Image" onmouseover="this.style.transform='scale(1.1)'"
-                                             onmouseout="this.style.transform='scale(1)'">
+                                            class="img-fluid rounded w-100"
+                                            style="object-fit: cover; transition: transform 0.3s ease; cursor: pointer;"
+                                            alt="Image" onmouseover="this.style.transform='scale(1.1)'"
+                                            onmouseout="this.style.transform='scale(1)'">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="rounded bg-primary p-4 position-absolute d-flex justify-content-center"
-                             style="width: 90%; height: 80px; top: -40px; left: 50%; transform: translateX(-50%);">
+                            style="width: 90%; height: 80px; top: -40px; left: 50%; transform: translateX(-50%);">
                             <h3 class="mb-0 text-white">Selling Advanced Product</h3>
                         </div>
                     </div>
@@ -117,7 +121,7 @@
 
     <!-- Product Start -->
     <div class="container-fluid attractions py-5"
-         style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/bg-product.jpg') }}');">
+        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/bg-product.jpg') }}');">
         <div class="container attractions-section py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                 <h4 class="text-primary">{{ __('messages.find_products') }}</h4>
@@ -129,10 +133,10 @@
                     @foreach ($produks as $produk)
                         <div class="attractions-item wow fadeInUp" data-wow-delay="0.2s">
                             <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                 class="img-fluid rounded w-100" alt=""
-                                 style="width: 300px; height: 300px; object-fit: cover;">
+                                class="img-fluid rounded w-100" alt=""
+                                style="width: 300px; height: 300px; object-fit: cover;">
                             <a href="{{ route('product.show', $produk->id) }}"
-                               class="attractions-name">{{ $produk->nama }}</a>
+                                class="attractions-name">{{ $produk->nama }}</a>
                         </div>
                     @endforeach
                 </div>
@@ -142,7 +146,7 @@
         </div>
         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
             <a class="btn btn-primary rounded-pill text-white py-3 px-5"
-               href="{{ route('product.index') }}">{{ __('messages.show_more') }}</a>
+                href="{{ route('product.index') }}">{{ __('messages.show_more') }}</a>
         </div>
     </div>
     <br><br><br><br><br>
@@ -161,7 +165,7 @@
                 <div class="carousel-container" style="overflow: hidden; position: relative; height: 100px;">
                     <div class="carousel-rows" style="display: flex; flex-direction: column; height: 100%;">
                         <div class="carousel-row"
-                             style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 45s linear infinite;">
+                            style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 45s linear infinite;">
                             <div>
                                 <p class="text-dark text-center" style="letter-spacing: 2px; margin: 0;">
                                     {{ __('messages.brand_not_available') }}
@@ -175,11 +179,12 @@
                 <div class="carousel-container" style="overflow: hidden; position: relative;">
                     <div class="carousel-rows" style="display: flex; flex-direction: column;">
                         <div class="carousel-row"
-                             style="display: flex; white-space: nowrap; animation: marquee 45s linear infinite;">
+                            style="display: flex; white-space: nowrap; animation: marquee 45s linear infinite;">
                             @foreach ($partners as $partner)
                                 <div class="brand-item">
-                                    <img src="{{ asset('storage/' . $partner->logo) }}" class="img-fluid"
-                                         alt="{{ $partner->name }}" style="max-width: 200px; height: auto;">
+                                    <img src="{{ asset('assets/img/brandpartner/' . $partner->gambar) }}"
+                                        class="img-fluid" alt="{{ $partner->nama }}"
+                                        style="max-width: 200px; height: auto;">
                                 </div>
                             @endforeach
                         </div>
@@ -189,5 +194,6 @@
         </div>
     </div>
     <!-- Brand End -->
+
 
 @endsection

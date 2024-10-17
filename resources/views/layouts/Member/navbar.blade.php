@@ -88,20 +88,6 @@
                             class="fas fa-map-marker-alt"></i></a>
                     <a class="btn btn-square btn-light rounded-circle mx-1" href="mailto:info@gsacommerce.com"><i
                             class="fas fa-envelope"></i></a>
-                    <div class="btn-group">
-                        <a class="btn btn-square btn-light rounded-circle mx-1" href="#" role="button"
-                            id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="https://wa.me/6282114702128">WhatsApp 1</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="https://wa.me/6281390069009">WhatsApp 2</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
                 @if (auth()->check())
                     <div class="dropdown">
@@ -110,7 +96,7 @@
                             <small><i
                                     class="fa fa-user text-primary me-2"></i>{{ auth()->user()->nama_perusahaan }}</small>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="companyDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="companyDropdown">
                             <!-- Show Profile -->
                             <li>
                                 <a class="dropdown-item" href="{{ route('profile.show') }}">

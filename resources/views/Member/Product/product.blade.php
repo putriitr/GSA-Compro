@@ -17,12 +17,10 @@
                     @endforeach
                 </ul>
             </div>
-            <!-- Sidebar End -->
 
-            <!-- Main Content Start -->
             <div class="col-lg-9">
                 <div class="d-flex justify-content-between mb-4">
-                    <h3 class="display-6" style="color: #3CBEEE;">{{ __('messages.explore_product') }}</h3>
+                    <h3 class="display-6" style="color: #3CBEEE;"></h3>
                     <select class="form-select w-25 border-0 bg-light shadow-sm">
                         <option selected>{{ __('messages.sort_by') }}</option>
                         <option value="1">{{ __('messages.newest') }}</option>
@@ -57,14 +55,14 @@
                 </div>
             </div>
 
-            <!-- Pagination Links -->
+            {{-- <!-- Pagination Links -->
             <div class="d-flex justify-content-center mt-4">
                 {{ $produks->links() }} <!-- Menampilkan link pagination -->
-            </div>
+            </div> --}}
         </div>
-        <!-- Main Content End -->
     </div>
 @endsection
+
 
 <!-- Additional Custom CSS -->
 <style>

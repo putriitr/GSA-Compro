@@ -142,6 +142,7 @@ return [
     'brands_desc' => 'Kami menjalin kemitraan strategis dengan berbagai industri untuk menghadirkan solusi inovatif. Dengan dukungan mitra kami, kami berkomitmen untuk memberikan produk dan layanan terbaik kepada pelanggan.',
     'contact_desc' => 'Jika Anda memiliki pertanyaan atau membutuhkan bantuan, silakan isi formulir kontak di bawah ini. Tim kami akan segera menghubungi Anda. Terima kasih atas kepercayaan Anda!',
     'activity_desc' => 'Kami berkomitmen untuk terus berinovasi dan berkembang melalui berbagai aktivitas perusahaan, termasuk program pengembangan karyawan, kegiatan sosial, dan kolaborasi industri. Setiap kegiatan yang kami lakukan dirancang untuk memberikan dampak positif, baik bagi perusahaan maupun masyarakat luas, serta mendukung visi dan misi kami dalam mencapai keberlanjutan dan pertumbuhan jangka panjang.',
+    'customer_desc' => 'Kami bangga melayani kelompok pelanggan yang beragam yang menginspirasi kami untuk terus meningkatkan dan berinovasi. Kepercayaan dan dukungan mereka yang berkelanjutan mendorong kami untuk memberikan produk dan layanan terbaik, memastikan bahwa kami melampaui harapan mereka di setiap langkah.',
 
     'service1' => 'Produk Kualitas Tinggi',
     'service1_desc' => 'Produk berkualitas tinggi untuk memenuhi kebutuhan Anda.',

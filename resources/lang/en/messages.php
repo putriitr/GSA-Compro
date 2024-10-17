@@ -117,6 +117,7 @@ return [
     'tutor_desc' => 'Learn the complete tutorial to maximize the use of your product.',
     'monitoring_desc' => 'Monitor the purchase history and current status of the products you own.',
     'qna_desc' => 'Find answers on how to use your product.',
+    'customer_desc' => 'We are proud to serve a diverse group of customers who inspire us to constantly improve and innovate. Their continued trust and support drive us to deliver the best products and services, ensuring that we exceed their expectations every step of the way.',
 
     'NIB' => 'Business Identification Number',
     'SK' => 'Certificate Letter',

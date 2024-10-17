@@ -15,14 +15,16 @@ use Illuminate\Support\Str;
 
 class ProdukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $produks = Produk::all();
+        $selectedCategory = $request->get('category_id');
         $kategori = Kategori::all();
-        return view('admin.produk.index', compact('produks', 'kategori'));
+        // Menggunakan paginate untuk mendapatkan paginasi
+        $produks = Produk::when($selectedCategory, function ($query) use ($selectedCategory) {
+            return $query->where('category_id', $selectedCategory);
+        })->paginate(6); // Ubah angka sesuai dengan jumlah produk yang ingin ditampilkan per halaman
+
+        return view('admin.produk.index', compact('kategori', 'produks', 'selectedCategory'));
     }
 
     /**

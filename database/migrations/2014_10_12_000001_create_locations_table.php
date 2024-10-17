@@ -11,7 +11,7 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image')->nullable()->default(null)->change();
+            $table->string('image')->nullable()->default(null); // Tidak perlu ->change() saat membuat kolom baru
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
             $table->timestamps();

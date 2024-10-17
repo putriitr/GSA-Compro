@@ -4,9 +4,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-12">
-
             <div class="card">
-
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <div class="card-title"><h1>Produk</h1></div>
                     <a href="{{ route('admin.produk.create') }}" class="btn btn-primary mb-3">Tambah Produk Baru</a>
@@ -27,7 +25,6 @@
                                         <th>ID</th>
                                         <th>Nama Produk</th>
                                         <th>Merk</th>
-                                        <th>Via</th>
                                         <th>Kategori</th>
                                         <th>Gambar</th>
                                         <th>Aksi</th>
@@ -38,8 +35,6 @@
                                         <tr>
                                             <td>{{ $produk->id }}</td>
                                             <td class="text-truncate" style="max-width: 150px;">{{ $produk->nama }}</td>
-                                            <td class="text-truncate" style="max-width: 100px;">{{ $produk->merk }}</td>
-                                            <td>{{ ucfirst($produk->via) }}</td>
                                             <td>{{ $produk->kategori->nama }}</td>
                                             <td>
                                                 @foreach ($produk->images as $image)
