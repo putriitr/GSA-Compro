@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin\Slider;
 
-
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\Meta;
@@ -39,50 +38,34 @@ class SliderController extends Controller
         return view('admin.slider.create', compact('activities', 'routes', 'metas'));
     }
 
-
     // Store new slider
     public function store(Request $request)
     {
         $request->validate([
-            'image_url' => 'required|image',
+            'image_url' => 'required|image|max:2048',
+            'date' => 'required|date',
             'title' => 'required|string|max:255',
-            'subtitle' => 'required|string|max:255',
             'description' => 'required|string',
-            'button_text' => 'required|string|max:255',
-            'button_url' => 'required|string', // Modify to dynamic URL handling
+            'category_activities_id' => 'required|exists:category_activities,id',
         ]);
 
-        // Save image to public/assets/img/slider
+        // Simpan gambar di folder yang benar
         $image = $request->file('image_url');
         $imageName = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('assets/img/slider'), $imageName);
-        $imagePath = 'assets/img/slider/' . $imageName;
+        $image->move(public_path('assets/img/activity'), $imageName);
+        $imagePath = 'assets/img/activity/' . $imageName;
 
-        // Dynamic button URL handling
-        if ($request->filled('activity_id')) {
-            $activity = Activity::find($request->activity_id);
-            $buttonUrl = route('activity.show', $activity->id);
-        } elseif ($request->filled('meta_slug')) {
-            // Use the meta_slug to get the URL for meta data
-            $meta = Meta::where('slug', $request->meta_slug)->firstOrFail();
-            $buttonUrl = route('member.meta.show', $meta->slug);
-        } else {
-            $buttonUrl = $request->button_url;
-        }
-
-        // Create the slider
-        Slider::create([
-            'image_url' => $imagePath,
+        // Buat aktivitas baru
+        Activity::create([
+            'image' => $imagePath,
+            'date' => $request->date,
             'title' => $request->title,
-            'subtitle' => $request->subtitle,
             'description' => $request->description,
-            'button_text' => $request->button_text,
-            'button_url' => $buttonUrl,
+            'category_activities_id' => $request->category_activities_id,
         ]);
 
-        return redirect()->route('admin.slider.index')->with('success', 'Slider created successfully.');
+        return redirect()->route('admin.activity.index')->with('success', 'Aktivitas berhasil ditambahkan!');
     }
-
 
     // Show form to edit an existing slider
     public function edit($id)

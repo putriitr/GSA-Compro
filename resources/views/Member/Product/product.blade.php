@@ -38,7 +38,7 @@
                                         style="border-radius: 20px; width: 200px; height: 300px; object-fit: cover;">
                                 </a>
                             </div>
-                            <hr class="divider"> <!-- Garis pemisah -->
+                            <hr class="divider">
                             <div class="blog-content p-4">
                                 @php
                                     $name = $produk->nama;

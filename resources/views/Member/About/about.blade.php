@@ -3,7 +3,7 @@
 @section('content')
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb"
-        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/page-header.jpg') }}');">
+    style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/about.jpg') }}'); background-size: cover; height: 300px;">
         <div class="container text-center py-5" style="max-width: 900px;">
             <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">About Us</h4>
             <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
@@ -214,7 +214,6 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-pulse-icon@1.0.0/dist/L.Icon.Pulse.js"></script>
 
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Inisialisasi peta
@@ -251,8 +250,6 @@
             });
         });
     </script>
-
-
 
     <style>
         .marker-tooltip {

@@ -161,11 +161,10 @@
                 <p class="mb-0">{{ __('messages.brands_desc') }}</p>
             </div>
             @if ($partners->isEmpty())
-                <!-- Carousel Container -->
-                <div class="carousel-container" style="overflow: hidden; position: relative; height: 100px;">
+                <div class="carousel-container" style="overflow: hidden; position: relative; height: 150px;">
                     <div class="carousel-rows" style="display: flex; flex-direction: column; height: 100%;">
                         <div class="carousel-row"
-                            style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 45s linear infinite;">
+                            style="display: flex; white-space: nowrap; align-items: center; justify-content: center; height: 100%; animation: marquee 35s linear infinite;">
                             <div>
                                 <p class="text-dark text-center" style="letter-spacing: 2px; margin: 0;">
                                     {{ __('messages.brand_not_available') }}
@@ -175,25 +174,112 @@
                     </div>
                 </div>
             @else
-                <!-- Carousel Container -->
-                <div class="carousel-container" style="overflow: hidden; position: relative;">
-                    <div class="carousel-rows" style="display: flex; flex-direction: column;">
-                        <div class="carousel-row"
-                            style="display: flex; white-space: nowrap; animation: marquee 45s linear infinite;">
-                            @foreach ($partners as $partner)
-                                <div class="brand-item">
-                                    <img src="{{ asset('assets/img/brandpartner/' . $partner->gambar) }}"
-                                        class="img-fluid" alt="{{ $partner->nama }}"
-                                        style="max-width: 200px; height: auto;">
-                                </div>
-                            @endforeach
-                        </div>
+                <div class="carousel-container">
+                    <div class="carousel-rows">
+                        @foreach ($partners as $partner)
+                            <div class="brand-item">
+                                <img src="{{ asset($partner->gambar) }}" class="img-fluid" alt="{{ $partner->nama }}">
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             @endif
         </div>
     </div>
     <!-- Brand End -->
+
+    <style>
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            height: 150px;
+            /* Adjust height for two rows */
+        }
+
+        .carousel-rows {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            /* 4 images per row */
+            grid-auto-rows: 120px;
+            /* Fixed height for each row */
+            animation: marquee 25s linear infinite;
+            position: relative;
+        }
+
+        .brand-item {
+            margin: 10px;
+            border: 2px solid #ddd;
+            /* Border around each image */
+            border-radius: 5px;
+            /* Rounded corners for the border */
+            display: flex;
+            justify-content: center;
+            /* Center the image inside the item */
+            align-items: center;
+            /* Center the image vertically */
+            overflow: hidden;
+            /* Hide overflow if image is too big */
+        }
+
+        img {
+            width: 100%;
+            /* Make image fill the container */
+            height: 100%;
+            /* Maintain height for uniformity */
+            object-fit: cover;
+            /* Cover the area of the item */
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const carouselRows = document.getElementById("carouselRows");
+            const container = document.querySelector('.carousel-container');
+
+            // Clone the carousel rows to create a seamless loop
+            const clonedRows = carouselRows.cloneNode(true);
+            carouselRows.appendChild(clonedRows);
+
+            // Calculate total height after cloning
+            const totalHeight = carouselRows.scrollHeight; // Get the total height of the images
+            const containerHeight = container.clientHeight;
+
+            // Set animation duration based on the total height
+            // The factor of 120 can be adjusted based on the speed you desire
+            const duration = (totalHeight / 120) * 30; // Adjust based on desired speed
+
+            // Ensure the animation runs smoothly
+            carouselRows.style.animation = `marquee ${duration}s linear infinite`;
+
+            // Initial position for the cloned content
+            carouselRows.style.transform = `translateY(0)`;
+
+            // Function to reset scroll position when reaching the end of the first set
+            const resetScrollPosition = () => {
+                const scrollTop = container.scrollTop;
+
+                // Reset position when the original rows are scrolled out of view
+                if (scrollTop >= totalHeight / 2) {
+                    // Reset the scroll position back to the start
+                    carouselRows.style.transform = `translateY(0)`;
+                    container.scrollTop = 0; // Reset scroll position
+                }
+            };
+
+            // Listen for scroll events to reset position
+            container.addEventListener('scroll', resetScrollPosition);
+        });
+    </script>
 
 
 @endsection

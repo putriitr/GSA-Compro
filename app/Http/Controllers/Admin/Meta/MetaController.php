@@ -36,106 +36,75 @@ class MetaController extends Controller
     {
         $meta = Meta::findOrFail($id);
         $meta->delete();
-    
+
         return redirect()->route('admin.meta.index')->with('success', 'Meta deleted successfully.');
     }
-    
 
     public function store(Request $request)
     {
+        // Validasi data
         $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            'title' => 'required|string|max:255',
+            'type' => 'required|in:pengumuman,promosi',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
-            'type' => 'required|in:pengumuman,promosi', // Validasi ENUM
+            'content' => 'required|string',
         ]);
-    
-        $slug = Str::slug($request->title, '-');
-    
-        // Check if the slug already exists and append a number to make it unique
-        $originalSlug = $slug;
-        $count = 1;
-        while (Meta::where('slug', $slug)->exists()) {
-            $slug = $originalSlug . '-' . $count;
-            $count++;
-        }
-    
-        Meta::create([
-            'title' => $request->title,
-            'slug' => $slug,
-            'content' => $request->content,
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'type' => $request->type, // Simpan tipe
-        ]);
-    
-        return redirect()->route('admin.meta.index');
+
+        // Buat instance model Meta dan simpan data
+        $meta = new Meta();
+        $meta->title = $request->title;
+        $meta->type = $request->type;
+        $meta->start_date = $request->start_date;
+        $meta->end_date = $request->end_date;
+        $meta->content = $request->content;
+        // Generate slug berdasarkan title
+        $meta->slug = Str::slug($request->title);
+        $meta->save();
+
+        return redirect()->route('admin.meta.index')->with('success', 'Meta berhasil disimpan!');
     }
-    
 
     public function update(Request $request, $id)
     {
+        // Validasi data
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
-            'type' => 'required|in:pengumuman,promosi', // Validasi ENUM
+            'type' => 'required|in:pengumuman,promosi',
+            'content' => 'required|string',
         ]);
-    
-        $meta = Meta::findOrFail($id);
-    
-        // Check if the title is being updated and generate a new slug if needed
-        if ($meta->title !== $request->title) {
-            $slug = Str::slug($request->title, '-');
-    
-            // Check if the new slug already exists and append a number to make it unique
-            $originalSlug = $slug;
-            $count = 1;
-            while (Meta::where('slug', $slug)->exists() && $meta->slug !== $slug) {
-                $slug = $originalSlug . '-' . $count;
-                $count++;
-            }
-        } else {
-            // Keep the old slug if the title hasn't changed
-            $slug = $meta->slug;
-        }
-    
-        // Check if the content is empty
-        $content = $request->content ? $request->content : $meta->content;
-    
-        // Update the meta with the new data
-        $meta->update([
-            'title' => $request->title,
-            'slug' => $slug,
-            'content' => $content, // Keep old content if the content is not changed
-            'start_date' => $request->start_date,
-            'end_date' => $request->end_date,
-            'type' => $request->type, // Simpan tipe
 
-        ]);
-    
+        $meta = Meta::findOrFail($id);
+
+        // Update data
+        $meta->title = $request->title;
+        $meta->type = $request->type;
+        $meta->start_date = $request->start_date;
+        $meta->end_date = $request->end_date;
+        $meta->content = $request->content;
+        // Generate slug baru jika title berubah
+        if ($meta->title !== $request->title) {
+            $meta->slug = Str::slug($request->title);
+        }
+        $meta->save();
+
         return redirect()->route('admin.meta.index')->with('success', 'Meta updated successfully.');
     }
 
     public function uploadImage(Request $request)
-{
-    if ($request->hasFile('file')) {
-        $file = $request->file('file');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $path = $file->storeAs('public/images', $filename);
+    {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('public/images', $filename);
 
-        // Mengembalikan URL gambar yang sudah diupload
-        return response()->json([
-            'link' => asset('storage/images/' . $filename)
-        ]);
+            // Mengembalikan URL gambar yang sudah diupload
+            return response()->json([
+                'link' => asset('storage/images/' . $filename)
+            ]);
+        }
+        return response()->json(['error' => 'File upload failed.'], 500);
     }
-    return response()->json(['error' => 'File upload failed.'], 500);
-}
-
-    
-    
-    
-
-
 }

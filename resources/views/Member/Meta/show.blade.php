@@ -1,18 +1,18 @@
 @extends('layouts.member.master')
 
 @section('content')
-    <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
+    {{-- <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb"
+        style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/meta.jpg') }}'); background-size: cover; height: 300px;">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h1 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ ucfirst($meta->type) }}</h1>
-            <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                <li class="breadcrumb-item">{{ ucfirst($meta->type) }}</li>
-                <li class="breadcrumb-item active text-primary">{{ ucfirst($meta->title) }}</li>
+            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.contact_us') }}</h4>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="index.html">{{ __('messages.home') }}</a></li>
+                <li class="breadcrumb-item active text-primary">{{ __('messages.contact_us') }}</li>
             </ol>
         </div>
     </div>
-    <!-- Header End -->
+    <!-- Header End --> --}}
 
     <!-- Meta Content Section Start -->
     <div class="container mt-5 mb-5">
@@ -26,7 +26,7 @@
                     {!! $meta->content !!}
                 </div>
                 <!-- Display the creation date -->
-                <p class="text-muted mt-3">Created on: {{ $meta->created_at->format('d F Y') }}</p>
+                <p class="text-muted mt-3">Created on : {{ $meta->created_at->format('d F Y') }}</p>
             </div>
         </div>
     </div>

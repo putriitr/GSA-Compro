@@ -8,11 +8,22 @@
         </div>
 
         <div class="card-body">
+            <!-- Display validation errors -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('admin.activity.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
-                    <label for="image" class="form-label">Gambar</label>
-                    <input type="file" class="form-control" id="image" name="image" required>
+                    <label for="image_url" class="form-label">Gambar</label>
+                    <input type="file" class="form-control" id="image_url" name="image_url" required>
                 </div>
                 <div class="mb-3">
                     <label for="date" class="form-label">Tanggal</label>
@@ -28,7 +39,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="category_activities_id" class="form-label">Kategori</label>
-                    <select name="category_activities_id" id="category_activitiesa_id" class="form-control" required>
+                    <select name="category_activities_id" id="category_activities_id" class="form-control" required>
                         <option value="">Pilih Kategori</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>

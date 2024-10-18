@@ -94,6 +94,7 @@
             Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
             Route::resource('admin/activity/category-activity', CategoryActivityController::class)->names('admin.activity.category-activity');
+            Route::put('/admin/activity/{activity}', [ActivityController::class, 'update'])->name('admin.activity.update');
             Route::resource('admin/members', MemberController::class);
             Route::get('members/{id}/add-products', [MemberController::class, 'addProducts'])->name('members.add-products');
             Route::post('members/{id}/store-products', [MemberController::class, 'storeProducts'])->name('members.store-products');

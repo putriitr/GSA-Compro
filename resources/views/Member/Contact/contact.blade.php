@@ -8,7 +8,7 @@
 @section('content')
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb"
-        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/page-header.jpg') }}');">
+        style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/contact.jpg') }}'); background-size: cover; height: 300px;">
         <div class="container text-center py-5" style="max-width: 900px;">
             <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.contact_us') }}</h4>
             <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
@@ -126,9 +126,11 @@
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
-                                        <input type="tel" class="form-control border-0" id="phone" placeholder="Your Phone" name="phone" required
-                                            pattern="^\62[0-9]{1,13}$" title="Phone number must start with 62 and be followed by 1 to 11 digits."
-                                            inputmode="numeric" maxlength="13" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                                        <input type="tel" class="form-control border-0" id="phone"
+                                            placeholder="Your Phone" name="phone" required pattern="^\62[0-9]{1,13}$"
+                                            title="Phone number must start with 62 and be followed by 1 to 11 digits."
+                                            inputmode="numeric" maxlength="13"
+                                            onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                         <label for="phone">{{ __('messages.phone') }}</label>
                                     </div>
                                 </div>
@@ -186,7 +188,8 @@
             // Validasi nomor telepon
             if (!phonePattern.test(phoneInput.value)) {
                 e.preventDefault(); // Hentikan submit form jika tidak valid
-                alert('Please enter a valid phone number starting with 62 followed by up to 11 digits.');
+                alert(
+                'Please enter a valid phone number starting with 62 followed by up to 11 digits.');
                 phoneInput.focus();
                 return; // Keluar dari fungsi untuk menghindari submit
             }
@@ -202,4 +205,3 @@
         });
     });
 </script>
-

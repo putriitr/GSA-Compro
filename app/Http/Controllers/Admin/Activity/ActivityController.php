@@ -6,51 +6,39 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\CategoryActivity;
+use Illuminate\Support\Facades\Storage;
 
 class ActivityController extends Controller
 {
-    // public function activity()
-    // {
-    //     // Logic to retrieve activities or perform some action
-    //     $activities = Activity::all();
-    //     return view('admin.activity.index', compact('activities')); // Adjust the view name as needed
-    // }
-
-
     public function index()
     {
-        // Ambil semua aktivitas untuk ditampilkan
         $activities = Activity::all();
-        return view('admin.activity.index', compact('activities')); // Ganti rute tampilan
+        return view('admin.activity.index', compact('activities'));
     }
 
     public function create()
     {
-        // Ambil semua kategori aktivitas untuk dropdown
         $categories = CategoryActivity::all();
-        return view('admin.activity.create', compact('categories')); // Ganti rute tampilan
+        return view('admin.activity.create', compact('categories'));
     }
 
     public function store(Request $request)
     {
-        // Validasi input
+        // Validate input
         $request->validate([
-            'image_url' => 'required|image',
+            'image_url' => 'required|image|max:2048',
             'date' => 'required|date',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'category_activities_id' => 'required|exists:category_activities,id',
         ]);
 
-        // Save image to public/assets/img/activity
-        $image = $request->file('image_url');
-        $imageName = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('assets/img/activity'), $imageName);
-        $imagePath = 'assets/img/activity/' . $imageName;
+        // Save image and get the path
+        $imagePath = $this->uploadImage($request->file('image_url'));
 
-        // Membuat aktivitas baru
+        // Create new activity
         Activity::create([
-            'image_url' => $imagePath, // Simpan ke 'image_url'
+            'image' => $imagePath,
             'date' => $request->date,
             'title' => $request->title,
             'description' => $request->description,
@@ -60,56 +48,75 @@ class ActivityController extends Controller
         return redirect()->route('admin.activity.index')->with('success', 'Aktivitas berhasil ditambahkan!');
     }
 
-    public function edit(Activity $activity)
+    public function edit($id)
     {
-        // Ambil semua kategori untuk dropdown
+        $activity = Activity::findOrFail($id);
         $categories = CategoryActivity::all();
-        return view('admin.activity.edit', compact('activity', 'categories')); // Ganti rute tampilan
+        return view('admin.activity.edit', compact('activity', 'categories'));
     }
 
-    public function update(Request $request, Activity $activity)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'image_url' => 'nullable|image',
+        $validatedData = $request->validate([
+            'image_url' => 'nullable|image|max:2048',
             'date' => 'required|date',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'category_activities_id' => 'required|exists:category_activities,id',
         ]);
 
+        $activity = Activity::findOrFail($id);
+
+        // Update activity details
+        $activity->date = $validatedData['date'];
+        $activity->title = $validatedData['title'];
+        $activity->description = $validatedData['description'];
+        $activity->category_activities_id = $validatedData['category_activities_id'];
+
+        // If there's a new image, upload it and delete the old one
         if ($request->hasFile('image_url')) {
-            // Menyimpan gambar baru jika di-upload
-            $image = $request->file('image_url'); // Ganti 'image' dengan 'image_url'
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('assets/img/activity'), $imageName);
-            $activity->image_url = 'assets/img/activity/' . $imageName; // Ganti 'image' menjadi 'image_url'
+            $this->deleteImage($activity->image);
+            $imagePath = $this->uploadImage($request->file('image_url'));
+            $activity->image = $imagePath; // Update the image path
         }
 
-        // Update data aktivitas
-        $activity->date = $request->date;
-        $activity->title = $request->title;
-        $activity->description = $request->description;
-        $activity->category_activities_id = $request->category_activities_id;
+        // Save changes
         $activity->save();
 
-        return redirect()->route('admin.activity.index')->with('success', 'Aktivitas berhasil diperbarui!');
+        return redirect()->route('admin.activity.index')->with('success', 'Aktivitas berhasil diperbarui.');
     }
 
-
-
-    public function show(Activity $activity)
+    public function show($id)
     {
-        return view('admin.activity.show', compact('activity')); // Ganti rute tampilan
+        $activity = Activity::findOrFail($id);
+        return view('admin.activity.show', compact('activity'));
     }
 
-    public function destroy(Activity $activity)
+    public function destroy($id)
     {
-        // Hapus gambar dari server jika ada
-        if (file_exists(public_path('images/' . $activity->image))) {
-            unlink(public_path('images/' . $activity->image));
+        $activity = Activity::findOrFail($id);
+
+        // Delete the image if exists
+        if ($activity->image) {
+            $this->deleteImage($activity->image);
         }
-        // Hapus aktivitas dari database
+
         $activity->delete();
-        return redirect()->route('admin.activity.index')->with('success', 'Activity deleted successfully.'); // Perbaiki rute
+        return redirect()->route('admin.activity.index')->with('success', 'Aktivitas berhasil dihapus!');
+    }
+
+    private function uploadImage($image)
+    {
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('assets/img/activity'), $imageName);
+        return 'assets/img/activity/' . $imageName; // Return correct path
+    }
+
+    private function deleteImage($imagePath)
+    {
+        $fullPath = public_path($imagePath);
+        if (file_exists($fullPath) && !is_dir($fullPath)) {
+            unlink($fullPath); // Delete file from server
+        }
     }
 }

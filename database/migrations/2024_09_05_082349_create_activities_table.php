@@ -10,7 +10,7 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('image_url')->nullable()->change();
             $table->date('date');
             $table->string('title');
             $table->text('description');
