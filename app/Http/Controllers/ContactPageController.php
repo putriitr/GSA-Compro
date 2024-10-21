@@ -56,7 +56,7 @@ class ContactPageController extends Controller
     public function update(Request $request, ContactPage $contactPage)
     {
         $request->validate([
-            'first_name' => 'required|string|max:255',
+            'first_name' => 'required|string|maxc:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|regex:/^62[0-9]{1,13}$/|max:13',

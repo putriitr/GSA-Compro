@@ -135,8 +135,9 @@
                             <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
                                 class="img-fluid rounded w-100" alt=""
                                 style="width: 300px; height: 300px; object-fit: cover;">
-                            <a href="{{ route('product.show', $produk->id) }}"
-                                class="attractions-name">{{ $produk->nama }}</a>
+                                <a href="{{ route('product.show', $produk->id) }}"
+                                    class="attractions-name"
+                                    style="font-size: 20px; text-align:center; padding: 5px 10px;">{{ $produk->nama }}</a>
                         </div>
                     @endforeach
                 </div>

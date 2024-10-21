@@ -34,9 +34,13 @@
             <div class="row mb-4">
                 <!-- Showing X-Y of Z -->
                 <div class="col-md-4 d-flex align-items-center">
-                    <p class="mb-0">Menampilkan {{ $activities->firstItem() }} - {{ $activities->lastItem() }} dari
-                        {{ $activities->total() }}
-                    </p>
+                    @if ($activities->count() > 0)
+                        <p class="mb-0">Menampilkan {{ $activities->firstItem() }} - {{ $activities->lastItem() }} dari
+                            {{ $activities->total() }}
+                        </p>
+                    @else
+                        <p class="mb-0">Tidak ada aktivitas yang tersedia.</p>
+                    @endif
                 </div>
                 <!-- Show per Page and Sort By -->
                 <div class="col-md-8 d-flex justify-content-end align-items-center">
@@ -49,6 +53,13 @@
                             <option value="latest">Terlama</option>
                         </select>
                     </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    {{ $activities->links() }} <!-- Memanggil links untuk paginasi -->
                 </div>
             </div>
             <div class="row g-4 justify-content-center">
@@ -69,7 +80,7 @@
                             <div class="blog-content p-4">
                                 <a href="#" class="h4 d-inline-block mb-4">{{ $item->title }}</a>
                                 <p class="mb-4">{{ Str::limit($item->description, 40) }}</p>
-                                <a href="{{ route('member.activity.show', $item->id) }}"
+                                <a href="{{ route('member.activity.detail-act', $item->id) }}"
                                     class="btn btn-primary rounded-pill py-2 px-4">Read More <i
                                         class="fas fa-arrow-right ms-2"></i></a>
                             </div>
@@ -80,11 +91,11 @@
         </div>
     </div>
 
-    <!-- Pagination -->
+    {{-- <!-- Pagination -->
     <div class="row mt-4">
         <div class="col-12">
             {{ $activities->links() }}
         </div>
-    </div>
+    </div> --}}
     <!-- Activity End -->
 @endsection

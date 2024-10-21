@@ -62,32 +62,39 @@
                         class="nav-item nav-link">{{ __('messages.contact_us') }}</a>
                 </div>
 
+                <div class="team-icon d-flex flex-row me-3">
+                    <a class="btn btn-square btn-light rounded-circle mx-1" href="https://maps.app.goo.gl/h3yLB18tBjUKppu28">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </a>
+                    <a class="btn btn-square btn-light rounded-circle mx-1" href="mailto:info@gsacommerce.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         @if (LaravelLocalization::getCurrentLocale() == 'id')
-                            <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia" style="width: 25px; height: auto; margin-right: 5px;">
+                            <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia"
+                                style="width: 25px; height: auto; margin-right: 5px;">
                         @elseif(LaravelLocalization::getCurrentLocale() == 'en')
-                            <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English" style="width: 25px; height: auto; margin-right: 5px;">
+                            <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English"
+                                style="width: 25px; height: auto; margin-right: 5px;">
                         @else
                             {{ LaravelLocalization::getCurrentLocaleNative() }}
                         @endif
                     </a>
                     <div class="dropdown-menu dropdown-menu-end m-0">
                         <a href="{{ LaravelLocalization::getLocalizedURL('id') }}" class="dropdown-item">
-                            <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia" style="width: 20px; height: auto; margin-right: 5px;">
+                            <img src="{{ asset('assets/kai/assets/img/flags/id.png') }}" alt="Bahasa Indonesia"
+                                style="width: 20px; height: auto; margin-right: 5px;">
                             {{ __('messages.bahasa') }}
                         </a>
                         <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="dropdown-item">
-                            <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English" style="width: 20px; height: auto; margin-right: 5px;">
+                            <img src="{{ asset('assets/kai/assets/img/flags/us.png') }}" alt="English"
+                                style="width: 20px; height: auto; margin-right: 5px;">
                             {{ __('messages.english') }}
                         </a>
                     </div>
-                </div>
-                <div class="team-icon d-none d-xl-flex justify-content-center me-3">
-                    <a class="btn btn-square btn-light rounded-circle mx-1" href=""><i
-                            class="fas fa-map-marker-alt"></i></a>
-                    <a class="btn btn-square btn-light rounded-circle mx-1" href="mailto:info@gsacommerce.com"><i
-                            class="fas fa-envelope"></i></a>
                 </div>
                 @if (auth()->check())
                     <div class="dropdown">

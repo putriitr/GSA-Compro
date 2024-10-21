@@ -19,125 +19,93 @@
             </div>
 
             <div class="col-lg-9">
-                <div class="d-flex justify-content-between mb-4">
-                    <h3 class="display-6" style="color: #3CBEEE;"></h3>
+                <div class="d-flex justify-content-between mb-4 align-items-center">
+                    <div class="search">
+                        <input type="text" id="find" placeholder="Type Keywords Here .." onkeyup="searchProducts()">
+                        <i class="fas fa-search" id="btn"></i>
+                    </div>
+
                     <select class="form-select w-25 border-0 bg-light shadow-sm">
                         <option selected>{{ __('messages.sort_by') }}</option>
                         <option value="1">{{ __('messages.newest') }}</option>
                         <option value="2">{{ __('messages.latest') }}</option>
                     </select>
                 </div>
-                <div class="row">
+
+                <div class="row" id="productList">
                     @foreach ($produks as $produk)
-                    <div class="col-md-6 col-lg-4 mb-4 d-flex justify-content-center">
-                        <div class="blog-item shadow-sm">
-                            <div class="blog-img">
-                                <a href="{{ route('product.show', $produk->id) }}">
-                                    <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                        class="img-fluid w-100 rounded-top product-image" alt="{{ $produk->nama }}"
-                                        style="border-radius: 20px; width: 200px; height: 300px; object-fit: cover;">
-                                </a>
-                            </div>
-                            <hr class="divider">
-                            <div class="blog-content p-4">
-                                @php
-                                    $name = $produk->nama;
-                                    $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
-                                @endphp
-                                <a href="#" class="h4 d-inline-block mb-4">{{ $limitedName }}</a><br>
-                                <a href="{{ route('product.show', $produk->id) }}"
-                                    class="btn btn-primary rounded-pill py-2 px-4">Read More<i
-                                        class="fas fa-arrow-right ms-2"></i></a>
+                        <div class="col-md-6 col-lg-4 mb-4 d-flex justify-content-center product" data-product-name="{{ strtolower($produk->nama) }}">
+                            <div class="blog-item shadow-sm">
+                                <div class="blog-img">
+                                    <a href="{{ route('product.show', $produk->id) }}">
+                                        <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
+                                            class="img-fluid w-100 rounded-top product-image" alt="{{ $produk->nama }}"
+                                            style="border-radius: 20px; width: 200px; height: 300px; object-fit: cover;">
+                                    </a>
+                                </div>
+                                <hr class="divider">
+                                <div class="blog-content p-4">
+                                    @php
+                                        $name = $produk->nama;
+                                        $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
+                                    @endphp
+                                    <h4 class="d-inline-block mb-4">{{ $limitedName }}</h4><br>
+                                    <a href="{{ route('product.show', $produk->id) }}"
+                                        class="btn btn-primary rounded-pill py-2 px-4">Read More<i
+                                            class="fas fa-arrow-right ms-2"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
-
-            {{-- <!-- Pagination Links -->
-            <div class="d-flex justify-content-center mt-4">
-                {{ $produks->links() }} <!-- Menampilkan link pagination -->
-            </div> --}}
         </div>
     </div>
 @endsection
 
+<script type="text/javascript">
+    function searchProducts() {
+        const input = document.getElementById("find").value.toLowerCase();
+        const products = document.querySelectorAll("#productList .product");
 
-<!-- Additional Custom CSS -->
+        products.forEach(product => {
+            const productName = product.getAttribute("data-product-name");
+            if (productName.includes(input)) {
+                product.style.display = "block";
+            } else {
+                product.style.display = "none";
+            }
+        });
+    }
+</script>
+
 <style>
-    /* General layout adjustments */
-    .container-fluid.bg-breadcrumb {
-        background-size: cover;
-        background-position: center;
-        color: #fff;
+    .search {
+        width: 60%;
+        background-color: #eee;
+        border-radius: 10px;
+        padding: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    /* Product cards */
-    .product-card {
-        border-radius: 12px;
-        background-color: #fff;
-        transition: all 0.3s ease-in-out;
+    input {
+        border: none;
+        outline: none;
+        background: none;
     }
 
-    .product-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Button styles */
-    .btn-outline-primary {
-        border: 2px solid #007bff;
-        color: #007bff;
-        font-weight: bold;
-        transition: 0.3s ease;
-    }
-
-    .btn-outline-primary:hover {
-        background-color: #007bff;
-        color: #fff;
-    }
-
-    /* General layout adjustments */
     .blog-item {
-        border-radius: 15px; /* Untuk sudut yang lebih halus */
-        transition: transform 0.3s ease; /* Animasi saat hover */
-        border: 1px solid #3CBEEE; /* Garis pinggir biru */
-        background-color: #fff; /* Pastikan latar belakang item tetap putih */
-        overflow: hidden; /* Menghindari gambar yang membesar keluar dari card */
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+        border: 1px solid #3CBEEE;
+        background-color: #fff;
+        overflow: hidden;
     }
 
-    /* Hover effect for product cards */
     .blog-item:hover {
-        transform: scale(1.05); /* Membesarkan card saat hover */
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Efek bayangan saat hover */
-    }
-
-    /* Image hover effects */
-    .product-image {
-        transition: transform 0.3s ease; /* Animasi untuk gambar */
-    }
-
-    /* Remove the individual image hover effect */
-    .product-image:hover {
-        transform: none; /* Tidak ada transformasi untuk gambar saat hover */
-    }
-
-    /* Breadcrumbs */
-    .breadcrumb-item a {
-        color: #333;
-    }
-
-    .breadcrumb-item a:hover {
-        text-decoration: underline;
-    }
-
-    /* Custom Typography */
-    h1,
-    h3,
-    h5 {
-        font-family: 'Montserrat', sans-serif;
-        letter-spacing: 1px;
-        text-transform: uppercase;
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 </style>

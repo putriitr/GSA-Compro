@@ -152,4 +152,6 @@ return [
     'service3_desc' => 'Harga yang terjangkau dengan kualitas yang tetap terjaga.',
     'service4' => 'Transaksi Aman',
     'service4_desc' => 'Jaminan transaksi aman dan perlindungan data pelanggan.',
+
+    'search' => 'Ketik Kata Kunci Disini',
 ];

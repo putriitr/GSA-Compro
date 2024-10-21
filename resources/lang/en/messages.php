@@ -138,4 +138,5 @@ return [
     'service4' => 'Secure Transactions',
     'service4_desc' => 'Guaranteed secure transactions and customer data protection.',
 
+    'search' => 'Type Keywords Here',
 ];

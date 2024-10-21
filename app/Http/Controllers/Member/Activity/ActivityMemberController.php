@@ -10,14 +10,13 @@ class ActivityMemberController extends Controller
 {
     public function activity()
     {
-        $activities = Activity::paginate(8); // 8 items per page, sesuaikan jika perlu
-        return view('member.activity.activity', compact('activities'));
+        $activities = Activity::paginate(9);
+        return view('member.activity.activity', compact('activities')); // Kirim ke view
     }
 
-    public function show(Activity $activity)
+    public function show($id)
     {
-        return view('member.activity.detail-act', compact('activity'));
+        $activity = Activity::findOrFail($id); // Ambil aktivitas berdasarkan ID
+        return view('member.activity.detail-act', compact('activity')); // Kirim ke view
     }
-
-
 }
