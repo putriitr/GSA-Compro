@@ -95,7 +95,7 @@ return [
     'send_message' => 'Kirim Pesan',
     'qna-guest' => 'Pertanyaan',
 
-    'category' => 'Kategori',
+    'category' => 'Kategori Produk',
     'sort_by' => 'Urut Berdasarkan',
     'newest' => 'Terbaru',
     'latest' => 'Terlama',
@@ -153,5 +153,10 @@ return [
     'service4' => 'Transaksi Aman',
     'service4_desc' => 'Jaminan transaksi aman dan perlindungan data pelanggan.',
 
-    'search' => 'Ketik Kata Kunci Disini',
+    'search' => 'Ketik Kata Kunci Disini ..',
+    'meta' => 'Pengumuman',
+    'meta_desc' => 'Kami senang mengumumkan bahwa kami menawarkan diskon menarik untuk produk-produk pilihan. Jangan lewatkan kesempatan untuk mendapatkan barang impian Anda dengan harga yang lebih terjangkau!',
+    'laman' => 'Laman',
+    'show_more_categories' => 'Kategori Lainnya',
+    'show_less_categories' => 'Lihat Lebih Sedikit',
 ];

@@ -2,100 +2,124 @@
 
 @section('content')
     <div class="container mt-5">
-        <div class="row">
+        <div class="row d-flex">
+            <!-- Sidebar Kategori -->
             <div class="col-lg-3">
-                <h4 class="mb-4 text-dark font-weight-bold">{{ __('messages.category') }}</h4>
-                <ul class="list-group mb-4 shadow-sm">
-                    @foreach ($kategori as $kat)
-                        <li class="list-group-item border-0 rounded text-center py-3 mb-2 shadow-sm"
-                            style="cursor: pointer; background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}; transition: background-color 0.3s ease, color 0.3s ease;"
-                            onmouseover="this.style.backgroundColor='#6196FF'; this.style.color='#fff';"
-                            onmouseout="this.style.backgroundColor='{{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }}'; this.style.color='{{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }}';"
-                            onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
-                            <strong>{{ $kat->nama }}</strong>
-                        </li>
-                    @endforeach
-                </ul>
+                <div class="position-relative">
+                    <div class="rounded bg-primary p-4 position-absolute d-flex justify-content-center align-items-center"
+                        style="width: 100%; height: 20px; top: -10px; left: 50%; transform: translateX(-50%); z-index: 1;">
+                        <p class="mb-0 text-white" style="font-weight: bold;">{{ __('messages.category') }}
+                            <i class="fas fa-chevron-down ms-2"></i>
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-4 shadow-sm mt-5">
+                    <!-- Menampilkan 7 kategori pertama -->
+                    <ul class="list-group">
+                        @foreach ($kategori->take(7) as $kat)
+                            <li class="list-group-item category-item text-center py-3 mb-2"
+                                style="background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }};
+                                    color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }};"
+                                onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
+                                <strong>{{ $kat->nama }}</strong>
+                            </li>
+                        @endforeach
+                    </ul>
+
+                    <!-- Tombol untuk melihat kategori selebihnya -->
+                    @if ($kategori->count() > 7)
+                        <button class="btn btn-link w-100 text-center mt-2" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#moreCategories" aria-expanded="false" aria-controls="moreCategories"
+                            onclick="toggleButtonText(this)">
+                            {{ __('messages.show_more_categories') }}
+                        </button>
+
+                        <!-- Dropdown kategori selebihnya -->
+                        <div class="collapse" id="moreCategories">
+                            <ul class="list-group mt-2">
+                                @foreach ($kategori->slice(7) as $kat)
+                                    <li class="list-group-item category-item text-center py-3 mb-2"
+                                        style="background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }};
+                                               color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }};"
+                                        onclick="window.location.href='{{ route('filterByCategory', $kat->id) }}'">
+                                        <strong>{{ $kat->nama }}</strong>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
             </div>
 
-            <div class="col-lg-9">
+            <!-- Produk -->
+            <div class="col-lg-9 mt-n2">
                 <div class="d-flex justify-content-between mb-4 align-items-center">
-                    <div class="search">
-                        <input type="text" id="find" placeholder="Type Keywords Here .." onkeyup="searchProducts()">
-                        <i class="fas fa-search" id="btn"></i>
+                    <div class="col-lg-6">
+                        <form method="POST" action="{{ url('products/search') }}" class="d-flex align-items-center">
+                            @csrf
+                            <input type="text" name="keyword" id="find" placeholder="{{ __('messages.search') }}"
+                                style="flex-grow: 1; padding: 12px; border: none; border-radius: 10px; background-color: #eee;" />
+                            <button type="submit" class="btn btn-primary ms-2 px-4"
+                                style="margin-left: 10px; padding: 16px; border: none; border-radius: 10px; background-color: #3CBEEE; color: white;">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
                     </div>
-
-                    <select class="form-select w-25 border-0 bg-light shadow-sm">
-                        <option selected>{{ __('messages.sort_by') }}</option>
-                        <option value="1">{{ __('messages.newest') }}</option>
-                        <option value="2">{{ __('messages.latest') }}</option>
-                    </select>
+                    <div class="col-lg-3 mt-n2">
+                        <select class="form-select border-0 bg-light shadow-sm" style="border-radius: 10px; padding: 12px">
+                            <option selected>{{ __('messages.sort_by') }}</option>
+                            <option value="1">{{ __('messages.newest') }}</option>
+                            <option value="2">{{ __('messages.latest') }}</option>
+                        </select>
+                    </div>
                 </div>
 
-                <div class="row" id="productList">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-n5" id="productList">
                     @foreach ($produks as $produk)
-                        <div class="col-md-6 col-lg-4 mb-4 d-flex justify-content-center product" data-product-name="{{ strtolower($produk->nama) }}">
+                        <div class="col d-flex justify-content-center">
                             <div class="blog-item shadow-sm">
                                 <div class="blog-img">
                                     <a href="{{ route('product.show', $produk->id) }}">
                                         <img src="{{ asset($produk->images->first()->gambar ?? 'assets/img/default.jpg') }}"
-                                            class="img-fluid w-100 rounded-top product-image" alt="{{ $produk->nama }}"
-                                            style="border-radius: 20px; width: 200px; height: 300px; object-fit: cover;">
+                                            class="img-fluid w-100 rounded-top" alt="{{ $produk->nama }}"
+                                            style="height: 300px; object-fit: cover;">
                                     </a>
                                 </div>
-                                <hr class="divider">
                                 <div class="blog-content p-4">
                                     @php
                                         $name = $produk->nama;
                                         $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
                                     @endphp
-                                    <h4 class="d-inline-block mb-4">{{ $limitedName }}</h4><br>
-                                    <a href="{{ route('product.show', $produk->id) }}"
-                                        class="btn btn-primary rounded-pill py-2 px-4">Read More<i
-                                            class="fas fa-arrow-right ms-2"></i></a>
+                                    <h4 class="mb-3">{{ $limitedName }}</h4>
+                                    <a href="{{ route('product.show', $produk->id) }}" class="btn btn-primary py-2 px-4"
+                                        style="border-radius: 15px;">
+                                        Read More <i class="fas fa-arrow-right ms-2"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     @endforeach
-                </div>
+                </div><br><br><br>
             </div>
         </div>
     </div>
 @endsection
 
-<script type="text/javascript">
-    function searchProducts() {
-        const input = document.getElementById("find").value.toLowerCase();
-        const products = document.querySelectorAll("#productList .product");
-
-        products.forEach(product => {
-            const productName = product.getAttribute("data-product-name");
-            if (productName.includes(input)) {
-                product.style.display = "block";
-            } else {
-                product.style.display = "none";
-            }
-        });
+<script>
+    function toggleButtonText(button) {
+        if (button.textContent.trim() === '{{ __('messages.show_more_categories') }}') {
+            button.textContent = '{{ __('messages.show_less_categories') }}';
+            button.classList.add('btn-danger');
+            button.classList.remove('btn-link');
+        } else {
+            button.textContent = '{{ __('messages.show_more_categories') }}';
+            button.classList.add('btn-link');
+            button.classList.remove('btn-danger');
+        }
     }
 </script>
 
 <style>
-    .search {
-        width: 60%;
-        background-color: #eee;
-        border-radius: 10px;
-        padding: 9px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    input {
-        border: none;
-        outline: none;
-        background: none;
-    }
-
     .blog-item {
         border-radius: 15px;
         transition: transform 0.3s ease;
@@ -107,5 +131,24 @@
     .blog-item:hover {
         transform: scale(1.05);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-item {
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .category-item:hover {
+        background-color: #6196FF !important;
+        color: #fff !important;
+        border-color: #6196FF;
+    }
+
+    .category-item.active {
+        background-color: #6196FF !important;
+        color: #fff !important;
+        border-color: #6196FF;
     }
 </style>

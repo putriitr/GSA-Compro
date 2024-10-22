@@ -37,7 +37,6 @@
 
 
     // Guest Routes (No Authentication Required)
-
     Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -47,8 +46,10 @@
         Route::get('/products/category/{id}', [ProdukMemberController::class, 'index'])->name('product.category');
         Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
 
-        Route::get('/products/filter/{id}', [ProdukMemberController::class, 'filterByCategory'])->name('filterByCategory');
+        Route::get('/products/search', [ProdukMemberController::class, 'search'])->name('products.search');
+        Route::post('/products/search', [ProdukMemberController::class, 'search'])->name('products.search');
 
+        Route::get('/products/filter/{id}', [ProdukMemberController::class, 'filterByCategory'])->name('filterByCategory');
         Route::get('/member/activities', [ActivityMemberController::class, 'activity'])->name('member.activity');
         Route::get('/member/activities/{activity}', [ActivityMemberController::class, 'show'])->name('member.activity.detail-act');
         Route::get('/member/meta/{slug}', [MetaMemberController::class, 'showMetaBySlug'])->name('member.meta.show');

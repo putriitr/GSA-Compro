@@ -84,7 +84,7 @@ return [
     'send_message' => 'Send Message',
     'qna-guest' => 'QnA',
 
-    'category' => 'Category',
+    'category' => 'Product Categories',
     'sort_by' => 'Sort By',
     'newest' => 'Newest',
     'latest' => 'Latest',
@@ -138,5 +138,10 @@ return [
     'service4' => 'Secure Transactions',
     'service4_desc' => 'Guaranteed secure transactions and customer data protection.',
 
-    'search' => 'Type Keywords Here',
+    'search' => 'Type Keywords Here ..',
+    'meta' => 'Announcements',
+    'meta_desc' => 'We are pleased to announce that we are offering attractive discounts on selected products. Dont miss the chance to get your dream item at a more affordable price!',
+    'laman' => 'Pages',
+    'show_more_categories' => 'More Categories',
+    'show_less_categories' => 'Less Categories',
 ];

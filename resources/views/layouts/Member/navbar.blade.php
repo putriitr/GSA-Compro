@@ -38,22 +38,22 @@
                 <div class="navbar-nav mx-auto py-0">
                     <a href="{{ route('home') }}" class="nav-item nav-link">{{ __('messages.home') }}</a>
                     <a href="{{ route('about') }}" class="nav-item nav-link">{{ __('messages.about') }}</a>
-                    <a href="{{ route('member.activity') }}" class="nav-item nav-link">{{ __('messages.activity') }}</a>
                     <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
-
-                    @foreach ($activeMetas as $type => $metas)
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown-{{ $type }}"
-                                aria-expanded="false" data-bs-toggle="dropdown">{{ ucfirst($type) }}</a>
-                            <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown-{{ $type }}">
-                                @foreach ($metas as $meta)
-                                    <a href="{{ route('member.meta.show', $meta->slug) }}"
-                                        class="dropdown-item">{{ $meta->title }}</a>
-                                @endforeach
-                            </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ __('messages.laman') }}</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{{ route('member.activity') }}"
+                                class="dropdown-item">{{ __('messages.activity') }}</a>
+                            @foreach ($activeMetas as $type => $metas)
+                                <div class="nav-item dropdown">
+                                    @foreach ($metas as $meta)
+                                        <a href="{{ route('member.meta.index') }}"
+                                            class="dropdown-item">{{ __('messages.meta') }}</a>
+                                    @endforeach
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
-
+                    </div>
                     @auth
                         <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
                     @endauth
@@ -63,7 +63,8 @@
                 </div>
 
                 <div class="team-icon d-flex flex-row me-3">
-                    <a class="btn btn-square btn-light rounded-circle mx-1" href="https://maps.app.goo.gl/h3yLB18tBjUKppu28">
+                    <a class="btn btn-square btn-light rounded-circle mx-1"
+                        href="https://maps.app.goo.gl/h3yLB18tBjUKppu28">
                         <i class="fas fa-map-marker-alt"></i>
                     </a>
                     <a class="btn btn-square btn-light rounded-circle mx-1" href="mailto:info@gsacommerce.com">
