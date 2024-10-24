@@ -1,17 +1,8 @@
 <body>
-    {{-- <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End --> --}}
-
     @php
         // Fetch the first record from the company_parameter table
         $compro = \App\Models\CompanyParameter::first();
     @endphp
-
 
     @php
         $activeMetas = \App\Models\Meta::where('start_date', '<=', today())
@@ -40,7 +31,8 @@
                     <a href="{{ route('about') }}" class="nav-item nav-link">{{ __('messages.about') }}</a>
                     <a href="{{ route('product.index') }}" class="nav-item nav-link">{{ __('messages.products') }}</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ __('messages.laman') }}</a>
+                        <a href="#" class="nav-link dropdown-toggle"
+                            data-bs-toggle="dropdown">{{ __('messages.laman') }}</a>
                         <div class="dropdown-menu m-0">
                             <a href="{{ route('member.activity') }}"
                                 class="dropdown-item">{{ __('messages.activity') }}</a>
@@ -141,24 +133,61 @@
     <style>
         .navbar-nav .nav-link.active {
             color: #6196FF !important;
+            /* Warna teks untuk menu aktif */
             border-bottom: 2px solid #6196FF;
-            /* Underline */
-            padding-bottom: 5px;
-            /* Space for the underline */
+            /* Garis bawah untuk menandai menu aktif */
+            background-color: rgba(97, 150, 255, 0.1);
+            /* Latar belakang biru muda */
         }
     </style>
 
     <script>
-        // Activate the current nav item based on the URL
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
             const currentPath = window.location.pathname;
 
+            // Loop melalui semua link menu
             navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPath) {
-                    link.classList.add('active');
+                const linkPath = new URL(link.href).pathname;
+
+                // Cek apakah URL menu cocok dengan URL halaman saat ini
+                if (linkPath === currentPath) {
+                    link.classList.add('active'); // Tambahkan kelas 'active' untuk menu yang sesuai
+                } else {
+                    link.classList.remove('active'); // Hapus kelas 'active' jika tidak sesuai
+                }
+
+                // Menangani klik pada menu
+                link.addEventListener('click', function() {
+                    // Hapus kelas 'active' dari semua link
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    // Tambahkan kelas 'active' ke link yang diklik
+                    this.classList.add('active');
+                });
+            });
+
+            // Cek apakah link sub-menu cocok dengan currentPath untuk menentukan apakah parent harus aktif
+            const lamanLink = document.querySelector('.nav-item.dropdown .nav-link.dropdown-toggle');
+            const subLinks = document.querySelectorAll('.dropdown-menu .dropdown-item');
+            let subLinkIsActive = false;
+
+            subLinks.forEach(subLink => {
+                const subLinkPath = new URL(subLink.href).pathname;
+                if (subLinkPath === currentPath) {
+                    subLink.classList.add('active'); // Tandai submenu yang aktif
+                    subLinkIsActive = true;
+                } else {
+                    subLink.classList.remove('active'); // Hapus kelas 'active' jika tidak sesuai
                 }
             });
+
+            // Jika salah satu submenu aktif, jangan tandai parent sebagai aktif
+            if (subLinkIsActive && lamanLink) {
+                lamanLink.classList.remove('active');
+            } else if (!subLinkIsActive && lamanLink && lamanLink.href.includes(currentPath)) {
+                // Jika tidak ada submenu yang aktif, cek apakah lamanLink harus aktif
+                lamanLink.classList.add('active');
+            }
         });
     </script>
 </body>
