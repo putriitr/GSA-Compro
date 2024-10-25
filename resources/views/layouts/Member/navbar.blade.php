@@ -46,8 +46,15 @@
                             @endforeach
                         </div>
                     </div>
+
                     @auth
-                        <a href="{{ route('portal') }}" class="nav-item nav-link">{{ __('messages.portal_member') }}</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ __('messages.portal') }}</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="{{ route('portal') }}" class="dropdown-item">{{ __('messages.portal_member') }}</a>
+                            <a href="{{ route('dist-portal') }}" class="dropdown-item">{{ __('messages.portal_partner') }}</a>
+                        </div>
+                    </div>
                     @endauth
 
                     <a href="{{ route('contact') }}" id="contact-link"

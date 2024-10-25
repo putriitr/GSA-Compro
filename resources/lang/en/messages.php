@@ -29,12 +29,20 @@ return [
     'activity' => 'Our Activities ',
     'products' => 'Products',
     'ecommerce' => 'E-Commerce',
+    'portal' => 'Portal',
     'portal_member' => 'Member Portal',
+    'portal_partner' => 'Business Partner Portal',
     'bahasa' => 'Bahasa',
     'english' => 'English',
     'user' => 'Our Users',
     'pengaduan' => 'Customer Complaint Service',
     'pembayaran' => 'Payment Accepted',
+
+    'customer_report' => 'Customer Report',
+    'quotation' => 'Quotation',
+    'proforma_invoice' => 'Proforma Invoice',
+    'invoice' => 'Invoice',
+    'aftersales_service' => 'Aftersales Service',
 
     'tujuan_kami' => 'Our Company Goals',
     'visi_misi_perusahaan' => 'Vision & Mission',
@@ -60,7 +68,6 @@ return [
     'our_activity' => 'Our Activity',
     'find_products' => 'Find Products',
     'our_products' => 'Our Products',
-    'member_portal' => 'Member Portal',
     'address' => 'Address',
 
     'contact_info' => 'Contact Information',

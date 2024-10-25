@@ -30,7 +30,9 @@ return [
     'activity' => 'Kegiatan Terkini',
     'products' => 'Produk',
     'ecommerce' => 'E-Commerce',
+    'portal' => 'Portal',
     'portal_member' => 'Portal Member',
+    'portal_partner' => 'Portal Mitra Bisnis',
     'bahasa' => 'Bahasa',
     'english' => 'English',
 
@@ -38,6 +40,12 @@ return [
     'visi_misi_perusahaan' => 'Visi & Misi',
     'visi' => 'Visi',
     'misi' => 'Misi',
+
+    'customer_report' => 'Laporan Pelanggan',
+    'quotation' => 'Informasi Penawaran',
+    'proforma_invoice' => 'Faktur Proforma',
+    'invoice' => 'Faktur',
+    'aftersales_service' => 'Layanan Setelah Pembelian',
 
     'keyakinan_kami' => 'Keyakinan Kami',
     'keunggulan_perusahaan' => 'Keunggulan Perusahaan',
@@ -72,7 +80,6 @@ return [
     'company_activity' => 'Aktivitas Perusahaan',
     'find_products' => 'Temukan Produk',
     'our_products' => 'Produk Kami',
-    'member_portal' => 'Masuk Member',
 
     'contact_info' => 'Informasi Kontak',
     'address_not_available' => 'Alamat tidak tersedia',

@@ -28,6 +28,7 @@
     use App\Http\Controllers\Member\QnaGuest1\QnaGuest1Controller;
     use App\Http\Controllers\ContactPageController;
     use App\Http\Controllers\Admin\Activity\CategoryActivityController;
+    use App\Http\Controllers\Distributor\PortalDistributor\PortalDistributorController;
 
     /*
     |--------------------------------------------------------------------------
@@ -87,6 +88,8 @@
             Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
             Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
             Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
+
+            Route::get('/dist-portal', [PortalDistributorController::class, 'index'])->name('dist-portal');
         });
     });
 
