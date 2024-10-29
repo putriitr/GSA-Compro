@@ -281,6 +281,4 @@
             container.addEventListener('scroll', resetScrollPosition);
         });
     </script>
-
-
 @endsection

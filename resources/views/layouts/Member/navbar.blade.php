@@ -13,6 +13,13 @@
         $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
     @endphp
 
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+
     <!-- Navbar & Hero Start -->
     <div class="container-fluid nav-bar sticky-top px-4 py-2 py-lg-0">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -48,13 +55,16 @@
                     </div>
 
                     @auth
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ __('messages.portal') }}</a>
-                        <div class="dropdown-menu m-0">
-                            <a href="{{ route('portal') }}" class="dropdown-item">{{ __('messages.portal_member') }}</a>
-                            <a href="{{ route('dist-portal') }}" class="dropdown-item">{{ __('messages.portal_partner') }}</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle"
+                                data-bs-toggle="dropdown">{{ __('messages.portal') }}</a>
+                            <div class="dropdown-menu m-0">
+                                <a href="{{ route('portal') }}"
+                                    class="dropdown-item">{{ __('messages.portal_member') }}</a>
+                                <a href="{{ route('dist-portal') }}"
+                                    class="dropdown-item">{{ __('messages.portal_partner') }}</a>
+                            </div>
                         </div>
-                    </div>
                     @endauth
 
                     <a href="{{ route('contact') }}" id="contact-link"

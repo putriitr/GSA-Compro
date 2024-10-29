@@ -32,6 +32,7 @@
     use App\Exports\CustomerReportExport;
     use Maatwebsite\Excel\Facades\Excel;
     use App\Http\Controllers\Distributor\CustomerReportController;
+    use App\Http\Controllers\Distributor\DistributorController;
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +78,7 @@
     // Member Routes (Authenticated Users with "member" role)
     Route::middleware(['auth', 'user-access:member'])->group(function () {
         Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-            Route::get('/portal', [PortalController::class, 'index'])->name('portal');
+            Route::get('/portal', [PortalController::class, 'index'])->name('portal')->middleware('role:member');
             Route::get('/portal/user-product', [PortalController::class, 'UserProduk'])->name('portal.user-product');
             Route::get('/product/user-product/{id}', [PortalController::class, 'detailProduk'])->name('user-product.show');
             Route::get('/portal/photos', [PortalController::class, 'photos'])->name('portal.photos');
@@ -93,7 +94,7 @@
             Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
 
             // portal distributor
-            Route::get('/dist-portal', [PortalDistributorController::class, 'index'])->name('dist-portal');
+            Route::get('/dist-portal', [PortalDistributorController::class, 'index'])->name('dist-portal')->middleware('role:distributor');
             Route::get('/dist-portal/dist-report', [PortalDistributorController::class, 'customerReport'])->name('dist-report');
             Route::get('/dist-portal/dist-quotation', [PortalDistributorController::class, 'quotation'])->name('dist-quotation');
             Route::get('/dist-portal/dist-proforma', [PortalDistributorController::class, 'proformaInvoice'])->name('dist-proforma');
@@ -118,6 +119,9 @@
             Route::put('members/{id}/update-products', [MemberController::class, 'updateProducts'])->name('members.update-products');
             Route::post('/members/{id}/update-password', [MemberController::class, 'updatePassword'])->name('members.updatePassword');
             Route::post('/admin/validate-password', [MemberController::class, 'validatePassword'])->name('admin.validatePassword');
+
+            Route::resource('admin/distributors', DistributorController::class);
+
 
             Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
             Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');

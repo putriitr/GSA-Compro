@@ -37,7 +37,7 @@
                     <span class="sidebar-mini-icon">
                         <i class="fa fa-ellipsis-h"></i>
                     </span>
-                    <h4 class="text-section">Kelola Member</h4>
+                    <h4 class="text-section">Kelola User</h4>
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#member-management">
@@ -50,6 +50,22 @@
                             <li>
                                 <a href="{{ route('members.index') }}">
                                     <span class="sub-item">Semua Member</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#distributor-management">
+                        <i class="fas fa-user"></i>
+                        <p>Distributor</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="distributor-management">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('distributors.index') }}">
+                                    <span class="sub-item">Semua Distributor</span>
                                 </a>
                             </li>
                         </ul>
