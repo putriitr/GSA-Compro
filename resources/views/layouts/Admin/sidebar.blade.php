@@ -101,30 +101,6 @@
                     </div>
                 </li>
 
-                <!-- Product Management -->
-                <li class="nav-section">
-                    <span class="sidebar-mini-icon">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </span>
-                    <h4 class="text-section">Pesan Guest</h4>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#message-management">
-                        <i class="fas fa-shopping-cart"></i>
-                        <p>Messages Guest</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="message-management">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="{{ route('admin.guest-messages.index') }}">
-                                    <span class="sub-item">Semua Produk</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
                 <!-- Content Management -->
                 <li class="nav-section">
                     <span class="sidebar-mini-icon">
@@ -182,16 +158,6 @@
                             <li>
                                 <a href="{{ route('admin.location.index') }}">
                                     <span class="sub-item">Lokasi Pengguna</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.faq.index') }}">
-                                    <span class="sub-item">QnA Member</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('admin.qnaguest.index') }}">
-                                    <span class="sub-item">QnA Guest</span>
                                 </a>
                             </li>
                         </ul>

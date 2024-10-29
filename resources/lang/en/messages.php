@@ -152,6 +152,7 @@ return [
     'laman' => 'Pages',
     'show_more_categories' => 'More Categories',
     'show_less_categories' => 'Less Categories',
+    'aftersales_service_desc' => 'Contains access to usage guides, repair information, and technical assistance after product purchase.',
 
     'customer_name' => 'Customer Name',
     'email' => 'Email',

@@ -68,7 +68,7 @@
                         <div class="blog-item">
                             <div class="blog-img">
                                 <a href="#">
-                                    <img src="{{ asset($item->image) }}" class="img-fluid w-100 rounded-top"
+                                    <img src="{{ asset($item->gambar) }}" class="img-fluid w-100 rounded-top"
                                         style="border-radius: 15px; width: 100%; height: 250px; object-fit: cover;"
                                         alt="{{ $item->title }}">
                                 </a>

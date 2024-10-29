@@ -167,6 +167,7 @@ return [
     'laman' => 'Laman',
     'show_more_categories' => 'Kategori Lainnya',
     'show_less_categories' => 'Lihat Lebih Sedikit',
+    'aftersales_service_desc' => 'Berisi akses ke panduan penggunaan, informasi perbaikan, dan bantuan teknis setelah pembelian produk.',
 
     'customer_name' => 'Nama Pelanggan',
     'email' => 'Email',

@@ -65,16 +65,16 @@
 
                             <!-- Dynamic Activities -->
                             @foreach ($activities as $activity)
-                                <option value="{{ route('member.activity.show', $activity->id) }}"
-                                    {{ old('button_url') == route('member.activity.show', $activity->id) ? 'selected' : '' }}>
+                                <option value="{{ route('admin.activity.show', $activity->id) }}"
+                                    {{ old('button_url') == route('admin.activity.show', $activity->id) ? 'selected' : '' }}>
                                     {{ $activity->title }} (Activity)
                                 </option>
                             @endforeach
 
                             <!-- Meta -->
                             @foreach ($metas as $meta)
-                                <option value="{{ route('member.meta.show', $meta->slug) }}"
-                                    {{ old('button_url') == route('member.meta.show', $meta->slug) ? 'selected' : '' }}>
+                                <option value="{{ route('admin.meta.show', $meta->slug) }}"
+                                    {{ old('button_url') == route('admin.meta.show', $meta->slug) ? 'selected' : '' }}>
                                     {{ $meta->title }} (Meta)
                                 </option>
                             @endforeach

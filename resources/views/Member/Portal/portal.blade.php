@@ -87,8 +87,8 @@
                                 <i class="bx bx-support fa-10x"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.aftersales_service') }}</a>
-                            <p class="mb-0">deskripsiiiii</p>
-                            <a href=""
+                            <p class="mb-0">{{__('messages.aftersales_service_desc')}}</p>
+                            <a href="{{ route('portal.aftersales-service')}}"
                                 class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2"
                                 style="transition: background-color 0.3s ease, color 0.3s ease; margin-top: 15px;">{{ __('messages.show_more') }}</a>
                         </div>

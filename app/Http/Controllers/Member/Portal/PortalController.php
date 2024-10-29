@@ -7,6 +7,7 @@ use App\Models\Faq;
 use App\Models\InspeksiMaintenance;
 use App\Models\Produk;
 use App\Models\UserProduk;
+use App\Models\aftersalesService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -129,6 +130,15 @@ class PortalController extends Controller
         $userProduk = UserProduk::with(['produk', 'inspeksiMaintenance'])->findOrFail($id);
 
         return view('member.portal.monitoring-detail', compact('userProduk'));
+    }
+
+    public function aftersalesService()
+    {
+        // Mengambil semua data layanan purna jual dari model
+        $aftersalesservices = AfterSalesService::all();
+
+        // Mengembalikan tampilan dengan data layanan purna jual
+        return view('member.portal.aftersales-service', compact('aftersalesservices'));
     }
 
     public function Faq()

@@ -86,7 +86,8 @@
             Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
             Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
             Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
-            Route::get('/portal/qna', [PortalController::class, 'Faq'])->name('portal.qna');
+            Route::get('/portal/qna', [PortalController::class, 'aftersalesService'])->name('portal.aftersales-service');
+            Route::get('/portal/aftersales-service', [PortalController::class, 'Faq'])->name('portal.qna');
             Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
             Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
             Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
