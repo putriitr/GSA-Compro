@@ -55,7 +55,8 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                 <div class="footer-item d-flex flex-column">
                     <h4 class="mb-4 text-white">{{ __('messages.find_products') }}</h4>
                     <a href="{{route('product.index')}}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.our_products') }}</a>
-                    <a href="{{ route('portal') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.member_portal') }}</a>
+                    <a href="{{ route('portal') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.portal_member') }}</a>
+                    <a href="{{ route('portal') }}"><i class="fas fa-angle-right me-2"></i> {{ __('messages.portal_partner') }}</a>
                     @if($brand->isNotEmpty())
                     @foreach($brand as $singleBrand)
                         <a href="{{ $singleBrand->url }}"><i class="fas fa-angle-right me-2"></i> {{ $singleBrand->nama }}</a>

@@ -146,9 +146,22 @@ return [
     'service4_desc' => 'Guaranteed secure transactions and customer data protection.',
 
     'search' => 'Type Keywords Here ..',
+    'search_here' => 'Search',
     'meta' => 'Announcements',
     'meta_desc' => 'We are pleased to announce that we are offering attractive discounts on selected products. Dont miss the chance to get your dream item at a more affordable price!',
     'laman' => 'Pages',
     'show_more_categories' => 'More Categories',
     'show_less_categories' => 'Less Categories',
+
+    'customer_name' => 'Customer Name',
+    'email' => 'Email',
+    'phone_number' => 'Phone Number',
+    'company' => 'Company',
+    'location' => 'Location',
+    'purchase_date' => 'Date of purchase',
+    'no_data_found' => 'No data found.',
+    'export_to_excel' => 'Export to Excel',
+    'number'=> 'Number',
+    'total_amount' => 'Total Pembelian',
+    'status' => 'Status',
 ];

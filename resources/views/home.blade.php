@@ -203,7 +203,7 @@
             /* 4 images per row */
             grid-auto-rows: 120px;
             /* Fixed height for each row */
-            animation: marquee 25s linear infinite;
+            animation: marquee 50s linear infinite;
             position: relative;
         }
 

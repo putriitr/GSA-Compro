@@ -25,7 +25,7 @@ class CompanyParameterSeeder extends Seeder
                 'nama_perusahaan' => 'PT. Gudang Solusi Acommerce',
                 'sejarah_singkat' => 'Toko GSacommerce menyediakan Peralatan Pelatihan, Perkakas, Peralatan Rumah Tangga, Peralatan Elektronik, Peralatan Laboratorium dan Peralatan Olahraga serta Produsen Tenda. Dikelola oleh PT. Gudang Solusi Acommerce yang bergerak di bidang Industrial E-commerce.',
                 'whatsapp_1' => '+62 821-1470-2128',
-                'whatsapp_2' => '+c62 813-9006-9009',
+                'whatsapp_2' => '+62 813-9006-9009',
                 'visimisi_1' => 'Menjadi penyedia layanan yang profesional, dengan komitmen untuk memberikan solusi terbaik yang memenuhi kebutuhan dan harapan pelanggan kami.',
                 'visimisi_2' => 'Mewujudkan produk dan layanan berkualitas tinggi yang berfokus pada inovasi dan ketepatan, memastikan setiap pelanggan mendapatkan nilai terbaik.',
                 'visimisi_3' => 'Memberikan kemudahan dan kenyamanan dalam setiap interaksi, sehingga pelanggan dapat menikmati pengalaman yang efisien dan tanpa hambatan dengan kami.',

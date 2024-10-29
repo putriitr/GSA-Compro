@@ -21,7 +21,7 @@
                 <div class="card login-card">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img src="{{ asset('assets/img/1729165544_page-header.jpg') }}" alt="login"
+                            <img src="{{ asset('assets/img/page-header.jpg') }}" alt="login"
                                 class="login-card-img">
                         </div>
                         <div class="col-md-1"></div>

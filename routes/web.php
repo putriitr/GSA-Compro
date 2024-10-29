@@ -29,6 +29,9 @@
     use App\Http\Controllers\ContactPageController;
     use App\Http\Controllers\Admin\Activity\CategoryActivityController;
     use App\Http\Controllers\Distributor\PortalDistributor\PortalDistributorController;
+    use App\Exports\CustomerReportExport;
+    use Maatwebsite\Excel\Facades\Excel;
+    use App\Http\Controllers\Distributor\CustomerReportController;
 
     /*
     |--------------------------------------------------------------------------
@@ -89,7 +92,16 @@
             Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
             Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
 
+            // portal distributor
             Route::get('/dist-portal', [PortalDistributorController::class, 'index'])->name('dist-portal');
+            Route::get('/dist-portal/dist-report', [PortalDistributorController::class, 'customerReport'])->name('dist-report');
+            Route::get('/dist-portal/dist-quotation', [PortalDistributorController::class, 'quotation'])->name('dist-quotation');
+            Route::get('/dist-portal/dist-proforma', [PortalDistributorController::class, 'proformaInvoice'])->name('dist-proforma');
+            Route::get('/dist-portal/dist-invoice', [PortalDistributorController::class, 'invoice'])->name('dist-invoice');
+            Route::get('/dist-portal/dist-service', [PortalDistributorController::class, 'aftersalesService'])->name('dist-service');
+
+            Route::get('/customer-report', [PortalDistributorController::class, 'customerReport'])->name('customer-report');
+            Route::get('/export-customer-report', [PortalDistributorController::class, 'exportCustomerReport'])->name('customer-report.export');
         });
     });
 
