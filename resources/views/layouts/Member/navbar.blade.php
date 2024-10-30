@@ -54,6 +54,13 @@
                         </div>
                     </div>
 
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ __('messages.ecommerce') }}</a>
+                        <div class="dropdown-menu m-0">
+                            <a href="https://gsacommerce.com/" class="dropdown-item" target="_blank">Gsacommerce</a>
+                        </div>
+                    </div>
+
                     @auth
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle"
@@ -106,6 +113,7 @@
                         </a>
                     </div>
                 </div>
+
                 @if (auth()->check())
                     <div class="dropdown">
                         <a href="#" class="dropdown-toggle" id="companyDropdown" data-bs-toggle="dropdown"
@@ -158,53 +166,47 @@
         }
     </style>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-            const currentPath = window.location.pathname;
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+      const currentPath = window.location.pathname;
 
-            // Loop melalui semua link menu
-            navLinks.forEach(link => {
-                const linkPath = new URL(link.href).pathname;
+      // Loop through all nav links to activate the correct link based on the current path
+      navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+        // Check if the current link matches the current page path
+        if (linkPath === currentPath) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
 
-                // Cek apakah URL menu cocok dengan URL halaman saat ini
-                if (linkPath === currentPath) {
-                    link.classList.add('active'); // Tambahkan kelas 'active' untuk menu yang sesuai
-                } else {
-                    link.classList.remove('active'); // Hapus kelas 'active' jika tidak sesuai
-                }
+      // Handle dropdowns separately
+      const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+      dropdowns.forEach(dropdown => {
+        const toggleLink = dropdown.querySelector('.nav-link.dropdown-toggle');
+        const subLinks = dropdown.querySelectorAll('.dropdown-menu .dropdown-item');
+        let isDropdownActive = false;
 
-                // Menangani klik pada menu
-                link.addEventListener('click', function() {
-                    // Hapus kelas 'active' dari semua link
-                    navLinks.forEach(nav => nav.classList.remove('active'));
-                    // Tambahkan kelas 'active' ke link yang diklik
-                    this.classList.add('active');
-                });
-            });
-
-            // Cek apakah link sub-menu cocok dengan currentPath untuk menentukan apakah parent harus aktif
-            const lamanLink = document.querySelector('.nav-item.dropdown .nav-link.dropdown-toggle');
-            const subLinks = document.querySelectorAll('.dropdown-menu .dropdown-item');
-            let subLinkIsActive = false;
-
-            subLinks.forEach(subLink => {
-                const subLinkPath = new URL(subLink.href).pathname;
-                if (subLinkPath === currentPath) {
-                    subLink.classList.add('active'); // Tandai submenu yang aktif
-                    subLinkIsActive = true;
-                } else {
-                    subLink.classList.remove('active'); // Hapus kelas 'active' jika tidak sesuai
-                }
-            });
-
-            // Jika salah satu submenu aktif, jangan tandai parent sebagai aktif
-            if (subLinkIsActive && lamanLink) {
-                lamanLink.classList.remove('active');
-            } else if (!subLinkIsActive && lamanLink && lamanLink.href.includes(currentPath)) {
-                // Jika tidak ada submenu yang aktif, cek apakah lamanLink harus aktif
-                lamanLink.classList.add('active');
-            }
+        // Check each sublink to see if it matches the current path
+        subLinks.forEach(subLink => {
+          const subLinkPath = new URL(subLink.href).pathname;
+          if (subLinkPath === currentPath) {
+            subLink.classList.add('active');
+            isDropdownActive = true;
+          } else {
+            subLink.classList.remove('active');
+          }
         });
-    </script>
+
+        // Only set the parent dropdown link as active if one of its sub-links is active
+        if (isDropdownActive) {
+          toggleLink.classList.add('active');
+        } else {
+          toggleLink.classList.remove('active');
+        }
+      });
+    });
+  </script>
 </body>

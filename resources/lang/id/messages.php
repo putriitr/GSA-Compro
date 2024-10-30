@@ -11,7 +11,6 @@ return [
     'show_more' => 'Selengkapnya',
     'show_less' => 'Kembali',
 
-
     'trusted_collaboration' => 'Kolaborasi Terpercaya',
     'distributor_company' => 'Perusahaan Distributor',
 
