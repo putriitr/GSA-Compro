@@ -63,24 +63,24 @@
                 </div>
             </div>
             <div class="row g-4 justify-content-center">
-                @foreach ($activities as $item)
+                @foreach ($activities as $activity)
                     <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
                         <div class="blog-item">
                             <div class="blog-img">
                                 <a href="#">
-                                    <img src="{{ asset($item->gambar) }}" class="img-fluid w-100 rounded-top"
+                                    <img src="{{ $activity->image_url}}" class="img-fluid w-100 rounded-top"
                                         style="border-radius: 15px; width: 100%; height: 250px; object-fit: cover;"
-                                        alt="{{ $item->title }}">
+                                        alt="{{ $activity->title }}">
                                 </a>
-                                <div class="blog-category py-2 px-4">{{ $item->category->name }}</div>
+                                <div class="blog-category py-2 px-4">{{ $activity->category->name }}</div>
                                 <div class="blog-date"><i
-                                        class="fas fa-clock me-2"></i>{{ \Carbon\Carbon::parse($item->date)->format('d M Y') }}
+                                        class="fas fa-clock me-2"></i>{{ \Carbon\Carbon::parse($activity->date)->format('d M Y') }}
                                 </div>
                             </div>
                             <div class="blog-content p-4">
-                                <a href="#" class="h4 d-inline-block mb-4">{{ $item->title }}</a>
-                                <p class="mb-4">{{ Str::limit($item->description, 40) }}</p>
-                                <a href="{{ route('member.activity.detail-act', $item->id) }}"
+                                <a href="#" class="h4 d-inline-block mb-4">{{ $activity->title }}</a>
+                                <p class="mb-4">{{ Str::limit($activity->description, 40) }}</p>
+                                <a href="{{ route('member.activity.detail-act', $activity->id) }}"
                                     class="btn btn-primary rounded-pill py-2 px-4">Read More <i
                                         class="fas fa-arrow-right ms-2"></i></a>
                             </div>

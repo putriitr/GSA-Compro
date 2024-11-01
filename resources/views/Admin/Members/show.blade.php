@@ -58,19 +58,12 @@
                                 <th>Password</th>
                                 <td>
                                     {{ $password }}
-                                    <p class="text-danger">PEMBERITAHUAN : MOHON AGAR PASSWORD DICATAT KARENA PASSWORD TIDAK ADA DITAMPILKAN KEMBALI.</p>
+                                    <p class="text-danger">Mohon agar password dicatat karena password hanya ditampilkan sekali.</p>
                                 </td>
                             </tr>
                         @endif
                     </tbody>
                 </table>
-
-                @if(isset($password))
-                    <div class="mb-3">
-                        <p><strong>Password:</strong> {{ $password }}</p>
-                        <p class="text-danger">PEMBERITAHUAN : MOHON AGAR PASSWORD DICATAT KARENA PASSWORD TIDAK ADA DITAMPILKAN KEMBALI.</p>
-                    </div>
-                @endif
 
                 <div class="mb-3">
                     <div class="card p-4 shadow">

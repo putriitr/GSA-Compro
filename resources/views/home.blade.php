@@ -1,7 +1,6 @@
 @extends('layouts.member.master')
 
 @section('content')
-
     <!-- Menampilkan pesan error -->
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">

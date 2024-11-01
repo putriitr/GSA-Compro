@@ -19,13 +19,13 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('members.update', $member->id) }}" method="POST">
+                        <form action="{{ route('members.update', $distributor->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-group mb-3">
                                 <label for="nama_perusahaan" class="form-label">Nama Perusahaan :</label>
                                 <input type="text" class="form-control" id="nama_perusahaan" name="nama_perusahaan"
-                                    value="{{ old('nama_perusahaan', $member->nama_perusahaan) }}">
+                                    value="{{ old('nama_perusahaan', $distributor->nama_perusahaan) }}">
                                 @if ($errors->has('nama_perusahaan'))
                                     <small class="text-danger">{{ $errors->first('nama_perusahaan') }}</small>
                                 @endif
@@ -34,7 +34,7 @@
                             <div class="form-group mb-3">
                                 <label for="email" class="form-label">Email :</label>
                                 <input type="email" class="form-control" id="email" name="email"
-                                    value="{{ old('email', $member->email) }}" required>
+                                    value="{{ old('email', $distributor->email) }}" required>
                                 @if ($errors->has('email'))
                                     <small class="text-danger">{{ $errors->first('email') }}</small>
                                 @endif
@@ -46,7 +46,7 @@
                                     <option value="" disabled>-- Pilih Bidang Perusahaan --</option>
                                     @foreach ($bidangPerusahaan as $bidang)
                                         <option value="{{ $bidang->id }}"
-                                            {{ $member->bidang_perusahaan == $bidang->id ? 'selected' : '' }}>
+                                            {{ $distributor->bidang_perusahaan == $bidang->id ? 'selected' : '' }}>
                                             {{ $bidang->name }}
                                         </option>
                                     @endforeach
@@ -56,7 +56,7 @@
                             <div class="form-group mb-3">
                                 <label for="no_telp" class="form-label">Nomor Telepon :</label>
                                 <input type="text" class="form-control" id="no_telp" name="no_telp"
-                                    value="{{ old('no_telp', $member->no_telp) }}">
+                                    value="{{ old('no_telp', $distributor->no_telp) }}">
                                 @if ($errors->has('no_telp'))
                                     <small class="text-danger">{{ $errors->first('no_telp') }}</small>
                                 @endif
@@ -65,7 +65,7 @@
                             <div class="form-group mb-3">
                                 <label for="alamat" class="form-label">Alamat :</label>
                                 <input type="text" class="form-control" id="alamat" name="alamat"
-                                    value="{{ old('alamat', $member->alamat) }}">
+                                    value="{{ old('alamat', $distributor->alamat) }}">
                                 @if ($errors->has('alamat'))
                                     <small class="text-danger">{{ $errors->first('alamat') }}</small>
                                 @endif

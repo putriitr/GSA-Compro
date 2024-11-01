@@ -93,8 +93,12 @@
             Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
             Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
             Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
+        });
+    });
 
-            // portal distributor
+    // Distributor Routes (Authenticated Users with "distributor" role)
+    Route::middleware(['auth', 'user-access:distributor'])->group(function () {
+        Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::get('/dist-portal', [PortalDistributorController::class, 'index'])->name('dist-portal')->middleware('role:distributor');
             Route::get('/dist-portal/dist-report', [PortalDistributorController::class, 'customerReport'])->name('dist-report');
             Route::get('/dist-portal/dist-quotation', [PortalDistributorController::class, 'quotation'])->name('dist-quotation');
@@ -102,8 +106,9 @@
             Route::get('/dist-portal/dist-invoice', [PortalDistributorController::class, 'invoice'])->name('dist-invoice');
             Route::get('/dist-portal/dist-service', [PortalDistributorController::class, 'aftersalesService'])->name('dist-service');
 
-            Route::get('/customer-report', [PortalDistributorController::class, 'customerReport'])->name('customer-report');
-            Route::get('/export-customer-report', [PortalDistributorController::class, 'exportCustomerReport'])->name('customer-report.export');
+            // Rute tambahan untuk laporan pelanggan dan ekspor laporan
+            Route::get('/dist-portal/customer-report', [PortalDistributorController::class, 'customerReport'])->name('customer-report');
+            Route::get('/dist-portal/export-customer-report', [PortalDistributorController::class, 'exportCustomerReport'])->name('customer-report.export');
         });
     });
 

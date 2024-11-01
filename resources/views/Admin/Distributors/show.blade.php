@@ -24,67 +24,58 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Detail Member</h2>
+                        <h2>Detail Distributor</h2>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
                                     <th>Nama</th>
-                                    <td>{{ $member->name }}</td>
+                                    <td>{{ $distributor->name }}</td>
                                 </tr>
                                 <tr>
                                     <th>Email</th>
-                                    <td>{{ $member->email }}</td>
+                                    <td>{{ $distributor->email }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nama Perusahaan</th>
-                                    <td>{{ $member->nama_perusahaan }}</td>
+                                    <td>{{ $distributor->nama_perusahaan }}</td>
                                 </tr>
                                 <tr>
                                     <th>Sektor Perusahaan</th>
-                                    <td>{{ $member->bidangPerusahaan->name ?? '-' }}</td>
+                                    <td>{{ $distributor->bidangPerusahaan->name ?? '-' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nomor Telepon</th>
-                                    <td>{{ $member->no_telp }}</td>
+                                    <td>{{ $distributor->no_telp }}</td>
                                 </tr>
                                 <tr>
                                     <th>Alamat</th>
-                                    <td>{{ $member->alamat }}</td>
+                                    <td>{{ $distributor->alamat }}</td>
                                 </tr>
                                 @if (isset($password))
                                     <tr>
                                         <th>Password</th>
                                         <td>
                                             {{ $password }}
-                                            <p class="text-danger">PEMBERITAHUAN : MOHON AGAR PASSWORD DICATAT KARENA
-                                                PASSWORD TIDAK ADA DITAMPILKAN KEMBALI.</p>
+                                            <p class="text-danger">Mohon agar password dicatat karena password hanya ditampilkan sekali.</p>
                                         </td>
                                     </tr>
                                 @endif
                             </tbody>
                         </table>
 
-                        @if (isset($password))
-                            <div class="mb-3">
-                                <p><strong>Password:</strong> {{ $password }}</p>
-                                <p class="text-danger">PEMBERITAHUAN : MOHON AGAR PASSWORD DICATAT KARENA PASSWORD TIDAK ADA
-                                    DITAMPILKAN KEMBALI.</p>
-                            </div>
-                        @endif
-
                         <div class="mb-3">
                             <div class="card p-4 shadow">
                                 <div class="card-header">
-                                    <h4>Pemilik Produk</h4>
+                                    <h4>Daftar Produk</h4>
                                 </div>
                                 <div class="card-body">
-                                    @if ($member->userProduk->isEmpty())
-                                        <p>Member ini tidak memiliki produk.</p>
+                                    @if ($distributor->userProduk->isEmpty())
+                                        <p>Distributor ini tidak memiliki produk.</p>
                                     @else
                                         <div class="row">
-                                            @foreach ($member->userProduk as $userProduk)
+                                            @foreach ($distributor->userProduk as $userProduk)
                                                 @php
                                                     $firstImage = $userProduk->produk->images->first();
                                                     $imageSrc = $firstImage
@@ -144,7 +135,7 @@
 
                         </style>
 
-                        <a href="{{ route('members.index') }}" class="btn btn-secondary">Kembali ke Daftar Member</a>
+                        <a href="{{ route('distributors.index') }}" class="btn btn-secondary">Kembali ke Daftar Distributor</a>
                     </div>
                 </div>
             </div>

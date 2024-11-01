@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h2>Tambah Produk untuk {{ $member->name }}</h2>
+                    <h2>Tambah Produk untuk {{ $distributor->name }}</h2>
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
@@ -19,7 +19,7 @@
                     </div>
                     @endif
 
-                    <form action="{{ route('members.store-products', $member->id) }}" method="POST">
+                    <form action="{{ route('members.store-products', $distributor->id) }}" method="POST">
                         @csrf
 
                         <div class="row">

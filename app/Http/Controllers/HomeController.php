@@ -56,10 +56,6 @@ class HomeController extends Controller
     }
 
 
-
-
-
-
     public function dashboard()
     {
         // Fetch daily visitor data

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Distributor\PortalDistributor;
 
 use App\Http\Controllers\Controller;
+use App\Models\BidangPerusahaan;
 use App\Models\CustomerReport; // Import the CustomerReport model
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel; // If you're using Maatwebsite for Excel export
-use App\Exports\CustomerReportExport; // Make sure to adjust the path to your export class
+use App\Exports\CustomerReportExport; // Ensure the correct path to your export class
 
 class PortalDistributorController extends Controller
 {
@@ -29,7 +30,6 @@ class PortalDistributorController extends Controller
 
         return view('member.portal.dist-report', compact('customerReports'));
     }
-
 
     // Display the quotation view
     public function quotation()

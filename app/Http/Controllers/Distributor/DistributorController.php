@@ -20,8 +20,9 @@ class DistributorController extends Controller
     {
         $locations = Location::all();
         $bidangPerusahaan = BidangPerusahaan::all();
-        return view('admin.distributors.create');
+        return view('admin.distributors.create', compact('locations', 'bidangPerusahaan'));
     }
+
 
     public function store(Request $request)
     {

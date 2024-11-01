@@ -55,7 +55,8 @@
                     </div>
 
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ __('messages.ecommerce') }}</a>
+                        <a href="#" class="nav-link dropdown-toggle"
+                            data-bs-toggle="dropdown">{{ __('messages.ecommerce') }}</a>
                         <div class="dropdown-menu m-0">
                             <a href="https://gsacommerce.com/" class="dropdown-item" target="_blank">Gsacommerce</a>
                         </div>
@@ -66,10 +67,13 @@
                             <a href="#" class="nav-link dropdown-toggle"
                                 data-bs-toggle="dropdown">{{ __('messages.portal') }}</a>
                             <div class="dropdown-menu m-0">
-                                <a href="{{ route('portal') }}"
-                                    class="dropdown-item">{{ __('messages.portal_member') }}</a>
-                                <a href="{{ route('dist-portal') }}"
-                                    class="dropdown-item">{{ __('messages.portal_partner') }}</a>
+                                @if (Auth::user()->type === 'member')
+                                    <a href="{{ route('portal') }}"
+                                        class="dropdown-item">{{ __('messages.portal_member') }}</a>
+                                @elseif (Auth::user()->type === 'distributor')
+                                    <a href="{{ route('dist-portal') }}"
+                                        class="dropdown-item">{{ __('messages.portal_partner') }}</a>
+                                @endif
                             </div>
                         </div>
                     @endauth
@@ -166,47 +170,47 @@
         }
     </style>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-      const currentPath = window.location.pathname;
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const currentPath = window.location.pathname;
 
-      // Loop through all nav links to activate the correct link based on the current path
-      navLinks.forEach(link => {
-        const linkPath = new URL(link.href).pathname;
-        // Check if the current link matches the current page path
-        if (linkPath === currentPath) {
-          link.classList.add('active');
-        } else {
-          link.classList.remove('active');
-        }
-      });
+            // Loop through all nav links to activate the correct link based on the current path
+            navLinks.forEach(link => {
+                const linkPath = new URL(link.href).pathname;
+                // Check if the current link matches the current page path
+                if (linkPath === currentPath) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
 
-      // Handle dropdowns separately
-      const dropdowns = document.querySelectorAll('.nav-item.dropdown');
-      dropdowns.forEach(dropdown => {
-        const toggleLink = dropdown.querySelector('.nav-link.dropdown-toggle');
-        const subLinks = dropdown.querySelectorAll('.dropdown-menu .dropdown-item');
-        let isDropdownActive = false;
+            // Handle dropdowns separately
+            const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+            dropdowns.forEach(dropdown => {
+                const toggleLink = dropdown.querySelector('.nav-link.dropdown-toggle');
+                const subLinks = dropdown.querySelectorAll('.dropdown-menu .dropdown-item');
+                let isDropdownActive = false;
 
-        // Check each sublink to see if it matches the current path
-        subLinks.forEach(subLink => {
-          const subLinkPath = new URL(subLink.href).pathname;
-          if (subLinkPath === currentPath) {
-            subLink.classList.add('active');
-            isDropdownActive = true;
-          } else {
-            subLink.classList.remove('active');
-          }
+                // Check each sublink to see if it matches the current path
+                subLinks.forEach(subLink => {
+                    const subLinkPath = new URL(subLink.href).pathname;
+                    if (subLinkPath === currentPath) {
+                        subLink.classList.add('active');
+                        isDropdownActive = true;
+                    } else {
+                        subLink.classList.remove('active');
+                    }
+                });
+
+                // Only set the parent dropdown link as active if one of its sub-links is active
+                if (isDropdownActive) {
+                    toggleLink.classList.add('active');
+                } else {
+                    toggleLink.classList.remove('active');
+                }
+            });
         });
-
-        // Only set the parent dropdown link as active if one of its sub-links is active
-        if (isDropdownActive) {
-          toggleLink.classList.add('active');
-        } else {
-          toggleLink.classList.remove('active');
-        }
-      });
-    });
-  </script>
+    </script>
 </body>

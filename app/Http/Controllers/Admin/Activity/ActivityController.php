@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Activity;
 use App\Models\CategoryActivity;
-use Illuminate\Support\Facades\Storage;
 
 class ActivityController extends Controller
 {
@@ -24,7 +23,6 @@ class ActivityController extends Controller
 
     public function store(Request $request)
     {
-        // Validate input
         $request->validate([
             'image_url' => 'required|image|max:2048',
             'date' => 'required|date',
@@ -33,12 +31,11 @@ class ActivityController extends Controller
             'category_activities_id' => 'required|exists:category_activities,id',
         ]);
 
-        // Save image and get the path
+        // Simpan gambar dan dapatkan path
         $imagePath = $this->uploadImage($request->file('image_url'));
 
-        // Create new activity
         Activity::create([
-            'image' => $imagePath,
+            'image_url' => $imagePath,  // Ganti 'image' menjadi 'image_url'
             'date' => $request->date,
             'title' => $request->title,
             'description' => $request->description,
@@ -67,20 +64,17 @@ class ActivityController extends Controller
 
         $activity = Activity::findOrFail($id);
 
-        // Update activity details
         $activity->date = $validatedData['date'];
         $activity->title = $validatedData['title'];
         $activity->description = $validatedData['description'];
         $activity->category_activities_id = $validatedData['category_activities_id'];
 
-        // If there's a new image, upload it and delete the old one
         if ($request->hasFile('image_url')) {
-            $this->deleteImage($activity->image);
+            $this->deleteImage($activity->image_url);  // Ganti 'image' menjadi 'image_url'
             $imagePath = $this->uploadImage($request->file('image_url'));
-            $activity->image = $imagePath; // Update the image path
+            $activity->image_url = $imagePath;  // Ganti 'image' menjadi 'image_url'
         }
 
-        // Save changes
         $activity->save();
 
         return redirect()->route('admin.activity.index')->with('success', 'Aktivitas berhasil diperbarui.');
@@ -96,9 +90,8 @@ class ActivityController extends Controller
     {
         $activity = Activity::findOrFail($id);
 
-        // Delete the image if exists
-        if ($activity->image) {
-            $this->deleteImage($activity->image);
+        if ($activity->image_url) {  // Ganti 'image' menjadi 'image_url'
+            $this->deleteImage($activity->image_url);
         }
 
         $activity->delete();
@@ -109,14 +102,14 @@ class ActivityController extends Controller
     {
         $imageName = time() . '_' . $image->getClientOriginalName();
         $image->move(public_path('assets/img/activity'), $imageName);
-        return 'assets/img/activity/' . $imageName; // Return correct path
+        return 'assets/img/activity/' . $imageName;
     }
 
     private function deleteImage($imagePath)
     {
         $fullPath = public_path($imagePath);
         if (file_exists($fullPath) && !is_dir($fullPath)) {
-            unlink($fullPath); // Delete file from server
+            unlink($fullPath);
         }
     }
 }
