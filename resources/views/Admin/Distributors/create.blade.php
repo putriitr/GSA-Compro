@@ -19,7 +19,7 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('members.store') }}" method="POST">
+                    <form action="{{ route('distributors.store') }}" method="POST">
                         @csrf
 
                         <div class="form-group mb-3">
@@ -62,10 +62,10 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="no_telp" class="form-label">Nomor Telepon :</label>
-                            <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ old('no_telp') }}">
-                            @if ($errors->has('no_telp'))
-                                <small class="text-danger">{{ $errors->first('no_telp') }}</small>
+                            <label for="no_telepon" class="form-label">Nomor Telepon :</label>
+                            <input type="text" class="form-control" id="no_telepon" name="no_telepon" value="{{ old('no_telepon') }}">
+                            @if ($errors->has('no_telepon'))
+                                <small class="text-danger">{{ $errors->first('no_telepon') }}</small>
                             @endif
                         </div>
 

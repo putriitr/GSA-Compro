@@ -167,6 +167,8 @@ return [
     'show_more_categories' => 'Kategori Lainnya',
     'show_less_categories' => 'Lihat Lebih Sedikit',
     'aftersales_service_desc' => 'Berisi akses ke panduan penggunaan, informasi perbaikan, dan bantuan teknis setelah pembelian produk.',
+    'ticketing' => 'Ticket',
+    'ticketing' => 'Ticketing mempermudah pelanggan melaporkan masalah, memungkinkan tim kami menanganinya dengan cepat dan transparan.',
 
     'customer_name' => 'Nama Pelanggan',
     'email' => 'Email',
@@ -179,4 +181,16 @@ return [
     'number'=> 'Nomor',
     'total_amount' => 'Total Pembelian',
     'status' => 'Status',
+
+    'jenis_layanan' => 'Jenis Layanan',
+    'pilih_layanan' => 'Pilih Layanan',
+    'permintaan_data' => 'Permintaan Data',
+    'maintenance' => 'Perbaikan',
+    'visit' => 'Visit',
+    'instalasi' => 'Instalasi',
+    'keterangan_pengajuan' => 'Keterangan Pengajuan',
+    'masukkan_keterangan' => 'Ketik Disini ...',
+    'dok_pendukung' => 'Dokumen Pendukung',
+    'kirim' => 'Kirim',
+    'batal' => 'Batal',
 ];

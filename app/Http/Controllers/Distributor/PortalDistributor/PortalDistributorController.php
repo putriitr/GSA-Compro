@@ -14,7 +14,7 @@ class PortalDistributorController extends Controller
     // Display the main distributor portal view
     public function index()
     {
-        return view('member.portal.dist-portal');
+        return view('member.portal.portalDistributor.dist-portal');
     }
 
     // Display the customer report view with data
@@ -28,31 +28,31 @@ class PortalDistributorController extends Controller
                 ->orWhere('company', 'like', "%{$search}%");
         })->paginate(10); // Pagination with 10 items per page
 
-        return view('member.portal.dist-report', compact('customerReports'));
+        return view('member.portal.portalDistributor.dist-report', compact('customerReports'));
     }
 
     // Display the quotation view
     public function quotation()
     {
-        return view('member.portal.dist-quotation');
+        return view('member.portal.portalDistributor.dist-quotation');
     }
 
     // Display the proforma invoice view
     public function proformaInvoice()
     {
-        return view('member.portal.dist-proforma');
+        return view('member.portal.portalDistributor.dist-proforma');
     }
 
     // Display the invoice view
     public function invoice()
     {
-        return view('member.portal.dist-invoice');
+        return view('member.portal.portalDistributor.dist-invoice');
     }
 
     // Display the aftersales service view
     public function aftersalesService()
     {
-        return view('member.portal.dist-service');
+        return view('member.portal.portalDistributor.dist-service');
     }
 
     // Method to export customer reports to Excel

@@ -33,6 +33,10 @@
     use Maatwebsite\Excel\Facades\Excel;
     use App\Http\Controllers\Distributor\CustomerReportController;
     use App\Http\Controllers\Distributor\DistributorController;
+    use App\Http\Controllers\Vendor\VendorController;
+    use App\http\Controller\Admin\Ticketing\TicketingController;
+    use App\Http\Controllers\Member\Ticketing\TicketingMemberController;
+    use App\Http\Controllers\Member\TicketingMemberController as MemberTicketingMemberController;
 
     /*
     |--------------------------------------------------------------------------
@@ -76,25 +80,42 @@
 
 
     // Member Routes (Authenticated Users with "member" role)
+    // Member Routes (Authenticated Users with "member" role)
     Route::middleware(['auth', 'user-access:member'])->group(function () {
         Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-            Route::get('/portal', [PortalController::class, 'index'])->name('portal')->middleware('role:member');
-            Route::get('/portal/user-product', [PortalController::class, 'UserProduk'])->name('portal.user-product');
-            Route::get('/product/user-product/{id}', [PortalController::class, 'detailProduk'])->name('user-product.show');
-            Route::get('/portal/photos', [PortalController::class, 'photos'])->name('portal.photos');
-            Route::get('/portal/instructions', [PortalController::class, 'instructions'])->name('portal.instructions');
-            Route::get('/portal/tutorials', [PortalController::class, 'videos'])->name('portal.tutorials');
-            Route::get('/portal/controlgenerations', [PortalController::class, 'ControllerGenerations'])->name('portal.controlgenerations');
-            Route::get('/portal/document', [PortalController::class, 'document'])->name('portal.document');
-            Route::get('/portal/qna', [PortalController::class, 'aftersalesService'])->name('portal.aftersales-service');
-            Route::get('/portal/aftersales-service', [PortalController::class, 'Faq'])->name('portal.qna');
-            Route::get('/portal/monitoring', [PortalController::class, 'Monitoring'])->name('portal.monitoring');
-            Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
+            Route::resource('ticketings', MemberTicketingMemberController::class);
+
+            // Ticketing Management
+            Route::post('ticketings/{ticketing}/batal', [MemberTicketingMemberController::class, 'destroy'])->name('ticketings.batal');
+
+            // Portal Access
+            Route::get('/portal', [PortalController::class, 'index'])->name('portal');
             Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
+
+            // Additional Portal routes
+            $portalRoutes = [
+                'user-product' => 'UserProduk',
+                'photos' => 'photos',
+                'instructions' => 'instructions',
+                'tutorials' => 'videos',
+                'controlgenerations' => 'ControllerGenerations',
+                'document' => 'document',
+                'qna' => 'aftersalesService',
+                'monitoring' => 'Monitoring',
+            ];
+
+            foreach ($portalRoutes as $uri => $method) {
+                Route::get("/portal/{$uri}", [PortalController::class, $method])->name("portal.{$uri}");
+            }
+
+            Route::get('/portal/monitoring/detail/{userProduk}', [PortalController::class, 'showInspeksiMaintenance'])->name('portal.monitoring.detail');
+
+            // Profile Management
             Route::get('/profile/edit', [ProfileMemberController::class, 'edit'])->name('profile.edit');
             Route::put('/profile/update', [ProfileMemberController::class, 'update'])->name('profile.update');
         });
     });
+
 
     // Distributor Routes (Authenticated Users with "distributor" role)
     Route::middleware(['auth', 'user-access:distributor'])->group(function () {
@@ -112,8 +133,20 @@
         });
     });
 
+    // Vendor Routes (Authenticated Users with "vendor" role)
+    Route::middleware(['auth', 'user-access:vendor'])->group(function () {
+        Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+            Route::get('/vendor-portal', [VendorController::class, 'index'])->name('vendor-portal')->middleware('role:distributor');
+        });
+    });
+
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+            Route::resource('admin/ticketings', TicketingController::class)->names('admin.ticketings');
+
+            Route::post('admin/ticketings/{ticketing}/process', [TicketingController::class, 'process'])->name('admin.ticketings.process');
+            Route::post('admiFn/ticketings/{ticketing}/complete', [TicketingController::class, 'complete'])->name('admin.ticketings.complete');
+
             Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 
             Route::resource('admin/activity/category-activity', CategoryActivityController::class)->names('admin.activity.category-activity');
@@ -127,7 +160,6 @@
             Route::post('/admin/validate-password', [MemberController::class, 'validatePassword'])->name('admin.validatePassword');
 
             Route::resource('admin/distributors', DistributorController::class);
-
 
             Route::get('admin/monitoring', [MonitoringController::class, 'index'])->name('admin.monitoring.index');
             Route::get('admin/monitoring/{id}', [MonitoringController::class, 'show'])->name('admin.monitoring.show');

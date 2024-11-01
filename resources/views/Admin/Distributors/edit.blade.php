@@ -19,7 +19,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('members.update', $distributor->id) }}" method="POST">
+                        <form action="{{ route('distributors.update', $distributor->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-group mb-3">
@@ -85,7 +85,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-success">Perbaharui</button>
-                            <a href="{{ route('members.index') }}" class="btn btn-secondary">Kembali</a>
+                            <a href="{{ route('distributors.index') }}" class="btn btn-secondary">Kembali</a>
                         </form>
 
                     </div>
@@ -114,8 +114,8 @@
                     data: form.serialize(),
                     success: function(response) {
                         if (response.success) {
-                            alert('Member berhasil diperbarui');
-                            window.location.href = "{{ route('members.index') }}";
+                            alert('Distributor berhasil diperbarui');
+                            window.location.href = "{{ route('distributors.index') }}";
                         } else {
                             // Handle validation errors
                             $('#password_error').text(response.errors.password || '');

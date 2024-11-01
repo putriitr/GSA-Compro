@@ -9,7 +9,7 @@
                     <h2>Edit Produk untuk {{ $distributor->name }}</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('members.update-products', $distributor->id) }}" method="POST">
+                    <form action="{{ route('distributors.update-products', $distributor->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 

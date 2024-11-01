@@ -9,6 +9,7 @@ use App\Models\Produk;
 use App\Models\UserProduk;
 use App\Models\aftersalesService;
 use Illuminate\Http\Request;
+use App\Models\Ticketing;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -16,8 +17,18 @@ class PortalController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
+        $ticketings = $user ? $user->ticketings : [];
         return view('member.portal.portal');
     }
+
+    public function ticketings()
+    {
+        $ticketings = Ticketing::where('user_id', Auth::id())->get();
+
+        return view('member.portal.ticketings', compact('ticketings'));
+    }
+
 
     public function userProduk()
     {

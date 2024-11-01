@@ -153,6 +153,8 @@ return [
     'show_more_categories' => 'More Categories',
     'show_less_categories' => 'Less Categories',
     'aftersales_service_desc' => 'Contains access to usage guides, repair information, and technical assistance after product purchase.',
+    'ticketing' => 'Ticketing',
+    'ticketing_desc' => 'Ticketing makes it easy for customers to report issues, allowing our team to address them quickly and transparently.',
 
     'customer_name' => 'Customer Name',
     'email' => 'Email',
@@ -165,4 +167,16 @@ return [
     'number'=> 'Number',
     'total_amount' => 'Total Pembelian',
     'status' => 'Status',
+
+    'jenis_layanan' => 'Service Type',
+    'pilih_layanan' => 'Select Service',
+    'permintaan_data' => 'Data Request',
+    'maintenance' => 'Maintenance',
+    'visit' => 'Visit',
+    'instalasi' => 'Installation',
+    'keterangan_pengajuan' => 'Decription',
+    'masukkan_keterangan' => 'Text Here ...',
+    'dok_pendukung' => 'Document',
+    'kirim' => 'Send',
+    'batal' => 'Cancel',
 ];

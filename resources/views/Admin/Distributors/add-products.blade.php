@@ -19,7 +19,7 @@
                     </div>
                     @endif
 
-                    <form action="{{ route('members.store-products', $distributor->id) }}" method="POST">
+                    <form action="{{ route('distributors.store-products', $distributor->id) }}" method="POST">
                         @csrf
 
                         <div class="row">
