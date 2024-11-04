@@ -4,20 +4,21 @@ namespace App\Http\Controllers\Admin\Ticketing;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ticketing;
+use Illuminate\Http\Request;
 
-class TicketingAdminController extends Controller
+class TicketingController extends Controller
 {
     // Menampilkan daftar semua ticketing
     public function index()
     {
         $ticketings = Ticketing::all();
-        return view('admin.ticketing.index', compact('ticketings'));
+        return view('member.portal.ticketing', compact('ticketings'));
     }
 
     // Menampilkan detail ticketing
     public function show(Ticketing $ticketing)
     {
-        return view('admin.ticketing.show', compact('ticketing'));
+        return view('member.ticketing.show', compact('ticketing'));
     }
 
     // Memproses ticketing

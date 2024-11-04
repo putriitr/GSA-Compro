@@ -36,7 +36,6 @@
     use App\Http\Controllers\Vendor\VendorController;
     use App\http\Controller\Admin\Ticketing\TicketingController;
     use App\Http\Controllers\Member\Ticketing\TicketingMemberController;
-    use App\Http\Controllers\Member\TicketingMemberController as MemberTicketingMemberController;
 
     /*
     |--------------------------------------------------------------------------
@@ -78,19 +77,22 @@
         Auth::routes();
     });
 
-
-    // Member Routes (Authenticated Users with "member" role)
     // Member Routes (Authenticated Users with "member" role)
     Route::middleware(['auth', 'user-access:member'])->group(function () {
         Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
-            Route::resource('ticketings', MemberTicketingMemberController::class);
+            Route::resource('ticketings', TicketingMemberController::class);
 
             // Ticketing Management
-            Route::post('ticketings/{ticketing}/batal', [MemberTicketingMemberController::class, 'destroy'])->name('ticketings.batal');
+            Route::post('ticketings/{ticketing}/batal', [TicketingMemberController::class, 'destroy'])->name('ticketings.batal');
 
             // Portal Access
             Route::get('/portal', [PortalController::class, 'index'])->name('portal');
             Route::get('/profile', [ProfileMemberController::class, 'show'])->name('profile.show');
+            // Route::get('/portal/ticketing', function () {
+            //     return view('member.ticketing.index');
+            // })->name('portal.ticketing');
+            Route::get('/portal/ticketing', [TicketingMemberController::class, 'ticketing'])->name('member.portal.ticketing');
+
 
             // Additional Portal routes
             $portalRoutes = [

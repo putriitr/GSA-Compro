@@ -23,7 +23,6 @@ class DistributorController extends Controller
         return view('admin.distributors.create', compact('locations', 'bidangPerusahaan'));
     }
 
-
     public function store(Request $request)
     {
         $request->validate([
@@ -32,7 +31,7 @@ class DistributorController extends Controller
             'no_telepon' => 'required|string|max:15',
         ]);
 
-        Distributor::create($request->all());
+        Distributor::create($request->only(['nama_perusahaan', 'email', 'no_telepon']));
         return redirect()->route('distributors.index')->with('success', 'Distributor berhasil ditambahkan.');
     }
 
@@ -57,7 +56,7 @@ class DistributorController extends Controller
         ]);
 
         $distributor = Distributor::findOrFail($id);
-        $distributor->update($request->all());
+        $distributor->update($request->only(['nama_perusahaan', 'email', 'no_telepon']));
         return redirect()->route('distributors.index')->with('success', 'Distributor berhasil diperbarui.');
     }
 

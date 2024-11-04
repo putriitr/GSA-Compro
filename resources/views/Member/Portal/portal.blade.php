@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                {{-- <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
@@ -79,7 +79,7 @@
                                 style="transition: background-color 0.3s ease, color 0.3s ease; margin-top: 15px;">{{ __('messages.show_more') }}</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content text-center">
@@ -88,7 +88,7 @@
                             </div>
                             <h4 class="h4 d-inline-block mb-3">{{ __('messages.ticketing') }}</h4>
                             <p class="mb-0">{{ __('messages.ticketing_desc') }}</p>
-                            <a href="{{ route('portal.aftersales-service') }}"
+                            <a href="{{ route('portal.ticketing') }}"
                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2"
                                style="transition: background-color 0.3s ease, color 0.3s ease; margin-top: 15px;">
                                 {{ __('messages.show_more') }}

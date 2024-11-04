@@ -58,7 +58,8 @@
                                         <th>Password</th>
                                         <td>
                                             {{ $password }}
-                                            <p class="text-danger">Mohon agar password dicatat karena password hanya ditampilkan sekali.</p>
+                                            <p class="text-danger">Mohon agar password dicatat karena password hanya
+                                                ditampilkan sekali.</p>
                                         </td>
                                     </tr>
                                 @endif
@@ -71,9 +72,7 @@
                                     <h4>Daftar Produk</h4>
                                 </div>
                                 <div class="card-body">
-                                    @if ($distributor->userProduk->isEmpty())
-                                        <p>Distributor ini tidak memiliki produk.</p>
-                                    @else
+                                    @if ($distributor->userProduk && $distributor->userProduk->isNotEmpty())
                                         <div class="row">
                                             @foreach ($distributor->userProduk as $userProduk)
                                                 @php
@@ -86,7 +85,7 @@
                                                     <div class="card">
                                                         <img src="{{ asset($imageSrc) }}" class="card-img-top"
                                                             alt="{{ $userProduk->produk->nama }}"
-                                                            style="height: 100; object-fit: cover; width:100%;">
+                                                            style="height: 200px; object-fit: cover; width:100%;">
                                                         <div class="card-body">
                                                             <h5 class="card-title">{{ $userProduk->produk->nama }}</h5>
                                                             <p class="card-text"><strong>Tanggal Pembelian :</strong>
@@ -97,6 +96,8 @@
                                                 </div>
                                             @endforeach
                                         </div>
+                                    @else
+                                        <p>Distributor ini tidak memiliki produk.</p>
                                     @endif
                                 </div>
                             </div>
@@ -135,7 +136,8 @@
 
                         </style>
 
-                        <a href="{{ route('distributors.index') }}" class="btn btn-secondary">Kembali ke Daftar Distributor</a>
+                        <a href="{{ route('distributors.index') }}" class="btn btn-secondary">Kembali ke Daftar
+                            Distributor</a>
                     </div>
                 </div>
             </div>

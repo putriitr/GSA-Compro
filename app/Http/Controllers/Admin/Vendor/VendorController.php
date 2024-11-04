@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Vendor;
+namespace App\Http\Controllers\Admin\Vendor;
 
 use App\Http\Controllers\Controller;
 use App\Models\BidangPerusahaan;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Member;
+namespace App\Http\Controllers\Member\Ticketing;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ticketing;
@@ -12,7 +12,16 @@ class TicketingMemberController extends Controller
     public function index()
     {
         $ticketings = Ticketing::where('user_id', auth()->id())->get();
-        return view('member.ticketing.index', compact('ticketings'));
+        return view('member.portal.ticketing', compact('ticketings'));
+    }
+
+    public function ticketing()
+    {
+        // Ambil semua data ticketings dari database
+        $ticketings = Ticketing::all();
+
+        // Kirim data ticketings ke tampilan
+        return view('member.portal.ticketing', compact('ticketings'));
     }
 
     // Menampilkan form untuk membuat ticketing
