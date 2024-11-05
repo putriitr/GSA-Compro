@@ -142,7 +142,7 @@
                                 <h2 style="font-weight: bold; margin-bottom: 3rem;" class="text-white">
                                     {{ __('messages.visimisi_1') }}
                                 </h2>
-                                <p class="text-white">{{ $company->visimisi_1 }}</p>
+                            <p class="text-white">{{ $company->visimisi_1 }}</p>
                             </div>
                         </div>
                     </div>
