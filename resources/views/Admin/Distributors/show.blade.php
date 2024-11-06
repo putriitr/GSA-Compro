@@ -1,146 +1,54 @@
 @extends('layouts.admin.master')
 
 @section('content')
-    <div class="container mt-5">
+<div class="container py-5">
+    <div class="card shadow-sm border-0 rounded">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Distributor Details</h4>
+        </div>
+        <div class="card-body">
+            <p><strong><i class="fas fa-user me-2"></i>Name:</strong> {{ $distributor->name }}</p>
+            <p><strong><i class="fas fa-envelope me-2"></i>Email:</strong> {{ $distributor->email }}</p>
+            <p><strong><i class="fas fa-phone me-2"></i>Phone:</strong> {{ $distributor->no_telp }}</p>
+            <p><strong><i class="fas fa-map-marker-alt me-2"></i>Address:</strong> {{ $distributor->alamat }}</p>
+            <p><strong><i class="fas fa-building me-2"></i>Company:</strong> {{ $distributor->nama_perusahaan }}</p>
+            <p><strong><i class="fas fa-user-tie me-2"></i>Contact PIC:</strong> {{ $distributor->pic }}</p>
+            <p><strong><i class="fas fa-phone-square-alt me-2"></i>PIC Phone:</strong> {{ $distributor->nomor_telp_pic }}</p>
 
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @elseif (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @elseif (session('info'))
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                {{ session('info') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        @endif
+            <p>
+                <strong><i class="fas fa-file-alt me-2"></i>Akta Document:</strong> 
+                <a href="{{ asset($distributor->akta) }}" target="_blank" class="text-primary">
+                    <i class="fas fa-eye me-2"></i>View Document
+                </a>
+            </p>
+            <p>
+                <strong><i class="fas fa-file-alt me-2"></i>NIB Document:</strong> 
+                <a href="{{ asset($distributor->nib) }}" target="_blank" class="text-primary">
+                    <i class="fas fa-eye me-2"></i>View Document
+                </a>
+            </p>
 
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Detail Distributor</h2>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th>Nama</th>
-                                    <td>{{ $distributor->name }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                    <td>{{ $distributor->email }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Nama Perusahaan</th>
-                                    <td>{{ $distributor->nama_perusahaan }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Sektor Perusahaan</th>
-                                    <td>{{ $distributor->bidangPerusahaan->name ?? '-' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Nomor Telepon</th>
-                                    <td>{{ $distributor->no_telp }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Alamat</th>
-                                    <td>{{ $distributor->alamat }}</td>
-                                </tr>
-                                @if (isset($password))
-                                    <tr>
-                                        <th>Password</th>
-                                        <td>
-                                            {{ $password }}
-                                            <p class="text-danger">Mohon agar password dicatat karena password hanya
-                                                ditampilkan sekali.</p>
-                                        </td>
-                                    </tr>
-                                @endif
-                            </tbody>
-                        </table>
+            <p><strong><i class="fas fa-check-circle me-2"></i>Status:</strong> 
+                <span class="badge {{ $distributor->verified ? 'bg-success' : 'bg-warning' }}">
+                    {{ $distributor->verified ? 'Approved' : 'Pending' }}
+                </span>
+            </p>
 
-                        <div class="mb-3">
-                            <div class="card p-4 shadow">
-                                <div class="card-header">
-                                    <h4>Daftar Produk</h4>
-                                </div>
-                                <div class="card-body">
-                                    @if ($distributor->userProduk && $distributor->userProduk->isNotEmpty())
-                                        <div class="row">
-                                            @foreach ($distributor->userProduk as $userProduk)
-                                                @php
-                                                    $firstImage = $userProduk->produk->images->first();
-                                                    $imageSrc = $firstImage
-                                                        ? $firstImage->gambar
-                                                        : 'assets/img/default.jpg';
-                                                @endphp
-                                                <div class="col-md-3 mb-3">
-                                                    <div class="card">
-                                                        <img src="{{ asset($imageSrc) }}" class="card-img-top"
-                                                            alt="{{ $userProduk->produk->nama }}"
-                                                            style="height: 200px; object-fit: cover; width:100%;">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">{{ $userProduk->produk->nama }}</h5>
-                                                            <p class="card-text"><strong>Tanggal Pembelian :</strong>
-                                                                {{ $userProduk->pembelian ? $userProduk->pembelian : 'N/A' }}
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    @else
-                                        <p>Distributor ini tidak memiliki produk.</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
+            @if(!$distributor->verified)
+                <form action="{{ route('admin.distributors.approve', $distributor->id) }}" method="POST" class="mt-4">
+                    @csrf
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-check me-2"></i>Approve Distributor
+                    </button>
+                </form>
+            @endif
 
-
-                        <style>
-                            <style>.card {
-                                height: 100%;
-                                display: flex;
-                                flex-direction: column;
-                            }
-
-                            .card-img-top {
-                                height: 200px;
-                                /* Fixed height for the images */
-                                object-fit: cover;
-                                /* Ensures the image covers the area */
-                            }
-
-                            .card-body {
-                                flex-grow: 1;
-                                /* Makes sure card body grows to take remaining space */
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: flex-end;
-                                /* Ensures consistent vertical alignment */
-                            }
-
-                            .card-title {
-                                font-size: 1rem;
-                                /* Ensures the title text is consistent */
-                                margin-bottom: 0.5rem;
-                            }
-                        </style>
-
-                        </style>
-
-                        <a href="{{ route('distributors.index') }}" class="btn btn-secondary">Kembali ke Daftar
-                            Distributor</a>
-                    </div>
-                </div>
+            <div class="d-flex justify-content-end mt-4">
+                <a href="{{ route('admin.distributors.index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>Back to List
+                </a>
             </div>
         </div>
     </div>
+</div>
 @endsection

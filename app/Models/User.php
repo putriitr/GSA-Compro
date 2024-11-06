@@ -31,6 +31,11 @@ class User extends Authenticatable
         'alamat',
         'bidang_id',
         'location_id',
+        'pic',
+        'nomor_telp_pic',
+        'akta',
+        'nib',
+        'verified'
     ];
 
     /**
@@ -56,7 +61,7 @@ class User extends Authenticatable
     protected function type(): Attribute
     {
         return new Attribute(
-            get: fn ($value) =>  ["member", "admin"][$value],
+            get: fn ($value) => ["member", "admin", "distributor"][$value] ?? "member",
         );
     }
 
@@ -74,7 +79,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Location::class, 'location_id');
     }
-
-
-
+    
+    public function isVerifiedDistributor(): bool
+    {
+        return $this->type === 'distributor' && $this->verified;
+    }
 }

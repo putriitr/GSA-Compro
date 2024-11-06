@@ -129,7 +129,7 @@
                             <!-- Show Profile -->
                             <li>
                                 <a class="dropdown-item" href="{{ route('profile.show') }}">
-                                    <i class="fa fa-user me-2"></i>Profil
+                                    <i class="fa fa-user me-2"></i>{{ __('messages.profile') }}
                                 </a>
                             </li>
 
@@ -137,7 +137,7 @@
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="fa fa-sign-out-alt me-2"></i>Keluar
+                                    <i class="fa fa-sign-out-alt me-2"></i>{{ __('messages.logout') }}
                                 </a>
                             </li>
                         </ul>
@@ -150,7 +150,7 @@
                 @else
                     <a href="{{ route('login') }}">
                         <small class="btn btn-primary rounded-pill text-white py-1 px-1">
-                            <i class="fa fa-sign-in-alt text-white me-2"></i>LOGIN
+                            <i class="fa fa-sign-in-alt text-white me-2"></i>{{ __('messages.masuk') }}
                         </small>
                     </a>
                 @endif

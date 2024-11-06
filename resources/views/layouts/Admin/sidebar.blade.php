@@ -42,46 +42,14 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#member-management">
                         <i class="fas fa-user"></i>
-                        <p>Member</p>
+                        <p>Member & Distributor</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="member-management">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('members.index') }}">
-                                    <span class="sub-item">Semua Member</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#distributor-management">
-                        <i class="fas fa-truck"></i>
-                        <p>Distributor</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="distributor-management">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="{{ route('distributors.index') }}">
-                                    <span class="sub-item">Semua Distributor</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#vendor-management">
-                        <i class="fas fa-store"></i>
-                        <p>Vendor</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="vendor-management">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="{{ route('distributors.index') }}">
-                                    <span class="sub-item">Semua Vendor</span>
+                                    <span class="sub-item">Semua Member & Distributor</span>
                                 </a>
                             </li>
                         </ul>

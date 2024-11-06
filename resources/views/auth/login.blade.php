@@ -37,13 +37,13 @@
                                         {{ session('error') }}
                                     </div>
                                 @endif
-                                <p class="login-card-description">Silakan Masuk ke Akun Anda</p>
+                                <p class="login-card-description">{{ __('messages.login_desc') }}</p>
                                 <form action="{{ route('login') }}" method="POST">
                                     @csrf
                                     <div class="form-group">
                                         <label for="email" class="sr-only">Email</label>
                                         <input type="email" name="email" id="email" class="form-control"
-                                            placeholder="Email Anda" required>
+                                            placeholder="Email" required>
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -51,9 +51,9 @@
                                         @enderror
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label for="password" class="sr-only">Kata Sandi</label>
+                                        <label for="password" class="sr-only">{{ __('messages.password') }}</label>
                                         <input type="password" name="password" id="password" class="form-control"
-                                            placeholder="Kata Sandi" required>
+                                            placeholder="{{ __('messages.password') }}" required>
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -61,21 +61,26 @@
                                         @enderror
                                     </div>
                                     <button type="submit" class="btn btn-lg text-white w-100 fs-6"
-                                        style="background: #5bc0de;">Masuk</button>
+                                        style="background: #5bc0de;">{{ __('messages.masuk') }}</button>
                                 </form>
                                 <div class="form-prompt-wrapper d-flex justify-content-between mb-4 mt-3">
                                     <div class="custom-control custom-checkbox login-card-check-box">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1"
                                             {{ old('remember') ? 'checked' : '' }}>
-                                        <label class="custom-control-label" for="customCheck1">Remember me</label>
+                                        <label class="custom-control-label" for="customCheck1">{{ __('messages.remember') }}</label>
                                     </div>
                                     <div class="forgot">
                                         @if (Route::has('password.request'))
-                                            <a href="{{ route('password.request') }}" class="text-reset">Forgot
-                                                password?</a>
+                                            <a href="{{ route('password.request') }}" class="text-reset">{{ __('messages.forgot') }}</a>
                                         @endif
                                     </div>
                                 </div>
+                                <div class="form-prompt-wrapper d-flex  mb-4 mt-3">
+                                    <div class="register-distributor">{{ __('messages.dist_acc') }}
+                                        <a href="{{ route('distributors.register') }}" class="" style="color: #5bc0de;"> {{ __('messages.create') }}</a>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

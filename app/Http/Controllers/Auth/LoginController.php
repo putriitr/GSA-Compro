@@ -32,39 +32,42 @@ class LoginController extends Controller
             // Cek peran pengguna
             $user = Auth::user();
 
-            if ($user->type == 'admin') {
-                return redirect()->route('dashboard'); // Portal admin
-            } elseif ($user->type == 'member') {
-                return redirect('/'); // Portal member
-            } elseif ($user->type == 'distributor') {
-                return redirect('/'); // Portal distributor
+            // If user is a distributor and not verified, log them out and redirect to waiting
+            if ($user->type == 'distributor' && !$user->verified) {  // Type 0 represents a distributor
+                auth()->logout();
+                return redirect()->route('distributors.waiting')
+                    ->with('info', 'Your account is awaiting approval. Please wait for admin verification.');
             }
+
+
+            if ($user->type == 'admin') {
+                return redirect()->route('dashboard');
+            } elseif ($user->type == 'member') {
+                return redirect('/');
+            } elseif ($user->type == 'distributor') {
+                return redirect('/');
+            }
+        } else {
+            // Authentication failed
+            return redirect()->route('login')
+                ->with('error', 'Email or Password is incorrect.');
         }
-
-        // Jika autentikasi gagal, kembali dengan error
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
     }
-
 
     public function logout(Request $request)
     {
-        $user = Auth::user(); // Capture the user before logging out
+        $user = Auth::user();
 
-        Auth::logout(); // Log the user out
-        $request->session()->invalidate(); // Invalidate the session
-        $request->session()->regenerateToken(); // Regenerate the CSRF token
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        // Redirect berdasarkan peran pengguna
-        if ($user && $user->role === 'admin') {
-            return redirect('/login'); // Redirect admin users to the login page
-        } elseif ($user && $user->role === 'member') {
-            return redirect('/'); // Redirect member users to the homepage
-        } elseif ($user && $user->role === 'distributor') {
-            return redirect('/'); // Redirect distributor users to the homepage
+        if ($user->role == 'admin') {
+            return redirect('/login');
+        } elseif ($user->role == 'member') {
+            return redirect('/');
         }
 
-        return redirect('/'); // Fallback to homepage for other roles
+        return redirect('/');
     }
 }

@@ -25,7 +25,7 @@
                         <tbody>
                             @foreach ($activities as $activity)
                                 <tr>
-                                    <td><img src="{{$activity->image_url }}" alt="{{ $activity->title }}"
+                                    <td><img src="{{ asset($activity->image_url) }}" alt="{{ $activity->title }}"
                                             class="img-thumbnail" style="max-width: 100px; height: auto;"></td>
                                     <td>{{ $activity->date->format('d-m-Y') }}</td>
                                     <td>{{ $activity->title }}</td>

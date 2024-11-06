@@ -28,14 +28,14 @@
                             <div class="row g-4">
                                 <div class="col-sm-12">
                                     <div class="video h-100">
-                                        <img src="{{ asset($activity->image) }}" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 400px; margin-bottom: 10px;" alt="Activity Image">
+                                        <img src="{{ asset($activity->image_url) }}" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: 400px; margin-bottom: 10px;" alt="Activity Image">
                                     </div>
                                 </div>
                             </div>
 
-                            <h1 class="mb-4" style="font-size: 1.2rem; color: #6c757d; margin: 0; line-height: 1.5; text-align: justify; margin-top: 10px;">
+                            <h3 class="mb-4" style="font-size: 1rem; color: black; margin: 0; line-height: 1.5; text-align: justify; margin-top: 10px;">
                                 {{ $activity->description }}
-                            </h1>
+                            </h3>
                         </div>
                     </div>
                 </div>

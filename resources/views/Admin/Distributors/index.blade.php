@@ -1,57 +1,69 @@
 @extends('layouts.admin.master')
 
 @section('content')
-<div class="container mt-5">
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+<div class="container py-5">
+    <h2 class="mb-4">Daftar Distributor</h2>
+
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>{{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h1 class="card-title">Daftar Distributor</h1>
-                    <a href="{{ route('distributors.create') }}" class="btn btn-primary">Tambah Distributor</a>
-                </div>
 
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Nama Perusahaan</th>
-                                    <th>Email</th>
-                                    <th>Nomor Telepon</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($distributors as $distributor)
-                                    <tr>
-                                        <td>{{ $distributor->nama_perusahaan }}</td>
-                                        <td>{{ $distributor->email }}</td>
-                                        <td>{{ $distributor->no_telepon }}</td>
-                                        <td>
-                                            <a href="{{ route('distributors.show', $distributor->id) }}" class="btn btn-info btn-sm">Lihat</a>
-                                            <a href="{{ route('distributors.edit', $distributor->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                            <form action="{{ route('distributors.destroy', $distributor->id) }}" method="POST" style="display:inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this distributor?');">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="d-flex justify-content-center mt-4">
-                        {{ $distributors->links() }}
-                    </div>
-                </div>
-            </div>
+    <div class="card shadow-sm border-0 rounded">
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover mb-0">
+                <thead class="table-primary">
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Company</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($distributors as $key => $distributor)
+                        <tr>
+                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $distributor->name }}</td>
+                            <td>{{ $distributor->email }}</td>
+                            <td>{{ $distributor->nama_perusahaan }}</td>
+                            <td>
+                                <span class="badge 
+                                    @if($distributor->verified) bg-success 
+                                    @else bg-warning @endif">
+                                    {{ $distributor->verified ? 'Approved' : 'Pending' }}
+                                </span>
+                            </td>
+                            <td>
+                                @if(!$distributor->verified)
+                                    <form action="{{ route('admin.distributors.approve', $distributor->id) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fas fa-check me-1"></i>Approve
+                                        </button>
+                                    </form>
+                                @else
+                                    <button class="btn btn-secondary btn-sm" disabled>
+                                        <i class="fas fa-check-circle me-1"></i>Approved
+                                    </button>
+                                @endif
+                                <a href="{{ route('admin.distributors.show', $distributor->id) }}" class="btn btn-info btn-sm">
+                                    <i class="fas fa-eye me-1"></i> View
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
