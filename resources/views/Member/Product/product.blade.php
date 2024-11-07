@@ -93,8 +93,22 @@
                                     <h4 class="mb-3">{{ $limitedName }}</h4>
                                     <a href="{{ route('product.show', $produk->id) }}" class="btn btn-primary py-2 px-4"
                                         style="border-radius: 15px;">
-                                        Read More <i class="fas fa-arrow-right ms-2"></i>
+                                        {{ __('messages.show_more') }} <i class="fas fa-arrow-right ms-2"></i>
                                     </a>
+                                    <!-- Ajukan Quotation Button for Distributor Users Only -->
+                                    @if (auth()->user() && auth()->user()->type === 'distributor')
+                                        <form action="{{ route('Distributor.product.addToQuotation', $produk->id) }}"
+                                            method="POST" class="mt-2 d-inline">
+                                            @csrf
+                                            <!-- Hidden input for quantity -->
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit" class="btn btn-link p-0" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" title="Ajukan Quotation">
+                                                <i class="fas fa-file-invoice-dollar"
+                                                    style="font-size: 1.5em; color: #007bff;"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

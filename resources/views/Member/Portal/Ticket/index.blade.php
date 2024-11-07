@@ -15,7 +15,7 @@
 
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-10">
+            <div class="col-lg-9">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0"><strong>{{ __('messages.daftar_tiket') }}</strong></h4>
                     <a href="{{ route('tickets.create') }}" class="btn btn-primary"><i
@@ -28,10 +28,11 @@
                             <thead class="table-primary text-center">
                                 <tr>
                                     <th style="width: 5%;">ID</th>
-                                    <th style="width: 20%;">{{ __('messages.jenis_layanan') }}</th>
-                                    <th style="width: 25%;">{{ __('messages.keterangan_pengajuan') }}</th>
+                                    <th style="width: 15%;">{{ __('messages.jenis_layanan') }}</th>
+                                    <th style="width: 20%;">{{ __('messages.keterangan_pengajuan') }}</th>
                                     <th style="width: 15%;">{{ __('messages.tanggal_pengajuan') }}</th>
-                                    <th style="width: 15%;">{{ __('messages.status') }}</th>
+                                    <th style="width: 10%;">{{ __('messages.status') }}</th>
+                                    <th style="width: 15%;">{{ __('messages.tanggal_tindakan') }}</th>
                                     <th style="width: 20%;">{{ __('messages.aksi') }}</th>
                                 </tr>
                             </thead>
@@ -45,32 +46,43 @@
                                         <td>
                                             <span
                                                 class="badge
-                                    @if ($ticket->status == 'open') bg-success
-                                    @elseif($ticket->status == 'progress') bg-warning
-                                    @else bg-secondary @endif">
+                                            @if ($ticket->status == 'open') bg-success
+                                            @elseif($ticket->status == 'progress') bg-warning
+                                            @else bg-secondary @endif">
                                                 {{ ucfirst($ticket->status) }}
                                             </span>
                                         </td>
-                                        <td class="text-center">
-                                            <div class="d-flex justify-content-center gap-2">
-                                                <a href="{{ route('tickets.show', $ticket->id_after_sales) }}" class="btn btn-info btn-sm">
-                                                    <i class="fas fa-eye"></i> {{ __('messages.view') }}
-                                                </a>
-                                                @if ($ticket->status == 'open')
-                                                    <a href="{{ route('tickets.edit', $ticket->id_after_sales) }}" class="btn btn-warning btn-sm">
-                                                        <i class="fas fa-edit"></i> {{ __('messages.edit') }}
-                                                    </a>
-                                                    <form action="{{ route('tickets.cancel', $ticket->id_after_sales) }}" method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-danger btn-sm">
-                                                            <i class="fas fa-times-circle"></i> {{ __('messages.hapus') }}
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                            </div>
+                                        <td>
+                                            @if ($ticket->status == 'open')
+                                                <span class="text-muted">{{ __('messages.blm_proses') }}</span>
+                                            @elseif($ticket->status == 'progress' && $ticket->tgl_mulai_tindakan)
+                                                {{ __('messages.start_date') }} : {{ $ticket->tgl_mulai_tindakan }}
+                                            @elseif($ticket->status == 'close' && $ticket->tgl_mulai_tindakan && $ticket->tgl_selesai_tindakan)
+                                                {{ __('messages.start_date') }} : {{ $ticket->tgl_mulai_tindakan }}<br>
+                                                {{ __('messages.end_date') }} : {{ $ticket->tgl_selesai_tindakan }}
+                                            @endif
                                         </td>
 
+                                        <td class="text-center">
+                                            <a href="{{ route('tickets.show', $ticket->id_after_sales) }}"
+                                                class="btn btn-info btn-sm">
+                                                <i class="fas fa-eye"></i> {{ __('messages.view') }}
+                                            </a>
+                                            @if ($ticket->status == 'open')
+                                                <a href="{{ route('tickets.edit', $ticket->id_after_sales) }}"
+                                                    class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit"></i> {{ __('messages.edit') }}
+                                                </a>
+                                                <form action="{{ route('tickets.cancel', $ticket->id_after_sales) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-times-circle"></i> {{ __('messages.hapus') }}
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>

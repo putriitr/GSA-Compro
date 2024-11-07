@@ -3,7 +3,7 @@
 @section('content')
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb"
-    style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/about.jpg') }}'); background-size: cover; height: 300px;">
+        style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/about.jpg') }}'); background-size: cover; height: 300px;">
         <div class="container text-center py-5" style="max-width: 900px;">
             <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">About Us</h4>
             <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
@@ -142,7 +142,7 @@
                                 <h2 style="font-weight: bold; margin-bottom: 3rem;" class="text-white">
                                     {{ __('messages.visimisi_1') }}
                                 </h2>
-                            <p class="text-white">{{ $company->visimisi_1 }}</p>
+                                <p class="text-white">{{ $company->visimisi_1 }}</p>
                             </div>
                         </div>
                     </div>
@@ -194,18 +194,18 @@
 
     <!-- Map Start -->
     <div class="container-fluid feature pb-5"
-        style="border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 20px; background-color: #fff; text-align: center;">
+        style="width: 90%; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); padding: 20px; background-color: #fff; text-align: center;">
         <div class="container pb-5" data-wow-delay="0.1s">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
                 <h4 class="text-primary">{{ __('messages.our_customers1') }}</h4>
                 <h1 class="display-5 mb-4">{{ __('messages.our_customers') }}</h1>
                 <p class="mb-0">{{ __('messages.customer_desc') }}</p>
             </div>
+            <div id="map"
+            style="margin-left: auto; margin-right: auto; width: 100%; height: 500px; border-radius: 10px; overflow: hidden;">
         </div>
-        <hr>
-        <div id="map" style="width: 100%; height: 600px; border-radius: 10px; overflow: hidden;"></div>
     </div>
-    <br><br>
+    </div><br>
     <!-- Map End -->
 
     <!-- Include Leaflet.js and Pulse Icon -->
@@ -215,7 +215,7 @@
     <script src="https://unpkg.com/leaflet-pulse-icon@1.0.0/dist/L.Icon.Pulse.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             // Inisialisasi peta
             var map = L.map('map').setView([-1.8694501185333308, 115.36224445532018], 5);
 
@@ -229,11 +229,12 @@
             $.ajax({
                 url: '/path/to/your/api/locations', // Gantilah dengan URL API Anda
                 method: 'GET',
-                success: function (data) {
+                success: function(data) {
                     // Asumsikan data berbentuk array objek: [{latitude, longitude, name, image_url}, ...]
-                    data.forEach(function (location) {
+                    data.forEach(function(location) {
                         // Menambahkan marker ke peta dengan informasi dari data
-                        var marker = L.marker([location.latitude, location.longitude]).addTo(map)
+                        var marker = L.marker([location.latitude, location.longitude]).addTo(
+                                map)
                             .bindPopup(
                                 `<div style="display: flex; align-items: center;">
                                     <img src="${location.image_url}" alt="Image" style="width: 50px; height: 50px; margin-right: 10px;">
@@ -244,7 +245,7 @@
                             );
                     });
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error('Error fetching locations:', error);
                 }
             });

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Distribution\Portal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Quotation;
 
 class DistributionController extends Controller
 {
@@ -14,11 +16,17 @@ class DistributionController extends Controller
     }
 
     // Menampilkan halaman untuk memilih produk dan meminta quotation
-    public function requestQuotation()
-    {
-        return view('Distributor.portal.request-quotation'); // Pastikan view ini ada
-    }
 
+
+public function requestQuotation()
+{
+    // Get the authenticated user's ID
+    $quotations = Quotation::with('produk')->where('user_id', auth()->id())->get();
+
+
+    // Pass the quotations to the view
+    return view('Distributor.portal.request-quotation', compact('quotations'));
+}
     // Menampilkan halaman untuk membuat dan mengirim Purchase Order (PO)
     public function createPO()
     {

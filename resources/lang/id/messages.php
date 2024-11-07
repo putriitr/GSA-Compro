@@ -44,6 +44,8 @@ return [
     'quotation' => 'Informasi Penawaran',
     'proforma_invoice' => 'Faktur Proforma',
     'invoice' => 'Faktur',
+    'po' => 'Pembelian Produk',
+    'pro_quo' => 'Produk & Quotation',
     'aftersales_service' => 'Layanan Setelah Pembelian',
 
     'keyakinan_kami' => 'Keyakinan Kami',
@@ -123,6 +125,7 @@ return [
     'address' => 'Alamat',
 
     'portal_desc' => 'Akses eksklusif ini hanya tersedia bagi anggota member yang telah mendaftar dan disetujui oleh admin. Nikmati berbagai fitur dan layanan yang dirancang khusus untuk Anda.',
+    'portal-dist_desc' => 'Portal eksklusif ini dirancang khusus untuk distributor tepercaya kami. Akses sumber daya penting, kelola pesanan Anda, lacak inventaris, dan nikmati layanan khusus yang menyederhanakan proses distribusi Anda.',
     'my_product' => 'Produk Saya',
     'user_manual' => 'Panduan Penggunaan Produk',
     'doc_cert' => 'Dokumen & Sertifikat',
@@ -213,9 +216,16 @@ return [
     'ticket_info' => 'Informasi Tiket Layanan',
     'ticket_edit' => 'Edit Tiket Layanan',
     'update' => 'Perbaharui',
+    'tanggal_tindakan' => 'Tanggal Tindakan',
+    'blm_proses' => 'Belum Diproses',
+    'start_date' => 'Mulai',
+    'end_date' => 'Selesai',
 
     'login_desc' => 'Silakan Masuk ke Akun Anda',
     'register_desc' => 'Silakan Buat Akun Distributor Anda',
+    'register1' => 'Pendaftaran Berhasil',
+    'register2' => 'Registrasi Anda berhasil diselesaikan. Mohon menunggu persetujuan dari admin sebelum mencoba masuk.',
+    'notify1' => 'Kami akan memberi tahu Anda segera setelah akun Anda diverifikasi dan siap digunakan.',
     'password' => 'Kata Sandi',
     'password1' => 'Konfirmasi Kata Sandi',
     'masuk' => 'Masuk',

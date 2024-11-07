@@ -33,7 +33,7 @@
                                 <p class="login-card-description">{{ __('messages.register_desc') }}</p>
 
                                 <!-- Form Register -->
-                                <form action="{{ route('distributors.register') }}" method="POST" class="w-100">
+                                <form action="{{ route('distributors.register') }}" method="POST" class="w-100" enctype="multipart/form-data">
                                     @csrf
                                     <!-- Name & Email Field -->
                                     <div class="row">
@@ -41,7 +41,7 @@
                                             <div class="form-group">
                                                 <label for="name" class="form-label">{{ __('messages.name') }}</label>
                                                 <input type="text" id="name" name="name" class="form-control"
-                                                    placeholder="Your Name" required>
+                                                    placeholder="Name" required>
                                                 @error('name')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
@@ -51,7 +51,7 @@
                                             <div class="form-group mb-4">
                                                 <label for="email" class="form-label">Email</label>
                                                 <input type="email" id="email" name="email" class="form-control"
-                                                    placeholder="Your Email" required>
+                                                    placeholder="Email" required>
                                                 @error('email')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
@@ -92,7 +92,7 @@
                                             <div class="form-group">
                                                 <label for="no_telp" class="form-label">{{ __('messages.phone') }}</label>
                                                 <input type="text" id="no_telp" name="no_telp" class="form-control"
-                                                    placeholder="Your Phone Number" required>
+                                                    placeholder="Phone Number" required>
                                                 @error('no_telp')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
@@ -103,7 +103,7 @@
                                                 <label for="alamat"
                                                     class="form-label">{{ __('messages.address') }}</label>
                                                 <input type="text" id="alamat" name="alamat" class="form-control"
-                                                    placeholder="Your Address" required></input>
+                                                    placeholder="Address" required></input>
                                                 @error('alamat')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
@@ -116,7 +116,7 @@
                                         <label for="nama_perusahaan"
                                             class="form-label">{{ __('messages.company_name1') }}</label>
                                         <input type="text" id="nama_perusahaan" name="nama_perusahaan"
-                                            class="form-control" placeholder="Your Company" required>
+                                            class="form-control" placeholder="Company" required>
                                         @error('nama_perusahaan')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -129,7 +129,7 @@
                                                 <label for="pic"
                                                     class="form-label">{{ __('messages.pic_name') }}</label>
                                                 <input type="text" id="pic" name="pic" class="form-control"
-                                                    placeholder="PIC Name" required>
+                                                    placeholder="Name" required>
                                                 @error('pic')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
@@ -140,7 +140,7 @@
                                                 <label for="nomor_telp_pic"
                                                     class="form-label">{{ __('messages.pic_phone') }}</label>
                                                 <input type="text" id="nomor_telp_pic" name="nomor_telp_pic"
-                                                    class="form-control" placeholder="PIC Phone" required>
+                                                    class="form-control" placeholder="Phone Number" required>
                                                 @error('nomor_telp_pic')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
@@ -177,7 +177,7 @@
 
                                 <div class="form-prompt-wrapper d-flex justify-content-center mb-4 mt-3">
                                     <div class="register-distributor">{{ __('messages.login_acc') }}
-                                        <a href="{{ route('distributors.register') }}" class="" style="color: #5bc0de;"> {{ __('messages.login_here') }}</a>
+                                        <a href="{{ route('login') }}" class="" style="color: #5bc0de;"> {{ __('messages.login_here') }}</a>
                                     </div>
                                 </div>
                             </div>

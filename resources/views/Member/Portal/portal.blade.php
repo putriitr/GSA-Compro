@@ -9,8 +9,9 @@
                 <h1 class="display-5 text-white mb-4">Portal Member</h1>
                 <p class="mb-0 text-white">{{ __('messages.portal_desc') }}</p>
             </div>
+            
             <div class="row g-4 justify-content-center">
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-md-6 col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
@@ -24,7 +25,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-md-6 col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
@@ -38,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-md-6 col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
@@ -52,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-md-6 col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
@@ -80,7 +81,7 @@
                         </div>
                     </div>
                 </div> --}}
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-md-6 col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content text-center">
                             <div class="mb-4">
@@ -97,7 +98,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-md-6 col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">

@@ -42,6 +42,8 @@ return [
     'quotation' => 'Quotation',
     'proforma_invoice' => 'Proforma Invoice',
     'invoice' => 'Invoice',
+    'po' => 'Purchase Order',
+    'pro_quo' => 'Product & Quotation',
     'aftersales_service' => 'Aftersales Service',
 
     'tujuan_kami' => 'Our Company Goals',
@@ -119,6 +121,7 @@ return [
     'qna' => 'Questions & Answers',
 
     'portal_desc' => 'This exclusive access is only available to members who have registered and approved by the admin. Enjoy a variety of features and services designed especially for you.',
+    'portal-dist_desc' => 'This exclusive portal is designed specifically for our trusted distributors. Access important resources, manage your orders, track inventory, and enjoy tailored services that streamline your distribution process.',
     'my_product_desc' => 'View and manage the products you have purchased in our system.',
     'user_manual_desc' => 'Access the user manual to learn how to use the product effectively.',
     'doc_cert_desc' => 'Find official documents and certificates related to your product.',
@@ -199,9 +202,16 @@ return [
     'ticket_info' => 'Ticketing Service Information',
     'ticket_edit' => 'Ticketing Service Update',
     'update' => 'Update',
+    'tanggal_tindakan' => 'Action Dates',
+    'blm_proses' => 'Not Yet Processed',
+    'start_date' => 'Start Date',
+    'end_date' => 'End Date',
 
     'login_desc' => 'Login to Your Account',
     'register_desc' => 'Create Your Distributor Account',
+    'register1' => 'Registration Successful',
+    'register2' => 'Your registration is successfully completed. Please allow time for admin approval before attempting to log in.',
+    'notify1' => 'We will notify you as soon as your account has been verified and is ready for use.',
     'password' => 'Password',
     'password1' => 'Confirm Password',
     'masuk' => 'Login',

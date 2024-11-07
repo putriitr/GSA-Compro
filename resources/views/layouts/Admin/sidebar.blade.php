@@ -42,14 +42,30 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#member-management">
                         <i class="fas fa-user"></i>
-                        <p>Member & Distributor</p>
+                        <p>Member</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="member-management">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('members.index') }}">
-                                    <span class="sub-item">Semua Member & Distributor</span>
+                                    <span class="sub-item">Semua Member</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#distributor-management">
+                        <i class="fas fa-user"></i>
+                        <p>Distributor</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="distributor-management">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.distributors.index') }}">
+                                    <span class="sub-item">Semua Distributor</span>
                                 </a>
                             </li>
                         </ul>
@@ -77,8 +93,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.monitoring.index') }}">
-                                    <span class="sub-item">Monitoring</span>
+                                <a href="{{ route('admin.tickets.index') }}">
+                                    <span class="sub-item">Tiketing Layanan</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.quotations.index') }}">
+                                    <span class="sub-item">Quotation</span>
                                 </a>
                             </li>
                         </ul>
