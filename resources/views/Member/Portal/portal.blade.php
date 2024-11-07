@@ -88,7 +88,7 @@
                             </div>
                             <h4 class="h4 d-inline-block mb-3">{{ __('messages.ticketing') }}</h4>
                             <p class="mb-0">{{ __('messages.ticketing_desc') }}</p>
-                            <a href="{{ route('portal.ticketing') }}"
+                            <a href="{{ route('tickets.index') }}"
                                class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2"
                                style="transition: background-color 0.3s ease, color 0.3s ease; margin-top: 15px;">
                                 {{ __('messages.show_more') }}

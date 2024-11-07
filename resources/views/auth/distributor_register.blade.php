@@ -173,7 +173,13 @@
                                         style="background: #5bc0de;">
                                         {{ __('messages.daftar') }}
                                     </button>
-                                </form>
+                                </form><br>
+
+                                <div class="form-prompt-wrapper d-flex justify-content-center mb-4 mt-3">
+                                    <div class="register-distributor">{{ __('messages.login_acc') }}
+                                        <a href="{{ route('distributors.register') }}" class="" style="color: #5bc0de;"> {{ __('messages.login_here') }}</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
