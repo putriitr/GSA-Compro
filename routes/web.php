@@ -150,7 +150,7 @@
             Route::get('/admin/distributors', [DistributorApprovalController::class, 'index'])->name('admin.distributors.index');
             Route::post('/admin/distributors/{id}/approve', [DistributorApprovalController::class, 'approve'])->name('admin.distributors.approve');
             Route::get('/admin/distributors/{id}', [DistributorApprovalController::class, 'show'])->name('admin.distributors.show');
-            
+
             Route::resource('admin/activity/category-activity', CategoryActivityController::class)->names('admin.activity.category-activity');
             Route::put('/admin/activity/{activity}', [ActivityController::class, 'update'])->name('admin.activity.update');
 
@@ -179,6 +179,9 @@
             Route::get('/admin/quotations', [QuotationAdminController::class, 'index'])->name('admin.quotations.index');
             Route::put('/quotations/{id}/status', [QuotationAdminController::class, 'updateStatus'])->name('admin.quotations.updateStatus');
             Route::post('/quotations/{id}/upload-file', [QuotationAdminController::class, 'uploadFile'])->name('admin.quotations.uploadFile');
+            Route::get('admin/quotations/{id}/show', [QuotationAdminController::class, 'show'])->name('admin.quotations.show');
+            Route::get('admin/quotations/{id}/edit', [QuotationAdminController::class, 'edit'])->name('admin.quotations.edit');
+            Route::put('admin/quotations/{id}', [QuotationAdminController::class, 'update'])->name('admin.quotations.update');
 
             Route::prefix('admin/inspeksi')->name('admin.inspeksi.')->group(function () {
                 Route::get('/{userProdukId}', [MonitoringController::class, 'inspeksiIndex'])->name('index');

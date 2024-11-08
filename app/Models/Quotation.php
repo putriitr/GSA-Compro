@@ -13,8 +13,27 @@ class Quotation extends Model
 
     // Specify the fillable attributes for mass assignment
     protected $fillable = [
-        'user_id', 'produk_id', 'quantity', 'status'
+        'user_id',
+        'produk_id',
+        'quantity',
+        'status',
+        'recipient_company',
+        'recipient_contact_person',
+        'quotation_number',
+        'quotation_date',
+        'subtotal_price',
+        'discount',
+        'total_after_discount',
+        'ppn',
+        'grand_total',
+        'notes',
+        'terms_conditions',
+        'authorized_person_name',
+        'authorized_person_position',
+        'pdf_path' // Tambahkan kolom pdf_path
+
     ];
+
 
     /**
      * Define relationship with the User model.
@@ -32,4 +51,10 @@ class Quotation extends Model
     {
         return $this->belongsTo(Produk::class, 'produk_id');
     }
+    public function quotationProducts()
+    {
+        return $this->hasMany(QuotationProduct::class, 'quotation_id');
+    }
+
 }
+

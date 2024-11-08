@@ -42,8 +42,13 @@ return [
     'quotation' => 'Quotation',
     'proforma_invoice' => 'Proforma Invoice',
     'invoice' => 'Invoice',
+    'invoice_desc' => 'Simplify invoice management in one place, ensuring accurate and timely reconciliation and payment of transactions.',
     'po' => 'Purchase Order',
+    'po_desc' => 'Provides a platform to manage purchase orders with transparency and making it easy to track the status of goods.',
     'pro_quo' => 'Product & Quotation',
+    'pro_quo_desc' => 'Provide easy access to create and manage clear and structured product quotes according to customer demand.',
+    'ticketing' => 'Ticketing',
+    'ticketing_desc' => 'Ticketing makes it easy for customers to report issues, allowing our team to address them quickly and transparently.',
     'aftersales_service' => 'Aftersales Service',
 
     'tujuan_kami' => 'Our Company Goals',
@@ -157,8 +162,6 @@ return [
     'show_more_categories' => 'More Categories',
     'show_less_categories' => 'Less Categories',
     'aftersales_service_desc' => 'Contains access to usage guides, repair information, and technical assistance after product purchase.',
-    'ticketing' => 'Ticketing',
-    'ticketing_desc' => 'Ticketing makes it easy for customers to report issues, allowing our team to address them quickly and transparently.',
 
     'customer_name' => 'Customer Name',
     'email' => 'Email',

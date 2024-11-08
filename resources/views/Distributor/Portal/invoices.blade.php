@@ -2,7 +2,8 @@
 
 @section('content')
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
+    <div class="container-fluid bg-breadcrumb"
+    style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/bg-product.jpg') }}');">
         <div class="container text-center py-5" style="max-width: 900px;">
             <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">Invoice</h3>
             <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
@@ -12,13 +13,34 @@
             </ol>
         </div>
     </div>
-    <!-- Header End --><br><br>
+    <!-- Header End -->
 
     <!-- Content Start -->
-    <div class="container">
-        <h2>Pengelolaan Invoice</h2>
-        <p>Di sini Anda dapat melihat dan mengelola invoice yang diterbitkan berdasarkan PO yang telah dikirim.</p>
-        <!-- Tambahkan daftar invoice atau detail invoice di sini -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h2><strong>Pengelolaan Invoice</strong></h2>
+                <p>Di sini Anda dapat melihat dan mengelola invoice yang diterbitkan berdasarkan PO yang telah dikirim.</p>
+                <br>
+
+                <div class="card shadow-sm border-0 rounded">
+                    <div class="card-body p-0">
+                        <table class="table table-striped table-hover mb-0">
+                            <thead class="table-primary text-center">
+                                <tr>
+                                    <th style="width: 5%;">ID</th>
+                                    <th style="width: 15%;">{{ __('messages.jenis_layanan') }}</th>
+                                    <th style="width: 20%;">{{ __('messages.keterangan_pengajuan') }}</th>
+                                    <th style="width: 15%;">{{ __('messages.tanggal_pengajuan') }}</th>
+                                    <th style="width: 10%;">{{ __('messages.status') }}</th>
+                                    <th style="width: 15%;">{{ __('messages.tanggal_tindakan') }}</th>
+                                    <th style="width: 20%;">{{ __('messages.aksi') }}</th>
+                                </tr>
+                            </thead>
+                        </table><br>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Content End -->
 @endsection

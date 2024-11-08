@@ -42,29 +42,43 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image_url' => 'required|image|max:2048',
-            'date' => 'required|date',
+            'image_url' => 'required|image',
             'title' => 'required|string|max:255',
+            'subtitle' => 'required|string|max:255',
             'description' => 'required|string',
-            'category_activities_id' => 'required|exists:category_activities,id',
+            'button_text' => 'required|string|max:255',
+            'button_url' => 'required|string', // Modify to dynamic URL handling
         ]);
 
-        // Simpan gambar di folder yang benar
+        // Save image to public/uploads/slider
         $image = $request->file('image_url');
         $imageName = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('assets/img/activity'), $imageName);
-        $imagePath = 'assets/img/activity/' . $imageName;
+        $image->move(public_path('assets/img/slider'), $imageName);
+        $imagePath = 'assets/img/slider/' . $imageName;
 
-        // Buat aktivitas baru
-        Activity::create([
-            'image' => $imagePath,
-            'date' => $request->date,
+        // Determine if the button URL comes from a pre-defined route or an activity
+        if ($request->filled('activity_id')) {
+            $activity = Activity::find($request->activity_id);
+            $buttonUrl = route('activity.show', $activity->id);
+        } elseif ($request->filled('meta_slug')) {
+            // Use the meta_slug to get the URL for meta data
+            $meta = Meta::where('slug', $request->meta_slug)->firstOrFail();
+            $buttonUrl = route('member.meta.show', $meta->slug);
+        } else {
+            $buttonUrl = $request->button_url;
+        }
+
+
+        Slider::create([
+            'image_url' => $imagePath,
             'title' => $request->title,
+            'subtitle' => $request->subtitle,
             'description' => $request->description,
-            'category_activities_id' => $request->category_activities_id,
+            'button_text' => $request->button_text,
+            'button_url' => $buttonUrl, // Dynamic button URL
         ]);
 
-        return redirect()->route('admin.activity.index')->with('success', 'Aktivitas berhasil ditambahkan!');
+        return redirect()->route('admin.slider.index')->with('success', 'Slider created successfully.');
     }
 
     // Show form to edit an existing slider
@@ -110,7 +124,8 @@ class SliderController extends Controller
             $image = $request->file('image_url');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('assets/img/slider'), $imageName);
-            $slider->image_url = 'assets/img/slider/' . $imageName;
+            $imagePath = 'assets/img/slider/' . $imageName;
+
         }
 
         // Dynamic button URL handling

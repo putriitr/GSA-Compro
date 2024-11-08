@@ -44,8 +44,13 @@ return [
     'quotation' => 'Informasi Penawaran',
     'proforma_invoice' => 'Faktur Proforma',
     'invoice' => 'Faktur',
+    'invoice_desc' => 'Menyederhanakan pengelolaan faktur dalam satu tempat, memastikan rekonsiliasi dan pembayaran transaksi berjalan akurat dan tepat waktu.',
     'po' => 'Pembelian Produk',
+    'po_desc' => 'Menyediakan platform untuk mengelola pesanan pembelian dengan transparansi dan memudahkan pelacakan status barang.',
     'pro_quo' => 'Produk & Quotation',
+    'pro_quo_desc' => 'Memberikan akses mudah untuk membuat dan mengelola penawaran harga produk yang jelas dan terstruktur sesuai permintaan pelanggan.',
+    'ticketing' => 'Ticket',
+    'ticketing_desc' => 'Ticketing mempermudah pelanggan melaporkan masalah, memungkinkan tim kami menanganinya dengan cepat dan transparan.',
     'aftersales_service' => 'Layanan Setelah Pembelian',
 
     'keyakinan_kami' => 'Keyakinan Kami',
@@ -171,8 +176,6 @@ return [
     'show_more_categories' => 'Kategori Lainnya',
     'show_less_categories' => 'Lihat Lebih Sedikit',
     'aftersales_service_desc' => 'Berisi akses ke panduan penggunaan, informasi perbaikan, dan bantuan teknis setelah pembelian produk.',
-    'ticketing' => 'Ticket',
-    'ticketing' => 'Ticketing mempermudah pelanggan melaporkan masalah, memungkinkan tim kami menanganinya dengan cepat dan transparan.',
 
     'customer_name' => 'Nama Pelanggan',
     'email' => 'Email',
