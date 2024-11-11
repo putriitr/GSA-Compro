@@ -24,9 +24,9 @@
     <div class="container-fluid nav-bar sticky-top px-4 py-2 py-lg-0">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center p-0">
-                <img src="{{ asset('storage/logo-gsa2.png') }}" alt="Logo" class="me-2"
+                <img src="{{ asset('assets/img/logo-gsa2.png') }}" alt="Logo" class="me-2"
                     style="height: auto; width: 150px;">
-                <img src="{{ asset('storage/catalogue.png') }}" alt="Logo" class="me-2"
+                <img src="{{ asset('assets/img/catalogue.png') }}" alt="Logo" class="me-2"
                     style="height: auto; width: 100px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

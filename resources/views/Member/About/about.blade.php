@@ -70,7 +70,7 @@
                             <div class="row g-0">
                                 <div class="col-lg-12">
                                     <div class="rounded mb-4">
-                                        <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('storage/bg.jpg') }}"
+                                        <img src="{{ $company && $company->about_gambar ? asset('storage/' . $company->about_gambar) : asset('assets/img/bg-product.jpg') }}"
                                             class="img-fluid rounded w-100"
                                             style="object-fit: cover; transition: transform 0.3s ease; cursor: pointer;"
                                             alt="Image" onmouseover="this.style.transform='scale(1.1)'"

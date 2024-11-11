@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('assets/login/css/login.css') }}">
-        <link rel="icon" href="{{ asset('storage/logo-gsa2.png') }}" type="image/png">
+        <link rel="icon" href="{{ asset('assets/img/logo-gsa2.png') }}" type="image/png">
         <title>Login Here</title>
     </head>
 
@@ -29,7 +29,7 @@
                         <div class="col-md-6">
                             <div class="card-body">
                                 <div class="brand-wrapper">
-                                    <img src="{{ asset('storage/logo-gsa2.png') }}" alt="logo" class="logo"
+                                    <img src="{{ asset('assets/img/logo-gsa2.png') }}" alt="logo" class="logo"
                                         style="height: 80px; width: 200px;">
                                 </div>
                                 @if (session('error'))

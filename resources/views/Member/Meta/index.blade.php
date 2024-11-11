@@ -3,7 +3,7 @@
 @section('content')
     <!-- Service Start -->
     <div class="container-fluid service py-5"
-        style="margin-top: 10px; background-image: url('{{ asset('storage/promo.jpg') }}'); background-size: cover; background-position: center;">
+        style="margin-top: 10px; background-image: url('{{ asset('assets/img/bg.jpslg') }}'); background-size: cover; background-position: center;">
         <div class="container service-section py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                 <h1 class="display-5 text-primary mb-4">{{ __('messages.meta') }}</h1>

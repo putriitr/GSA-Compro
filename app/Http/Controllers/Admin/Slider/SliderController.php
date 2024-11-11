@@ -47,35 +47,33 @@ class SliderController extends Controller
             'subtitle' => 'required|string|max:255',
             'description' => 'required|string',
             'button_text' => 'required|string|max:255',
-            'button_url' => 'required|string', // Modify to dynamic URL handling
+            'button_url' => 'required|string',
         ]);
 
-        // Save image to public/uploads/slider
+        // Upload gambar ke public/assets/img/slider
         $image = $request->file('image_url');
         $imageName = time() . '_' . $image->getClientOriginalName();
         $image->move(public_path('assets/img/slider'), $imageName);
         $imagePath = 'assets/img/slider/' . $imageName;
 
-        // Determine if the button URL comes from a pre-defined route or an activity
+        // Tentukan URL tombol secara dinamis
         if ($request->filled('activity_id')) {
             $activity = Activity::find($request->activity_id);
             $buttonUrl = route('activity.show', $activity->id);
         } elseif ($request->filled('meta_slug')) {
-            // Use the meta_slug to get the URL for meta data
             $meta = Meta::where('slug', $request->meta_slug)->firstOrFail();
             $buttonUrl = route('member.meta.show', $meta->slug);
         } else {
             $buttonUrl = $request->button_url;
         }
 
-
         Slider::create([
-            'image_url' => $imagePath,
+            'image_url' => $imagePath,  // Simpan path gambar
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'description' => $request->description,
             'button_text' => $request->button_text,
-            'button_url' => $buttonUrl, // Dynamic button URL
+            'button_url' => $buttonUrl,
         ]);
 
         return redirect()->route('admin.slider.index')->with('success', 'Slider created successfully.');
@@ -113,22 +111,21 @@ class SliderController extends Controller
             'button_url' => 'required|string',
         ]);
 
-        // Handle image upload if a new image is provided
+        // Jika ada gambar baru yang diunggah
         if ($request->hasFile('image_url')) {
-            // Delete the old image
+            // Hapus gambar lama jika ada
             if (File::exists(public_path($slider->image_url))) {
                 File::delete(public_path($slider->image_url));
             }
 
-            // Save new image to public/assets/img/slider
+            // Upload gambar baru ke public/assets/img/slider
             $image = $request->file('image_url');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('assets/img/slider'), $imageName);
-            $imagePath = 'assets/img/slider/' . $imageName;
-
+            $slider->image_url = 'assets/img/slider/' . $imageName;
         }
 
-        // Dynamic button URL handling
+        // Tentukan URL tombol secara dinamis
         if ($request->filled('activity_id')) {
             $activity = Activity::find($request->activity_id);
             $slider->button_url = route('activity.show', $activity->id);
@@ -139,7 +136,7 @@ class SliderController extends Controller
             $slider->button_url = $request->button_url;
         }
 
-        // Update other fields
+        // Perbarui data lainnya
         $slider->title = $request->title;
         $slider->subtitle = $request->subtitle;
         $slider->description = $request->description;

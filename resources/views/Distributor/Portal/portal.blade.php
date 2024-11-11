@@ -3,7 +3,7 @@
 @section('content')
     <!-- Services Start -->
     <div class="container-fluid service py-5"
-        style="margin-top: 0; background-image: url('http://localhost:8080/GSA-Compro/public/storage/bg-1.jpg'); background-size: cover; background-position: center;">
+        style="margin-top: 0; background-image: url('http://localhost:8080/GSA-Compro/public/assets/img/bg-1.jpg'); background-size: cover; background-position: center;">
         <div class="container service-section py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                 <h4 class="text-primary">Portal Distributor</h4>

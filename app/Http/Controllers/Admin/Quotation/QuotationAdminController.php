@@ -81,7 +81,6 @@ class QuotationAdminController extends Controller
             'products.*.quantity' => 'required|integer',
             'products.*.unit_price' => 'required|numeric',
             'products.*.produk_id' => 'required|integer', // Produk ID harus ada dan integer
-
         ]);
 
         $quotation = Quotation::findOrFail($id);

@@ -102,7 +102,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     </div>
                     <div>
                         <p class="text-white mb-2">{{ __('messages.pembayaran') }}</p>
-                        <img src="{{ asset('storage/midtrans.png') }}" class="img-fluid" alt="Image" style="border-radius: 10px; height: 50px; width: auto;">
+                        <img src="{{ asset('assets/img/midtrans.png') }}" class="img-fluid" alt="Image" style="border-radius: 10px; height: 50px; width: auto;">
                     </div>
                 </div>
             </div>

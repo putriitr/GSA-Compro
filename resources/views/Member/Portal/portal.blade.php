@@ -2,14 +2,14 @@
 
 @section('content')
     <!-- Services Start -->
-    <div class="container-fluid service py-5" style="margin-top: 0; background-image: url('http://localhost:8080/GSA-Compro/public/storage/bg-1.jpg'); background-size: cover; background-position: center;">
+    <div class="container-fluid service py-5" style="margin-top: 0; background-image: url('http://localhost:8080/GSA-Compro/public/assets/img/bg-1.jpg'); background-size: cover; background-position: center;">
         <div class="container service-section py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                 <h4 class="text-primary">Portal Member</h4>
                 <h1 class="display-5 text-white mb-4">Portal Member</h1>
                 <p class="mb-0 text-white">{{ __('messages.portal_desc') }}</p>
             </div>
-            
+
             <div class="row g-4 justify-content-center">
                 <div class="col-md-6 col-lg-4 col-xl-4 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item p-4" style="transition: all 0.3s ease;">

@@ -27,7 +27,7 @@
     <div class="header-carousel owl-carousel">
         @if ($sliders->isEmpty())
             <div class="header-carousel-item  position-relative">
-                <img src="{{ asset('storage/bg-1.jpg') }}" class="img-fluid w-100" alt="Default Image">
+                <img src="{{ asset('assets/img/bg.jpg') }}" class="img-fluid w-100" alt="Default Image">
                 <div
                     class="carousel-caption d-flex align-items-center justify-content-center position-absolute top-50 start-50 translate-middle">
                     <div class="container py-4">

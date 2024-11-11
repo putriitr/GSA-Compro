@@ -59,7 +59,6 @@
         Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
 
         Route::get('/products/search', [ProdukMemberController::class, 'search'])->name('products.search');
-        Route::post('/products/search', [ProdukMemberController::class, 'search'])->name('products.search');
 
         Route::get('/products/filter/{id}', [ProdukMemberController::class, 'filterByCategory'])->name('filterByCategory');
         Route::get('/member/activities', [ActivityMemberController::class, 'activity'])->name('member.activity');

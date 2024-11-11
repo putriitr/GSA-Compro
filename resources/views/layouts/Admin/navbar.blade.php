@@ -4,7 +4,7 @@
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="dark">
                 <a href="index.html" class="logo">
-                    <img src="{{ asset('storage/logo-gsa2.png') }}" alt="navbar brand" class="navbar-brand"
+                    <img src="{{ asset('assets/img/logo-gsa2.png') }}" alt="navbar brand" class="navbar-brand"
                         height="20" />
                 </a>
                 <div class="nav-toggle d-lg-none d-inline-block">
@@ -87,7 +87,7 @@
                         <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                             aria-expanded="false">
                             <div class="avatar-sm">
-                                <img src="{{ asset('storage/user.png') }}" alt="..."
+                                <img src="{{ asset('assets/img/user.png') }}" alt="..."
                                     class="avatar-img rounded-circle" />
                             </div>
                             <span class="profile-username">
@@ -100,7 +100,7 @@
                                 <li>
                                     <div class="user-box">
                                         <div class="avatar-lg">
-                                            <img src="{{ asset('storage/user.png') }}" alt="image profile"
+                                            <img src="{{ asset('assets/img/user.png') }}" alt="image profile"
                                                 class="avatar-img rounded" />
                                         </div>
                                         <div class="u-text">

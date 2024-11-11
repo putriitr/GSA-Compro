@@ -7,7 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-    <link rel="icon" href="{{ asset('storage/logo-gsa2.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/img/logo-gsa2.png') }}" type="image/png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
