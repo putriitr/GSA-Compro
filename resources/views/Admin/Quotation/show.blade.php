@@ -5,125 +5,64 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card p-3 shadow">
-                <h2>Detail Produk : {{ $quotation->produk->nama }}</h2>
+                <h2>Detail Quotation: {{ $quotation->id }}</h2>
 
+                <!-- Daftar Produk di Quotation -->
                 <div class="card mt-4 shadow">
                     <div class="card-body">
-                        <h5 class="card-title">Informasi Produk</h5>
+                        <h5 class="card-title">Informasi Produk dalam Quotation</h5>
                         <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Produk</th>
+                                    <th>Merek</th>
+                                    <th>Tipe</th>
+                                    <th>Quantity</th>
+                                    <th>Harga Satuan</th>
+                                    <th>Total Harga</th>
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">Nama</th>
-                                    <td>{{ $quotation->produk->nama }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Merek</th>
-                                    <td>{{ $quotation->produk->merk }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Tipe</th>
-                                    <td>{{ $quotation->produk->tipe }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Link</th>
-                                    <td>{{ $quotation->produk->link }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Deskripsi</th>
-                                    <td>{{ $quotation->produk->deskripsi }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Spesifikasi</th>
-                                    <td>{{ $quotation->produk->spesifikasi }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Via</th>
-                                    <td>{{ ucfirst($quotation->produk->via) }}</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Kategori</th>
-                                    <td>{{ $quotation->produk->kategori->nama ?? 'N/A' }}</td>
-                                </tr>
+                                @forelse($quotation->quotationProducts as $index => $product)
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ $product->equipment_name ?? 'Produk tidak tersedia' }}</td>
+                                        <td>{{ $product->merk_type ?? 'Tidak tersedia' }}</td>
+                                        <td>{{ $product->tipe ?? 'Tidak tersedia' }}</td>
+                                        <td>{{ $product->quantity }}</td>
+                                        <td>{{ number_format($product->unit_price, 2) }}</td>
+                                        <td>{{ number_format($product->total_price, 2) }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="7" class="text-center text-muted">Tidak ada produk dalam quotation ini.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <!-- Gambar Produk -->
+                <!-- Dokumen PDF dan Media Lain -->
                 <div class="card mt-4 shadow">
                     <div class="card-body">
-                        <h5 class="card-title">Gambar Produk</h5>
-                        @if($quotation->produk->images->count())
-                            <div class="row">
-                                @foreach($quotation->produk->images as $image)
-                                    <div class="col-md-3">
-                                        <img src="{{ asset($image->gambar) }}" class="img-fluid img-thumbnail" alt="Gambar Produk">
-                                    </div>
-                                @endforeach
-                            </div>
-                        @else
-                            <p class="text-muted">Tidak ada gambar untuk produk ini.</p>
-                        @endif
-                    </div>
-                </div>
+                        <h5 class="card-title">Dokumen Pendukung</h5>
 
-                <!-- Video Produk -->
-                <div class="card mt-4 shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Video Produk</h5>
-                        @if($quotation->produk->videos->count())
-                            <div class="row">
-                                @foreach($quotation->produk->videos as $video)
-                                    <div class="col-md-3">
-                                        <video width="320" height="240" controls>
-                                            <source src="{{ asset($video->video) }}" type="video/mp4">
-                                            Browser Anda tidak mendukung tag video.
-                                        </video>
-                                    </div>
-                                @endforeach
-                            </div>
+                        <!-- Dokumentasi PDF -->
+                        @if($quotation->pdf_path)
+                            <p>
+                                <a href="{{ asset($quotation->pdf_path) }}" target="_blank" class="text-primary">
+                                    <i class="fas fa-file-alt me-2"></i>Lihat Dokumen PDF
+                                </a>
+                            </p>
+                            <p>
+                                <a href="{{ asset($quotation->pdf_path) }}" download class="text-secondary">
+                                    <i class="fas fa-download me-2"></i>Download PDF
+                                </a>
+                            </p>
                         @else
-                            <p class="text-muted">Tidak ada video untuk produk ini.</p>
-                        @endif
-                    </div>
-                </div>
-
-                <!-- Document Certification Produk -->
-                <div class="card mt-4 shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Sertifikasi Dokumen</h5>
-                        @if($quotation->produk->documentCertificationsProduk->count())
-                            <ul>
-                                @foreach($quotation->produk->documentCertificationsProduk as $doc)
-                                    <li>
-                                        <a href="{{ asset($doc->pdf) }}" target="_blank">Lihat Sertifikasi Dokumen PDF</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @else
-                            <p class="text-muted">Tidak ada Sertifikasi Dokumen untuk produk ini.</p>
-                        @endif
-                    </div>
-                </div>
-
-                <!-- Brosur Produk -->
-                <div class="card mt-4 shadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Brosur</h5>
-                        @if($quotation->produk->brosur->count())
-                            <ul>
-                                @foreach($quotation->produk->brosur as $brosur)
-                                    <li>
-                                        @if($brosur->type == 'pdf')
-                                            <a href="{{ asset($brosur->file) }}" target="_blank">Lihat PDF Brosur</a>
-                                        @else
-                                            <img src="{{ asset($brosur->file) }}" class="img-fluid img-thumbnail" alt="Brosur Image">
-                                        @endif
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @else
-                            <p class="text-muted">Tidak ada brosur untuk produk ini.</p>
+                            <p class="text-muted">Tidak ada file PDF untuk quotation ini.</p>
                         @endif
                     </div>
                 </div>

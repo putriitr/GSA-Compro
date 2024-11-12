@@ -16,6 +16,8 @@ class QuotationProduct extends Model
         'quotation_id',
         'produk_id',
         'quantity',
+        'created_at',
+        'updated_at',
         'equipment_name',
         'merk_type',
         'unit_price',

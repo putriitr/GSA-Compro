@@ -136,6 +136,20 @@
             Route::put('/portal/distribution/tickets/{id}', [TicketDistributorController::class, 'update'])->name('distribution.tickets.update');
 
             Route::post('/portal/distribution/product/{id}/add-to-quotation', [ProdukMemberController::class, 'addToQuotation'])->name('Distributor.product.addToQuotation');
+            // Menampilkan halaman keranjang quotation
+            Route::get('/quotations/cart', [QuotationController::class, 'cart'])->name('quotations.cart');
+
+            // Menambahkan produk ke keranjang
+            Route::post('/quotations/add-to-cart', [QuotationController::class, 'addToCart'])->name('quotations.add_to_cart');
+
+            // Mengirim permintaan quotation dari keranjang
+            Route::post('/quotations/submit', [QuotationController::class, 'submitCart'])->name('quotations.submit');
+            // Update quantity di keranjang
+            Route::put('/quotations/update-cart', [QuotationController::class, 'updateCart'])->name('quotations.cart.update');
+
+            // Hapus item dari keranjang
+            Route::delete('/quotations/remove-from-cart', [QuotationController::class, 'removeFromCart'])->name('quotations.cart.remove');
+
             // Quotation Routes
             Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show'); // View quotation
             Route::put('/portal/distribution/quotations/{id}/cancel', [QuotationController::class, 'cancel'])->name('quotations.cancel'); // Cancel quotation

@@ -18,15 +18,15 @@ class DistributionController extends Controller
     // Menampilkan halaman untuk memilih produk dan meminta quotation
 
 
-public function requestQuotation()
-{
-    // Get the authenticated user's ID
-    $quotations = Quotation::with('produk')->where('user_id', auth()->id())->get();
+    public function requestQuotation()
+    {
+        // Get the authenticated user's ID
+        $quotations = Quotation::with('quotationProducts')->get();
 
 
-    // Pass the quotations to the view
-    return view('Distributor.portal.request-quotation', compact('quotations'));
-}
+        // Pass the quotations to the view
+        return view('Distributor.portal.request-quotation', compact('quotations'));
+    }
     // Menampilkan halaman untuk membuat dan mengirim Purchase Order (PO)
     public function createPO()
     {

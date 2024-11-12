@@ -25,10 +25,10 @@
 
                 <div class="card shadow-sm border-0 rounded">
                     <div class="card-body p-0">
-                        <table class="table table-striped table-hover mb-0">
+                        <table class="table table-borderless mb-0">
                             <thead class="table-primary text-center">
                                 <tr>
-                                    <th style="width: 5%;">ID</th>
+                                    <th style="width: 5%;">{{ __('messages.id') }}</th>
                                     <th style="width: 15%;">{{ __('messages.jenis_layanan') }}</th>
                                     <th style="width: 20%;">{{ __('messages.keterangan_pengajuan') }}</th>
                                     <th style="width: 15%;">{{ __('messages.tanggal_pengajuan') }}</th>

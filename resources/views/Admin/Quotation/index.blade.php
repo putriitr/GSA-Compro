@@ -34,14 +34,29 @@
                     @forelse($quotations as $key => $quotation)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $quotation->produk->nama ?? 'Produk tidak tersedia' }}</td>
-                            <td>{{ $quotation->user->name ?? 'Tidak ada pengguna' }}</td>
-                            <td>{{ $quotation->quantity }}</td>
+
+                            <!-- Menampilkan Nama Produk -->
                             <td>
-                                <span class="badge 
-                                    @if($quotation->status == 'pending') bg-warning 
-                                    @elseif($quotation->status == 'approved') bg-success 
-                                    @elseif($quotation->status == 'rejected') bg-secondary 
+                                @foreach ($quotation->quotationProducts as $product)
+                                    - {{ $product->equipment_name ?? 'Produk tidak tersedia' }} <br>
+                                @endforeach
+                            </td>
+
+                            <!-- Menampilkan Distributor -->
+                            <td>{{ $quotation->user->name ?? 'Tidak ada pengguna' }}</td>
+
+                            <!-- Menampilkan Quantity untuk setiap produk -->
+                            <td>
+                                @foreach ($quotation->quotationProducts as $product)
+                                    {{ $product->quantity }} <br>
+                                @endforeach
+                            </td>
+                            
+                            <td>
+                                <span class="badge
+                                    @if($quotation->status == 'pending') bg-warning
+                                    @elseif($quotation->status == 'approved') bg-success
+                                    @elseif($quotation->status == 'rejected') bg-secondary
                                     @endif">
                                     {{ ucfirst($quotation->status) }}
                                 </span>
@@ -62,9 +77,9 @@
                                     <span class="text-muted">No file</span>
                                 @endif
                             </td>
-                            
-                            
-                            
+
+
+
                             <td>
                                 <a href="{{ route('admin.quotations.show', $quotation->id) }}" class="btn btn-primary btn-sm">View</a>
                                 <a href="{{ route('admin.quotations.edit', $quotation->id) }}" class="btn btn-secondary btn-sm">Edit</a>

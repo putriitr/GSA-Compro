@@ -6,8 +6,8 @@
         style="margin-top: 0; background-image: url('http://localhost:8080/GSA-Compro/public/assets/img/bg-1.jpg'); background-size: cover; background-position: center;">
         <div class="container service-section py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                <h4 class="text-primary">Portal Distributor</h4>
-                <h1 class="display-5 text-white mb-4">Portal Distributor</h1>
+                <h4 class="text-primary">{{ __('messages.portal_partner') }}</h4>
+                <h1 class="display-5 text-white mb-4">{{ __('messages.portal_partner') }}</h1>
                 <p class="mb-0 text-white">{{ __('messages.portal-dist_desc') }}</p>
             </div>
 

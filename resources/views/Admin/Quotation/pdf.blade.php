@@ -16,6 +16,32 @@
             font-family: Arial, sans-serif;
         }
 
+        /* Mengimpor font Montserrat dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .logo {
+            width: 80px;
+            /* Atur ukuran logo sesuai kebutuhan */
+            margin-right: 15px;
+            /* Spasi antara logo dan teks */
+        }
+
+        .company-name {
+            font-family: 'Montserrat', sans-serif;
+            /* Menggunakan font Montserrat */
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #333;
+            /* Warna teks agar terlihat modern */
+            margin: 0;
+        }
+
         .header,
         .footer {
             text-align: center;
@@ -91,8 +117,8 @@
 <body>
     <!-- Header -->
     <div class="header">
-        <img src="{{ public_path('assets/img/logo-gsa2.png') }}" alt="Company Logo">
-        <h1>PT GUDANG SOLUSI ACOMMERCE</h1>
+        <img src="{{ public_path('assets/img/logo-gsa2.png') }}" alt="Company Logo" class="logo">
+        <h1 class="company-name">PT GUDANG SOLUSI ACOMMERCE</h1>
     </div>
 
     <!-- Quotation Info -->
@@ -122,31 +148,35 @@
             <th>Unit Price</th>
             <th>Total Price</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>{{ $quotation->produk->nama }}</td>
-            <td>{{ $quotation->produk->merk }}</td>
-            <td>{{ $quotation->quantity }}</td>
-            <td>{{ number_format($quotation->unit_price, 2) }}</td>
-            <td>{{ number_format($quotation->total_price, 2) }}</td>
-        </tr>
+        <tbody>
+            @foreach ($quotation->quotationProducts as $index => $product)
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $product->equipment_name ?? 'N/A' }}</td>
+                    <td>{{ $product->merk_type ?? 'N/A' }}</td>
+                    <td>{{ $product->quantity ?? 0 }}</td>
+                    <td>{{ number_format($product->unit_price, 2) }}</td>
+                    <td>{{ number_format($product->total_price, 2) }}</td>
+                </tr>
+            @endforeach
+        </tbody>
 
         <!-- Summary Section -->
         <tr class="text-center">
             <td colspan="5" class="merge-cell text-center">Sub Total Price</td>
-            <td class="merge-cell-total text-center">{{ number_format($quotation->subtotal, 2) }}</td>
+            <td class="merge-cell-total text-center">{{ number_format($quotation->subtotal_price, 2) }}</td>
         </tr>
         <tr class="text-center">
-            <td colspan="5" class="merge-cell text-center">Discount</td>
-            <td class="merge-cell-total text-center">{{ number_format($quotation->discount, 2) }}</td>
+            <td colspan="5" class="merge-cell text-center">Discount (%)</td>
+            <td class="merge-cell-total text-center">{{ $quotation->discount ?? 0 }}%</td>
         </tr>
         <tr class="text-center">
-            <td colspan="5" class="merge-cell text-center">Sub Total II</td>
-            <td class="merge-cell-total text-center">{{ number_format($quotation->subTotalII, 2) }}</td>
+            <td colspan="5" class="merge-cell text-center">Sub Total II (After Discount)</td>
+            <td class="merge-cell-total text-center">{{ number_format($quotation->total_after_discount, 2) }}</td>
         </tr>
         <tr class="text-center">
-            <td colspan="5" class="merge-cell text-center">PPN</td>
-            <td class="merge-cell-total text-center">{{ number_format($quotation->ppn, 2) }}</td>
+            <td colspan="5" class="merge-cell text-center">PPN (%)</td>
+            <td class="merge-cell-total text-center">{{ $quotation->ppn ?? 10 }}%</td>
         </tr>
         <tr class="text-center">
             <td colspan="5" class="merge-cell text-center">Grand Total Price</td>
@@ -157,38 +187,45 @@
     <!-- Notes Section -->
     <div class="notes">
         <p><strong>Note :</strong></p>
-        <ol>
-            @foreach (explode("\n", $quotation->notes) as $note)
-                <li>{{ $note }}</li>
-            @endforeach
-        </ol>
+        @if (!empty($quotation->notes))
+            <ol>
+                @foreach (explode("\n", $quotation->notes) as $note)
+                    <li>{{ $note }}</li>
+                @endforeach
+            </ol>
+        @else
+            <p>{{ __('No additional notes.') }}</p>
+        @endif
     </div>
 
     <!-- Condition Section -->
     <div class="condition">
         <p><strong>Terms and Conditions :</strong></p>
-        <ol>
-            @foreach (explode("\n", $quotation->terms_conditions) as $term)
-                <li>{{ $term }}</li>
-            @endforeach
-        </ol>
+        @if (!empty($quotation->terms_conditions))
+            <ol>
+                @foreach (explode("\n", $quotation->terms_conditions) as $term)
+                    <li>{{ $term }}</li>
+                @endforeach
+            </ol>
+        @else
+            <p>{{ __('No specific terms and conditions.') }}</p>
+        @endif
     </div>
 
     <!-- Signature Section -->
     <div class="signature">
-        <p>Kind regards,</p>
-        <p>PT Gudang Solusi Acommerce</p>
-
-        <br><br>
+        <p>Sincerely,</p><br><br>
         <p style="margin-top: 50px;">___________________________</p>
-        <p>{{ $quotation->authorized_person_name }}</p>
-        <p>{{ $quotation->authorized_person_position }}</p>
+        <p>{{ $quotation->authorized_person_name ?? 'N/A' }}</p>
+        <p>{{ $quotation->authorized_person_position ?? 'N/A' }}</p>
+        <p>PT Gudang Solusi Acommerce</p>
     </div>
 
     <div class="footer">
         <h4><strong>PT Gudang Solusi Acommerce</strong></h4>
         <p><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}</p>
-        <p><i class="fas fa-envelope me-2"></i> {{ $compro->email }} |  <i class="fas fa-phone-alt fa-2x"></i>  {{ $compro->no_telepon }}</p>
+        <p><i class="fas fa-envelope me-2"></i> {{ $compro->email }} | <i class="fas fa-phone-alt fa-2x"></i>
+            {{ $compro->no_telepon }}</p>
     </div>
 </body>
 
