@@ -53,7 +53,12 @@ class Quotation extends Model
     }
     public function quotationProducts()
     {
-        return $this->hasMany(QuotationProduct::class, 'quotation_id');
+        return $this->hasMany(QuotationProduct::class);
+    }
+    // Relasi ke model QuotationNegotiation
+    public function negotiations()
+    {
+        return $this->hasMany(QuotationNegotiation::class);
     }
 
 }

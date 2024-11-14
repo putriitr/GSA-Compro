@@ -97,16 +97,20 @@
                                             {{ __('messages.more') }} <i class="fas fa-arrow-right ms-2"></i>
                                         </a>
 
-                                        <!-- Ajukan Quotation Button for Distributor Users Only -->
+                                        <!-- Ajukan Quotation -->
                                         @if (auth()->user() && auth()->user()->type === 'distributor')
+                                            <!-- Form untuk menambahkan produk ke keranjang -->
                                             <form action="{{ route('quotations.add_to_cart') }}" method="POST"
                                                 class="d-inline-flex align-items-center">
                                                 @csrf
                                                 <input type="hidden" name="produk_id" value="{{ $produk->id }}">
-                                                <div class="input-group input-group-sm" style="height: 40px; width: auto; margin-top: 17px;">
+                                                <div class="input-group input-group-sm"
+                                                    style="height: 40px; width: auto; margin-top: 17px;">
                                                     <input type="number" name="quantity" min="1" value="1"
                                                         class="form-control text-center" style="max-width: 60px;">
-                                                    <button type="submit" class="btn btn-primary"><i class="fas fa-shopping-cart me-2"></i></button>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="fas fa-shopping-cart me-2"></i> Ajukan Quotation
+                                                    </button>
                                                 </div>
                                             </form>
                                         @endif

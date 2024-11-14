@@ -4,7 +4,7 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-9">
-                <h2 class="mb-4">Keranjang Permintaan Quotation</h2>
+                <h2 class="mb-4"><strong>{{ __('messages.cart_quo') }}</strong></h2>
 
                 @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -48,7 +48,8 @@
                                                 <input type="hidden" name="produk_id" value="{{ $item['produk_id'] }}">
                                                 <input type="number" name="quantity" value="{{ $item['quantity'] }}"
                                                     min="1" style="width: 40px;">
-                                                <button type="submit" class="btn btn-sm text-white" style="background-color: #fd7e14; border-color: #fd7e14;">{{ __('messages.update') }}</button>
+                                                <button type="submit" class="btn btn-sm text-white"
+                                                    style="background-color: #fd7e14; border-color: #fd7e14;">{{ __('messages.update') }}</button>
                                             </form>
                                         </td>
                                         <td>
@@ -57,13 +58,15 @@
                                                 @csrf
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="produk_id" value="{{ $item['produk_id'] }}">
-                                                <button type="submit" class="btn btn-sm btn-danger">{{ __('messages.hapus') }}</button>
+                                                <button type="submit"
+                                                    class="btn btn-sm btn-danger">{{ __('messages.hapus') }}</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" class="text-center text-muted">Keranjang kosong.</td>
+                                        <td colspan="4" class="text-center text-muted">{{ __('messages.empty_cart') }}
+                                        </td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -75,9 +78,8 @@
                     <form action="{{ route('quotations.submit') }}" method="POST" class="mt-3">
                         @csrf
                         <button type="submit" class="btn btn-primary">
-                            Ajukan Permintaan Quotation <i class="fas fa-paper-plane ms-2"></i>
+                            {{ __('messages.ajukan_quo') }} <i class="fas fa-paper-plane ms-2"></i>
                         </button>
-
                     </form>
                 @endif
             </div>

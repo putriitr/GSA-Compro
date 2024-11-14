@@ -34,11 +34,15 @@
     use App\Http\Controllers\Admin\Ticket\TicketController;
     use App\Http\Controllers\Member\Ticket\TicketMemberController;
     use App\Http\Controllers\Admin\Distributor\DistributorApprovalController;
+    use App\Http\Controllers\Admin\PurchaseOrder\PurchaseOrderAdminController;
     use App\Http\Controllers\Distribution\Portal\DistributionController;
     use App\Http\Controllers\Distribution\Portal\TicketDistributorController;
     use App\Http\Controllers\Auth\RegisterController;
     use App\Http\Controllers\Distribution\Portal\QuotationController;
     use App\Http\Controllers\Admin\Quotation\QuotationAdminController;
+    use App\Http\Controllers\Admin\Quotation\QuotationNegotiationController;
+    use App\Http\Controllers\Distribution\Portal\DistributorQuotationNegotiationController;
+    use App\Http\Controllers\Distribution\Portal\PurchaseOrderController;
 
 
     /*
@@ -144,15 +148,29 @@
 
             // Mengirim permintaan quotation dari keranjang
             Route::post('/quotations/submit', [QuotationController::class, 'submitCart'])->name('quotations.submit');
+
             // Update quantity di keranjang
             Route::put('/quotations/update-cart', [QuotationController::class, 'updateCart'])->name('quotations.cart.update');
 
             // Hapus item dari keranjang
             Route::delete('/quotations/remove-from-cart', [QuotationController::class, 'removeFromCart'])->name('quotations.cart.remove');
 
+            // Rute untuk negosiasi quotation
+            Route::get('/quotations/{id}/nego', [QuotationController::class, 'nego'])->name('quotations.nego');
+
+            // Route untuk menampilkan form negosiasi
+            Route::get('/distributor/quotations/{quotationId}/negotiation', [DistributorQuotationNegotiationController::class, 'create'])->name('distributor.quotations.negotiations.create');
+
+            // Route untuk menyimpan negosiasi
+            Route::post('/distributor/quotations/{quotationId}/negotiation', [DistributorQuotationNegotiationController::class, 'store'])->name('distributor.quotations.negotiations.store');
+            Route::get('/distributor/quotations/negotiations', [DistributorQuotationNegotiationController::class, 'index'])->name('distributor.quotations.negotiations.index');
+
             // Quotation Routes
             Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show'); // View quotation
             Route::put('/portal/distribution/quotations/{id}/cancel', [QuotationController::class, 'cancel'])->name('quotations.cancel'); // Cancel quotation
+            Route::get('/quotations/{quotationId}/create-po', [PurchaseOrderController::class, 'create'])->name('quotations.create_po');
+            Route::post('/quotations/{quotationId}/create-po', [PurchaseOrderController::class, 'store'])->name('quotations.store_po');
+            Route::get('/distributor/purchase-orders', [PurchaseOrderController::class, 'index'])->name('distributor.purchase-orders.index');
         });
     });
 
@@ -195,6 +213,19 @@
             Route::get('admin/quotations/{id}/show', [QuotationAdminController::class, 'show'])->name('admin.quotations.show');
             Route::get('admin/quotations/{id}/edit', [QuotationAdminController::class, 'edit'])->name('admin.quotations.edit');
             Route::put('admin/quotations/{id}', [QuotationAdminController::class, 'update'])->name('admin.quotations.update');
+
+            // Menampilkan semua negosiasi untuk ditinjau admin
+            Route::get('/admin/quotations/negotiations', [QuotationNegotiationController::class, 'index'])->name('admin.quotations.negotiations.index');
+
+            // Menerima negosiasi
+            Route::put('/admin/quotations/negotiations/{id}/accept', [QuotationNegotiationController::class, 'accept'])->name('admin.quotations.negotiations.accept');
+
+            // Menolak negosiasi
+            Route::put('/admin/quotations/negotiations/{id}/reject', [QuotationNegotiationController::class, 'reject'])->name('admin.quotations.negotiations.reject');
+            Route::get('/purchase-orders', [PurchaseOrderAdminController::class, 'index'])->name('admin.purchase-orders.index');
+            Route::get('/purchase-orders/{id}', [PurchaseOrderAdminController::class, 'show'])->name('admin.purchase-orders.show');
+            Route::put('/purchase-orders/{id}/approve', [PurchaseOrderAdminController::class, 'approve'])->name('admin.purchase-orders.approve');
+            Route::put('/purchase-orders/{id}/reject', [PurchaseOrderAdminController::class, 'reject'])->name('admin.purchase-orders.reject');
 
             Route::prefix('admin/inspeksi')->name('admin.inspeksi.')->group(function () {
                 Route::get('/{userProdukId}', [MonitoringController::class, 'inspeksiIndex'])->name('index');

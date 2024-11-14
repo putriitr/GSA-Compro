@@ -24,6 +24,13 @@ class QuotationAdminController extends Controller
     {
         // Load all quotations with related product and user data
         $quotations = Quotation::with('produk', 'user')->get();
+        // Periksa setiap quotation dan perbarui status jika perlu
+        foreach ($quotations as $quotation) {
+            if ($quotation->pdf_path && $quotation->status === 'pending') {
+                // Perbarui status menjadi "Quotation" jika PDF tersedia dan status masih "Pending"
+                $quotation->update(['status' => 'quotation']);
+            }
+        }
 
         return view('Admin.Quotation.index', compact('quotations'));
     }
@@ -81,6 +88,7 @@ class QuotationAdminController extends Controller
             'products.*.quantity' => 'required|integer',
             'products.*.unit_price' => 'required|numeric',
             'products.*.produk_id' => 'required|integer', // Produk ID harus ada dan integer
+
         ]);
 
         $quotation = Quotation::findOrFail($id);
@@ -121,6 +129,8 @@ class QuotationAdminController extends Controller
 
         $ppn = (float) $request->input('ppn', 0) / 100;
         $grandTotal = $subTotalII + ($subTotalII * $ppn);
+        $status = $quotation->pdf_path ? 'quotation' : 'pending';
+
 
         // Update quotation details with all relevant fields
         $quotation->update([
@@ -137,6 +147,8 @@ class QuotationAdminController extends Controller
             'terms_conditions' => $request->input('terms_conditions'),
             'authorized_person_name' => $request->input('signer_name'),
             'authorized_person_position' => $request->input('signer_position'),
+            'status' => $status, // Tambahkan status
+
         ]);
 
         // Generate the PDF

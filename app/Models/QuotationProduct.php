@@ -31,7 +31,7 @@ class QuotationProduct extends Model
      */
     public function quotation()
     {
-        return $this->belongsTo(Quotation::class, 'quotation_id');
+        return $this->belongsTo(Quotation::class);
     }
 
     /**
