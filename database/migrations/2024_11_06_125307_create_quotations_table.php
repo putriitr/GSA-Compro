@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('produk_id')->constrained('produk')->onDelete('cascade');
+            $table->foreignId('produk_id')->constrained('produk')->onDelete('cascade'); 
             $table->integer('quantity');
             $table->string('status')->default('pending');
             $table->timestamps();

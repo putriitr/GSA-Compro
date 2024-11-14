@@ -174,9 +174,6 @@ class QuotationAdminController extends Controller
         return redirect()->route('admin.quotations.index')->with('success', 'Quotation updated and PDF generated successfully.');
     }
 
-
-
-
     /**
      * Upload a file for a specific quotation.
      *

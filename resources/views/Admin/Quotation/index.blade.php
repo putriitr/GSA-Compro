@@ -38,7 +38,7 @@
                                 <!-- Menampilkan Nama Produk -->
                                 <td>
                                     @foreach ($quotation->quotationProducts as $product)
-                                        - {{ $product->equipment_name ?? 'Produk tidak tersedia' }} <br>
+                                        <div>- {{ $product->equipment_name ?? 'Produk tidak tersedia' }}</div>
                                     @endforeach
                                 </td>
 
@@ -48,17 +48,17 @@
                                 <!-- Menampilkan Quantity untuk setiap produk -->
                                 <td>
                                     @foreach ($quotation->quotationProducts as $product)
-                                        {{ $product->quantity }} <br>
+                                        <div>{{ $product->quantity }}</div>
                                     @endforeach
                                 </td>
 
                                 <!-- Status berdasarkan status di database -->
                                 <td>
-                                    <span
-                                        class="badge
-        @if ($quotation->status === 'cancelled') bg-danger
-        @elseif($quotation->status === 'quotation') bg-success
-        @else bg-warning @endif">
+                                    <span class="badge
+                                        @if ($quotation->status === 'cancelled') bg-danger
+                                        @elseif($quotation->status === 'quotation') bg-success
+                                        @else bg-warning
+                                        @endif">
                                         {{ ucfirst($quotation->status) }}
                                     </span>
                                 </td>
@@ -66,17 +66,14 @@
                                 <!-- Menampilkan Dokumen PDF jika ada -->
                                 <td>
                                     @if ($quotation->pdf_path)
-                                        <p>
-                                            <a href="{{ asset($quotation->pdf_path) }}" target="_blank"
-                                                class="text-primary">
+                                        <div class="d-flex flex-column">
+                                            <a href="{{ asset($quotation->pdf_path) }}" target="_blank" class="text-primary mb-1">
                                                 <i class="fas fa-file-alt me-2"></i>Lihat Dokumen PDF
                                             </a>
-                                        </p>
-                                        <p>
                                             <a href="{{ asset($quotation->pdf_path) }}" download class="text-secondary">
                                                 <i class="fas fa-download me-2"></i>Download PDF
                                             </a>
-                                        </p>
+                                        </div>
                                     @else
                                         <span class="text-muted">No file</span>
                                     @endif
@@ -84,10 +81,12 @@
 
                                 <!-- Actions -->
                                 <td>
-                                    <a href="{{ route('admin.quotations.show', $quotation->id) }}"
-                                        class="btn btn-primary btn-sm">View</a>
-                                    <a href="{{ route('admin.quotations.edit', $quotation->id) }}"
-                                        class="btn btn-secondary btn-sm">Edit</a>
+                                    <div class="d-flex gap-2">
+                                        <a href="{{ route('admin.quotations.show', $quotation->id) }}" class="btn btn-primary btn-sm">View</a>
+                                        @if ($quotation->status !== 'cancelled')
+                                            <a href="{{ route('admin.quotations.edit', $quotation->id) }}" class="btn btn-secondary btn-sm">Edit</a>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @empty
@@ -96,6 +95,7 @@
                             </tr>
                         @endforelse
                     </tbody>
+
                 </table>
             </div>
         </div>

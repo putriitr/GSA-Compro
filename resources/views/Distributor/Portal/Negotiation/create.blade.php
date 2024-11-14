@@ -1,8 +1,9 @@
 @extends('layouts.Member.master')
+
 @section('content')
 <div class="container mt-5">
     <h2>Negotiate Quotation #{{ $quotation->quotation_number }}</h2>
-    
+
     <form action="{{ route('distributor.quotations.negotiations.store', $quotation->id) }}" method="POST">
         @csrf
         <div class="form-group">

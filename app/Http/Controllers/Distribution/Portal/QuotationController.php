@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use App\Models\Quotation;
-use App\Models\QuotationProduct;
+use App\Models\QuotationProduct; // Tambahkan ini
+
 
 class QuotationController extends Controller
 {
@@ -18,7 +19,8 @@ class QuotationController extends Controller
      */
     public function show($id)
     {
-        $quotation = Quotation::with('quotationProducts.produk')->findOrFail($id);
+        $quotation = Quotation::with('produk')->findOrFail($id);
+
 
         // Periksa apakah file PDF sudah tersedia dan status masih "Pending"
         if ($quotation->pdf_path && $quotation->status === 'pending') {
@@ -105,15 +107,14 @@ class QuotationController extends Controller
             $unitPrice = $item['unit_price'] ?? 0;
             $totalPrice = $item['quantity'] * $unitPrice;
 
-            // Tambahkan data ke QuotationProduct
             QuotationProduct::create([
                 'quotation_id' => $quotation->id,
                 'produk_id' => $item['produk_id'],
-                'quantity' => $item['quantity'], // Pastikan memberikan nilai untuk quantity
-                'created_at' => now(),           // Set created_at
-                'updated_at' => now(),           // Set updated_at
+                'quantity' => $item['quantity'],
+                'created_at' => now(),
+                'updated_at' => now(),
                 'equipment_name' => $produk->nama, // Mengambil nama dari produk
-                'merk_type' => $produk->merk,     // Mengambil merk dari produk
+                'merk_type' => $produk->merk,      // Mengambil merk dari produk
                 'unit_price' => $unitPrice,
                 'total_price' => $totalPrice,
             ]);

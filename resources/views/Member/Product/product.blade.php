@@ -109,7 +109,7 @@
                                                     <input type="number" name="quantity" min="1" value="1"
                                                         class="form-control text-center" style="max-width: 60px;">
                                                     <button type="submit" class="btn btn-primary">
-                                                        <i class="fas fa-shopping-cart me-2"></i> Ajukan Quotation
+                                                        <i class="fas fa-shopping-cart me-2"></i>
                                                     </button>
                                                 </div>
                                             </form>

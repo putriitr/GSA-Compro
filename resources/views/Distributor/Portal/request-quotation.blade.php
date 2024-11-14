@@ -4,12 +4,10 @@
     <div class="container-fluid bg-breadcrumb"
         style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/bg-product.jpg') }}');">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.pro_quo') }}
-            </h3>
+            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.pro_quo') }}</h3>
             <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.portal_partner') }}</a>
-                </li>
+                <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.portal_partner') }}</a></li>
                 <li class="breadcrumb-item active text-primary">{{ __('messages.pro_quo') }}</li>
             </ol>
         </div>
@@ -17,7 +15,7 @@
 
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-9">
+            <div class="col-lg-10">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0"><strong>{{ __('messages.pilih_quo') }}</strong></h4>
                     <div class="d-flex">
@@ -41,18 +39,17 @@
                                 <tr>
                                     <th style="width: 5%;">{{ __('messages.id') }}</th>
                                     <th style="width: 20%;">{{ __('messages.date') }}</th>
-                                    <th style="width: 40%;">{{ __('messages.produk_name') }}</th>
+                                    <th style="width: 35%;">{{ __('messages.produk_name') }}</th>
                                     <th style="width: 10%;">{{ __('messages.quantity') }}</th>
                                     <th style="width: 15%;">{{ __('messages.status') }}</th>
-                                    <th style="width: 10%;">{{ __('messages.aksi') }}</th>
+                                    <th style="width: 15%;">{{ __('messages.aksi') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($quotations as $key => $quotation)
                                     <tr class="text-center">
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($quotation->created_at)->translatedFormat('l, d-m-Y') }}
-                                        </td>
+                                        <td>{{ \Carbon\Carbon::parse($quotation->created_at)->translatedFormat('l, d-m-Y') }}</td>
                                         <td>
                                             @foreach ($quotation->quotationProducts as $product)
                                                 - {{ $product->equipment_name ?? 'Produk tidak tersedia' }} <br>
@@ -64,20 +61,24 @@
                                             @endforeach
                                         </td>
                                         <td>{{ ucfirst($quotation->status) }}</td>
-
                                         <td class="text-center">
-                                            <a href="{{ route('quotations.show', $quotation->id) }}"
-                                                class="btn btn-sm btn-info">{{ __('messages.view') }}</a>
+                                            <a href="{{ route('quotations.show', $quotation->id) }}" class="btn btn-sm btn-info">{{ __('messages.view') }}</a>
 
-                                            <form action="{{ route('quotations.cancel', $quotation->id) }}" method="POST"
-                                                style="display:inline;">
+                                            <form action="{{ route('quotations.cancel', $quotation->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="submit" class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Apakah Anda yakin ingin membatalkan permintaan quotation ini?');">
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin membatalkan permintaan quotation ini?');">
                                                     {{ __('messages.batal') }}
                                                 </button>
                                             </form>
+
+                                            @if($quotation->status === 'quotation')
+                                                <!-- Tampilkan tombol Nego dan Create PO jika status sudah Quotation -->
+                                                <a href="{{ route('distributor.quotations.negotiations.create', $quotation->id) }}" class="btn btn-sm btn-warning">Nego</a>
+                                                @if (!$quotation->purchaseOrder)
+                                                    <a href="{{ route('quotations.create_po', $quotation->id) }}" class="btn btn-sm btn-success">Create PO</a>
+                                                @endif
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty

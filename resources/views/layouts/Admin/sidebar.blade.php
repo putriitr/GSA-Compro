@@ -93,23 +93,28 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.tickets.index') }}">
-                                    <span class="sub-item">Tiketing Layanan</span>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="{{ route('admin.quotations.index') }}">
                                     <span class="sub-item">Quotation</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.quotations.negotiations.index') }}">
-                                    <span class="sub-item">Lihat Negosiasi</span>
+                                <a href="{{ route('admin.purchase-orders.index') }}">
+                                    <span class="sub-item">Purchase Orders</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('admin.purchase-orders.index') }}">
-                                    <span class="sub-item">Lihat Purchase Orders</span>
+                                <a href="{{ route('admin.quotations.negotiations.index') }}">
+                                    <span class="sub-item">Negosiasi</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.proforma-invoices.index') }}">
+                                    <span class="sub-item">Proforma Invoices</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.tickets.index') }}">
+                                    <span class="sub-item">Tiketing</span>
                                 </a>
                             </li>
                         </ul>
