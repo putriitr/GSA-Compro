@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'company_name' => 'PT Arkamaya Guna Saharsa',
-    'tagline' => 'Simplifying Industries',
-    'description' => 'Arkamaya Guna Saharsa is the technology start-up that empowered by innovation.',
+    'company_name' => 'PT Gudang Solusi Acommerce',
     'about_us' => 'About Us',
 
     'partnership' => 'Partnership',
@@ -41,6 +39,7 @@ return [
 
     'customer_report' => 'Customer Report',
     'quotation' => 'Quotation',
+    'your_quotation' => 'Your Quotation',
     'proforma_invoice' => 'Proforma Invoice',
     'invoice' => 'Invoice',
     'invoice_desc' => 'Simplify invoice management in one place, ensuring accurate and timely reconciliation and payment of transactions.',
@@ -197,6 +196,7 @@ return [
     'ajukan_quo' => 'Request Quotation',
     'kelola_invoice' => 'Invoice Management',
     'pilih_invoice' => 'Here you can view and manage invoices issued based on PO that have been sent.',
+    'nomor_pengajuan' => 'Submission Number',
 
     'jenis_layanan' => 'Service Type',
     'pilih_layanan' => 'Select Service',
@@ -233,6 +233,10 @@ return [
     'update' => 'Update',
     'tanggal_tindakan' => 'Action Dates',
     'blm_proses' => 'Not Yet Processed',
+    'blm_invoice' => 'No Invoice Available Yet.',
+    'daftar_invoice' => 'Your Invoice List',
+    'daftar_nego' => 'Your Negotiation List',
+    'daftar_pi' => 'Your Proforma Invoice List',
     'start_date' => 'Start Date',
     'end_date' => 'End Date',
     'date' => 'Date',

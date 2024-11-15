@@ -37,4 +37,8 @@ class ProformaInvoice extends Model
     {
         return $this->hasOne(Invoice::class);
     }
+    public function getRemainingPaymentAttribute()
+    {
+        return $this->grand_total_include_ppn - $this->dp;
+    }
 }

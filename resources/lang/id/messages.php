@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'company_name' => 'PT Arkamaya Guna Saharsa',
-    'tagline' => 'Simplifying Industries',
-    'description' => 'Arkamaya Guna Saharsa adalah startup teknologi yang didorong oleh inovasi.',
+    'company_name' => 'PT Gudang Solusi Acommerce',
     'about_us' => 'Tentang Kami',
 
     'partnership' => 'Kerja Sama',
@@ -43,6 +41,7 @@ return [
 
     'customer_report' => 'Laporan Pelanggan',
     'quotation' => 'Informasi Penawaran',
+    'your_quotation' => 'Quotation Anda',
     'proforma_invoice' => 'Faktur Proforma',
     'invoice' => 'Faktur',
     'invoice_desc' => 'Menyederhanakan pengelolaan faktur dalam satu tempat, memastikan rekonsiliasi dan pembayaran transaksi berjalan akurat dan tepat waktu.',
@@ -211,6 +210,7 @@ return [
     'ajukan_quo' => 'Ajukan Quotation',
     'kelola_invoice' => 'Pengelolaan Invoice',
     'pilih_invoice' => 'Di sini Anda dapat melihat dan mengelola invoice yang diterbitkan berdasarkan PO yang telah dikirim.',
+    'nomor_pengajuan' => 'Nomor Pengajuan',
 
     'jenis_layanan' => 'Jenis Layanan',
     'pilih_layanan' => 'Pilih Layanan',
@@ -225,6 +225,8 @@ return [
     'dok_pdf' => 'Dokumen',
     'no_file' => 'Tidak ada dokumen.',
     'unduh' => 'Unduh dokumen',
+    'daftar_nego' => 'Daftar Negosiasi Anda',
+    'daftar_pi' => 'Daftar Proforma Invoice Anda',
     'kirim' => 'Kirim',
     'batal' => 'Batal',
     'aksi' => 'Aksi',
@@ -247,6 +249,8 @@ return [
     'update' => 'Perbaharui',
     'tanggal_tindakan' => 'Tanggal Tindakan',
     'blm_proses' => 'Belum Diproses',
+    'blm_invoice' => 'Belum ada invoice tersedia.',
+    'daftar_invoice' => 'Daftar Invoice Anda',
     'start_date' => 'Mulai',
     'end_date' => 'Selesai',
     'date' => 'Tanggal',

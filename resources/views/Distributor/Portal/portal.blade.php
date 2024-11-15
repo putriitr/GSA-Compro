@@ -38,7 +38,7 @@
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.invoice') }}</a>
                             <p class="mb-0">{{ __('messages.invoice_desc') }}</p>
-                            <a href="{{ route('distribution.invoices') }}"
+                            <a href="{{ route('distributor.invoices.index') }}"
                                 class="btn btn-primary rounded-pill text-white py-2 px-4 mb-2"
                                 style="transition: background-color 0.3s ease, color 0.3s ease; margin-top: 15px;">{{ __('messages.show_more') }}</a>
                         </div>

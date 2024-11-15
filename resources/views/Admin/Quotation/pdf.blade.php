@@ -1,45 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-@php
-    $compro = \App\Models\CompanyParameter::first();
-@endphp
 
 <head>
     <meta charset="UTF-8">
-    <title>Quotation Invoice</title>
-    <!-- Include Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Include Font Awesome for icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <title>Quotation Letter #{{ $quotation->quotation_number }}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-        }
-
-        /* Mengimpor font Montserrat dari Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
-
-        .header {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-        }
-
-        .logo {
-            width: 80px;
-            /* Atur ukuran logo sesuai kebutuhan */
-            margin-right: 15px;
-            /* Spasi antara logo dan teks */
-        }
-
-        .company-name {
-            font-family: 'Montserrat', sans-serif;
-            /* Menggunakan font Montserrat */
-            font-size: 1.8rem;
-            font-weight: 600;
             color: #333;
-            /* Warna teks agar terlihat modern */
             margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
         }
 
         .header,
@@ -47,185 +22,201 @@
             text-align: center;
         }
 
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
+        .header h1 {
+            color: #b59123;
+            font-size: 24px;
+            font-weight: bold;
         }
 
         .header img {
-            width: 33%;
-            max-width: 150px;
-            height: auto;
-        }
-
-        .header h1 {
-            flex: 1;
-            font-size: 24px;
-            margin-left: 20px;
-        }
-
-        .quotation-info {
-            text-align: right;
+            width: 100px;
             margin-bottom: 20px;
         }
 
-        .content {
-            margin: 20px 0;
+        .content p {
+            margin: 5px 0;
         }
 
-        .table {
+        .highlighted {
+            color: #b59123;
+            font-weight: bold;
+        }
+
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
-        th,
-        td {
-            border: 1px solid #000;
+        table th,
+        table td {
+            border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
         }
 
-        .merge-cell {
-            text-align: left;
+        table th {
+            background-color: #f9f9f9;
             font-weight: bold;
         }
 
-        .merge-cell-total {
-            text-align: right;
-            font-weight: bold;
-        }
-
-        .notes,
-        .condition {
+        .terms {
+            font-size: 12px;
             margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .terms p {
+            margin: 2px 0;
         }
 
         .signature {
-            margin-top: 50px;
-            text-align: left;
-        }
-
-        .signature p {
-            margin: 5px 0;
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
         }
     </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <div class="header">
-        <img src="{{ public_path('assets/img/logo-gsa2.png') }}" alt="Company Logo" class="logo">
-        <h1 class="company-name">PT GUDANG SOLUSI ACOMMERCE</h1>
-    </div>
+    <div class="container">
+        <div class="header">
+            <img src="logo.png" alt="Company Logo">
+            <h1>QUOTATION LETTER</h1>
 
-    <!-- Quotation Info -->
-    <div class="quotation-info">
-        <h2>QUOTATION LETTER</h2>
-        <p><strong>Number :</strong> {{ $quotation->quotation_number }}</p>
-        <p><strong>Date :</strong> {{ \Carbon\Carbon::parse($quotation->quotation_date)->format('F j, Y') }}</p>
-    </div>
+            <?php
+            // Ambil singkatan dari nama perusahaan tanpa "PT" atau "CV"
+            $namaPerusahaan = $quotation->user->nama_perusahaan ?? 'Perusahaan';
+            $kataPerusahaan = explode(' ', $namaPerusahaan);
 
-    <!-- To and Dear Section -->
-    <div class="content">
-        <p><strong>To: {{ $quotation->recipient_company }}</strong></p>
-        <p>Dear {{ $quotation->recipient_contact_person }},</p>
-        <p class="justify-text">Thank you for your interest in our products. With reference to your letter number
-            {{ $quotation->quotation_number }}, PT Gudang Solusi Acommerce is pleased to submit our quotation with the
-            following terms & conditions : </p>
-    </div>
+            // Abaikan "PT" atau "CV" jika ada di awal nama perusahaan
+            if (in_array(strtoupper($kataPerusahaan[0]), ['PT', 'CV'])) {
+                array_shift($kataPerusahaan);
+            }
 
-    <!-- Table Section -->
-    <table class="table">
-        <!-- Product List -->
-        <tr>
-            <th>No</th>
-            <th>Name of Equipment</th>
-            <th>Merk Type</th>
-            <th>Qty</th>
-            <th>Unit Price</th>
-            <th>Total Price</th>
-        </tr>
-        <tbody>
-            @foreach ($quotation->quotationProducts as $index => $product)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $product->equipment_name ?? 'N/A' }}</td>
-                    <td>{{ $product->merk_type ?? 'N/A' }}</td>
-                    <td>{{ $product->quantity ?? 0 }}</td>
-                    <td>{{ number_format($product->unit_price, 2) }}</td>
-                    <td>{{ number_format($product->total_price, 2) }}</td>
-                </tr>
-            @endforeach
-        </tbody>
+            // Ambil singkatan dari kata-kata yang tersisa
+            $singkatanNamaPerusahaan = strtoupper(
+                implode(
+                    '',
+                    array_map(function ($kata) {
+                        return $kata[0];
+                    }, $kataPerusahaan),
+                ),
+            );
 
-        <!-- Summary Section -->
-        <tr class="text-center">
-            <td colspan="5" class="merge-cell text-center">Sub Total Price</td>
-            <td class="merge-cell-total text-center">{{ number_format($quotation->subtotal_price, 2) }}</td>
-        </tr>
-        <tr class="text-center">
-            <td colspan="5" class="merge-cell text-center">Discount (%)</td>
-            <td class="merge-cell-total text-center">{{ $quotation->discount ?? 0 }}%</td>
-        </tr>
-        <tr class="text-center">
-            <td colspan="5" class="merge-cell text-center">Sub Total II (After Discount)</td>
-            <td class="merge-cell-total text-center">{{ number_format($quotation->total_after_discount, 2) }}</td>
-        </tr>
-        <tr class="text-center">
-            <td colspan="5" class="merge-cell text-center">PPN (%)</td>
-            <td class="merge-cell-total text-center">{{ $quotation->ppn ?? 10 }}%</td>
-        </tr>
-        <tr class="text-center">
-            <td colspan="5" class="merge-cell text-center">Grand Total Price</td>
-            <td class="merge-cell-total text-center">{{ number_format($quotation->grand_total, 2) }}</td>
-        </tr>
-    </table>
+            // Konversi tanggal ke format Romawi
+            $tanggal = \Carbon\Carbon::parse($quotation->quotation_date)->format('j');
+            $romawiMap = [
+                'M' => 1000,
+                'CM' => 900,
+                'D' => 500,
+                'CD' => 400,
+                'C' => 100,
+                'XC' => 90,
+                'L' => 50,
+                'XL' => 40,
+                'X' => 10,
+                'IX' => 9,
+                'V' => 5,
+                'IV' => 4,
+                'I' => 1,
+            ];
+            $tanggalRomawi = '';
+            foreach ($romawiMap as $roman => $value) {
+                while ($tanggal >= $value) {
+                    $tanggalRomawi .= $roman;
+                    $tanggal -= $value;
+                }
+            }
 
-    <!-- Notes Section -->
-    <div class="notes">
-        <p><strong>Note :</strong></p>
-        @if (!empty($quotation->notes))
-            <ol>
-                @foreach (explode("\n", $quotation->notes) as $note)
-                    <li>{{ $note }}</li>
-                @endforeach
-            </ol>
-        @else
-            <p>{{ __('No additional notes.') }}</p>
-        @endif
-    </div>
+            // Tahun
+            $tahun = \Carbon\Carbon::parse($quotation->quotation_date)->format('Y');
 
-    <!-- Condition Section -->
-    <div class="condition">
-        <p><strong>Terms and Conditions :</strong></p>
-        @if (!empty($quotation->terms_conditions))
-            <ol>
-                @foreach (explode("\n", $quotation->terms_conditions) as $term)
-                    <li>{{ $term }}</li>
-                @endforeach
-            </ol>
-        @else
-            <p>{{ __('No specific terms and conditions.') }}</p>
-        @endif
-    </div>
+            // Format nomor referensi sesuai permintaan
+            $formattedNumber = sprintf('%s/SPH-AGS-%s/%s/%s', $quotation->quotation_number, $singkatanNamaPerusahaan, $tanggalRomawi, $tahun);
+            ?>
 
-    <!-- Signature Section -->
-    <div class="signature">
-        <p>Sincerely,</p><br><br>
-        <p style="margin-top: 50px;">___________________________</p>
-        <p>{{ $quotation->authorized_person_name ?? 'N/A' }}</p>
-        <p>{{ $quotation->authorized_person_position ?? 'N/A' }}</p>
-        <p>PT Gudang Solusi Acommerce</p>
-    </div>
+            <p><strong>Number:</strong> {{ $formattedNumber }}</p>
+            <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($quotation->quotation_date)->format('F d, Y') }}</p>
+        </div>
 
-    <div class="footer">
-        <h4><strong>PT Gudang Solusi Acommerce</strong></h4>
-        <p><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}</p>
-        <p><i class="fas fa-envelope me-2"></i> {{ $compro->email }} | <i class="fas fa-phone-alt fa-2x"></i>
-            {{ $compro->no_telepon }}</p>
+
+        <div class="content">
+            <p><strong>To:</strong> <span
+                    class="highlighted">{{ $quotation->user->nama_perusahaan ?? 'Company Name' }}</span></p>
+            <p>Dear {{ $quotation->recipient_contact_person }},</p>
+
+            <p>With reference to your letter number <span class="highlighted">{{ $referenceNumber }}</span>, PT. Arkamaya
+                Guna Saharsa is pleased to submit our quotation with the following terms & conditions:</p>
+
+            <!-- Equipment Details Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name of Equipment</th>
+                        <th>Merk Type</th>
+                        <th>QTY</th>
+                        <th>Unit Price</th>
+                        <th>Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($quotation->quotationProducts as $index => $product)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ $product->equipment_name ?? 'N/A' }}</td>
+                            <td>{{ $product->merk_type ?? 'N/A' }}</td>
+                            <td>{{ $product->quantity ?? 0 }}</td>
+                            <td>{{ number_format($product->unit_price, 2) }}</td>
+                            <td>{{ number_format($product->total_price, 2) }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">Sub Total Price</td>
+                        <td>{{ number_format($quotation->subtotal_price, 2) }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">Discount ({{ $quotation->discount ?? 0 }}%)</td>
+                        <td>-{{ number_format($quotation->subtotal_price * ($quotation->discount / 100), 2) }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">Sub Total II (After Discount)</td>
+                        <td>{{ number_format($quotation->total_after_discount, 2) }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">PPN ({{ $quotation->ppn ?? 10 }}%)</td>
+                        <td>{{ number_format($quotation->total_after_discount * ($quotation->ppn / 100), 2) }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><strong>Grand Total Price</strong></td>
+                        <td><strong>{{ number_format($quotation->grand_total, 2) }}</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <!-- Notes and Terms Section -->
+            <div class="terms">
+                <h3>Notes:</h3>
+                <p>{{ $quotation->notes ?? 'No additional notes.' }}</p>
+
+                <h3>Terms and Conditions:</h3>
+                <p>{{ $quotation->terms_conditions ?? 'No specific terms and conditions.' }}</p>
+            </div>
+
+            <!-- Signature Section -->
+            <div class="signature">
+                <p>Kind Regards,</p>
+                <p><strong>PT. Arkamaya Guna Saharsa</strong></p>
+                <br><br>
+                <p><img src="signature.png" alt="Signature" width="150"></p>
+                <p><strong>{{ $quotation->authorized_person_name ?? 'Signer Name' }}</strong></p>
+                <p>{{ $quotation->authorized_person_position ?? 'Position' }}</p>
+            </div>
+        </div>
     </div>
 </body>
 

@@ -19,9 +19,12 @@
 
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-9">
+            <div class="col-lg-11">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0"><strong>Your Purchase Orders</strong></h4>
+                    <a href="{{ route('distribution') }}" class="btn btn-sm btn-outline-primary">
+                        <i class="fas fa-arrow-left me-1"></i>{{ __('messages.back') }}
+                    </a>
                 </div>
 
                 @if ($purchaseOrders->isEmpty())
@@ -30,53 +33,58 @@
                         <p>Anda belum memiliki Purchase Order. Silakan lihat Quotation Anda dan ajukan quotation untuk
                             memulai
                             proses.</p>
-                        <a href="{{ route('distribution.request-quotation') }}" class="btn btn-primary">Lihat Quotation</a>
+                        <a href="{{ route('distribution.request-quotation') }}" class="btn btn-primary">{{ __('messages.your_quotation') }}</a>
                     </div>
                 @else
-                    <!-- Tambahkan Tombol Lihat Quotation di luar tabel -->
                     <div class="mb-3">
-                        <a href="{{ route('distribution.request-quotation') }}" class="btn btn-primary">Lihat Quotation</a>
+                        <a href="{{ route('distribution.request-quotation') }}" class="btn btn-primary">{{ __('messages.your_quotation') }}</a>
                     </div>
 
                     <!-- PO Table -->
-                    <div class="card shadow-sm border-0 rounded">
+                    <div class="card shadow border-0" style="border-radius: 8px; overflow: hidden;">
                         <div class="card-body p-0">
-                            <table class="table table-border mb-0">
-                                <thead class="table-primary text-center">
-                                    <tr>
-                                        <th style="width: 5%;">{{ __('messages.id') }}</th>
-                                        <th style="width: 30%;">PO Number</th>
-                                        <th style="width: 30%;">PO Date</th>
-                                        <th style="width: 20%;">{{ __('messages.status') }}</th>
-                                        <th style="width: 15%;">{{ __('messages.aksi') }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($purchaseOrders as $po)
+                            <div style="border-radius: 8px; overflow: hidden;">
+                                <table class="table table-border mb-0">
+                                    <thead style="background-color: #b0c4de;" class="text-dark text-center">
                                         <tr>
-                                            <td>{{ $po->id }}</td>
-                                            <td>{{ $po->po_number }}</td>
-                                            <td>{{ $po->po_date }}</td>
-                                            <td>{{ ucfirst($po->status) }}</td>
-                                            <td>
-                                                <a href="{{ route('quotations.show', $po->quotation_id) }}"
-                                                    class="btn btn-info btn-sm">{{ __('messages.view') }}</a>
-                                                <!-- Kondisi berdasarkan status dan keberadaan Proforma Invoice -->
-                                                @if ($po->status === 'pending')
-                                                    <span class="text-muted">PO masih dalam peninjauan</span>
-                                                @elseif ($po->status === 'approved')
-                                                    @if ($po->proformaInvoice)
-                                                        <a href="{{ route('distributor.proforma-invoices.index', $po->proformaInvoice->id) }}"
-                                                            class="btn btn-primary btn-sm">View Proforma Invoice</a>
-                                                    @else
-                                                        <span class="text-muted">Proforma Invoice akan segera dikirim</span>
-                                                    @endif
-                                                @endif
-                                            </td>
+                                            <th style="width: 5%; border-right: 1px solid #dee2e6;">{{ __('messages.id') }}
+                                            </th>
+                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">PO Number</th>
+                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">PO Date</th>
+                                            <th style="width: 15%; border-right: 1px solid #dee2e6;">
+                                                {{ __('messages.status') }}</th>
+                                            <th style="width: 40%; border-right: 1px solid #dee2e6;">
+                                                {{ __('messages.aksi') }}</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($purchaseOrders as $po)
+                                            <tr class="text-center">
+                                                <td>{{ $po->id }}</td>
+                                                <td>{{ $po->po_number }}</td>
+                                                <td>{{ $po->po_date }}</td>
+                                                <td>{{ ucfirst($po->status) }}</td>
+                                                <td>
+                                                    <a href="{{ route('quotations.show', $po->quotation_id) }}"
+                                                        class="btn btn-info btn-sm">{{ __('messages.quotation') }}</a>
+                                                    <!-- Kondisi berdasarkan status dan keberadaan Proforma Invoice -->
+                                                    @if ($po->status === 'pending')
+                                                        <br><span class="text-muted small">PO masih dalam peninjauan</span>
+                                                    @elseif ($po->status === 'approved')
+                                                        @if ($po->proformaInvoice)
+                                                            <a href="{{ route('distributor.proforma-invoices.index', $po->proformaInvoice->id) }}"
+                                                                class="btn btn-success btn-sm">{{ __('messages.proforma_invoice') }}</a>
+                                                        @else
+                                                            <span class="text-muted">Proforma Invoice akan segera
+                                                                dikirim</span>
+                                                        @endif
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 @endif

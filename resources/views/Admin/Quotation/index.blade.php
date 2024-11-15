@@ -22,11 +22,11 @@
                     <thead class="table-primary">
                         <tr>
                             <th>No</th>
+                            <th>Nomor Pengajuan</th>
                             <th>Nama Produk</th>
                             <th>Distributor</th>
                             <th>Quantity</th>
                             <th>Status</th>
-                            <th>File</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -34,6 +34,9 @@
                         @forelse($quotations as $key => $quotation)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
+                                <!-- Menampilkan Nomor Pengajuan -->
+                                <td>{{ $quotation->nomor_pengajuan ?? 'Nomor tidak tersedia' }}</td>
+
 
                                 <!-- Menampilkan Nama Produk -->
                                 <td>
@@ -54,16 +57,16 @@
 
                                 <!-- Status berdasarkan status di database -->
                                 <td>
-                                    <span class="badge
+                                    <span
+                                        class="badge
                                         @if ($quotation->status === 'cancelled') bg-danger
                                         @elseif($quotation->status === 'quotation') bg-success
-                                        @else bg-warning
-                                        @endif">
+                                        @else bg-warning @endif">
                                         {{ ucfirst($quotation->status) }}
                                     </span>
                                 </td>
 
-                                <!-- Menampilkan Dokumen PDF jika ada -->
+                                {{-- <!-- Menampilkan Dokumen PDF jika ada -->
                                 <td>
                                     @if ($quotation->pdf_path)
                                         <div class="d-flex flex-column">
@@ -77,14 +80,16 @@
                                     @else
                                         <span class="text-muted">No file</span>
                                     @endif
-                                </td>
+                                </td> --}}
 
                                 <!-- Actions -->
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a href="{{ route('admin.quotations.show', $quotation->id) }}" class="btn btn-primary btn-sm">View</a>
+                                        <a href="{{ route('admin.quotations.show', $quotation->id) }}"
+                                            class="btn btn-primary btn-sm">View</a>
                                         @if ($quotation->status !== 'cancelled')
-                                            <a href="{{ route('admin.quotations.edit', $quotation->id) }}" class="btn btn-secondary btn-sm">Edit</a>
+                                            <a href="{{ route('admin.quotations.edit', $quotation->id) }}"
+                                                class="btn btn-secondary btn-sm">Edit</a>
                                         @endif
                                     </div>
                                 </td>

@@ -90,6 +90,11 @@
                         </table>
                     </div>
                 </div>
+                <div class="text-center mt-4">
+                    <a href="{{ route('distribution') }}" class="btn btn-outline-danger">
+                        <i class="fas fa-arrow-left me-2"></i>{{ __('messages.back') }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>

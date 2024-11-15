@@ -30,6 +30,7 @@ class Quotation extends Model
         'terms_conditions',
         'authorized_person_name',
         'authorized_person_position',
+        'nomor_pengajuan',
         'pdf_path' // Tambahkan kolom pdf_path
 
     ];
@@ -61,8 +62,7 @@ class Quotation extends Model
         return $this->hasMany(QuotationNegotiation::class);
     }
     public function purchaseOrder()
-{
-    return $this->hasOne(PurchaseOrder::class);
+    {
+        return $this->hasOne(PurchaseOrder::class);
+    }
 }
-}
-

@@ -45,6 +45,7 @@
     use App\Http\Controllers\Admin\Quotation\QuotationNegotiationController;
     use App\Http\Controllers\Distribution\Portal\DistributorQuotationNegotiationController;
     use App\Http\Controllers\Distribution\Portal\PurchaseOrderController;
+    use App\Http\Controllers\Distribution\Portal\InvoiceController;
     use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorController;
 
 
@@ -169,6 +170,8 @@
             Route::get('/distributor/quotations/negotiations', [DistributorQuotationNegotiationController::class, 'index'])->name('distributor.quotations.negotiations.index');
             Route::get('/proforma-invoices', [ProformaInvoiceDistributorController::class, 'index'])->name('distributor.proforma-invoices.index');
             Route::post('/distributor/proforma-invoices/{id}/upload', [ProformaInvoiceDistributorController::class, 'uploadPaymentProof'])->name('distributor.proforma-invoices.upload');
+
+            Route::get('/distributor/invoices', [InvoiceController::class, 'index'])->name('distributor.invoices.index');
 
             // Quotation Routes
             Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show'); // View quotation

@@ -4,7 +4,8 @@
         <!-- Logo Header -->
         <div class="logo-header" data-background-color="dark">
             <a href="{{ route('dashboard') }}" class="logo">
-                <img src="{{ asset('assets/img/logo-gsa2.png') }}" alt="navbar brand" class="navbar-brand" width="180" style="border-radius: 15px;"/>
+                <img src="{{ asset('assets/img/logo-gsa2.png') }}" alt="navbar brand" class="navbar-brand" width="180"
+                    style="border-radius: 15px;" />
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -92,6 +93,17 @@
                                     <span class="sub-item">Semua Produk</span>
                                 </a>
                             </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#dist-port-management">
+                        <i class="fas fa-warehouse"></i>
+                        <p>Portal Distributor</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="dist-port-management">
+                        <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.quotations.index') }}">
                                     <span class="sub-item">Quotation</span>
@@ -110,6 +122,11 @@
                             <li>
                                 <a href="{{ route('admin.proforma-invoices.index') }}">
                                     <span class="sub-item">Proforma Invoices</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('invoices.index') }}">
+                                    <span class="sub-item">Invoices</span>
                                 </a>
                             </li>
                             <li>

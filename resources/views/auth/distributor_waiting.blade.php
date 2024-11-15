@@ -1,7 +1,7 @@
 @extends('layouts.member.master3')
 
 @section('content')
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
+<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 bg-success">
     <div class="card shadow-lg" style="max-width: 800px; opacity: 0;" id="card">
         <div class="card-body text-center">
             <h1 class="display-6 mb-4" style="font-family: 'Roboto', sans-serif;">

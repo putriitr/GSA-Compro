@@ -28,7 +28,7 @@
                             <div class="col-md-1"></div>
                             <div class="col-md-5">
                                 <p><strong><i class="fas fa-info-circle me-2"></i>{{ __('messages.status') }} : <span
-                                            class="badge bg-info text-dark px-3 py-2">{{ ucfirst($quotation->status) }}</span></strong>
+                                            class="badge bg-secondary text-dark px-3 py-2">{{ ucfirst($quotation->status) }}</span></strong>
                                 </p>
                             </div>
                             <div class="col-md-1"></div>
@@ -42,54 +42,54 @@
                         <!-- Menampilkan Daftar Produk dalam Quotation -->
                         <br>
                         <h5 class="mb-0 text-center"><strong>{{ __('messages.product_in_quo') }}</strong></h5><br>
-                        <table class="table table-bordered">
-                            <thead class="text-center">
-                                <tr>
-                                    <th>{{ __('messages.id') }}</th>
-                                    <th>{{ __('messages.produk_name') }}</th>
-                                    <th>{{ __('messages.merk') }}</th>
-                                    <th>{{ __('messages.quantity') }}</th>
-                                    <th>{{ __('messages.unit_price') }}</th>
-                                    <th>{{ __('messages.total_price') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($quotation->quotationProducts as $index => $product)
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="text-center">
                                     <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $product->equipment_name ?? 'Produk tidak tersedia' }}</td>
-                                        <td>{{ $product->merk_type ?? 'Tidak tersedia' }}</td>
-                                        <td>{{ $product->quantity }}</td>
-                                        <td>{{ number_format($product->unit_price, 2) }}</td>
-                                        <td>{{ number_format($product->total_price, 2) }}</td>
+                                        <th class="col-1">{{ __('messages.id') }}</th>
+                                        <th class="col-3">{{ __('messages.produk_name') }}</th>
+                                        <th class="col-2">{{ __('messages.merk') }}</th>
+                                        <th class="col-2">{{ __('messages.quantity') }}</th>
+                                        <th class="col-2">{{ __('messages.unit_price') }}</th>
+                                        <th class="col-2">{{ __('messages.total_price') }}</th>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text-center text-muted">{{ __('messages.no_product_quo') }}</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @forelse($quotation->quotationProducts as $index => $product)
+                                        <tr class="text-center">
+                                            <td class="col-1">{{ $index + 1 }}</td>
+                                            <td class="col-3">{{ $product->equipment_name ?? 'Produk tidak tersedia' }}</td>
+                                            <td class="col-2">{{ $product->merk_type ?? 'Tidak tersedia' }}</td>
+                                            <td class="col-2">{{ $product->quantity }}</td>
+                                            <td class="col-2">{{ number_format($product->unit_price, 2) }}</td>
+                                            <td class="col-2">{{ number_format($product->total_price, 2) }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6" class="text-center text-muted">{{ __('messages.no_product_quo') }}</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+
 
                         <!-- Menampilkan file PDF jika ada -->
                         <div class="mt-4">
                             <strong>{{ __('messages.dok_pdf') }} : </strong>
                             @if ($quotation->pdf_path)
-                                <p>
-                                    <a href="{{ asset($quotation->pdf_path) }}" target="_blank" class="text-primary">
-                                        <i class="fas fa-file-alt me-2"></i>{{ __('messages.dok_pdf') }}
-                                    </a>
-                                </p>
-                                <p>
-                                    <a href="{{ asset($quotation->pdf_path) }}" download class="text-secondary">
-                                        <i class="fas fa-download me-2"></i>{{ __('messages.unduh') }}
-                                    </a>
-                                </p>
+                            <p class="d-flex align-items-center">
+                                <a href="{{ asset($quotation->pdf_path) }}" target="_blank" class="text-primary">
+                                    <i class="fas fa-file-alt me-2"></i>{{ __('messages.dok_pdf') }}
+                                </a>
+                                <a href="{{ asset($quotation->pdf_path) }}" download class="btn btn-outline-primary btn-sm d-flex align-items-center ms-2">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                            </p>
                             @else
                                 <p class="text-muted">{{ __('messages.no_file') }}</p>
                             @endif
                         </div>
-
                         <div class="text-center mt-4">
                             <a href="{{ route('distribution.request-quotation') }}" class="btn btn-outline-danger">
                                 <i class="fas fa-arrow-left me-2"></i>{{ __('messages.back') }}
