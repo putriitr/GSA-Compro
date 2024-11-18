@@ -21,7 +21,7 @@
                     <h4 class="mb-0"><strong>{{ __('messages.pilih_quo') }}</strong></h4>
                     <div class="d-flex">
                         <a href="{{ url('/en/products') }}" class="btn btn-success me-2">
-                            <i class="fas fa-plus-circle me-2"></i>{{ __('messages.create_tiket') }}
+                            <i class="fas fa-plus-circle me-2"></i>{{ __('messages.create_quo') }}
                         </a>
                         <a href="{{ route('quotations.cart') }}" class="btn btn-warning">
                             <i class="fas fa-shopping-cart me-2"></i>{{ __('messages.cart') }}

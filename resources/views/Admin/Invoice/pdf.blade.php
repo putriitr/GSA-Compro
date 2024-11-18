@@ -3,130 +3,213 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice #{{ $invoice->invoice_number }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 85%;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 8px 50px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
         }
 
         .header {
-            text-align: right;
-            font-weight: bold;
-            color: #b89222;
-            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #ffcb05;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        .invoice-title {
-            font-size: 24px;
-            text-align: center;
-            color: #b89222;
+        .header img {
+            width: 180px;
+            height: auto;
+        }
+
+        .invoice-info {
+            text-align: right;
+        }
+
+        .invoice-info h1 {
+            font-size: 40px;
+            font-weight: bold;
+            color: #ffcb05;
+            margin: 0;
+        }
+
+        .invoice-info p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #555;
         }
 
         .client-info {
-            font-weight: bold;
-            margin-bottom: 20px;
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .client-info strong {
+            color: #2b3a3f;
         }
 
         .table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
+            margin-bottom: 30px;
+            font-size: 16px;
+            color: #333;
         }
 
         .table th,
         .table td {
-            border: 1px solid #000;
-            padding: 8px;
+            padding: 15px;
             text-align: center;
+            border: 1px solid #ddd;
         }
 
         .table th {
-            background-color: #f2f2f2;
+            background-color: #007bff;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .table td {
+            background-color: #f9f9f9;
+        }
+
+        .table .total-row td {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .table .total-row td:last-child {
+            background-color: #fff;
         }
 
         .footer {
+            font-size: 14px;
+            color: #555;
             margin-top: 40px;
-            font-size: 12px;
-            text-align: left;
+            text-align: center;
         }
 
-        .total-row {
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer .company-info {
             font-weight: bold;
-            text-align: right;
+            color: #007bff;
+        }
+
+        .footer .payment-info {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .footer .payment-info span {
+            font-weight: bold;
+        }
+
+        .footer .signature {
+            margin-top: 30px;
+            text-align: left;
+            font-size: 16px;
         }
     </style>
 </head>
 
 <body>
-    <div class="header">
-        <h1 class="invoice-title">INVOICE</h1>
-        <p>Number: {{ $piNumberFormatted }}</p>
-        <p>Date: {{ \Carbon\Carbon::parse($invoice->invoice_date)->format('F d, Y') }}</p>
-    </div>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <img src="{{ public_path('assets/img/logo-gsa2.png') }}" alt="Company Logo">
+            <div class="invoice-info">
+                <h1>Invoice</h1>
+                <p>Invoice Number : <strong>{{ $piNumberFormatted }}</strong></p>
+                <p>Date : <strong>{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('F d, Y') }}</strong></p>
+            </div>
+        </div>
 
-    <div class="client-info">
-        <p><strong>Billed To:</strong></p>
-        <p><strong>{{ $vendor_name }}</strong></p>
-        <p>{{ $vendor_address }}</p>
-        <p>Phone: {{ $vendor_phone }}</p>
-    </div>
+        <!-- Client Info Section -->
+        <div class="client-info">
+            <p><strong>Bill To :</strong></p>
+            <p><strong>{{ $vendor_name }}</strong></p>
+            <p>{{ $vendor_address }}</p>
+            <p>Phone : {{ $vendor_phone }}</p>
+        </div>
 
-    <p>Dear Vendor,</p>
-    <p>Based on Purchase Order {{ $poNumberFormatted }}, PT. Arkamaya Guna Saharsa submits the following invoice:</p>
+        <p>Dear {{ $vendor_name }},</p>
+        <p>We are pleased to present the following invoice based on your purchase order <strong>{{ $poNumberFormatted }}</strong>:</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>Description</th>
-                <th>QTY</th>
-                <th>Satuan</th>
-                <th>Unit Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($invoice->proformaInvoice->purchaseOrder->quotation->quotationProducts as $index => $product)
+        <!-- Products Table -->
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $product->equipment_name }}</td>
-                    <td>{{ $product->quantity }}</td>
-                    <td>{{ $product->merk_type }}</td>
-                    <td>{{ number_format($product->unit_price, 2) }}</td>
+                    <th>ID</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Brand</th>
+                    <th>Unit Price</th>
                 </tr>
-            @endforeach
+            </thead>
+            <tbody>
+                @foreach ($invoice->proformaInvoice->purchaseOrder->quotation->quotationProducts as $index => $product)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $product->equipment_name }}</td>
+                        <td>{{ $product->quantity }}</td>
+                        <td>{{ $product->merk_type }}</td>
+                        <td>{{ number_format($product->unit_price, 2) }}</td>
+                    </tr>
+                @endforeach
+                <tr class="total-row">
+                    <td colspan="4">Subtotal</td>
+                    <td>{{ number_format($invoice->subtotal, 2) }}</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="4">PPN (%)</td>
+                    <td>{{ number_format($invoice->ppn, 2) }}</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="4"><strong>Grand Total (Including PPN)</strong></td>
+                    <td><strong>{{ number_format($invoice->grand_total_include_ppn, 2) }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
 
-            <!-- Row untuk Subtotal, PPN, dan Grand Total -->
-            <tr class="total-row">
-                <td colspan="4">Sub Total</td>
-                <td>{{ number_format($invoice->subtotal, 2) }}</td>
-            </tr>
-            <tr class="total-row">
-                <td colspan="4">PPN</td>
-                <td>{{ number_format($invoice->ppn, 2) }}</td>
-            </tr>
-            <tr class="total-row">
-                <td colspan="4"><strong>Grand Total Include PPN</strong></td>
-                <td><strong>{{ number_format($invoice->grand_total_include_ppn, 2) }}</strong></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="footer">
-        <p>Please make payments to:</p>
-        <p>PT. Arkamaya Guna Saharsa</p>
-        <p>121-00-0022881-1</p>
-        <p>Bank Mandiri Kebon Sirih</p>
-        <p>Jl. Tanah Abang Timur No. I, RT.2/RW.3, Gambir, Central Jakarta City, Jakarta 10110</p>
-        <br>
-        <p>Kind Regards,</p>
-        <p>PT. Arkamaya Guna Saharsa</p>
-        <br>
-        <br>
-        <p>Agustina Panjaitan</p>
-        <p>Director</p>
+        <!-- Footer Section -->
+        <div class="footer">
+            <p>Thank you for your business!</p>
+            <p><strong>PT. Gudang Solusi Acommerce</strong></p>
+            <br>
+            <div class="payment-info">
+                <p>Kindly remit payment to :</p>
+                <p class="company-info">PT. Gudang Solusi Acommerce</p>
+                <p>Bank Mandiri</p>
+                <p>Account Number: 121-00-0022881-1</p>
+                <p>Bank Address : Bizpark Jababeka, Jl. Niaga Industri Selatan 2 Blok QQ2 No.6, Kel. Pasirsari, Kec. Cikarang Selatan, Kab. Bekasi, Prov. Jawa Barat, 17532</p>
+            </div>
+            <br>
+            <div class="signature">
+                <p>Warm regards,</p>
+                <p><strong>Agustina Panjaitan</strong></p>
+                <p>Director</p>
+            </div>
+        </div>
     </div>
 </body>
 

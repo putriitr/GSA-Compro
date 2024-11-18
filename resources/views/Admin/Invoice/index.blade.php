@@ -48,6 +48,6 @@
                     @endforelse
                 </tbody>
             </table>
-        </div>s
+        </div>
     </div>
 @endsection

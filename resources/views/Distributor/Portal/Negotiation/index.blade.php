@@ -53,10 +53,11 @@
                                             </td>
                                             <td style="border-right: 1px solid #dee2e6;">
                                                 <span class="badge
-                                                @if($negotiation->status == 'approved') bg-success
-                                                @elseif($negotiation->status == 'pending') bg-warning
-                                                @else bg-danger
-                                                @endif">
+                                                    @if ($negotiation->status === 'accepted') bg-success
+                                                    @elseif ($negotiation->status === 'In_progress') bg-warning
+                                                    @elseif ($negotiation->status === 'rejected') bg-danger
+                                                    @else bg-secondary
+                                                    @endif">
                                                     {{ ucfirst($negotiation->status) }}
                                                 </span>
                                             </td>

@@ -21,15 +21,14 @@ class QuotationController extends Controller
     {
         $quotation = Quotation::with('produk')->findOrFail($id);
 
-
-        // Periksa apakah file PDF sudah tersedia dan status masih "Pending"
+        // Perbarui status jika diperlukan
         if ($quotation->pdf_path && $quotation->status === 'pending') {
-            // Perbarui status menjadi "Quotation"
             $quotation->update(['status' => 'quotation']);
         }
 
         return view('Distributor.Portal.show', compact('quotation'));
     }
+
 
     /**
      * Cancel a specific quotation.
@@ -68,6 +67,7 @@ class QuotationController extends Controller
                 'produk_id' => $produk->id,
                 'nama' => $produk->nama,
                 'quantity' => $quantity,
+                'unit_price' => $produk->harga,
             ];
             session()->put('quotation_cart', $cartItems);
 

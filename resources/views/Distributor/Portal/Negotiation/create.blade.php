@@ -12,17 +12,17 @@
                         <form action="{{ route('distributor.quotations.negotiations.store', $quotation->id) }}" method="POST">
                             @csrf
                             <div class="form-group mb-4">
-                                <label for="negotiated_price" class="form-label">Negotiated Price</label>
+                                <label for="negotiated_price" class="form-label">{{ __('messages.nego_price') }}</label>
                                 <input type="number" step="0.01" class="form-control" id="negotiated_price" name="negotiated_price" required>
                             </div>
 
                             <div class="form-group mb-4">
-                                <label for="notes" class="form-label">Notes</label>
+                                <label for="notes" class="form-label">{{ __('messages.note') }}</label>
                                 <textarea class="form-control" id="notes" name="notes" rows="4"></textarea>
                             </div>
 
                             <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-success w-50">Submit Negotiation<i class="fas fa-paper-plane ms-2"></i></button>
+                                <button type="submit" class="btn btn-success w-50">{{ __('messages.kirim') }}<i class="fas fa-paper-plane ms-2"></i></button>
                             </div>
                         </form>
                     </div>

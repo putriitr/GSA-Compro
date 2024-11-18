@@ -5,12 +5,14 @@
     <div class="container-fluid service py-5"
         style="margin-top: 0; background-image: url('http://localhost:8080/GSA-Compro/public/assets/img/bg-1.jpg'); background-size: cover; background-position: center;">
         <div class="container service-section py-5">
+            <!-- Section Header -->
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
                 <h4 class="text-primary">{{ __('messages.portal_partner') }}</h4>
                 <h1 class="display-5 text-white mb-4">{{ __('messages.portal_partner') }}</h1>
                 <p class="mb-0 text-white">{{ __('messages.portal-dist_desc') }}</p>
             </div>
 
+            <!-- First Row of Services -->
             <div class="row g-4 justify-content-center">
                 <!-- Pilih Produk & Minta Quotation -->
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
@@ -27,7 +29,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-1 wow fadeInUp"></div>
 
                 <!-- Kelola Invoice -->
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
@@ -44,7 +45,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-1 wow fadeInUp"></div>
 
                 <!-- Kelola Nego -->
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
@@ -63,6 +63,7 @@
                 </div>
             </div><br><br>
 
+            <!-- Second Row of Services -->
             <div class="row g-4 justify-content-center">
                 <!-- Kelola Proforma Invoice -->
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
@@ -79,7 +80,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-1 wow fadeInUp"></div>
 
                 <!-- Kelola PO -->
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
@@ -96,7 +96,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-4 col-xl-1 wow fadeInUp"></div>
 
                 <!-- Ticketing -->
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
