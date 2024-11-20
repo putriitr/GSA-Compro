@@ -35,6 +35,7 @@
                                         <tr>
                                             <td>{{ $produk->id }}</td>
                                             <td class="text-truncate" style="max-width: 150px;">{{ $produk->nama }}</td>
+                                            <td>{{ $produk->merk }}</td>
                                             <td>{{ $produk->kategori->nama }}</td>
                                             <td>
                                                 @foreach ($produk->images as $image)

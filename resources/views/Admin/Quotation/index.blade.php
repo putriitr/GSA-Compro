@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container py-5">
-        <h2 class="mb-4">Daftar Permintaan Quotation</h2>
+        <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: rgb(60, 60, 179);"><strong>Daftar Permintaan Quotation</strong></h2>
 
+        <!-- Flash Messages -->
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
@@ -16,80 +17,55 @@
             </div>
         @endif
 
-        <div class="card shadow-sm border-0 rounded">
-            <div class="card-body p-0">
-                <table class="table table-striped table-hover mb-0">
-                    <thead class="table-primary">
+        <!-- Quotation Table -->
+        <div class="card shadow-lg border-0 rounded">
+            <div class="table-responsive card-body p-0">
+                <table class="table table-hover mb-0">
+                    <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
                         <tr>
-                            <th>No</th>
-                            <th>Nomor Pengajuan</th>
-                            <th>Nama Produk</th>
-                            <th>Distributor</th>
-                            <th>Quantity</th>
-                            <th>Status</th>
-                            <th>Actions</th>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Nomor Pengajuan</th>
+                            <th class="text-center">Nama Produk</th>
+                            <th class="text-center">Distributor</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="background-color: #f9f9f9;">
                         @forelse($quotations as $key => $quotation)
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <!-- Menampilkan Nomor Pengajuan -->
-                                <td>{{ $quotation->nomor_pengajuan ?? 'Nomor tidak tersedia' }}</td>
-
-
-                                <!-- Menampilkan Nama Produk -->
+                                <td class="text-center">{{ $key + 1 }}</td>
+                                <td class="text-center">{{ $quotation->nomor_pengajuan ?? 'Nomor tidak tersedia' }}</td>
                                 <td>
                                     @foreach ($quotation->quotationProducts as $product)
                                         <div>- {{ $product->equipment_name ?? 'Produk tidak tersedia' }}</div>
                                     @endforeach
                                 </td>
-
-                                <!-- Menampilkan Distributor -->
-                                <td>{{ $quotation->user->name ?? 'Tidak ada pengguna' }}</td>
-
-                                <!-- Menampilkan Quantity untuk setiap produk -->
+                                <td class="text-center">{{ $quotation->user->name ?? 'Tidak ada pengguna' }}</td>
                                 <td>
                                     @foreach ($quotation->quotationProducts as $product)
-                                        <div>{{ $product->quantity }}</div>
+                                        <div class="text-center">{{ $product->quantity }}</div>
                                     @endforeach
                                 </td>
-
-                                <!-- Status berdasarkan status di database -->
-                                <td>
-                                    <span
-                                        class="badge
+                                <td class="text-center">
+                                    <span class="badge
                                         @if ($quotation->status === 'cancelled') bg-danger
                                         @elseif($quotation->status === 'quotation') bg-success
-                                        @else bg-warning @endif">
+                                        @else bg-warning
+                                        @endif">
                                         {{ ucfirst($quotation->status) }}
                                     </span>
                                 </td>
-
-                                {{-- <!-- Menampilkan Dokumen PDF jika ada -->
-                                <td>
-                                    @if ($quotation->pdf_path)
-                                        <div class="d-flex flex-column">
-                                            <a href="{{ asset($quotation->pdf_path) }}" target="_blank" class="text-primary mb-1">
-                                                <i class="fas fa-file-alt me-2"></i>Lihat Dokumen PDF
-                                            </a>
-                                            <a href="{{ asset($quotation->pdf_path) }}" download class="text-secondary">
-                                                <i class="fas fa-download me-2"></i>Download PDF
-                                            </a>
-                                        </div>
-                                    @else
-                                        <span class="text-muted">No file</span>
-                                    @endif
-                                </td> --}}
-
-                                <!-- Actions -->
-                                <td>
-                                    <div class="d-flex gap-2">
-                                        <a href="{{ route('admin.quotations.show', $quotation->id) }}"
-                                            class="btn btn-primary btn-sm">View</a>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <a href="{{ route('admin.quotations.show', $quotation->id) }}" class="btn btn-primary btn-sm rounded-pill shadow-sm">
+                                            <i class="fas fa-eye"></i> View
+                                        </a>
                                         @if ($quotation->status !== 'cancelled')
-                                            <a href="{{ route('admin.quotations.edit', $quotation->id) }}"
-                                                class="btn btn-secondary btn-sm">Edit</a>
+                                            <a href="{{ route('admin.quotations.edit', $quotation->id) }}" class="btn btn-secondary btn-sm rounded-pill shadow-sm">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </a>
                                         @endif
                                     </div>
                                 </td>
@@ -100,7 +76,6 @@
                             </tr>
                         @endforelse
                     </tbody>
-
                 </table>
             </div>
         </div>

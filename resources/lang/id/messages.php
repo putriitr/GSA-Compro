@@ -45,6 +45,7 @@ return [
     'proforma_invoice' => 'Faktur Proforma',
     'invoice' => 'Faktur',
     'invoice_desc' => 'Menyederhanakan pengelolaan faktur dalam satu tempat, memastikan rekonsiliasi dan pembayaran transaksi berjalan akurat dan tepat waktu.',
+    'pi_desc' => 'Menyediakan platform untuk menghasilkan faktur awal dengan transparansi, memastikan kejelasan dalam persyaratan transaksi dan memungkinkan pelacakan konfirmasi pesanan dengan mudah.',
     'po' => 'Pembelian Produk',
     'po_desc' => 'Menyediakan platform untuk mengelola pesanan pembelian dengan transparansi dan memudahkan pelacakan status barang.',
     'pro_quo' => 'Produk & Quotation',

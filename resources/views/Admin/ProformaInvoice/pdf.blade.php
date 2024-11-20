@@ -106,70 +106,82 @@
         <div class="header">
             <img src="{{ public_path('assets/img/logo-gsa2.png') }}" alt="Logo">
             <div class="invoice-info">
-                <h1>Proforma Invoice</h1>
-                <p>Number: <strong>{{ $piNumberFormatted }}</strong></p>
-                <p>Date: <strong>{{ \Carbon\Carbon::parse($proformaInvoice->pi_date)->format('F d, Y') }}</strong></p>
+                <h1>PROFORMA INVOICE</h1>
+                <p>Number : <strong>{{ $piNumberFormatted }}</strong></p>
+                <p>Date : <strong>{{ \Carbon\Carbon::parse($proformaInvoice->pi_date)->format('F d, Y') }}</strong></p>
             </div>
         </div>
 
         <!-- Client Info -->
         <div class="client-info">
-            <p><strong>Billed To:</strong></p>
+            <p><strong>Billed To :</strong></p>
             <p><strong>{{ $vendorName }}</strong></p>
             <p>{{ $vendorAddress }}</p>
             <p>Phone: {{ $vendorPhone }}</p>
         </div>
 
         <p>Dear {{ $vendorName }},</p>
-        <p>Based on Purchase Order <strong>{{ $poNumberFormatted }}</strong>, PT Gudang Solusi Acommerce submits the following proforma invoice:</p>
+        <p>Based on Purchase Order <strong>{{ $poNumberFormatted }}</strong>, PT Gudang Solusi Acommerce submits the following proforma invoice :</p>
 
         <!-- Table -->
         <table class="table">
             <thead>
                 <tr>
-                    <th>No.</th>
-                    <th>Description</th>
-                    <th>QTY</th>
-                    <th>Unit</th>
-                    <th>Unit Price</th>
+                    <th style="width: 5%;">No.</th>
+                    <th style="width: 40%;">Description</th>
+                    <th style="width: 10%;">QTY</th>
+                    <th style="width: 20%;">Satuan</th>
+                    <th style="width: 25%;">Unit Price</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $index => $product)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $product['description'] }}</td>
-                    <td>{{ $product['qty'] }}</td>
-                    <td>{{ $product['unit'] }}</td>
-                    <td>{{ number_format($product['unit_price'], 2) }}</td>
-                </tr>
+                @foreach($products as $index => $product)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ $product['description'] }}</td>
+                        <td>{{ $product['qty'] }}</td>
+                        <td>{{ $product['unit'] }}</td>
+                        <td>{{ number_format($product['unit_price'], 2) }}</td>
+                    </tr>
                 @endforeach
+                <!-- Summary Rows -->
                 <tr>
-                    <td colspan="4">Sub Total</td>
+                    <td colspan="4" class="right-align">Sub Total</td>
                     <td>{{ number_format($proformaInvoice->subtotal, 2) }}</td>
                 </tr>
                 <tr>
-                    <td colspan="4">PPN (%)</td>
+                    <td colspan="4" class="right-align">PPN</td>
                     <td>{{ number_format($proformaInvoice->ppn, 2) }}</td>
                 </tr>
-                <tr class="total-row">
-                    <td colspan="4">Grand Total Include PPN</td>
+                <tr>
+                    <td colspan="4" class="right-align">Grand Total Include PPN</td>
                     <td>{{ number_format($proformaInvoice->grand_total_include_ppn, 2) }}</td>
                 </tr>
                 <tr>
-                    <td colspan="4"><strong>Down Payment (DP)</strong></td>
+                    <td colspan="4" class="right-align"><strong>Down Payment (DP)</strong></td>
                     <td>{{ number_format($dpPercent, 2) }}% - Rp {{ number_format($proformaInvoice->dp, 2) }}</td>
                 </tr>
             </tbody>
         </table>
 
-        <!-- Footer -->
-        <div class="footer">
+         <!-- Footer Section -->
+         <div class="footer">
             <p>Thank you for your business!</p>
             <p><strong>PT. Gudang Solusi Acommerce</strong></p>
-            <p class="company-info">Payment Details:</p>
-            <p>Bank Mandiri | Account Number: 121-00-0022881-1</p>
-            <p>Bank Address: Bizpark Jababeka...</p>
+            <br>
+            <div class="payment-info">
+                <p>Kindly remit payment to :</p>
+                <p class="company-info">PT. Gudang Solusi Acommerce</p>
+                <p>Bank Mandiri</p>
+                <p>Account Number : 121-00-0022881-1</p>
+                <p>Bank Address : Bizpark Jababeka, Jl. Niaga Industri Selatan 2 Blok QQ2 No.6, Kel. Pasirsari, Kec. Cikarang Selatan, Kab. Bekasi, Prov. Jawa Barat, 17532</p>
+            </div>
+            <br>
+            <div class="signature">
+                <p>Warm regards,</p>
+                <p><strong>Agustina Panjaitan</strong></p>
+                <p>Director</p>
+            </div>
         </div>
     </div>
 </body>

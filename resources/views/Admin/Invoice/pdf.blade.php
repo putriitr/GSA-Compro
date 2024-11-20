@@ -138,8 +138,8 @@
         <div class="header">
             <img src="{{ public_path('assets/img/logo-gsa2.png') }}" alt="Company Logo">
             <div class="invoice-info">
-                <h1>Invoice</h1>
-                <p>Invoice Number : <strong>{{ $piNumberFormatted }}</strong></p>
+                <h1>INVOICE</h1>
+                <p>Number : <strong>{{ $piNumberFormatted }}</strong></p>
                 <p>Date : <strong>{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('F d, Y') }}</strong></p>
             </div>
         </div>
@@ -153,14 +153,14 @@
         </div>
 
         <p>Dear {{ $vendor_name }},</p>
-        <p>We are pleased to present the following invoice based on your purchase order <strong>{{ $poNumberFormatted }}</strong>:</p>
+        <p>We are pleased to present the following invoice based on your purchase order <strong>{{ $poNumberFormatted }}</strong> : </p>
 
         <!-- Products Table -->
         <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Product</th>
+                    <th>Product Name</th>
                     <th>Quantity</th>
                     <th>Brand</th>
                     <th>Unit Price</th>
@@ -200,7 +200,7 @@
                 <p>Kindly remit payment to :</p>
                 <p class="company-info">PT. Gudang Solusi Acommerce</p>
                 <p>Bank Mandiri</p>
-                <p>Account Number: 121-00-0022881-1</p>
+                <p>Account Number : 121-00-0022881-1</p>
                 <p>Bank Address : Bizpark Jababeka, Jl. Niaga Industri Selatan 2 Blok QQ2 No.6, Kel. Pasirsari, Kec. Cikarang Selatan, Kab. Bekasi, Prov. Jawa Barat, 17532</p>
             </div>
             <br>

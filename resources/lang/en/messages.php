@@ -43,6 +43,7 @@ return [
     'proforma_invoice' => 'Proforma Invoice',
     'invoice' => 'Invoice',
     'invoice_desc' => 'Simplify invoice management in one place, ensuring accurate and timely reconciliation and payment of transactions.',
+    'pi_desc' => 'Provides a platform to generate preliminary invoices with transparency, ensuring clarity in transaction terms and enabling easy tracking of order confirmation.',
     'po' => 'Purchase Order',
     'po_desc' => 'Provides a platform to manage purchase orders with transparency and making it easy to track the status of goods.',
     'pro_quo' => 'Product & Quotation',

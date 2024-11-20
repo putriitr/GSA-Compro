@@ -155,8 +155,8 @@
         <div class="header">
             <img src="{{ public_path('assets/img/logo-gsa2.png') }}" alt="Company Logo">
             <div class="invoice-info">
-                <h1>Quotation Letter</h1>
-                <p>Number : <strong>{{ $formattedNumber }}</strong></p>
+                <h1>QUOTATION LETTER</h1>
+                <p>Number : <strong>{{ $quotation->quotation_number }}</strong></p>
                 <p>Date : <strong>{{ \Carbon\Carbon::parse($quotation->quotation_date)->format('F d, Y') }}</strong></p>
             </div>
         </div>
@@ -166,7 +166,7 @@
             <p><strong>To : </strong><span
                     class="highlighted">{{ $quotation->user->nama_perusahaan ?? 'Company Name' }}</span></p>
             <p>Dear {{ $quotation->recipient_contact_person }},</p>
-            <p>Thank you for your interest in our products. Below are the quotation terms:</p>
+            <p>Thank you for your interest in our products. Below are the quotation terms, based on the letter number {{ $referenceNumber }} : </p>
         </div>
 
         <!-- Products Table -->
@@ -195,16 +195,71 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="5">Grand Total Price</td>
+                    <td colspan="5">Sub Total Price</td>
+                    <td>{{ number_format($quotation->subtotal_price, 2) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5">Discount ({{ $quotation->discount ?? 0 }}%)</td>
+                    <td>-{{ number_format($quotation->subtotal_price * ($quotation->discount / 100), 2) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5">Sub Total II (After Discount)</td>
+                    <td>{{ number_format($quotation->total_after_discount, 2) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5">PPN ({{ $quotation->ppn ?? 10 }}%)</td>
+                    <td>{{ number_format($quotation->total_after_discount * ($quotation->ppn / 100), 2) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5"><strong>Grand Total Price</strong></td>
                     <td><strong>{{ number_format($quotation->grand_total, 2) }}</strong></td>
                 </tr>
             </tfoot>
         </table>
 
+        <!-- Notes Section -->
+        <div class="terms">
+            <h3>Notes:</h3>
+            @php
+                // Ubah string menjadi array jika diperlukan
+                $notes = is_array($quotation->notes) ? $quotation->notes : explode("\n", $quotation->notes);
+            @endphp
+            @if (!empty($notes))
+                <ol>
+                    @foreach ($notes as $index => $note)
+                        <li>{{ $note }}</li>
+                    @endforeach
+                </ol>
+            @else
+                <p>No additional notes.</p>
+            @endif
+
+            <!-- Terms & Conditions Section -->
+            <h3>Terms & Conditions:</h3>
+            @php
+                // Ubah string menjadi array jika diperlukan
+                $terms_conditions = is_array($quotation->terms_conditions)
+                    ? $quotation->terms_conditions
+                    : explode("\n", $quotation->terms_conditions);
+            @endphp
+            @if (!empty($terms_conditions))
+                <ol>
+                    @foreach ($terms_conditions as $index => $term)
+                        <li>{{ $term }}</li>
+                    @endforeach
+                </ol>
+            @else
+                <p>No specific terms and conditions.</p>
+            @endif
+        </div>
+
         <!-- Footer -->
         <div class="footer">
             <p>Kind Regards,</p>
             <p><strong>PT Gudang Solusi Acommerce</strong></p>
+            <p><img src="{{ public_path('assets/img/logo-gsa2.png') }}" alt="Signature" width="150"></p>
+            <p><strong>{{ $quotation->authorized_person_name ?? 'Signer Name' }}</strong></p>
+            <p>{{ $quotation->authorized_person_position ?? 'Position' }}</p>
         </div>
     </div>
 </body>

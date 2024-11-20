@@ -5,15 +5,16 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card p-3 shadow">
-                <h2>Detail Quotation: {{ $quotation->id }}</h2>
-
+                <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">
+                    <strong>Detail Quotation #{{ $quotation->id }}</strong>
+                </h2>
                 <!-- Daftar Produk di Quotation -->
-                <div class="card mt-4 shadow">
+                <div class="table-responsive card mt-4 shadow">
                     <div class="card-body">
-                        <h5 class="card-title">Informasi Produk dalam Quotation</h5>
+                        <h4 class="card-title">Informasi Produk dalam Quotation</h4><br>
                         <table class="table table-bordered">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th>No</th>
                                     <th>Nama Produk</th>
                                     <th>Merek</th>
@@ -26,13 +27,13 @@
                             <tbody>
                                 @forelse($quotation->quotationProducts as $index => $product)
                                     <tr>
-                                        <td>{{ $index + 1 }}</td>
+                                        <td class="text-center">{{ $index + 1 }}</td>
                                         <td>{{ $product->equipment_name ?? 'Produk tidak tersedia' }}</td>
-                                        <td>{{ $product->merk_type ?? 'Tidak tersedia' }}</td>
-                                        <td>{{ $product->tipe ?? 'Tidak tersedia' }}</td>
-                                        <td>{{ $product->quantity }}</td>
-                                        <td>{{ number_format($product->unit_price, 2) }}</td>
-                                        <td>{{ number_format($product->total_price, 2) }}</td>
+                                        <td class="text-center">{{ $product->merk_type ?? 'Tidak tersedia' }}</td>
+                                        <td class="text-center">{{ $product->tipe ?? 'Tidak tersedia' }}</td>
+                                        <td class="text-center">{{ $product->quantity }}</td>
+                                        <td class="text-center">{{ number_format($product->unit_price, 2) }}</td>
+                                        <td class="text-center">{{ number_format($product->total_price, 2) }}</td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -67,9 +68,11 @@
                     </div>
                 </div>
 
-                <!-- Tombol Kembali -->
-                <div class="mt-4">
-                    <a href="{{ route('admin.quotations.index') }}" class="btn btn-secondary">Kembali ke Daftar Quotation</a>
+                 <!-- Tombol Kembali -->
+                 <div class="mt-4 text-end">
+                    <a href="{{ route('admin.quotations.index') }}" class="btn btn-secondary rounded-pill shadow-sm">
+                        <i class="fas fa-arrow-left me-2"></i>Kembali ke Daftar Quotation
+                    </a>
                 </div>
             </div>
         </div>
