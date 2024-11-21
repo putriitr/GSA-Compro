@@ -19,7 +19,7 @@
 <div class="container py-5">
     <div class="row g-4">
         @forelse($produks as $produk)
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="card border-0 shadow-sm rounded-lg overflow-hidden">
                     <img src="{{ asset($produk->produk->images->first()->gambar ?? 'assets/img/default.jpg') }}" class="card-img-top" alt="{{ $produk->produk->nama }}">
                     <div class="card-body">

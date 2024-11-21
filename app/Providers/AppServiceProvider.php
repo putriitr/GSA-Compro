@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Pagination\Paginator;
+use App\Models\Quotation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,8 +20,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
-        Paginator::useBootstrap();
+        view()->composer('*', function ($view) {
+            $pendingCount = Quotation::where('status', 'pending')->count();
+            $view->with('pendingCount', $pendingCount);
+        });
     }
 }

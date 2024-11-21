@@ -3,12 +3,12 @@
 @section('content')
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb"
-        style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/about.jpg') }}'); background-size: cover; height: 300px;">
+        style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/activity.jpg') }}'); background-size: cover; height: 300px;">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">About Us</h4>
+            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.about_us') }}</h4>
             <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                <li class="breadcrumb-item active text-primary">About</li>
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('messages.home') }}</a></li>
+                <li class="breadcrumb-item active text-primary">{{ __('messages.about_us') }}</li>
             </ol>
         </div>
     </div>
@@ -205,7 +205,7 @@
             style="margin-left: auto; margin-right: auto; width: 100%; height: 500px; border-radius: 10px; overflow: hidden;">
         </div>
     </div>
-    </div><br>
+    </div><br><br>
     <!-- Map End -->
 
     <!-- Include Leaflet.js and Pulse Icon -->

@@ -15,12 +15,18 @@ class UserAccess
      */
     public function handle(Request $request, Closure $next, $userType)
     {
-        if(auth()->user()->type == $userType){
+        if (auth()->check() && auth()->user()->type == $userType) {
             return $next($request);
         }
 
-        return response()->json(['You do not have permission to access for this page.']);
-        /* return response()->view('errors.check-permission'); */
+        // Tambahkan pesan yang disesuaikan untuk setiap role
+        $message = match ($userType) {
+            'admin' => 'Halaman ini hanya dapat diakses oleh Admin.',
+            'member' => 'Akses halaman ini khusus untuk Member terdaftar. Jika Anda belum menjadi member, silakan hubungi admin untuk pendaftaran.',
+            'distributor' => 'Halaman ini hanya tersedia untuk Distributor. Daftarkan diri Anda sebagai distributor untuk melanjutkan akses.',
+            default => 'Anda tidak memiliki izin untuk mengakses halaman ini.',
+        };
 
+        return redirect()->back()->with('error', $message);
     }
 }

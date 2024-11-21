@@ -77,20 +77,20 @@
                             @endif
                         </div>
 
-                        {{-- <div class="form-group mb-3">
+                        <div class="form-group mb-3">
                             <label for="location_id" class="form-label">Lokasi :</label>
                             <select name="location_id" id="location_id" class="form-control" required>
                                 <option value="" disabled selected>Pilih Lokasi</option>
                                 @foreach($locations as $location)
                                     <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>
-                                        {{ $location->province }}
+                                        {{ $location->name }}
                                     </option>
                                 @endforeach
                             </select>
                             @if ($errors->has('location_id'))
                                 <small class="text-danger">{{ $errors->first('location_id') }}</small>
                             @endif
-                        </div> --}}
+                        </div>
 
                         <button type="submit" class="btn btn-success">Simpan</button>
                         <a href="{{ route('members.index') }}" class="btn btn-secondary">Kembali</a>

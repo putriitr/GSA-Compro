@@ -10,10 +10,9 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('image')->nullable()->default(null); // Tidak perlu ->change() saat membuat kolom baru
-            $table->decimal('latitude', 10, 8);
-            $table->decimal('longitude', 11, 8);
+            $table->string('province');
+            $table->decimal('latitude', 8, 6); // Latitude dengan presisi 8 dan skala 6
+            $table->decimal('longitude', 9, 6); // Longitude dengan presisi 9 dan skala 6
             $table->timestamps();
         });
     }

@@ -80,7 +80,7 @@
                                 </div>
                             </div>
                             <!-- Social Media -->
-                            <div class="col-12">
+                            {{-- <div class="col-12">
                                 <div class="d-flex justify-content-around bg-light rounded p-4">
                                     <a class="btn btn-xl-square btn-primary rounded-circle" href="#"><i
                                             class="fab fa-facebook-f"></i></a>
@@ -91,7 +91,7 @@
                                     <a class="btn btn-xl-square btn-primary rounded-circle" href="#"><i
                                             class="fab fa-linkedin-in"></i></a>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 160px"
+                                        <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 150px"
                                             name="message" required></textarea>
                                         <label for="message">{{ __('messages.your_message') }}</label>
                                     </div>
@@ -167,7 +167,7 @@
                 <div class="col-12 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="rounded">
                         <iframe class="rounded w-100" style="height: 400px;"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3160.1689023443455!2d107.15494677499103!3d-6.3028100936863884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699b9454930735%3A0x4e8abcfd9aceed24!2sPT%20Naturalva%20Herba%20Indonesia!5e1!3m2!1sid!2sid!4v1728530730343!5m2!1sid!2sid"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3160.1684442273086!2d107.1561942749911!3d-6.302885293686325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e699b18c0fabf4d%3A0x8b184e00d9610c51!2sPT%20GUDANG%20SOLUSI%20ACOMMERCE!5e1!3m2!1sid!2sid!4v1732164758719!5m2!1sid!2sid"
                             frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Cache;
 use App\Helpers\TranslateHelper;
 use App\Models\Activity;
+use App\Models\AfterSales;
 use App\Models\BrandPartner;
 use App\Models\CompanyParameter;
 use App\Models\Kategori;
@@ -72,12 +73,11 @@ class HomeController extends Controller
         $totalProducts = Produk::count(); // Assuming Product model
         $totalMonitoredProducts = Monitoring::count(); // Assuming Monitoring model
         $totalActivities = Activity::count(); // Assuming Activity model
-
-
-
+        $totalTickets = AfterSales::count(); // Atau sesuaikan logika perhitungan
+        $totalDistributors = User::where('type', 2)->count();
 
         // Return the view with data
-        return view('dashboard', compact('dates', 'visits', 'totalMembers', 'totalProducts', 'totalMonitoredProducts', 'totalActivities'));
+        return view('dashboard', compact('dates', 'visits', 'totalMembers', 'totalProducts', 'totalMonitoredProducts', 'totalActivities', 'totalTickets', 'totalDistributors'));
     }
 
     public function about()

@@ -7,243 +7,197 @@ use Illuminate\Support\Facades\DB;
 
 class LocationsSeeder extends Seeder
 {
-    public function run()
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
         DB::table('locations')->insert([
             [
-                'name' => 'Dinas Kesehatan Prov. Sumatera Utara',
-                'image' => 'assets/img/user/dinas_kesehatan_sumut.png',
-                'latitude' => 3.597031,
-                'longitude' => 98.678513
+                "province" => "Aceh",
+                "latitude" => 4.695135,
+                "longitude" => 96.749397
             ],
             [
-                'name' => 'Politeknik Negeri Medan',
-                'image' => 'assets/img/user/politeknik_negeri_medan.jpg',
-                'latitude' => 3.5617,
-                'longitude' => 98.6535
+                "province" => "Sumatera Utara",
+                "latitude" => 2.115354,
+                "longitude" => 99.545097
             ],
             [
-                'name' => 'BBPPMPV Bidang Bangunan dan Listrik Medan',
-                'image' => 'assets/img/user/bbppmpv_medan.jpg',
-                'latitude' => 3.5822,
-                'longitude' => 98.6756
+                "province" => "Sumatera Barat",
+                "latitude" => -0.789275,
+                "longitude" => 100.650055
             ],
             [
-                'name' => 'Universitas Sumatera Utara',
-                'image' => 'assets/img/user/universitas_sumatera_utara.jpg',
-                'latitude' => 3.5647,
-                'longitude' => 98.6528
+                "province" => "Riau",
+                "latitude" => 0.511,
+                "longitude" => 101.447777
             ],
             [
-                'name' => 'Politeknik Negeri Sriwijaya',
-                'image' => 'assets/img/user/politeknik_sriwijaya.jpg',
-                'latitude' => -2.963,
-                'longitude' => 104.742
+                "province" => "Kepulauan Riau",
+                "latitude" => 3.945,
+                "longitude" => 108.142866
             ],
             [
-                'name' => 'Politeknik Manufaktur Negeri Bangka Belitung',
-                'image' => 'assets/img/user/politeknik_bangka_belitung.jpg',
-                'latitude' => -2.162,
-                'longitude' => 106.136
+                "province" => "Jambi",
+                "latitude" => -1.485,
+                "longitude" => 103.738
             ],
             [
-                'name' => 'Universitas Andalas',
-                'image' => 'assets/img/user/universitas_andalas.jpg',
-                'latitude' => -0.914,
-                'longitude' => 100.459
+                "province" => "Sumatera Selatan",
+                "latitude" => -3.319437,
+                "longitude" => 104.914551
             ],
             [
-                'name' => 'POLTEKES KEMENKES Bengkulu',
-                'image' => 'assets/img/user/politekes_bengkulu.jpg',
-                'latitude' => -3.788,
-                'longitude' => 102.262
+                "province" => "Bengkulu",
+                "latitude" => -3.57785,
+                "longitude" => 102.346387
             ],
             [
-                'name' => 'Direktorat Bina Kelembagaan Pelatihan Vokasi',
-                'image' => 'assets/img/user/direktorat_bina_kelembagaan.jpg',
-                'latitude' => -6.200,
-                'longitude' => 106.816
+                "province" => "Lampung",
+                "latitude" => -5.45,
+                "longitude" => 105.266
             ],
             [
-                'name' => 'Komisi Pemberantasan Korupsi',
-                'image' => 'assets/img/user/kpk.jpg',
-                'latitude' => -6.211,
-                'longitude' => 106.845
+                "province" => "Bangka Belitung",
+                "latitude" => -2.741,
+                "longitude" => 106.441
             ],
             [
-                'name' => 'Badan Nasional Penanggulangan Bencana',
-                'image' => 'assets/img/user/bnpb.jpg',
-                'latitude' => -6.194,
-                'longitude' => 106.822
+                "province" => "DKI Jakarta",
+                "latitude" => -6.208763,
+                "longitude" => 106.845599
             ],
             [
-                'name' => 'Suku Dinas Pemuda & Olahraga Jakarta Utara',
-                'image' => 'assets/img/user/suku_dinas_jakarta_utara.jpg',
-                'latitude' => -6.118,
-                'longitude' => 106.846
+                "province" => "Jawa Barat",
+                "latitude" => -6.90389,
+                "longitude" => 107.61861
             ],
             [
-                'name' => 'RSUD Sawah Besar',
-                'image' => 'assets/img/user/rsud_sawah_besar.jpg',
-                'latitude' => -6.166,
-                'longitude' => 106.822
+                "province" => "Banten",
+                "latitude" => -6.120656,
+                "longitude" => 106.150276
             ],
             [
-                'name' => 'Sekretariat Utama BMKG',
-                'image' => 'assets/img/user/bmkg.jpg',
-                'latitude' => -6.183,
-                'longitude' => 106.833
+                "province" => "Jawa Tengah",
+                "latitude" => -7.150975,
+                "longitude" => 110.140259
             ],
             [
-                'name' => 'Politeknik Negeri Jakarta',
-                'image' => 'assets/img/user/politeknik_negeri_jakarta.jpg',
-                'latitude' => -6.362,
-                'longitude' => 106.831
+                "province" => "DI Yogyakarta",
+                "latitude" => -7.79558,
+                "longitude" => 110.369492
             ],
             [
-                'name' => 'RS Kanker Dharmais',
-                'image' => 'assets/img/user/rs_kanker_dharmais.jpg',
-                'latitude' => -6.185,
-                'longitude' => 106.798
+                "province" => "Jawa Timur",
+                "latitude" => -7.536063,
+                "longitude" => 112.238402
             ],
             [
-                'name' => 'KPU Kota Tangerang',
-                'image' => 'assets/img/user/kpu_tangerang.jpg',
-                'latitude' => -6.176,
-                'longitude' => 106.628
+                "province" => "Bali",
+                "latitude" => -8.409518,
+                "longitude" => 115.188919
             ],
             [
-                'name' => 'Dinas Kesehatan Kota Tangerang',
-                'image' => 'assets/img/user/dinas_kesehatan_tangerang.jpg',
-                'latitude' => -6.176,
-                'longitude' => 106.631
+                "province" => "Nusa Tenggara Barat",
+                "latitude" => -8.652933,
+                "longitude" => 117.361647
             ],
             [
-                'name' => 'RS Dr. Marzuki Mahdi',
-                'image' => 'assets/img/user/rs_marzuki_mahdi.jpg',
-                'latitude' => -6.597,
-                'longitude' => 106.802
+                "province" => "Nusa Tenggara Timur",
+                "latitude" => -10.177328,
+                "longitude" => 123.607032
             ],
             [
-                'name' => 'BBPPMPV Bidang Mesin dan Teknik Industri Jawa Barat',
-                'image' => 'assets/img/user/bbppmpv_jabar.jpg',
-                'latitude' => -6.935,
-                'longitude' => 107.655
+                "province" => "Kalimantan Barat",
+                "latitude" => -0.026,
+                "longitude" => 109.341
             ],
             [
-                'name' => 'Dinas Pendidikan & Kebudayaan Kalimantan Timur',
-                'image' => 'assets/img/user/dinas_pendidikan_kaltim.jpg',
-                'latitude' => -0.500,
-                'longitude' => 117.146
+                "province" => "Kalimantan Tengah",
+                "latitude" => -1.681,
+                "longitude" => 113.382
             ],
             [
-                'name' => 'Sekretariat Daerah Murung Raya',
-                'image' => 'assets/img/user/sekretariat_murung_raya.jpg',
-                'latitude' => -0.667,
-                'longitude' => 114.289
+                "province" => "Kalimantan Selatan",
+                "latitude" => -3.092,
+                "longitude" => 115.283
             ],
             [
-                'name' => 'Badan Penelitian dan Pengembangan Daerah KALTIM',
-                'image' => 'assets/img/user/badan_penelitian_kaltim.jpg',
-                'latitude' => -0.499,
-                'longitude' => 117.134
+                "province" => "Kalimantan Timur",
+                "latitude" => 0.532,
+                "longitude" => 116.357
             ],
             [
-                'name' => 'Universitas Mulawarman',
-                'image' => 'assets/img/user/universitas_mulawarman.jpg',
-                'latitude' => -0.466,
-                'longitude' => 117.157
+                "province" => "Kalimantan Utara",
+                "latitude" => 3.045,
+                "longitude" => 116.872
             ],
             [
-                'name' => 'Politeknik Negeri Samarinda',
-                'image' => 'assets/img/user/politeknik_samarinda.jpg',
-                'latitude' => -0.475,
-                'longitude' => 117.160
+                "province" => "Sulawesi Utara",
+                "latitude" => 1.54,
+                "longitude" => 124.848
             ],
             [
-                'name' => 'Politeknik Industri Logam Morowali',
-                'image' => 'assets/img/user/politeknik_logam_morowali.jpg',
-                'latitude' => -2.631,
-                'longitude' => 121.356
+                "province" => "Sulawesi Tengah",
+                "latitude" => -0.894,
+                "longitude" => 119.852
             ],
             [
-                'name' => 'Universitas Pattimura',
-                'image' => 'assets/img/user/universitas_pattimura.jpg',
-                'latitude' => -3.656,
-                'longitude' => 128.194
+                "province" => "Sulawesi Selatan",
+                "latitude" => -3.668,
+                "longitude" => 119.974
             ],
             [
-                'name' => 'RSUP Dr. Hasan Sadikin Bandung',
-                'image' => 'assets/img/user/rsup_hasan_sadikin.jpg',
-                'latitude' => -6.898,
-                'longitude' => 107.610
+                "province" => "Sulawesi Tenggara",
+                "latitude" => -4.129,
+                "longitude" => 122.518
             ],
             [
-                'name' => 'Sekretariat Daerah Kab. Malang',
-                'image' => 'assets/img/user/sekretariat_kab_malang.jpg',
-                'latitude' => -7.977,
-                'longitude' => 112.630
+                "province" => "Gorontalo",
+                "latitude" => 0.699,
+                "longitude" => 122.446
             ],
             [
-                'name' => 'Politeknik Negeri Madiun',
-                'image' => 'assets/img/user/politeknik_madiun.jpg',
-                'latitude' => -7.630,
-                'longitude' => 111.529
+                "province" => "Sulawesi Barat",
+                "latitude" => -2.471,
+                "longitude" => 119.232
             ],
             [
-                'name' => 'RSUD Daha Husada',
-                'image' => 'assets/img/user/rsud_daha_husada.jpg',
-                'latitude' => -7.093,
-                'longitude' => 112.471
+                "province" => "Maluku",
+                "latitude" => -3.238,
+                "longitude" => 129.482
             ],
             [
-                'name' => 'Politeknik Negeri Balikpapan',
-                'image' => 'assets/img/user/politeknik_balikpapan.jpg',
-                'latitude' => -1.267,
-                'longitude' => 116.828
+                "province" => "Maluku Utara",
+                "latitude" => 0.849,
+                "longitude" => 127.527
             ],
             [
-                'name' => 'Dinas Koperasi Usaha Mikro Perindustrian dan Perdagangan Kab.Semarang',
-                'image' => 'assets/img/user/dinas_koperasi_semarang.jpg',
-                'latitude' => -7.002,
-                'longitude' => 110.407
+                "province" => "Papua",
+                "latitude" => -4.269928,
+                "longitude" => 138.080353
             ],
             [
-                'name' => 'RSUD Prof Dr. Margono Soekarjo',
-                'image' => 'assets/img/user/rsud_prof_dr_margono_soekarjo.jpg',
-                'latitude' => -7.567,
-                'longitude' => 109.221
+                "province" => "Papua Barat",
+                "latitude" => -1.336115,
+                "longitude" => 132.990944
             ],
             [
-                'name' => 'Universitas Negeri Cendana',
-                'image' => 'assets/img/user/universitas_negeri_cendana.jpg',
-                'latitude' => -8.584,
-                'longitude' => 122.639
+                "province" => "Papua Tengah",
+                "latitude" => -3.789497,
+                "longitude" => 137.700348
             ],
             [
-                'name' => 'UPN Veteran Jawa Timur',
-                'image' => 'assets/img/user/upn_veteran_jawa_timur.jpg',
-                'latitude' => -7.271,
-                'longitude' => 112.737
+                "province" => "Papua Selatan",
+                "latitude" => -7.927292,
+                "longitude" => 139.659606
             ],
             [
-                'name' => 'Politeknik Negeri Banyuwangi',
-                'image' => 'assets/img/user/politeknik_negeri_banyuwangi.jpg',
-                'latitude' => -8.217,
-                'longitude' => 114.241
-            ],
-            [
-                'name' => 'Universitas Jember',
-                'image' => 'assets/img/user/universitas_jember.jpg',
-                'latitude' => -8.161,
-                'longitude' => 113.704
-            ],
-            [
-                'name' => 'POLTEKES KEMENKES Malang',
-                'image' => 'assets/img/user/politekes_kemenkes_malang.jpg',
-                'latitude' => -7.979,
-                'longitude' => 112.634
-            ],
+                "province" => "Papua Pegunungan",
+                "latitude" => -3.734558,
+                "longitude" => 140.695372
+            ]
         ]);
     }
 }

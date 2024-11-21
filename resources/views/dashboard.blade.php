@@ -2,102 +2,50 @@
 
 @section('content')
     <div class="row">
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                <i class="fas fa-users"></i>
+        @foreach([
+            ['icon' => 'fas fa-users', 'title' => 'Member', 'value' => $totalMembers, 'color' => 'primary'],
+            ['icon' => 'fas fa-user', 'title' => 'Distributor', 'value' => $totalDistributors, 'color' => 'info'],
+            ['icon' => 'fas fa-shopping-bag', 'title' => 'Produk', 'value' => $totalProducts, 'color' => 'success'],
+            ['icon' => 'fas fa-ticket-alt', 'title' => 'Tiketing Layanan', 'value' => $totalTickets, 'color' => 'secondary']
+        ] as $stat)
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round animate__animated animate__fadeIn">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-{{ $stat['color'] }} bubble-shadow-small"
+                                     style="background: linear-gradient(135deg, rgba(98, 182, 239, 1), rgba(30, 96, 179, 1)); color: white; border-radius: 50%;">
+                                    <i class="{{ $stat['icon'] }}"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Member</p>
-                                <h4 class="card-title">{{ $totalMembers }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-success bubble-shadow-small">
-                                <i class="fas fa-shopping-bag"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Produk</p>
-                                <h4 class="card-title">{{ $totalProducts }}</h4>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">{{ $stat['title'] }}</p>
+                                    <h4 class="card-title">{{ $stat['value'] }}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-info bubble-shadow-small">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Monitoring</p>
-                                <h4 class="card-title">{{ $totalMonitoredProducts }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-secondary bubble-shadow-small">
-                                <i class="fas fa-tasks"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Aktivitas</p>
-                                <h4 class="card-title">{{ $totalActivities }}</h4> <!-- Display the order count -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 
     <div class="container">
-    <div class="row">
-        <!-- Column for Daily Visits Chart -->
-        <div class="col-md-12">
-            <div class="card shadow-lg mb-4">
-                <div class="card-header">
-                    <h3 class="card-title">Riwayat Kunjungan Harian</h3>
-                </div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <canvas id="daily-visits-chart"></canvas>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow-lg mb-4 animate__animated animate__zoomIn">
+                    <div class="card-header">
+                        <h3 class="card-title">Statistik Kunjungan Harian</h3>
                     </div>
-                    <p class="text-muted">Grafik ini menunjukkan jumlah total kunjungan per hari pada website sehingga dapat
-                        dianalisis dan dilacak keterlibatan pengunjung dari waktu ke waktu.</p>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <canvas id="daily-visits-chart"></canvas>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-      </div>
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
@@ -113,11 +61,18 @@
                             borderColor: 'rgba(75, 192, 192, 1)',
                             backgroundColor: 'rgba(75, 192, 192, 0.2)',
                             borderWidth: 2,
-                            tension: 0.1
+                            tension: 0.3,
+                            pointStyle: 'circle',
+                            pointRadius: 5,
+                            pointHoverRadius: 8,
                         }]
                     },
                     options: {
                         responsive: true,
+                        animation: {
+                            duration: 2000,
+                            easing: 'easeOutBounce',
+                        },
                         plugins: {
                             legend: {
                                 position: 'top',
@@ -149,4 +104,19 @@
                 });
             });
         </script>
-    @endsection
+    </div>
+
+    <style>
+        .card-stats:hover {
+            transform: scale(1.05);
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .bubble-shadow-small {
+            transition: all 0.3s ease-in-out;
+        }
+        .bubble-shadow-small:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+    </style>
+@endsection

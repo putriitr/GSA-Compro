@@ -63,18 +63,26 @@
                     </div>
 
                     @auth
+                        {{-- @if (session('error'))
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Peringatan:</strong> {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                        @endif --}}
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle"
                                 data-bs-toggle="dropdown">{{ __('messages.portal') }}</a>
-                            <div class="dropdown-menu m-0">
-                                @if (Auth::user()->type === 'member')
+                            <ul class="dropdown-menu" aria-labelledby="memberDropdown">
+                                <li>
                                     <a href="{{ route('portal') }}"
                                         class="dropdown-item">{{ __('messages.portal_member') }}</a>
-                                @elseif (Auth::user()->type === 'distributor')
+                                </li>
+                                <li>
                                     <a href="{{ route('distribution') }}"
                                         class="dropdown-item">{{ __('messages.portal_partner') }}</a>
-                                @endif
-                            </div>
+                                </li>
+                            </ul>
                         </div>
                     @endauth
 

@@ -24,16 +24,20 @@ class QuotationAdminController extends Controller
     {
         // Load all quotations with related product and user data
         $quotations = Quotation::with('produk', 'user')->get();
-        // Periksa setiap quotation dan perbarui status jika perlu
+
+        // Perbarui status menjadi "Quotation" jika PDF tersedia dan status masih "Pending"
         foreach ($quotations as $quotation) {
             if ($quotation->pdf_path && $quotation->status === 'pending') {
-                // Perbarui status menjadi "Quotation" jika PDF tersedia dan status masih "Pending"
                 $quotation->update(['status' => 'quotation']);
             }
         }
 
-        return view('Admin.Quotation.index', compact('quotations'));
+        // Hitung jumlah quotation dengan status "pending"
+        $pendingCount = Quotation::where('status', 'pending')->count();
+
+        return view('Admin.Quotation.index', compact('quotations', 'pendingCount'));
     }
+
 
     /**
      * Update the status of a specific quotation.
