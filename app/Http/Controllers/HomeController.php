@@ -56,8 +56,7 @@ class HomeController extends Controller
         return view('home', compact('produks', 'sliders', 'company', 'brand', 'partners', 'principals', 'activities'));
     }
 
-
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         // Fetch daily visitor data
         $visitorData = Visitor::selectRaw('DATE(created_at) as date, COUNT(*) as total_visits')
@@ -73,11 +72,38 @@ class HomeController extends Controller
         $totalProducts = Produk::count(); // Assuming Product model
         $totalMonitoredProducts = Monitoring::count(); // Assuming Monitoring model
         $totalActivities = Activity::count(); // Assuming Activity model
-        $totalTickets = AfterSales::count(); // Atau sesuaikan logika perhitungan
+        $totalTickets = AfterSales::count(); // Total tickets
         $totalDistributors = User::where('type', 2)->count();
 
+        // Filter periode (default: 30 hari terakhir)
+        $startDate = $request->input('start_date', now()->subDays(30)->toDateString());
+        $endDate = $request->input('end_date', now()->toDateString());
+
+        // Fetch tickets based on status and period
+        $ticketData = AfterSales::selectRaw('status, COUNT(*) as total')
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->groupBy('status')
+            ->get();
+
+        // Prepare data for the ticket chart
+        $ticketStatuses = ['Open', 'Closed', 'Pending']; 
+        $ticketCounts = [10, 5, 2];
+
         // Return the view with data
-        return view('dashboard', compact('dates', 'visits', 'totalMembers', 'totalProducts', 'totalMonitoredProducts', 'totalActivities', 'totalTickets', 'totalDistributors'));
+        return view('dashboard', compact(
+            'dates',
+            'visits',
+            'totalMembers',
+            'totalProducts',
+            'totalMonitoredProducts',
+            'totalActivities',
+            'totalTickets',
+            'totalDistributors',
+            'ticketStatuses',
+            'ticketCounts',
+            'startDate',
+            'endDate'
+        ));
     }
 
     public function about()

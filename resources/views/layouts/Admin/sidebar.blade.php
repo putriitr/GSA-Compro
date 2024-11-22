@@ -84,9 +84,6 @@
                     <a data-bs-toggle="collapse" href="#product-management">
                         <i class="fas fa-shopping-cart"></i>
                         <p>Produk</p>
-                        @if($totalPendingProducts > 0)
-                            <span class="badge bg-danger">{{ $totalPendingProducts }}</span>
-                        @endif
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="product-management">
@@ -103,6 +100,9 @@
                     <a data-bs-toggle="collapse" href="#dist-port-management">
                         <i class="fas fa-warehouse"></i>
                         <p>Portal Distributor</p>
+                        @if($totalPendingProducts > 0)
+                            <span class="badge bg-danger">{{ $totalPendingProducts }}</span>
+                        @endif
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="dist-port-management">

@@ -50,16 +50,16 @@
                             <table class="table table-bordered table-hover mb-0">
                                 <thead style="background-color: #b0c4de;" class="text-dark text-center">
                                     <tr>
-                                        <th class="text-center" style="width: 5%; border-right: 1px solid #dee2e6;">{{ __('messages.id') }}</th>
-                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6;">{{ __('messages.pi_number') }}</th>
-                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6;">{{ __('messages.pi_date') }}</th>
-                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6;">{{ __('messages.po_number') }}</th>
-                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6;">{{ __('messages.subtotal') }}</th>
-                                        <th class="text-center" style="width: 5%; border-right: 1px solid #dee2e6;">PPN</th>
-                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6;">{{ __('messages.grand_total') }}</th>
-                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6;">{{ __('messages.down_payment') }}</th>
-                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6;">{{ __('messages.remaining_payment') }}</th>
-                                        <th class="text-center" style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.aksi') }}</th>
+                                        <th class="text-center" style="width: 5%; border-right: 1px solid #dee2e6; vertical-align: middle;">{{ __('messages.id') }}</th>
+                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">{{ __('messages.pi_number') }}</th>
+                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">{{ __('messages.pi_date') }}</th>
+                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">{{ __('messages.po_number') }}</th>
+                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">{{ __('messages.subtotal') }}</th>
+                                        <th class="text-center" style="width: 5%; border-right: 1px solid #dee2e6; vertical-align: middle;">PPN</th>
+                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">{{ __('messages.grand_total') }}</th>
+                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">{{ __('messages.down_payment') }}</th>
+                                        <th class="text-center" style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">{{ __('messages.remaining_payment') }}</th>
+                                        <th class="text-center" style="width: 20%; border-right: 1px solid #dee2e6; vertical-align: middle;">{{ __('messages.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

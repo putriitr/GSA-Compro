@@ -36,11 +36,11 @@
                                 <thead style="background-color: #b0c4de;" class="text-dark text-center">
                                     <tr>
                                         <th style="width: 5%; border-right: 1px solid #dee2e6;">{{ __('messages.id') }}</th>
-                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">Quotation Number</th>
-                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">Negotiated Price</th>
+                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.quo_number') }}</th>
+                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.nego_price') }}</th>
                                         <th style="width: 10%; border-right: 1px solid #dee2e6;">{{ __('messages.status') }}</th>
-                                        <th style="width: 25%; border-right: 1px solid #dee2e6;">Notes</th>
-                                        <th style="width: 20%;">Admin Notes</th>
+                                        <th style="width: 25%; border-right: 1px solid #dee2e6;">{{ __('messages.note') }}</th>
+                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.admin_note') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>

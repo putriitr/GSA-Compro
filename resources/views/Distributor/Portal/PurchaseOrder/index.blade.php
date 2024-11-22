@@ -5,13 +5,13 @@
     <div class="container-fluid bg-breadcrumb"
         style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/bg-product.jpg') }}');">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.nego') }}
+            <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.po') }}
             </h3>
             <ol class="breadcrumb justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
                 <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('messages.home') }}</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('distribution') }}">{{ __('messages.portal_partner') }}</a>
                 </li>
-                <li class="breadcrumb-item active text-primary">{{ __('messages.nego') }}</li>
+                <li class="breadcrumb-item active text-primary">{{ __('messages.po') }}</li>
             </ol>
         </div>
     </div>
@@ -21,7 +21,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-11">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="mb-0"><strong>Your Purchase Orders</strong></h4>
+                    <h4 class="mb-0"><strong>{{ __('messages.daftar_po') }}</strong></h4>
                     <a href="{{ route('distribution') }}" class="btn btn-sm btn-outline-primary">
                         <i class="fas fa-arrow-left me-1"></i>{{ __('messages.back') }}
                     </a>
@@ -49,8 +49,8 @@
                                         <tr>
                                             <th style="width: 5%; border-right: 1px solid #dee2e6;">{{ __('messages.id') }}
                                             </th>
-                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">PO Number</th>
-                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">PO Date</th>
+                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.po_number') }}</th>
+                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.po_date') }}</th>
                                             <th style="width: 15%; border-right: 1px solid #dee2e6;">
                                                 {{ __('messages.status') }}</th>
                                             <th style="width: 40%; border-right: 1px solid #dee2e6;">

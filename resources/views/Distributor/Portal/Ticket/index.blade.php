@@ -28,13 +28,13 @@
                         <table class="table table-borderless mb-0">
                             <thead class="table-primary text-center">
                                 <tr>
-                                    <th style="width: 5%;">{{ __('messages.id') }}</th>
-                                    <th style="width: 15%;">{{ __('messages.jenis_layanan') }}</th>
-                                    <th style="width: 20%;">{{ __('messages.keterangan_pengajuan') }}</th>
-                                    <th style="width: 15%;">{{ __('messages.tanggal_pengajuan') }}</th>
-                                    <th style="width: 10%;">{{ __('messages.status') }}</th>
-                                    <th style="width: 15%;">{{ __('messages.tanggal_tindakan') }}</th>
-                                    <th style="width: 20%;">{{ __('messages.aksi') }}</th>
+                                    <th style="width: 5%; vertical-align: middle;">{{ __('messages.id') }}</th>
+                                    <th style="width: 15%; vertical-align: middle;">{{ __('messages.jenis_layanan') }}</th>
+                                    <th style="width: 20%; vertical-align: middle;">{{ __('messages.keterangan_pengajuan') }}</th>
+                                    <th style="width: 15%; vertical-align: middle;">{{ __('messages.tanggal_pengajuan') }}</th>
+                                    <th style="width: 10%; vertical-align: middle;">{{ __('messages.status') }}</th>
+                                    <th style="width: 15%; vertical-align: middle;">{{ __('messages.tanggal_tindakan') }}</th>
+                                    <th style="width: 20%; vertical-align: middle;">{{ __('messages.aksi') }}</th>
                                 </tr>
                             </thead>
                             <tbody>

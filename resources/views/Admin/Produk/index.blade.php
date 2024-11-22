@@ -39,7 +39,7 @@
                                             <td>{{ $produk->kategori->nama }}</td>
                                             <td>
                                                 @foreach ($produk->images as $image)
-                                                    <img src="{{ asset($image->gambar) }}" class="img-fluid w-100" alt="{{ $produk->nama }}" style="max-width: 250px; height: auto;">
+                                                    <img src="{{ asset($image->gambar) }}" class="img-fluid w-100" alt="{{ $produk->nama }}" style="max-height: 100px; width: auto;">
                                                 @endforeach
                                             </td>
                                             <td>

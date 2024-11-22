@@ -32,80 +32,47 @@
                             <p>{{ __('messages.blm_invoice') }}</p>
                         </div>
                     @else
-                        <div class="card shadow border-0" style="border-radius: 8px; overflow: hidden;">
-                            <div class="card-body p-0">
-                                <div style="border-radius: 8px; overflow: hidden;">
-                                    <table class="table table-hover mb-0">
-                                        <thead style="background-color: #b0c4de;" class="text-dark text-center">
-                                            <tr>
-                                                <th style="border-right: 1px solid #ddd; padding: 10px 15px; text-align: center; vertical-align: middle;">
-                                                    {{ __('messages.id') }}
-                                                </th>
-                                                <th style="border-right: 1px solid #ddd; padding: 10px 15px; text-align: center; vertical-align: middle;">
-                                                    Invoice Number
-                                                </th>
-                                                <th style="border-right: 1px solid #ddd; padding: 10px 15px; text-align: center; vertical-align: middle;">
-                                                    Invoice Date
-                                                </th>
-                                                <th style="border-right: 1px solid #ddd; padding: 10px 15px; text-align: center; vertical-align: middle;">
-                                                    Expiration Date
-                                                </th>
-                                                <th style="border-right: 1px solid #ddd; padding: 10px 15px; text-align: center; vertical-align: middle;">
-                                                    Subtotal
-                                                </th>
-                                                <th style="border-right: 1px solid #ddd; padding: 10px 15px; text-align: center; vertical-align: middle;">
-                                                    PPN
-                                                </th>
-                                                <th style="border-right: 1px solid #ddd; padding: 10px 15px; text-align: center; vertical-align: middle;">
-                                                    Grand Total
-                                                </th>
-                                                <th style="width: 15%; border-right: 1px solid #ddd; padding: 10px 15px; text-align: center; vertical-align: middle;">
-                                                    {{ __('messages.status') }}
-                                                </th>
-                                                <th style="width: 15%; padding: 10px 15px; text-align: center; vertical-align: middle;">
-                                                    {{ __('messages.aksi') }}
-                                                </th>
+                        <div class="card shadow border-0" style="border-radius: 8px;">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead style="background-color: #b0c4de;" class="text-dark text-center">
+                                        <tr>
+                                            <th style="text-align: center; vertical-align: middle;">{{ __('messages.id') }}</th>
+                                            <th style="text-align: center; vertical-align: middle;">{{ __('messages.inv_number') }}</th>
+                                            <th style="text-align: center; vertical-align: middle;">{{ __('messages.inv_date') }}</th>
+                                            <th style="text-align: center; vertical-align: middle;">{{ __('messages.exp_date') }}</th>
+                                            <th style="text-align: center; vertical-align: middle;">{{ __('messages.subtotal') }}</th>
+                                            <th style="text-align: center; vertical-align: middle;">PPN</th>
+                                            <th style="text-align: center; vertical-align: middle;">{{ __('messages.grand_total') }}</th>
+                                            <th style="text-align: center; vertical-align: middle;">{{ __('messages.status') }}</th>
+                                            <th style="text-align: center; vertical-align: middle;">{{ __('messages.aksi') }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($invoices as $invoice)
+                                            <tr class="text-center">
+                                                <td>{{ $invoice->id }}</td>
+                                                <td>{{ $invoice->invoice_number }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d M Y') }}
+                                                </td>
+                                                <td>{{ \Carbon\Carbon::parse($invoice->due_date)->format('d M Y') ?? '-' }}
+                                                </td>
+                                                <td>{{ number_format($invoice->subtotal, 2) }}</td>
+                                                <td>{{ number_format($invoice->ppn, 2) }}</td>
+                                                <td>{{ number_format($invoice->grand_total_include_ppn, 2) }}</td>
+                                                <td>{{ ucfirst($invoice->status) }}</td>
+                                                <td>
+                                                    <a href="{{ asset($invoice->file_path) }}" target="_blank"
+                                                        class="btn btn-info btn-sm rounded-pill me-2"><i
+                                                            class="fas fa-eye"></i></a>
+                                                    <a href="{{ asset($invoice->file_path) }}" download
+                                                        class="btn btn-secondary btn-sm rounded-pill"><i
+                                                            class="fas fa-download"></i></a>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($invoices as $invoice)
-                                                <tr class="text-center" style="transition: all 0.3s ease;">
-                                                    <td style="border-right: 1px solid #ddd; padding: 10px 15px;">
-                                                        {{ $invoice->id }}</td>
-                                                    <td style="border-right: 1px solid #ddd; padding: 10px 15px;">
-                                                        {{ $invoice->invoice_number }}</td>
-                                                    <td style="border-right: 1px solid #ddd; padding: 10px 15px;">
-                                                        {{ \Carbon\Carbon::parse($invoice->invoice_date)->format('d M Y') }}
-                                                    </td>
-                                                    <td style="border-right: 1px solid #ddd; padding: 10px 15px;">
-                                                        {{ \Carbon\Carbon::parse($invoice->due_date)->format('d M Y') ?? '-' }}
-                                                    </td>
-                                                    <td style="border-right: 1px solid #ddd; padding: 10px 15px;">
-                                                        {{ number_format($invoice->subtotal, 2) }}
-                                                    </td>
-                                                    <td style="border-right: 1px solid #ddd; padding: 10px 15px;">
-                                                        {{ number_format($invoice->ppn, 2) }}
-                                                    </td>
-                                                    <td style="border-right: 1px solid #ddd; padding: 10px 15px;">
-                                                        {{ number_format($invoice->grand_total_include_ppn, 2) }}
-                                                    </td>
-                                                    <td style="border-right: 1px solid #ddd; padding: 10px 15px;">
-                                                        {{ ucfirst($invoice->status) }}
-                                                    </td>
-                                                    <td style="padding: 10px 15px;">
-                                                        <!-- Tombol untuk melihat dan mengunduh PDF Invoice -->
-                                                        <a href="{{ asset($invoice->file_path) }}" target="_blank"
-                                                            class="btn btn-info btn-sm rounded-pill me-2"><i
-                                                                class="fas fa-eye"></i></a>
-                                                        <a href="{{ asset($invoice->file_path) }}" download
-                                                            class="btn btn-secondary btn-sm rounded-pill"><i
-                                                                class="fas fa-download"></i></a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     @endif
