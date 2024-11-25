@@ -8,39 +8,55 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-md-6 col-lg-6 col-xl-4">
-                <div class="footer-item d-flex flex-column">
+                <div class="footer-item d-flex flex-column animate-footer">
                     <h4 class="mb-4 text-white">{{ __('messages.contact_info') }}</h4>
+
                     <!-- Address -->
                     @if(!empty($compro->alamat))
-                        <a href="#"><i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}</a>
+                        <a href="#" class="footer-link">
+                            <i class="fa fa-map-marker-alt me-2"></i> {{ $compro->alamat }}
+                        </a>
                     @else
-                        <p><i class="fa fa-map-marker-alt me-2"></i> {{ __('messages.address_not_available') }}</p>
+                        <p class="footer-text">
+                            <i class="fa fa-map-marker-alt me-2"></i> {{ __('messages.address_not_available') }}
+                        </p>
                     @endif
 
                     <!-- Email -->
                     @if(!empty($compro->email))
-                        <a href="mailto:{{ $compro->email }}"><i class="fas fa-envelope me-2"></i> {{ $compro->email }}</a>
+                        <a href="mailto:{{ $compro->email }}" class="footer-link">
+                            <i class="fas fa-envelope me-2"></i> {{ $compro->email }}
+                        </a>
                     @else
-                        <p><i class="fas fa-envelope me-2"></i> {{ __('messages.email_not_available') }}</p>
+                        <p class="footer-text">
+                            <i class="fas fa-envelope me-2"></i> {{ __('messages.email_not_available') }}
+                        </p>
                     @endif
 
                     <!-- Phone Number -->
                     @if(!empty($compro->whatsapp_1))
-                        <a href="tel:{{ $compro->whatsapp_1 }}"><i class="fab fa-whatsapp fa-2x"></i> {{ $compro->whatsapp_1 }}</a>
+                        <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->whatsapp_1) }}" class="footer-link mb-3">
+                            <i class="fab fa-whatsapp fa-2x"></i> {{ $compro->whatsapp_1 }}
+                        </a>
                     @else
-                        <p><i class="fab fa-whatsapp fa-2x"></i>{{ __('messages.phone_not_available') }}</p>
+                        <p class="footer-text">
+                            <i class="fab fa-whatsapp fa-2x"></i> {{ __('messages.phone_not_available') }}
+                        </p>
                     @endif
 
                     <!-- WhatsApp -->
                     @if(!empty($compro->whatsapp_2))
-                        <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->whatsapp_2) }}" class="mb-3">
+                        <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->whatsapp_2) }}" class="footer-link mb-3">
                             <i class="fab fa-whatsapp fa-2x"></i> {{ $compro->whatsapp_2 }}
                         </a>
                     @else
-                        <p><i class="fab fa-whatsapp fa-2x"></i> {{ __('messages.whatsapp_not_available') }}</p>
+                        <p class="footer-text">
+                            <i class="fab fa-whatsapp fa-2x"></i> {{ __('messages.whatsapp_not_available') }}
+                        </p>
                     @endif
                 </div>
             </div>
+
             <div class="col-md-6 col-lg-6 col-xl-2">
                 <div class="footer-item d-flex flex-column">
                     <h4 class="mb-4 text-white">{{ __('messages.quick_access') }}</h4>
@@ -83,8 +99,9 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                         </div>
                         <div class="opening-clock flex-shrink-0">
                             <p class="mb-0">
-                                <i class="fab fa-whatsapp me-2"></i>
-                                <a href="tel:6281390069009" style="text-decoration: none; color: inherit;">+6281390069009</a>
+                                <a href="https://wa.me/6281390069009" class="footer-link mb-3">
+                                    <i class="fab fa-whatsapp fa-2x"></i> +62 813-9006-9009
+                                </a>
                             </p>
                         </div>
                         <div class="opening-clock flex-shrink-0">

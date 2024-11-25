@@ -19,11 +19,23 @@ class InvoiceAdminController extends Controller
         return view('Admin.Invoice.show', compact('invoice'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $invoices = Invoice::with('proformaInvoice')->get();
-        return view('Admin.Invoice.index', compact('invoices'));
+        // Ambil keyword pencarian dari input pengguna
+        $keyword = $request->input('search');
+
+        // Query Invoices dengan pencarian dan pagination
+        $invoices = Invoice::with('proformaInvoice')
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where('invoice_number', 'like', "%{$keyword}%")
+                    ->orWhere('status', 'like', "%{$keyword}%")
+                    ->orWhere('grand_total_include_ppn', 'like', "%{$keyword}%");
+            })
+            ->paginate(10); // Menampilkan 10 item per halaman
+
+        return view('Admin.Invoice.index', compact('invoices', 'keyword'));
     }
+
 
     public function create($proformaInvoiceId)
     {
@@ -71,7 +83,7 @@ class InvoiceAdminController extends Controller
 
         // Format nomor PO dan nomor Invoice
         $poNumberFormatted = sprintf("%s/SPO/%s/%s/%s", $proformaInvoice->purchaseOrder->po_number, $singkatanNamaPerusahaan, $dayRoman, $tahun);
-        $piNumberFormatted = sprintf("%s/INV-GSA-%s/%s/%s", $request->invoice_number, $singkatanNamaPerusahaan, $dayRoman, $tahun);
+        $piNumberFormatted = sprintf("%s/INV-AGS-%s/%s/%s", $request->invoice_number, $singkatanNamaPerusahaan, $dayRoman, $tahun);
 
 
         // Buat data invoice dan simpan ke database

@@ -14,9 +14,9 @@
                     </div>
                 </div>
                 <div class="mb-4 shadow-sm mt-5">
-                    <!-- Menampilkan 7 kategori pertama -->
+                    <!-- Menampilkan 10 kategori pertama -->
                     <ul class="list-group">
-                        @foreach ($kategori->take(7) as $kat)
+                        @foreach ($kategori->take(10) as $kat)
                             <li class="list-group-item category-item text-center py-3 mb-2"
                                 style="background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }};
                                     color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }};"
@@ -27,7 +27,7 @@
                     </ul>
 
                     <!-- Tombol untuk melihat kategori selebihnya -->
-                    @if ($kategori->count() > 7)
+                    @if ($kategori->count() > 10)
                         <button class="btn btn-link w-100 text-center mt-2" type="button" data-bs-toggle="collapse"
                             data-bs-target="#moreCategories" aria-expanded="false" aria-controls="moreCategories"
                             onclick="toggleButtonText(this)">
@@ -37,7 +37,7 @@
                         <!-- Dropdown kategori selebihnya -->
                         <div class="collapse" id="moreCategories">
                             <ul class="list-group mt-2">
-                                @foreach ($kategori->slice(7) as $kat)
+                                @foreach ($kategori->slice(10) as $kat)
                                     <li class="list-group-item category-item text-center py-3 mb-2"
                                         style="background-color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#6196FF' : '#f8f9fa' }};
                                                color: {{ $selectedCategory && $selectedCategory->id == $kat->id ? '#fff' : '#000' }};"
@@ -54,6 +54,7 @@
             <!-- Produk -->
             <div class="col-lg-9 mt-n2">
                 <div class="d-flex justify-content-between mb-4 align-items-center">
+                    <!-- Form Pencarian -->
                     <div class="col-lg-6">
                         <form method="POST" action="{{ url('products/search') }}" class="d-flex align-items-center">
                             @csrf
@@ -74,9 +75,9 @@
                     </div>
                 </div>
 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mt-n5" id="productList">
+                <div class="row">
                     @foreach ($produks as $produk)
-                        <div class="col d-flex justify-content-center">
+                        <div class="col-md-4 mb-4">
                             <div class="blog-item shadow-sm">
                                 <div class="blog-img">
                                     <a href="{{ route('product.show', $produk->id) }}">
@@ -107,7 +108,7 @@
                                                 <div class="input-group input-group-sm"
                                                     style="height: 40px; width: auto; margin-top: 17px;">
                                                     <input type="number" name="quantity" min="1" value="1"
-                                                        class="form-control text-center" style="max-width: 60px;">
+                                                        class="form-control form-control-sm me-2" style="width: 60px;">
                                                     <button type="submit" class="btn btn-primary">
                                                         <i class="fas fa-shopping-cart me-2"></i>
                                                     </button>
@@ -137,6 +138,12 @@
             button.classList.remove('btn-danger');
         }
     }
+
+    document.getElementById('sortDropdown').addEventListener('change', function(event) {
+        let sortOption = event.target.value;
+        // You can use Ajax to fetch sorted data or reload the page with the sort parameter
+        window.location.href = `?sort=${sortOption}`;
+    });
 </script>
 
 <style>

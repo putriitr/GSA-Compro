@@ -12,13 +12,13 @@ class ActivityController extends Controller
     public function index()
     {
         $activities = Activity::paginate(10);
-        return view('admin.activity.index', compact('activities'));
+        return view('Admin.Activity.index', compact('activities'));
     }
 
     public function create()
     {
         $categories = CategoryActivity::all();
-        return view('admin.activity.create', compact('categories'));
+        return view('Admin.Activity.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -49,7 +49,7 @@ class ActivityController extends Controller
     {
         $activity = Activity::findOrFail($id);
         $categories = CategoryActivity::all();
-        return view('admin.activity.edit', compact('activity', 'categories'));
+        return view('Admin.Activity.edit', compact('activity', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -83,7 +83,7 @@ class ActivityController extends Controller
     public function show($id)
     {
         $activity = Activity::findOrFail($id);
-        return view('admin.activity.show', compact('activity'));
+        return view('Admin.Activity.show', compact('activity'));
     }
 
     public function destroy($id)

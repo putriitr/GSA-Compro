@@ -11,12 +11,12 @@ class LocationController extends Controller
     public function index()
     {
         $locations = Location::all();
-        return view('admin.location.index', compact('locations'));
+        return view('Admin.Location.index', compact('locations'));
     }
 
     public function create()
     {
-        return view('admin.location.create');
+        return view('Admin.Location.create');
     }
 
     public function store(Request $request)
@@ -34,7 +34,7 @@ class LocationController extends Controller
 
     public function edit(Location $location)
     {
-        return view('admin.location.edit', compact('location'));
+        return view('Admin.Location.edit', compact('location'));
     }
 
     public function update(Request $request, Location $location)
@@ -59,6 +59,6 @@ class LocationController extends Controller
 
     public function show(Location $location)
     {
-        return view('admin.location.show', compact('location'));
+        return view('Admin.Location.show', compact('location'));
     }
 }

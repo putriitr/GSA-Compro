@@ -13,13 +13,13 @@ class FAQController extends Controller
     {
         $produk = Produk::findOrFail($produk_id);
         $faqs = $produk->faqs;
-        return view('admin.faq.index', compact('faqs', 'produk'));
+        return view('Admin.Faq.index', compact('faqs', 'produk'));
     }
 
     public function create($produk_id)
     {
         $produk = Produk::findOrFail($produk_id);
-        return view('admin.faq.create', compact('produk'));
+        return view('Admin.Faq.create', compact('produk'));
     }
 
     public function store(Request $request, $produk_id)
@@ -40,14 +40,14 @@ class FAQController extends Controller
     {
         $produk = Produk::findOrFail($produk_id);
         $faq = ProdukFAQ::where('produk_id', $produk_id)->findOrFail($faq_id);
-        return view('admin.faq.show', compact('faq','produk'));
+        return view('Admin.Faq.show', compact('faq','produk'));
     }
 
     public function edit($produk_id, $faq_id)
     {
         $produk = Produk::findOrFail($produk_id);
         $faq = ProdukFAQ::where('produk_id', $produk_id)->findOrFail($faq_id);
-        return view('admin.faq.edit', compact('faq','produk'));
+        return view('Admin.Faq.edit', compact('faq','produk'));
     }
 
     public function update(Request $request, $produk_id, $faq_id)

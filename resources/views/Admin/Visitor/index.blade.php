@@ -1,6 +1,28 @@
 @extends('layouts.admin.master')
 
 @section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-lg mt-4">
+                    <div class="card-body">
+                        <h4>Rangkuman Kunjungan (Harian)</h4>
+                        <canvas id="daily-visits-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-lg mt-4">
+                    <div class="card-body">
+                        <h4>Rangkuman Kunjungan (Mingguan)</h4>
+                        <canvas id="weekly-visits-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container mt-5">
         <div class="card shadow-lg">
             <div class="card-header bg-primary text-white">
@@ -16,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($visitors as $visitor)
+                        @foreach ($visitors as $visitor)
                             <tr>
                                 <td>{{ $visitor->ip_address }}</td>
                                 <td>{{ $visitor->browser }}</td>
@@ -25,20 +47,6 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <div class="card shadow-lg mt-4">
-            <div class="card-body">
-                <h4>Rangkuman Kunjungan (Harian)</h4>
-                <canvas id="daily-visits-chart"></canvas>
-            </div>
-        </div>
-
-        <div class="card shadow-lg mt-4">
-            <div class="card-body">
-                <h4>Rangkuman Kunjungan (Mingguan)</h4>
-                <canvas id="weekly-visits-chart"></canvas>
             </div>
         </div>
     </div>

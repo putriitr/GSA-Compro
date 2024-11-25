@@ -107,21 +107,24 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control border-0" id="first_name"
                                             placeholder="Your First Name" name="first_name" required>
-                                        <label for="first_name">{{ __('messages.first_name') }}</label>
+                                        <label for="first_name">{{ __('messages.first_name') }} <span
+                                            class="text-danger">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control border-0" id="last_name"
                                             placeholder="Your Last Name" name="last_name" required>
-                                        <label for="last_name">{{ __('messages.last_name') }}</label>
+                                        <label for="last_name">{{ __('messages.last_name') }} <span
+                                            class="text-danger">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
                                     <div class="form-floating">
                                         <input type="email" class="form-control border-0" id="email"
                                             placeholder="Your Email" name="email" required>
-                                        <label for="email">{{ __('messages.your_email') }}</label>
+                                        <label for="email">{{ __('messages.your_email') }} <span
+                                                class="text-danger">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-6">
@@ -131,28 +134,32 @@
                                             title="Phone number must start with 62 and be followed by 1 to 11 digits."
                                             inputmode="numeric" maxlength="13"
                                             onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                                        <label for="phone">{{ __('messages.phone') }}</label>
+                                        <label for="phone">{{ __('messages.phone') }} <span
+                                                class="text-danger">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-12">
                                     <div class="form-floating">
                                         <input type="text" class="form-control border-0" id="company"
                                             placeholder="Your Company" name="company">
-                                        <label for="company">{{ __('messages.your_company') }}</label>
+                                        <label for="company">{{ __('messages.your_company') }} <span
+                                                class="text-danger">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-xl-12">
                                     <div class="form-floating">
                                         <input type="text" class="form-control border-0" id="subject"
                                             placeholder="Your Subject" name="subject" required>
-                                        <label for="subject">{{ __('messages.your_subject') }}</label>
+                                        <label for="subject">{{ __('messages.your_subject') }} <span
+                                                class="text-danger">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <textarea class="form-control border-0" placeholder="Leave a message here" id="message" style="height: 150px"
                                             name="message" required></textarea>
-                                        <label for="message">{{ __('messages.your_message') }}</label>
+                                        <label for="message">{{ __('messages.your_message') }} <span
+                                                class="text-danger">*</span></label>
                                     </div>
                                 </div>
                                 <div class="col-12">

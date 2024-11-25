@@ -27,8 +27,8 @@
     </div>
 
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
                 <div class="card shadow-lg mb-4 animate__animated animate__zoomIn">
                     <div class="card-header">
                         <h3 class="card-title">Statistik Kunjungan Harian</h3>
@@ -38,34 +38,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card shadow-lg mb-4 animate__animated animate__zoomIn">
-                    <div class="card-header">
-                        <h3 class="card-title">Statistik Tiket Berdasarkan Status</h3>
-                        <form id="filter-form" class="mb-4">
-                            <div class="row align-items-end">
-                                <div class="col-md-6">
-                                    <select id="period" name="period" class="form-control">
-                                        <option value="" selected>-- Pilih Periode --</option>
-                                        <option value="1-week">1 Minggu</option>
-                                        <option value="1-month">1 Bulan</option>
-                                        <option value="3-months">3 Bulan</option>
-                                        <option value="6-months">6 Bulan</option>
-                                        <option value="1-year">1 Tahun</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="ticket-status-chart"></canvas>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- Ticket Statistics Chart -->
+    <!-- Statistics Chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -108,41 +84,6 @@
                                     text: 'Jumlah Kunjungan'
                                 },
                                 beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            }
-
-            // Ticket Status Chart
-            const ticketStatuses = @json($ticketStatuses ?? []);
-            const ticketCountsByStatus = @json($ticketCountsByStatus ?? []);
-            const ticketStatusCtx = document.getElementById('ticket-status-chart').getContext('2d');
-
-            if (ticketStatuses.length > 0 && ticketCountsByStatus.length > 0) {
-                new Chart(ticketStatusCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ticketStatuses,
-                        datasets: [{
-                            label: 'Statistik Tiket Berdasarkan Status',
-                            data: ticketCountsByStatus,
-                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'],
-                            borderWidth: 2,
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(tooltipItem) {
-                                        return `Status: ${tooltipItem.label}, Tiket: ${tooltipItem.raw}`;
-                                    }
-                                }
                             }
                         }
                     }

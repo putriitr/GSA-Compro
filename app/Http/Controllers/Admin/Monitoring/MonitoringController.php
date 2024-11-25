@@ -18,43 +18,43 @@ class MonitoringController extends Controller
     {
         // Assuming role = 0 represents 'member' users
         $users = User::where('type', 0)->with('userProduk')->get();
-    
-        return view('admin.monitoring.index', compact('users'));
+
+        return view('Admin.Monitoring.index', compact('users'));
     }
-    
+
 
     public function show($id)
     {
         // Get the user and their products
         $user = User::with('userProduk')->findOrFail($id);
-    
-        return view('admin.monitoring.show', compact('user'));
+
+        return view('Admin.Monitoring.show', compact('user'));
     }
-    
+
 
     public function monitoringDetail($id)
     {
         $produk = UserProduk::with('user')->findOrFail($id);
         $user = $produk->user;
-    
+
         // Fetch monitoring data
         $monitoring = $produk->monitoring()->first();
-    
+
         // Fetch all related inspections
         $inspeksi = InspeksiMaintenance::where('user_produk_id', $id)->get();
-    
-        return view('admin.monitoring.detail', compact('user', 'produk', 'monitoring', 'inspeksi'));
+
+        return view('Admin.Monitoring.detail', compact('user', 'produk', 'monitoring', 'inspeksi'));
     }
-    
+
 
     public function create($userProdukId)
     {
         // Get the user product with the related product data
         $userProduk = UserProduk::with('produk')->findOrFail($userProdukId);
-    
-        return view('admin.monitoring.create', compact('userProduk'));
+
+        return view('Admin.Monitoring.create', compact('userProduk'));
     }
-    
+
 
 
 public function store(Request $request)
@@ -76,7 +76,7 @@ public function edit($id)
     $monitoring = Monitoring::with('userProduk.produk')->findOrFail($id);
     $userProduk = $monitoring->userProduk;
 
-    return view('admin.monitoring.edit', compact('monitoring', 'userProduk'));
+    return view('Admin.Monitoring.edit', compact('monitoring', 'userProduk'));
 }
 
 public function update(Request $request, $id)
@@ -97,21 +97,21 @@ public function update(Request $request, $id)
         $inspeksi = InspeksiMaintenance::where('user_produk_id', $userProdukId)->get();
         $userProduk = UserProduk::findOrFail($userProdukId);
 
-        return view('admin.inspeksi.index', compact('inspeksi', 'userProduk'));
+        return view('Admin.Inspeksi.index', compact('inspeksi', 'userProduk'));
     }
 
     public function inspeksiShow($id)
     {
         $inspeksi = InspeksiMaintenance::with('userProduk')->findOrFail($id);
 
-        return view('admin.inspeksi.show', compact('inspeksi'));
+        return view('Admin.Inspeksi.show', compact('inspeksi'));
     }
 
     public function inspeksiCreate($userProdukId)
     {
         $userProduk = UserProduk::findOrFail($userProdukId);
 
-        return view('admin.inspeksi.create', compact('userProduk'));
+        return view('Admin.Inspeksi.create', compact('userProduk'));
     }
 
     public function inspeksiStore(Request $request, $userProdukId)
@@ -152,7 +152,7 @@ public function update(Request $request, $id)
     {
         $inspeksi = InspeksiMaintenance::findOrFail($id);
 
-        return view('admin.inspeksi.edit', compact('inspeksi'));
+        return view('Admin.Inspeksi.edit', compact('inspeksi'));
     }
 
     // Update inspection data
@@ -214,18 +214,18 @@ public function update(Request $request, $id)
         return redirect()->route('monitoring.detail', $userProdukId)->with('success', 'Inspection data successfully deleted.');
     }
 
-    
-    
 
 
 
 
 
 
-    
 
-    
-    
+
+
+
+
+
 
 
 

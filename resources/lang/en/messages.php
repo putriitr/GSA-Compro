@@ -53,6 +53,7 @@ return [
     'ticketing' => 'Ticketing',
     'ticketing_desc' => 'Ticketing makes it easy for customers to report issues, allowing our team to address them quickly and transparently.',
     'aftersales_service' => 'Aftersales Service',
+    'kegunaan' => 'Function',
 
     'tujuan_kami' => 'Our Company Goals',
     'visi_misi_perusahaan' => 'Vision & Mission',
@@ -101,6 +102,9 @@ return [
     'leave_message' => 'Leave Message',
     'send_message' => 'Send Message',
     'qna-guest' => 'QnA',
+    'nama_perusahaan' => 'Company Name',
+    'bidang_perusahaan' => 'Company Field',
+    'wa_help' => 'Hello, do you need any help?',
 
     'category' => 'Product Categories',
     'sort_by' => 'Sort By',
@@ -289,7 +293,7 @@ return [
     'logout' => 'Logout',
     'portal_distributor' => 'Distributor Portal',
     'company_name1' => 'Company Name',
-    'name' => 'Nama',
+    'name' => 'Name',
     'upload_doc1' => 'Upload Deed of Establishment',
     'upload_doc2' => 'Upload NIB Document',
     'pic_name' => 'PIC Name',

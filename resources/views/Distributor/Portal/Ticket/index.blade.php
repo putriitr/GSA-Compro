@@ -16,7 +16,7 @@
 
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-9">
+            <div class="col-lg-10">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0"><strong>{{ __('messages.daftar_tiket') }}</strong></h4>
                     <a href="{{ route('distribution.tickets.create') }}" class="btn btn-primary"><i
@@ -57,9 +57,9 @@
                                             @if ($ticket->status == 'open')
                                                 <span class="text-muted">Belum di Proses</span>
                                             @elseif($ticket->status == 'progress' && $ticket->tgl_mulai_tindakan)
-                                                Mulai: {{ $ticket->tgl_mulai_tindakan }}
+                                                Mulai : {{ $ticket->tgl_mulai_tindakan }}
                                             @elseif($ticket->status == 'close' && $ticket->tgl_mulai_tindakan && $ticket->tgl_selesai_tindakan)
-                                                Mulai: {{ $ticket->tgl_mulai_tindakan }}<br>
+                                                Mulai : {{ $ticket->tgl_mulai_tindakan }}<br>
                                                 Selesai: {{ $ticket->tgl_selesai_tindakan }}
                                             @endif
                                         </td>

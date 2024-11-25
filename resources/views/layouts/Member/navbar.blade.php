@@ -71,8 +71,10 @@
                             </div>
                         @endif --}}
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle"
-                                data-bs-toggle="dropdown">{{ __('messages.portal') }}</a>
+                            <a href="#" class="nav-link dropdown-toggle" id="memberDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ __('messages.portal') }}
+                            </a>
                             <ul class="dropdown-menu" aria-labelledby="memberDropdown">
                                 <li>
                                     <a href="{{ route('portal') }}"
@@ -136,8 +138,9 @@
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="companyDropdown">
                             <!-- Show Profile -->
                             <li>
-                                <a class="dropdown-item" href="{{ route('profile.show') }}">
-                                    <i class="fa fa-user me-2"></i>{{ __('messages.profile') }}
+                                <a class="dropdown-item"
+                                    href="{{ auth()->user()->type === 'member' ? route('profile.show') : route('distributor.profile.show') }}">
+                                    <i class="fa fa-user me-2"></i>Profil
                                 </a>
                             </li>
 

@@ -18,6 +18,16 @@
 
     <div class="card shadow-sm border-0 rounded">
         <div class="card-body p-0">
+
+            <!-- Search Form -->
+            <form action="{{ route('admin.tickets.index') }}" method="GET" class="p-4">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Cari tiket..."
+                           value="{{ request()->input('search') }}">
+                    <button class="btn btn-primary" type="submit">Cari</button>
+                </div>
+            </form>
+
             <table class="table table-striped table-hover mb-0">
                 <thead class="table-primary">
                     <tr>
@@ -30,9 +40,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($tickets as $key => $ticket)
+                    @forelse($tickets as $key => $ticket)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
+                            <td>{{ $tickets->firstItem() + $key }}</td> <!-- Adjust numbering with pagination -->
                             <td>{{ $ticket->jenis_layanan }}</td>
                             <td>{{ Str::limit($ticket->keterangan_layanan, 30) }}</td>
                             <td>{{ $ticket->tgl_pengajuan }}</td>
@@ -50,9 +60,19 @@
                                 </a>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Tidak ada tiket ditemukan.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
+
+            <!-- Pagination Links -->
+            <div class="d-flex justify-content-center mt-4">
+                {{ $tickets->links('pagination::bootstrap-4') }}
+            </div>
+
         </div>
     </div>
 </div>

@@ -117,6 +117,10 @@ return [
     'send_message' => 'Kirim Pesan',
     'qna-guest' => 'Pertanyaan',
     'note' => 'Catatan',
+    'nama_perusahaan' => 'Nama Perusahaan',
+    'bidang_perusahaan' => 'Bidang Perusahaan',
+    'wa_help' => 'Halo, ada yang bisa kami bantu?',
+    'kegunaan' => 'Kegunaan',
 
     'category' => 'Kategori Produk',
     'sort_by' => 'Urut Berdasarkan',

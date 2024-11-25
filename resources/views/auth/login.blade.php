@@ -80,9 +80,12 @@
                                         <a href="{{ route('distributors.register') }}" class="" style="color: #5bc0de;"> {{ __('messages.create') }}</a>
                                     </div>
                                 </div>
-
+                                <a href="{{ route('home') }}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-arrow-left me-1"></i>{{ __('messages.back') }}
+                                </a>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

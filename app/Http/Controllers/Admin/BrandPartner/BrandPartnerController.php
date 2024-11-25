@@ -11,12 +11,12 @@ class BrandPartnerController extends Controller
     public function index()
     {
         $brandPartners = BrandPartner::all();
-        return view('admin.brand.index', compact('brandPartners'));
+        return view('Admin.Brand.index', compact('brandPartners'));
     }
 
     public function create()
     {
-        return view('admin.brand.create');
+        return view('Admin.Brand.create');
     }
 
     public function store(Request $request)
@@ -44,13 +44,13 @@ class BrandPartnerController extends Controller
     public function show($id)
     {
         $brandPartner = BrandPartner::findOrFail($id);
-        return view('admin.brand.show', compact('brandPartner'));
+        return view('Admin.Brand.show', compact('brandPartner'));
     }
 
     public function edit($id)
     {
         $brandPartner = BrandPartner::findOrFail($id);
-        return view('admin.brand.edit', compact('brandPartner'));
+        return view('Admin.Brand.edit', compact('brandPartner'));
     }
 
     public function update(Request $request, $id)

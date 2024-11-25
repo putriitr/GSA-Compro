@@ -17,14 +17,22 @@ class ProdukController extends Controller
 {
     public function index(Request $request)
     {
-        $selectedCategory = $request->get('category_id');
-        $kategori = Kategori::all();
-        // Menggunakan paginate untuk mendapatkan paginasi
-        $produks = Produk::when($selectedCategory, function ($query) use ($selectedCategory) {
-            return $query->where('category_id', $selectedCategory);
-        })->paginate(6); // Ubah angka sesuai dengan jumlah produk yang ingin ditampilkan per halaman
+        // Ambil keyword pencarian dan kategori dari input pengguna
+        $keyword = $request->input('search');
+        $kategoriId = $request->input('kategori');
 
-        return view('admin.produk.index', compact('kategori', 'produks', 'selectedCategory'));
+        // Query produk dengan pencarian, kategori, dan pagination
+        $produks = Produk::when($keyword, function ($query) use ($keyword) {
+            $query->where('nama', 'like', "%{$keyword}%")
+                  ->orWhere('merk', 'like', "%{$keyword}%");
+        })->when($kategoriId, function ($query) use ($kategoriId) {
+            $query->where('kategori_id', $kategoriId);
+        })->paginate(10);
+
+        // Ambil semua kategori untuk dropdown filter
+        $kategori = Kategori::all();
+
+        return view('admin.produk.index', compact('produks', 'kategori', 'keyword', 'kategoriId'));
     }
 
     /**
@@ -148,6 +156,11 @@ class ProdukController extends Controller
     public function show($id)
     {
         $produk = Produk::with('images', 'videos', 'documentCertificationsProduk', 'brosur')->findOrFail($id);
+
+        $produk->spesifikasi = !empty($produk->spesifikasi)
+        ? explode("\n", $produk->spesifikasi) // Ganti "\n" sesuai pemisah di database
+        : [];
+        
         return view('admin.produk.show', compact('produk'));
     }
 

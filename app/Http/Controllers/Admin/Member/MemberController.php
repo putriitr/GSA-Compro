@@ -18,17 +18,32 @@ use Illuminate\Support\Facades\DB;
 
 class MemberController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $members = User::where('type', 0)->paginate(10); // Assuming type 0 is for members
-        return view('admin.members.index', compact('members'));
+        // Ambil query untuk user dengan tipe 0 (members)
+        $query = User::where('type', 0);
+
+        // Tambahkan logika pencarian
+        if ($request->has('search') && $request->search !== null) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('nama_perusahaan', 'like', "%{$search}%");
+            });
+        }
+
+        // Pagination 10 data per halaman
+        $members = $query->paginate(10);
+
+        // Kembalikan data ke view
+        return view('Admin.Members.index', compact('members'));
     }
 
     public function create()
     {
         $locations = Location::all();
         $bidangPerusahaan = BidangPerusahaan::all();
-        return view('admin.members.create', compact('bidangPerusahaan', 'locations'));
+        return view('Admin.Members.create', compact('bidangPerusahaan', 'locations'));
     }
 
 
@@ -71,7 +86,7 @@ class MemberController extends Controller
         $password = session('password');
 
 
-        return view('admin.members.show', compact('member', 'password'));
+        return view('Admin.Members.show', compact('member', 'password'));
     }
 
 
@@ -79,7 +94,7 @@ class MemberController extends Controller
     {
         $member = User::findOrFail($id);
         $bidangPerusahaan = BidangPerusahaan::all(); // Assuming this comes from your database
-        return view('admin.members.edit', compact('member', 'bidangPerusahaan'));
+        return view('Admin.Members.edit', compact('member', 'bidangPerusahaan'));
     }
 
     public function update(Request $request, $id)
@@ -127,7 +142,7 @@ class MemberController extends Controller
         $member = User::findOrFail($id);
         $produks = Produk::all(); // Mendapatkan semua produk yang tersedia
 
-        return view('admin.members.add-products', compact('member', 'produks'));
+        return view('Admin.Members.add-products', compact('member', 'produks'));
     }
 
     public function storeProducts(Request $request, $id)
@@ -168,7 +183,7 @@ class MemberController extends Controller
 
         $userProduks = $member->userProduk;
 
-        return view('admin.members.edit-products', compact('member', 'userProduks'));
+        return view('Admin.Members.edit-products', compact('member', 'userProduks'));
     }
 
 

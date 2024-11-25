@@ -2,7 +2,8 @@
 
 @section('content')
     <div class="container py-5">
-        <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: rgb(60, 60, 179);"><strong>Daftar Permintaan Quotation</strong></h2>
+        <h2 class="mb-4" style="font-weight: bold; font-family: 'Poppins', sans-serif; color: #00796b;">Daftar Permintaan Quotation
+        </h2>
 
         <!-- Flash Messages -->
         @if (session('success'))
@@ -17,11 +18,23 @@
             </div>
         @endif
 
+        <!-- Search Form -->
+        <form action="{{ route('admin.quotations.index') }}" method="GET" class="mb-4">
+            <div class="col-md-7">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control"
+                        placeholder="Cari berdasarkan nomor pengajuan, distributor, produk, atau status ..."
+                        value="{{ request()->input('search') }}">
+                    <button class="btn btn-secondary" type="submit">Cari</button>
+                </div>
+            </div>
+        </form>
+
         <!-- Quotation Table -->
         <div class="card shadow-lg border-0 rounded">
-            <div class="table-responsive card-body p-0">
+            <div class="card-body p-0">
                 <table class="table table-hover mb-0">
-                    <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
+                    <thead style="background: linear-gradient(135deg, #00796b, #004d40);">
                         <tr>
                             <th class="text-center">No</th>
                             <th class="text-center">Nomor Pengajuan</th>
@@ -35,35 +48,45 @@
                     <tbody style="background-color: #f9f9f9;">
                         @forelse($quotations as $key => $quotation)
                             <tr>
-                                <td class="text-center">{{ $key + 1 }}</td>
+                                <td class="text-center">{{ $quotations->firstItem() + $key }}</td>
                                 <td class="text-center">{{ $quotation->nomor_pengajuan ?? 'Nomor tidak tersedia' }}</td>
                                 <td>
-                                    @foreach ($quotation->quotationProducts as $product)
-                                        <div>- {{ $product->equipment_name ?? 'Produk tidak tersedia' }}</div>
-                                    @endforeach
+                                    @if ($quotation->quotationProducts)
+                                        @foreach ($quotation->quotationProducts as $product)
+                                            <div>- {{ $product->equipment_name ?? 'Produk tidak tersedia' }}</div>
+                                        @endforeach
+                                    @else
+                                        <div>Produk tidak tersedia</div>
+                                    @endif
                                 </td>
                                 <td class="text-center">{{ $quotation->user->name ?? 'Tidak ada pengguna' }}</td>
                                 <td>
-                                    @foreach ($quotation->quotationProducts as $product)
-                                        <div class="text-center">{{ $product->quantity }}</div>
-                                    @endforeach
+                                    @if ($quotation->quotationProducts)
+                                        @foreach ($quotation->quotationProducts as $product)
+                                            <div class="text-center">{{ $product->quantity }}</div>
+                                        @endforeach
+                                    @else
+                                        <div>0</div>
+                                    @endif
                                 </td>
                                 <td class="text-center">
-                                    <span class="badge
-                                        @if ($quotation->status === 'cancelled') bg-danger
-                                        @elseif($quotation->status === 'quotation') bg-success
-                                        @else bg-warning
-                                        @endif">
+                                    <span
+                                        class="badge
+                                @if ($quotation->status === 'cancelled') bg-danger
+                                @elseif($quotation->status === 'quotation') bg-success
+                                @else bg-warning @endif">
                                         {{ ucfirst($quotation->status) }}
                                     </span>
                                 </td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center gap-2">
-                                        <a href="{{ route('admin.quotations.show', $quotation->id) }}" class="btn btn-primary btn-sm rounded-pill shadow-sm">
+                                        <a href="{{ route('admin.quotations.show', $quotation->id) }}"
+                                            class="btn btn-primary btn-sm rounded-pill shadow-sm">
                                             <i class="fas fa-eye"></i> View
                                         </a>
                                         @if ($quotation->status !== 'cancelled')
-                                            <a href="{{ route('admin.quotations.edit', $quotation->id) }}" class="btn btn-secondary btn-sm rounded-pill shadow-sm">
+                                            <a href="{{ route('admin.quotations.edit', $quotation->id) }}"
+                                                class="btn btn-secondary btn-sm rounded-pill shadow-sm">
                                                 <i class="fas fa-edit"></i> Edit
                                             </a>
                                         @endif
@@ -77,6 +100,10 @@
                         @endforelse
                     </tbody>
                 </table>
+                <!-- Pagination Links -->
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $quotations->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>

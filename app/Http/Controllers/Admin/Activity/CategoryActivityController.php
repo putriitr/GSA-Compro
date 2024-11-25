@@ -10,7 +10,7 @@ class CategoryActivityController extends Controller
 {
     public function create()
     {
-        return view('admin.activity.category-activity.create');
+        return view('Admin.Activity.Category-activity.create');
     }
 
     public function store(Request $request)
@@ -36,6 +36,6 @@ class CategoryActivityController extends Controller
     public function index()
     {
         $categories = CategoryActivity::all();
-        return view('admin.activity.category-activity.index', compact('categories'));
+        return view('Admin.Activity.Category-activity.index', compact('categories'));
     }
 }

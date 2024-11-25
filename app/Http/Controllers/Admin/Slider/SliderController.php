@@ -17,7 +17,7 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-        return view('admin.slider.index', compact('sliders'));
+        return view('Admin.Slider.index', compact('sliders'));
     }
 
     // Show form to create a new slider
@@ -35,7 +35,7 @@ class SliderController extends Controller
             ->where('end_date', '>=', today())
             ->get();
 
-        return view('admin.slider.create', compact('activities', 'routes', 'metas'));
+        return view('Admin.Slider.create', compact('activities', 'routes', 'metas'));
     }
 
     // Store new slider
@@ -94,7 +94,7 @@ class SliderController extends Controller
             ->where('end_date', '>=', today())
             ->get();
 
-        return view('admin.slider.edit', compact('slider', 'routes', 'activities', 'metas'));
+        return view('Admin.Slider.edit', compact('slider', 'routes', 'activities', 'metas'));
     }
 
     // Update slider

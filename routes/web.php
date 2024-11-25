@@ -47,6 +47,8 @@
     use App\Http\Controllers\Distribution\Portal\PurchaseOrderController;
     use App\Http\Controllers\Distribution\Portal\InvoiceController;
     use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorController;
+    use App\Http\Controllers\Admin\Admin\AdminController;
+    use App\Http\Controllers\Distribution\Profile\ProfileDistributorController;
 
 
     /*
@@ -67,6 +69,7 @@
         Route::get('/product/{id}', [ProdukMemberController::class, 'show'])->name('product.show');
 
         Route::get('/products/search', [ProdukMemberController::class, 'search'])->name('products.search');
+        Route::match(['GET', 'POST'], 'products/search', [ProdukMemberController::class, 'search'])->name('products.search');
 
         Route::get('/products/filter/{id}', [ProdukMemberController::class, 'filterByCategory'])->name('filterByCategory');
         Route::get('/member/activities', [ActivityMemberController::class, 'activity'])->name('member.activity');
@@ -174,11 +177,15 @@
             Route::get('/distributor/invoices', [InvoiceController::class, 'index'])->name('distributor.invoices.index');
 
             // Quotation Routes
-            Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show'); // View quotation
-            Route::put('/portal/distribution/quotations/{id}/cancel', [QuotationController::class, 'cancel'])->name('quotations.cancel'); // Cancel quotation
+            Route::get('/portal/distribution/quotations/{id}', [QuotationController::class, 'show'])->name('quotations.show');
+            Route::put('/portal/distribution/quotations/{id}/cancel', [QuotationController::class, 'cancel'])->name('quotations.cancel');
             Route::get('/quotations/{quotationId}/create-po', [PurchaseOrderController::class, 'create'])->name('quotations.create_po');
             Route::post('/quotations/{quotationId}/create-po', [PurchaseOrderController::class, 'store'])->name('quotations.store_po');
             Route::get('/distributor/purchase-orders', [PurchaseOrderController::class, 'index'])->name('distributor.purchase-orders.index');
+
+            Route::get('/distributor/profile', [ProfileDistributorController::class, 'show'])->name('distributor.profile.show');
+            Route::get('/distributor/profile/edit', [ProfileDistributorController::class, 'edit'])->name('distributor.profile.edit');
+            Route::put('/distributor/profile/update', [ProfileDistributorController::class, 'update'])->name('distributor.profile.update');
         });
     });
 
@@ -189,6 +196,13 @@
             Route::get('/admin/distributors', [DistributorApprovalController::class, 'index'])->name('admin.distributors.index');
             Route::post('/admin/distributors/{id}/approve', [DistributorApprovalController::class, 'approve'])->name('admin.distributors.approve');
             Route::get('/admin/distributors/{id}', [DistributorApprovalController::class, 'show'])->name('admin.distributors.show');
+
+            Route::get('/admin', [AdminController::class, 'index'])->name('admin.index'); // Daftar admin
+            Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create'); // Form tambah admin
+            Route::post('/admin', [AdminController::class, 'store'])->name('admin.store'); // Simpan admin baru
+            Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit'); // Form edit admin
+            Route::put('/admin/{admin}', [AdminController::class, 'update'])->name('admin.update'); // Update admin
+            Route::delete('/admin/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy'); // Hapus admin
 
             Route::resource('admin/activity/category-activity', CategoryActivityController::class)->names('admin.activity.category-activity');
             Route::put('/admin/activity/{activity}', [ActivityController::class, 'update'])->name('admin.activity.update');

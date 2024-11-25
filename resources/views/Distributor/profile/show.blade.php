@@ -4,12 +4,13 @@
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <!-- Card Wrapper for User Profile -->
+                <!-- User Profile Card -->
                 <div class="card shadow-lg border-0 rounded-lg">
                     <div class="card-header bg-primary text-white text-center py-4">
                         <h2 class="mb-0" style="font-weight: bold;">Profil Pengguna</h2>
                     </div>
                     <div class="card-body p-4">
+                        <!-- Personal Info -->
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
@@ -25,6 +26,7 @@
                             </div>
                         </div>
 
+                        <!-- Company Info -->
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
@@ -40,6 +42,7 @@
                             </div>
                         </div>
 
+                        <!-- Contact Info -->
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
@@ -55,6 +58,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card-footer text-center bg-light py-3">
                         @if (auth()->check())
                             <a href="{{ auth()->user()->type === 'member' ? route('profile.edit') : route('distributor.profile.edit') }}"

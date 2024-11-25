@@ -41,6 +41,22 @@
                     <h4 class="text-section">Kelola User</h4>
                 </li>
                 <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#admin-management">
+                        <i class="fas fa-user"></i>
+                        <p>Admin</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="admin-management">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.index') }}">
+                                    <span class="sub-item">Semua Admin</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#member-management">
                         <i class="fas fa-user"></i>
                         <p>Member</p>
@@ -99,8 +115,8 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#dist-port-management">
                         <i class="fas fa-warehouse"></i>
-                        <p>Portal Distributor</p>
-                        @if($totalPendingProducts > 0)
+                        <p>Semua Layanan</p>
+                        @if ($totalPendingProducts > 0)
                             <span class="badge bg-danger">{{ $totalPendingProducts }}</span>
                         @endif
                         <span class="caret"></span>
@@ -110,21 +126,33 @@
                             <li>
                                 <a href="{{ route('admin.quotations.index') }}">
                                     <span class="sub-item">Quotation</span>
+                                    @if ($pendingCount > 0)
+                                        <span class="badge bg-danger">{{ $pendingCount }}</span>
+                                    @endif
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.purchase-orders.index') }}">
                                     <span class="sub-item">Purchase Orders</span>
+                                    @if ($pendingPOs > 0)
+                                        <span class="badge bg-danger">{{ $pendingPOs }}</span>
+                                    @endif
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.quotations.negotiations.index') }}">
                                     <span class="sub-item">Negosiasi</span>
+                                    @if ($pendingNegotiations > 0)
+                                        <span class="badge bg-danger">{{ $pendingNegotiations }}</span>
+                                    @endif
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('admin.proforma-invoices.index') }}">
                                     <span class="sub-item">Proforma Invoices</span>
+                                    @if ($pendingPIs > 0)
+                                        <span class="badge bg-danger">{{ $pendingPIs }}</span>
+                                    @endif
                                 </a>
                             </li>
                             <li>
@@ -135,6 +163,9 @@
                             <li>
                                 <a href="{{ route('admin.tickets.index') }}">
                                     <span class="sub-item">Tiketing</span>
+                                    @if ($openTickets > 0)
+                                        <span class="badge bg-danger">{{ $openTickets }}</span>
+                                    @endif
                                 </a>
                             </li>
                         </ul>
@@ -198,6 +229,30 @@
                             <li>
                                 <a href="{{ route('admin.location.index') }}">
                                     <span class="sub-item">Lokasi Pengguna</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Guest Message Management -->
+                <li class="nav-section">
+                    <span class="sidebar-mini-icon">
+                        <i class="fa fa-ellipsis-h"></i>
+                    </span>
+                    <h4 class="text-section">Message</h4>
+                </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#message-management">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Guest Message</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="message-management">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.guest-messages.index') }}">
+                                    <span class="sub-item">Semua Pesan</span>
                                 </a>
                             </li>
                         </ul>

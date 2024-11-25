@@ -14,7 +14,7 @@ class KategoriController extends Controller
     public function index()
     {
         $kategoris = Kategori::all();
-        return view('admin.masterdata.kategori.index', compact('kategoris'));
+        return view('Admin.Masterdata.kategori.index', compact('kategoris'));
     }
 
     /**
@@ -22,7 +22,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view('admin.masterdata.kategori.create');
+        return view('Admin.Masterdata.kategori.create');
     }
 
     /**
@@ -47,7 +47,7 @@ class KategoriController extends Controller
      */
     public function show(string $id)
     {
-        
+
     }
 
     /**
@@ -56,7 +56,7 @@ class KategoriController extends Controller
     public function edit(string $id)
     {
         $kategori = Kategori::findOrFail($id);
-        return view('admin.masterdata.kategori.edit', compact('kategori'));
+        return view('Admin.Masterdata.kategori.edit', compact('kategori'));
     }
 
     /**
@@ -84,16 +84,16 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         $kategori = Kategori::findOrFail($id);
-    
+
         // Hapus gambar jika ada
         if ($kategori->gambar && file_exists(public_path($kategori->gambar))) {
             unlink(public_path($kategori->gambar));
         }
-    
+
         // Hapus data kategori
         $kategori->delete();
-    
+
         return redirect()->route('admin.kategori.index')->with('success', 'Kategori deleted successfully.');
     }
-    
+
 }

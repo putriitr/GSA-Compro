@@ -12,24 +12,24 @@ class MetaController extends Controller
     public function index()
     {
         $metas = Meta::all();
-        return view('admin.meta.index', compact('metas'));
+        return view('Admin.Meta.index', compact('metas'));
     }
 
     public function create()
     {
-        return view('admin.meta.create');
+        return view('Admin.Meta.create');
     }
 
     public function show($slug)
     {
         $meta = Meta::where('slug', $slug)->firstOrFail();
-        return view('admin.meta.show', compact('meta'));
+        return view('Admin.Meta.show', compact('meta'));
     }
 
     public function edit($id)
     {
         $meta = Meta::findOrFail($id);
-        return view('admin.meta.edit', compact('meta'));
+        return view('Admin.Meta.edit', compact('meta'));
     }
 
     public function destroy($id)

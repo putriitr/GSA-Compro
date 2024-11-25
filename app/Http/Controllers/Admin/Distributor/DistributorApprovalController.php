@@ -14,15 +14,28 @@ class DistributorApprovalController extends Controller
     $distributor = User::findOrFail($id);
 
     // Pass the distributor to the view
-    return view('admin.distributors.show', compact('distributor'));
+    return view('Admin.Distributors.show', compact('distributor'));
 }
 
-    public function index()
-    {
-        // Retrieve all distributors, including both verified and unverified
-        $distributors = User::where('type', '2')->get();
-        return view('admin.distributors.index', compact('distributors'));
+public function index(Request $request)
+{
+    $query = User::where('type', '2'); // Hanya pengguna dengan tipe distributor
+
+    // Pencarian berdasarkan nama, email, atau nama perusahaan
+    if ($request->has('search') && $request->search !== null) {
+        $search = $request->input('search');
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%")
+              ->orWhere('email', 'like', "%{$search}%")
+              ->orWhere('nama_perusahaan', 'like', "%{$search}%");
+        });
     }
+
+    // Pagination 10 data per halaman
+    $distributors = $query->paginate(10);
+
+    return view('Admin.Distributors.index', compact('distributors'));
+}
 
     public function approve($id)
     {

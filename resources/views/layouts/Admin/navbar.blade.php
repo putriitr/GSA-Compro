@@ -61,7 +61,7 @@
                             <div class="quick-actions-scroll scrollbar-outer">
                                 <div class="quick-actions-items">
                                     <div class="row m-0">
-                                        <a class="col-6 col-md-6 p-0" href="https://maps.app.goo.gl/h3yLB18tBjUKppu28" target="_blank">
+                                        <a class="col-6 col-md-6 p-0" href="https://maps.app.goo.gl/i2m8d1nKoCV9RztA8" target="_blank">
                                             <div class="quick-actions-item">
                                                 <div class="avatar-item bg-warning rounded-circle">
                                                     <i class="fas fa-map"></i>

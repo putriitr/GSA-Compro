@@ -20,23 +20,28 @@ class QuotationAdminController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Load all quotations with related product and user data
-        $quotations = Quotation::with('produk', 'user')->get();
+        // Ambil keyword pencarian dari input pengguna
+        $keyword = $request->input('search');
 
-        // Perbarui status menjadi "Quotation" jika PDF tersedia dan status masih "Pending"
-        foreach ($quotations as $quotation) {
-            if ($quotation->pdf_path && $quotation->status === 'pending') {
-                $quotation->update(['status' => 'quotation']);
-            }
-        }
+        // Query quotations dengan pencarian berdasarkan relasi dan pagination
+        $quotations = Quotation::with('quotationProducts', 'user')
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where('nomor_pengajuan', 'like', "%{$keyword}%")
+                    ->orWhere('status', 'like', "%{$keyword}%")
+                    ->orWhereHas('user', function ($q) use ($keyword) {
+                        $q->where('name', 'like', "%{$keyword}%");
+                    })
+                    ->orWhereHas('quotationProducts', function ($q) use ($keyword) {
+                        $q->where('equipment_name', 'like', "%{$keyword}%");
+                    });
+            })
+            ->paginate(10); // Menampilkan 10 item per halaman
 
-        // Hitung jumlah quotation dengan status "pending"
-        $pendingCount = Quotation::where('status', 'pending')->count();
-
-        return view('Admin.Quotation.index', compact('quotations', 'pendingCount'));
+        return view('Admin.Quotation.index', compact('quotations', 'keyword'));
     }
+
 
 
     /**
@@ -224,6 +229,9 @@ class QuotationAdminController extends Controller
 
         return redirect()->route('admin.quotations.index')->with('success', 'Quotation updated and PDF generated successfully.');
     }
+
+
+
 
     /**
      * Upload a file for a specific quotation.

@@ -11,13 +11,13 @@ class QnaGuestController extends Controller
     public function index()
     {
         $qnaguests = QnaGuest::all();
-        return view('admin.qnaguest.index', compact('qnaguests'));
-        return view('member.qna-guest.qna-guest');
+        return view('Admin.QnaGuest.index', compact('qnaguests'));
+        return view('Member.qna-guest.qna-guest');
     }
 
     public function create()
     {
-        return view('admin.qnaguest.create');
+        return view('Admin.QnaGuest.create');
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class QnaGuestController extends Controller
 
     public function edit(QnaGuest $qnaguest)
     {
-        return view('admin.qnaguest.edit', compact('qnaguest'));
+        return view('Admin.QnaGuest.edit', compact('qnaguest'));
     }
 
     public function update(Request $request, QnaGuest $qnaguest)
