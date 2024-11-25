@@ -48,17 +48,27 @@
                         <div class="pricing-item bg-light rounded p-5 h-100">
                             <div class="packages-item h-100">
                                 <h4 class="text-primary">{{ __('messages.detail_product') }}</h4>
-                                <h1 class="display-5 mb-4">{{ $produk->nama }}</h1>
-                                <p class="mb-4">{{ $produk->tentang_produk }}</p>
+                                <h3 class="display-6 mb-4">{{ $produk->nama }}</h3>
+                                <p class="mb-4" style="text-align: justify;">{{ $produk->tentang_produk }}</p>
+
+
+                                <p style="display: flex; align-items: center; margin-bottom: 10px;">
+                                    <i class="fa fa-circle text-primary small-bullet" style="margin-right: 10px;"></i>
+                                    <span style="width: 100px; font-weight: bold;">{{ __('messages.kegunaan') }}</span>
+                                    <span
+                                        style="font-weight: normal; color: #555; margin-left: 10px;">{{ $produk->kegunaan }}</span>
+                                </p>
                                 <p style="display: flex; align-items: center; margin-bottom: 10px;">
                                     <i class="fa fa-circle text-primary small-bullet" style="margin-right: 10px;"></i>
                                     <span style="width: 100px; font-weight: bold;">{{ __('messages.merk') }}</span>
-                                    <span style="font-weight: normal; color: #555; margin-left: 10px;">{{ $produk->merk }}</span>
+                                    <span
+                                        style="font-weight: normal; color: #555; margin-left: 10px;">{{ $produk->merk }}</span>
                                 </p>
                                 <p style="display: flex; align-items: center; margin-bottom: 10px;">
                                     <i class="fa fa-circle text-primary small-bullet" style="margin-right: 10px;"></i>
                                     <span style="width: 100px; font-weight: bold;">{{ __('messages.type') }}</span>
-                                    <span style="font-weight: normal; color: #555; margin-left: 10px;">{{ $produk->tipe }}</span>
+                                    <span
+                                        style="font-weight: normal; color: #555; margin-left: 10px;">{{ $produk->tipe }}</span>
                                 </p>
                                 <p style="display: flex; align-items: center; margin-bottom: 10px;">
                                     <i class="fa fa-circle text-primary small-bullet" style="margin-right: 10px;"></i>
@@ -95,18 +105,25 @@
                                     <b>{{ __('messages.specification_product') }}</b>
                                 </a>
                             </li>
+                            {{-- <div class="tab-pane fade" id="tabs-2" role="tabpanel">
+
+                            </div> --}}
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc"><br>
-                                    <h4>{{ __('messages.description_product') }}</h4>
-                                    <p>{!! $produk->deskripsi !!}</p>
+                                    <h4 style="font-weight: bold;">{{ __('messages.description_product') }}</h4>
+                                    <p style="text-align: justify;">{!! $produk->deskripsi !!}</p>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="tabs-2" role="tabpanel">
                                 <div class="product__details__tab__desc"><br>
-                                    <h4>{{ __('messages.specification_product') }}</h4>
-                                    <p>{!! $produk->spesifikasi !!}</p>
+                                    <h4 style="font-weight: bold;">{{ __('messages.specification_product') }}</h4>
+                                    <ul>
+                                        @foreach (explode("\n", $produk->spesifikasi) as $spesifikasi)
+                                            <li>{{ $spesifikasi }}</li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                         </div>

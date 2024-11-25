@@ -86,10 +86,6 @@
                                 <td>{{ $produk->kegunaan }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Via</th>
-                                <td>{{ $produk->via }}</td>
-                            </tr>
-                            <tr>
                                 <th scope="row">Kategori</th>
                                 <td>{{ $produk->kategori->nama ?? 'N/A' }}</td>
                             </tr>

@@ -17,7 +17,7 @@
 
     <!-- Instructions Start -->
     <div class="container py-5">
-        <div class="row g-4">
+        <div class="row g-4 justify-content-center">
             @forelse($uniqueProduks as $produk)
                 <div class="col-md-4 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-img rounded-top border border-secondary" style="border-radius: 10px;">
