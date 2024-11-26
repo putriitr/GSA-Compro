@@ -49,6 +49,7 @@
     use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorController;
     use App\Http\Controllers\Admin\Admin\AdminController;
     use App\Http\Controllers\Distribution\Profile\ProfileDistributorController;
+    use App\Http\Controllers\Admin\Vendor\VendorController;
 
 
     /*
@@ -197,12 +198,22 @@
             Route::post('/admin/distributors/{id}/approve', [DistributorApprovalController::class, 'approve'])->name('admin.distributors.approve');
             Route::get('/admin/distributors/{id}', [DistributorApprovalController::class, 'show'])->name('admin.distributors.show');
 
-            Route::get('/admin', [AdminController::class, 'index'])->name('admin.index'); // Daftar admin
-            Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create'); // Form tambah admin
-            Route::post('/admin', [AdminController::class, 'store'])->name('admin.store'); // Simpan admin baru
-            Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit'); // Form edit admin
-            Route::put('/admin/{admin}', [AdminController::class, 'update'])->name('admin.update'); // Update admin
-            Route::delete('/admin/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy'); // Hapus admin
+            // CRUD Admin
+            Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+            Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create');
+            Route::post('/admin', [AdminController::class, 'store'])->name('admin.store');
+            Route::get('/admin/{admin}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+            Route::put('/admin/{admin}', [AdminController::class, 'update'])->name('admin.update');
+            Route::delete('/admin/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
+
+            // CRUD Vendor
+            Route::get('/vendor', [VendorController::class, 'index'])->name('admin.vendors.index');
+            Route::get('/vendor/create', [VendorController::class, 'create'])->name('admin.vendors.create');
+            Route::post('/vendor', [VendorController::class, 'store'])->name('admin.vendors.store');
+            Route::get('/vendor/{vendor}/edit', [VendorController::class, 'edit'])->name('admin.vendors.edit');
+            Route::put('/vendor/{vendor}', [VendorController::class, 'update'])->name('admin.vendors.update');
+            Route::delete('/vendor/{vendor}', [VendorController::class, 'destroy'])->name('admin.vendors.destroy');
+            Route::get('/vendor/{vendor}', [VendorController::class, 'show'])->name('admin.vendors.show');
 
             Route::resource('admin/activity/category-activity', CategoryActivityController::class)->names('admin.activity.category-activity');
             Route::put('/admin/activity/{activity}', [ActivityController::class, 'update'])->name('admin.activity.update');

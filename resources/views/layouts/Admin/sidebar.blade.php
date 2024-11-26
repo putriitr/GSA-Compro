@@ -88,6 +88,22 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a data-bs-toggle="collapse" href="#vendor-management">
+                        <i class="fas fa-user"></i>
+                        <p>Vendor</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="vendor-management">
+                        <ul class="nav nav-collapse">
+                            <li>
+                                <a href="{{ route('admin.vendors.index') }}">
+                                    <span class="sub-item">Semua Vendor</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
                 <!-- Product Management -->
                 <li class="nav-section">
