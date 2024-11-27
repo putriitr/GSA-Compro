@@ -12,11 +12,6 @@
                         <form action="{{ route('distributor.quotations.negotiations.store', $quotation->id) }}" method="POST">
                             @csrf
                             <div class="form-group mb-4">
-                                <label for="negotiated_price" class="form-label">{{ __('messages.nego_price') }}</label>
-                                <input type="number" step="0.01" class="form-control" id="negotiated_price" name="negotiated_price" required>
-                            </div>
-
-                            <div class="form-group mb-4">
                                 <label for="notes" class="form-label">{{ __('messages.note') }}</label>
                                 <textarea class="form-control" id="notes" name="notes" rows="4"></textarea>
                             </div>

@@ -74,6 +74,12 @@
                         </select>
                     </div>
                 </div>
+                <!-- Pesan Alert Sukses -->
+                <div id="success-message" class="alert alert-success alert-dismissible fade show" role="alert"
+                    style="display: none;">
+                    <span id="success-text"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
 
                 <div class="row">
                     @foreach ($produks as $produk)
@@ -98,11 +104,10 @@
                                             {{ __('messages.more') }} <i class="fas fa-arrow-right ms-2"></i>
                                         </a>
 
-                                        <!-- Ajukan Quotation -->
+                                        <!-- Form untuk Distributor -->
                                         @if (auth()->user() && auth()->user()->type === 'distributor')
-                                            <!-- Form untuk menambahkan produk ke keranjang -->
                                             <form action="{{ route('quotations.add_to_cart') }}" method="POST"
-                                                class="d-inline-flex align-items-center">
+                                                class="d-flex justify-content-center align-items-center add-to-cart-form">
                                                 @csrf
                                                 <input type="hidden" name="produk_id" value="{{ $produk->id }}">
                                                 <div class="input-group input-group-sm"
@@ -122,27 +127,71 @@
                     @endforeach
                 </div><br><br><br>
             </div>
+            <div class="d-flex justify-content-center mt-4">
+                {{ $produks->links('pagination::bootstrap-4') }}
+            </div>
         </div>
     </div>
 @endsection
 
 <script>
     function toggleButtonText(button) {
-        if (button.textContent.trim() === '{{ __('messages.show_more_categories') }}') {
-            button.textContent = '{{ __('messages.show_less_categories') }}';
+        const showText = '{{ __('messages.show_all_categories') }}';
+        const hideText = '{{ __('messages.show_less_categories') }}';
+
+        if (button.textContent.trim() === showText) {
+            button.textContent = hideText;
             button.classList.add('btn-danger');
             button.classList.remove('btn-link');
         } else {
-            button.textContent = '{{ __('messages.show_more_categories') }}';
+            button.textContent = showText;
             button.classList.add('btn-link');
             button.classList.remove('btn-danger');
         }
     }
+</script>
+<script>
+    document.querySelectorAll('.add-to-cart-form').forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah pengiriman form biasa
 
-    document.getElementById('sortDropdown').addEventListener('change', function(event) {
-        let sortOption = event.target.value;
-        // You can use Ajax to fetch sorted data or reload the page with the sort parameter
-        window.location.href = `?sort=${sortOption}`;
+            const formData = new FormData(this);
+            const url = this.action;
+
+            fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Menampilkan pesan sukses di halaman
+                        const successMessage = document.getElementById('success-message');
+                        const successText = document.getElementById('success-text');
+                        successText.textContent = data.message;
+                        successMessage.style.display = 'block';
+
+                        // Perbarui badge jumlah keranjang jika ada
+                        const cartCount = document.getElementById('cart-count');
+                        if (cartCount) {
+                            cartCount.textContent = parseInt(cartCount.textContent) + parseInt(
+                                formData.get('quantity'));
+                        }
+
+                        // Sembunyikan pesan setelah 3 detik
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        // Menampilkan pesan error
+                        alert(data.message || 'Terjadi kesalahan.');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
     });
 </script>
 

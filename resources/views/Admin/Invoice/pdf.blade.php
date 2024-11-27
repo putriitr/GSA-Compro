@@ -159,8 +159,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Product Name</th>
+                    <th>No</th>
+                    <th>Description</th>
                     <th>Quantity</th>
                     <th>Brand</th>
                     <th>Unit Price</th>
@@ -170,12 +170,25 @@
                 @foreach ($invoice->proformaInvoice->purchaseOrder->quotation->quotationProducts as $index => $product)
                     <tr>
                         <td>{{ $index + 1 }}</td>
-                        <td>{{ $product->equipment_name }}</td>
+                        <td>
+                            {{ $product->equipment_name }}
+                            @if ($invoice->type === 'dp')
+                                <br>
+                                <small><em>(Uang muka:
+                                    {{ number_format(($invoice->proformaInvoice->dp / $invoice->proformaInvoice->grand_total_include_ppn) * 100, 2) }}%)</em></small>
+                            @elseif ($invoice->type === 'next_payment')
+                                <br>
+                                <small><em>(Pembayaran termin
+                                    {{ $invoice->proformaInvoice->payments_completed }} dari {{ $invoice->proformaInvoice->installments }} termin
+                                    - Persentase: {{ number_format(($invoice->percentage), 2) }}%)</em></small>
+                            @endif
+                        </td>
                         <td>{{ $product->quantity }}</td>
                         <td>{{ $product->merk_type }}</td>
                         <td>{{ number_format($product->unit_price, 2) }}</td>
                     </tr>
                 @endforeach
+
                 <tr class="total-row">
                     <td colspan="4">Subtotal</td>
                     <td>{{ number_format($invoice->subtotal, 2) }}</td>
@@ -199,15 +212,17 @@
             <div class="payment-info">
                 <p>Kindly remit payment to :</p>
                 <p class="company-info">PT. Gudang Solusi Acommerce</p>
-                <p>Bank Mandiri</p>
-                <p>Account Number : 121-00-0022881-1</p>
                 <p>Bank Address : Bizpark Jababeka, Jl. Niaga Industri Selatan 2 Blok QQ2 No.6, Kel. Pasirsari, Kec. Cikarang Selatan, Kab. Bekasi, Prov. Jawa Barat, 17532</p>
             </div>
             <br>
             <div class="signature">
                 <p>Warm regards,</p>
-                <p><strong>Agustina Panjaitan</strong></p>
-                <p>Director</p>
+                <p><strong>PT Gudang Solusi Acommerce</strong></p>
+                <br>
+
+                <p>Sincerely,</p>
+                <br><br><br>
+                <p>Director PT Gudang Solusi Acommerce</p>
             </div>
         </div>
     </div>

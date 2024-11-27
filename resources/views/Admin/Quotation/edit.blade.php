@@ -48,13 +48,6 @@
     <div class="row">
         <div class="col-md-6">
             <div class="mb-3">
-                <label for="quotation_number" class="form-label">Quotation Number</label>
-                <input type="text" class="form-control shadow-sm" id="quotation_number" name="quotation_number"
-                       value="{{ old('quotation_number', $quotation->quotation_number ?? '') }}">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="mb-3">
                 <label for="quotation_date" class="form-label">Quotation Date</label>
                 <input type="date" class="form-control shadow-sm" id="quotation_date" name="quotation_date"
                        value="{{ old('quotation_date', $quotation->quotation_date ?? \Carbon\Carbon::now()->format('Y-m-d')) }}">

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container py-5">
-        <h2 class="mb-4" style="font-weight: bold; font-family: 'Poppins', sans-serif; color: #00796b;">Daftar Permintaan Quotation
+        <h2 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">Daftar Permintaan Quotation
         </h2>
 
         <!-- Flash Messages -->
@@ -20,13 +20,11 @@
 
         <!-- Search Form -->
         <form action="{{ route('admin.quotations.index') }}" method="GET" class="mb-4">
-            <div class="col-md-7">
-                <div class="input-group">
-                    <input type="text" name="search" class="form-control"
-                        placeholder="Cari berdasarkan nomor pengajuan, distributor, produk, atau status ..."
-                        value="{{ request()->input('search') }}">
-                    <button class="btn btn-secondary" type="submit">Cari</button>
-                </div>
+            <div class="input-group">
+                <input type="text" name="search" class="form-control"
+                    placeholder="Cari berdasarkan nomor pengajuan, distributor, produk, atau status..."
+                    value="{{ request()->input('search') }}">
+                <button class="btn btn-primary" type="submit">Cari</button>
             </div>
         </form>
 
@@ -34,13 +32,12 @@
         <div class="card shadow-lg border-0 rounded">
             <div class="card-body p-0">
                 <table class="table table-hover mb-0">
-                    <thead style="background: linear-gradient(135deg, #00796b, #004d40);">
+                    <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
                         <tr>
                             <th class="text-center">No</th>
                             <th class="text-center">Nomor Pengajuan</th>
-                            <th class="text-center">Nama Produk</th>
+                            <th class="text-center">Topik</th>
                             <th class="text-center">Distributor</th>
-                            <th class="text-center">Quantity</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Actions</th>
                         </tr>
@@ -50,25 +47,8 @@
                             <tr>
                                 <td class="text-center">{{ $quotations->firstItem() + $key }}</td>
                                 <td class="text-center">{{ $quotation->nomor_pengajuan ?? 'Nomor tidak tersedia' }}</td>
-                                <td>
-                                    @if ($quotation->quotationProducts)
-                                        @foreach ($quotation->quotationProducts as $product)
-                                            <div>- {{ $product->equipment_name ?? 'Produk tidak tersedia' }}</div>
-                                        @endforeach
-                                    @else
-                                        <div>Produk tidak tersedia</div>
-                                    @endif
-                                </td>
+                                <td class="text-center">{{ $quotation->topik ?? 'Topik tidak tersedia' }}</td>
                                 <td class="text-center">{{ $quotation->user->name ?? 'Tidak ada pengguna' }}</td>
-                                <td>
-                                    @if ($quotation->quotationProducts)
-                                        @foreach ($quotation->quotationProducts as $product)
-                                            <div class="text-center">{{ $product->quantity }}</div>
-                                        @endforeach
-                                    @else
-                                        <div>0</div>
-                                    @endif
-                                </td>
                                 <td class="text-center">
                                     <span
                                         class="badge

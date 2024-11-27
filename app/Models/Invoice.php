@@ -13,12 +13,14 @@ class Invoice extends Model
         'proforma_invoice_id',
         'invoice_number',
         'invoice_date',
-        'due_date',
         'subtotal',
         'ppn',
         'grand_total_include_ppn',
+        'percentage',
         'status',
         'file_path',
+        'type',
+
     ];
 
     public function proformaInvoice()
@@ -26,10 +28,9 @@ class Invoice extends Model
         return $this->belongsTo(ProformaInvoice::class);
     }
 
-// Relasi ke PurchaseOrder melalui ProformaInvoice
-public function purchaseOrder()
-{
-    return $this->hasOneThrough(PurchaseOrder::class, ProformaInvoice::class, 'id', 'id', 'proforma_invoice_id', 'purchase_order_id');
-}
-
+    // Relasi ke PurchaseOrder melalui ProformaInvoice
+    public function purchaseOrder()
+    {
+        return $this->hasOneThrough(PurchaseOrder::class, ProformaInvoice::class, 'id', 'id', 'proforma_invoice_id', 'purchase_order_id');
+    }
 }

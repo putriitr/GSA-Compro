@@ -21,14 +21,15 @@ class QuotationController extends Controller
     {
         $quotation = Quotation::with('produk')->findOrFail($id);
 
-        // Perbarui status jika diperlukan
+
+        // Periksa apakah file PDF sudah tersedia dan status masih "Pending"
         if ($quotation->pdf_path && $quotation->status === 'pending') {
+            // Perbarui status menjadi "Quotation"
             $quotation->update(['status' => 'quotation']);
         }
 
         return view('Distributor.Portal.show', compact('quotation'));
     }
-
 
     /**
      * Cancel a specific quotation.
@@ -61,49 +62,96 @@ class QuotationController extends Controller
         $produk = Produk::find($productId);
 
         if ($produk) {
-            // Tambahkan produk ke sesi
+            // Ambil data keranjang dari sesi
             $cartItems = session()->get('quotation_cart', []);
-            $cartItems[] = [
-                'produk_id' => $produk->id,
-                'nama' => $produk->nama,
-                'quantity' => $quantity,
-                'unit_price' => $produk->harga,
-            ];
+
+            // Periksa apakah produk sudah ada di keranjang
+            $found = false;
+            foreach ($cartItems as &$item) {
+                if ($item['produk_id'] == $productId) {
+                    $item['quantity'] += $quantity;
+                    $found = true;
+                    break;
+                }
+            }
+
+            // Jika produk belum ada, tambahkan
+            if (!$found) {
+                $cartItems[] = [
+                    'produk_id' => $produk->id,
+                    'nama' => $produk->nama,
+                    'quantity' => $quantity,
+                ];
+            }
+
             session()->put('quotation_cart', $cartItems);
 
-            return redirect()->route('quotations.cart')->with('success', 'Produk berhasil ditambahkan ke keranjang.');
+            // Respons JSON untuk permintaan AJAX
+            if ($request->ajax()) {
+                return response()->json(['success' => true, 'message' => 'Produk berhasil ditambahkan ke keranjang.']);
+            }
+
+            return redirect()->route('product.index')->with('success', 'Produk berhasil ditambahkan ke keranjang.');
         }
 
-        return redirect()->back()->with('error', 'Produk tidak ditemukan.');
+        if ($request->ajax()) {
+            return response()->json(['success' => false, 'message' => 'Produk tidak ditemukan.']);
+        }
+
+        return redirect()->route('product.index')->with('error', 'Produk tidak ditemukan.');
     }
 
-    public function submitCart()
+
+    public function submitCart(Request $request)
     {
+        // Validasi input termasuk kolom topik
+        $request->validate([
+            'topik' => 'required|string|max:255', // Tambahkan validasi untuk kolom topik
+        ]);
+
+        // Ambil nilai topik dari input
+        $topik = $request->input('topik');
         $cartItems = session()->get('quotation_cart', []);
         if (empty($cartItems)) {
             return redirect()->route('quotations.cart')->with('error', 'Keranjang kosong.');
         }
 
-        $quotationNumber = 'Q-' . now()->format('YmdHis') . '-' . auth()->id();
+        // Konversi bulan ke angka Romawi
+        $romanMonths = [
+            1 => 'I',
+            2 => 'II',
+            3 => 'III',
+            4 => 'IV',
+            5 => 'V',
+            6 => 'VI',
+            7 => 'VII',
+            8 => 'VIII',
+            9 => 'IX',
+            10 => 'X',
+            11 => 'XI',
+            12 => 'XII',
+        ];
+
+        $currentMonthNumeric = now()->format('n'); // Ambil angka bulan (1-12)
+        $currentMonthRoman = $romanMonths[$currentMonthNumeric]; // Konversi ke Romawi
+        $currentYear = now()->format('Y'); // Tahun saat ini
 
         // Hitung nomor pengajuan berdasarkan bulan dan tahun ini
-        $currentMonth = now()->format('m');
-        $currentYear = now()->format('Y');
-
         $lastQuotation = Quotation::whereYear('created_at', $currentYear)
-            ->whereMonth('created_at', $currentMonth)
+            ->whereMonth('created_at', $currentMonthNumeric)
             ->orderBy('id', 'desc')
             ->first();
 
         // Tentukan nomor pengajuan berikutnya
         $nextNumber = $lastQuotation ? intval(explode('/', $lastQuotation->nomor_pengajuan)[0]) + 1 : 1;
-        $nomorPengajuan = str_pad($nextNumber, 2, '0', STR_PAD_LEFT) . '/' . $currentMonth . '/' . $currentYear;
+        $nomorPengajuan = str_pad($nextNumber, 3, '0', STR_PAD_LEFT) . '/' . $currentMonthRoman . '/' . $currentYear;
 
         // Buat quotation baru dengan nomor pengajuan
         $quotation = Quotation::create([
             'user_id' => auth()->id(),
             'status' => 'pending',
             'nomor_pengajuan' => $nomorPengajuan,
+            'topik' => $topik, // Simpan topik ke database
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -140,23 +188,30 @@ class QuotationController extends Controller
 
 
 
+
     public function updateCart(Request $request)
     {
-        $productId = $request->input('produk_id');
+        $cartItems = session()->get('quotation_cart', []);
+        $produkId = $request->input('produk_id');
         $quantity = $request->input('quantity');
 
-        $cartItems = session()->get('quotation_cart', []);
+        // Validasi kuantitas minimal
+        if ($quantity < 1) {
+            return response()->json(['success' => false, 'message' => 'Quantity tidak boleh kurang dari 1.']);
+        }
+
+        // Perbarui kuantitas di sesi
         foreach ($cartItems as &$item) {
-            if ($item['produk_id'] == $productId) {
+            if ($item['produk_id'] == $produkId) {
                 $item['quantity'] = $quantity;
                 break;
             }
         }
-
         session()->put('quotation_cart', $cartItems);
 
-        return redirect()->route('quotations.cart')->with('success', 'Quantity berhasil diperbarui.');
+        return response()->json(['success' => true, 'message' => 'Kuantitas berhasil diperbarui.']);
     }
+
 
     public function removeFromCart(Request $request)
     {

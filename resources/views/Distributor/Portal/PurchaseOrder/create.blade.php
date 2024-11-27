@@ -22,26 +22,33 @@
                             #{{ $quotation->quotation_number }}</strong></h3>
                 </div>
 
-
                 <form action="{{ route('quotations.store_po', $quotation->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group mb-3">
-                        <label for="po_number">PO Number</label>
-                        <input type="text" class="form-control" id="po_number" name="po_number" required>
+                    <!-- Input PO Number -->
+                    <div class="form-group mb-4">
+                        <label for="po_number" class="form-label" style="font-weight: bold; color: #004d40;">PO
+                            Number</label>
+                        <input type="text" class="form-control rounded-pill shadow-sm" id="po_number" name="po_number"
+                            placeholder="Enter PO Number" required>
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label for="po_date">PO Date</label>
-                        <input type="date" class="form-control" id="po_date" name="po_date" required>
+                    <!-- Upload PO File -->
+                    <div class="form-group mb-4">
+                        <label for="file_path" class="form-label" style="font-weight: bold; color: #004d40;">Upload PO
+                            File</label>
+                        <input type="file" class="form-control rounded-pill shadow-sm" id="file_path" name="file_path"
+                            accept=".pdf,.doc,.docx" required>
+                        <small class="form-text text-muted">Supported formats: PDF, DOC, DOCX</small>
                     </div>
 
-                    <div class="form-group mb-3">
-                        <label for="file_path">Upload PO File (optional)</label>
-                        <input type="file" class="form-control" id="file_path" name="file_path" accept=".pdf,.doc,.docx" required>
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm"
+                            style="background: #00796b; border: none;">
+                            <i class="fas fa-paper-plane me-2"></i>Create PO
+                        </button>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Create PO</button>
                 </form><br><br>
             </div>
         </div>

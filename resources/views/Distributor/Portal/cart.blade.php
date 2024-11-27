@@ -20,7 +20,7 @@
                 <div class="text-end mb-3">
                     <a href="{{ url('/en/products') }}" class="btn btn-success"
                         style="border-radius: 10px; padding: 10px 20px;">
-                        <i class="fas fa-plus-circle me-2"></i>{{ __('messages.create_tiket') }}
+                        <i class="fas fa-plus-circle me-2"></i>{{ __('messages.create_quo') }}
                     </a>
                 </div>
 
@@ -41,25 +41,19 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td class="text-left">{{ $item['nama'] }}</td>
                                         <td>
-                                            <form action="{{ route('quotations.cart.update') }}" method="POST"
-                                                style="display: inline;">
-                                                @csrf
-                                                <input type="hidden" name="_method" value="PUT">
-                                                <input type="hidden" name="produk_id" value="{{ $item['produk_id'] }}">
-                                                <input type="number" name="quantity" value="{{ $item['quantity'] }}"
-                                                    min="1" style="width: 40px;">
-                                                <button type="submit" class="btn btn-sm text-white"
-                                                    style="background-color: #fd7e14; border-color: #fd7e14;">{{ __('messages.update') }}</button>
-                                            </form>
+                                            <input type="number" name="quantity" value="{{ $item['quantity'] }}"
+                                                min="1" class="form-control d-inline-block update-quantity"
+                                                style="width: 80px;" data-produk-id="{{ $item['produk_id'] }}">
                                         </td>
                                         <td>
                                             <form action="{{ route('quotations.cart.remove') }}" method="POST"
                                                 style="display: inline;">
                                                 @csrf
-                                                <input type="hidden" name="_method" value="DELETE">
+                                                @method('DELETE')
                                                 <input type="hidden" name="produk_id" value="{{ $item['produk_id'] }}">
-                                                <button type="submit"
-                                                    class="btn btn-sm btn-danger">{{ __('messages.hapus') }}</button>
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
                                             </form>
                                         </td>
                                     </tr>
@@ -77,6 +71,11 @@
                 @if (count($cartItems) > 0)
                     <form action="{{ route('quotations.submit') }}" method="POST" class="mt-3">
                         @csrf
+                        <div class="mb-3">
+                            <label for="topik" class="form-label">{{ __('messages.topik') }}</label>
+                            <input type="text" name="topik" id="topik" class="form-control"
+                                placeholder="Masukkan topik permintaan">
+                        </div>
                         <button type="submit" class="btn btn-primary">
                             {{ __('messages.ajukan_quo') }} <i class="fas fa-paper-plane ms-2"></i>
                         </button>
@@ -84,10 +83,42 @@
                 @endif
             </div>
         </div>
+
         <div class="text-center mt-4">
             <a href="{{ route('distribution.request-quotation') }}" class="btn btn-outline-danger">
                 <i class="fas fa-arrow-left me-2"></i>{{ __('messages.back') }}
             </a>
         </div>
     </div>
+    <!-- JavaScript for AJAX -->
+    <script>
+        document.querySelectorAll('.update-quantity').forEach(input => {
+            input.addEventListener('change', function() {
+                const produkId = this.getAttribute('data-produk-id');
+                const quantity = this.value;
+
+                fetch('{{ route('quotations.cart.update') }}', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            produk_id: produkId,
+                            quantity: quantity
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Optional: Reload or update part of the page
+                            console.log('Quantity updated successfully');
+                        } else {
+                            alert(data.message || 'Error updating quantity.');
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>r
 @endsection

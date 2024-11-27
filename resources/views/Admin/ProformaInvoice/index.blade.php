@@ -37,15 +37,13 @@
                         <table class="table table-hover shadow-sm rounded">
                             <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
                                 <tr>
-                                    <th class="text-center">ID</th>
+                                    <th class="text-center">No</th>
                                     <th class="text-center">PI Number</th>
                                     <th class="text-center">PI Date</th>
                                     <th class="text-center">PO Number</th>
+                                    <th class="text-center">Quotation Number</th>
                                     <th class="text-center">Distributor</th>
                                     <th class="text-center">Subtotal</th>
-                                    <th class="text-center">PPN</th>
-                                    <th class="text-center">Grand Total</th>
-                                    <th class="text-center">DP</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -57,46 +55,13 @@
                                         <td class="text-center">
                                             {{ \Carbon\Carbon::parse($invoice->pi_date)->format('d M Y') }}</td>
                                         <td class="text-center">{{ $invoice->purchaseOrder->po_number }}</td>
+                                        <td class="text-center">{{ $invoice->purchaseOrder->quotation->quotation_number ?? 'N/A' }}</td>
                                         <td class="text-center">{{ $invoice->purchaseOrder->user->name }}</td>
                                         <td class="text-center">Rp{{ number_format($invoice->subtotal, 2) }}</td>
-                                        <td class="text-center">Rp{{ number_format($invoice->ppn, 2) }}</td>
-                                        <td class="text-center">Rp{{ number_format($invoice->grand_total_include_ppn, 2) }}
-                                        </td>
-                                        <td class="text-center">Rp{{ number_format($invoice->dp, 2) }}</td>
                                         <td class="text-center">
-                                            <div class="d-flex flex-column gap-2">
-                                                <!-- View & Download PDF -->
-                                                <a href="{{ asset($invoice->file_path) }}" target="_blank"
-                                                    class="btn btn-info btn-sm rounded-pill shadow-sm">
-                                                    <i class="fas fa-file-pdf"></i> View PDF
-                                                </a>
-                                                <a href="{{ asset($invoice->file_path) }}" download
-                                                    class="btn btn-secondary btn-sm rounded-pill shadow-sm">
-                                                    <i class="fas fa-download"></i> Download PDF
-                                                </a>
-
-                                                <!-- Payment Proof -->
-                                                @if ($invoice->payment_proof_path)
-                                                    <a href="{{ asset($invoice->payment_proof_path) }}" target="_blank"
-                                                        class="btn btn-success btn-sm rounded-pill shadow-sm">
-                                                        <i class="fas fa-receipt"></i> View Payment Proof
-                                                    </a>
-                                                    <a href="{{ asset($invoice->payment_proof_path) }}" download
-                                                        class="btn btn-secondary btn-sm rounded-pill shadow-sm">
-                                                        <i class="fas fa-download"></i> Download Payment Proof
-                                                    </a>
-                                                @else
-                                                    <span class="text-muted">Payment Proof Not Available</span>
-                                                @endif
-
-                                                <!-- Create Invoice -->
-                                                @if (in_array($invoice->status, ['partially_paid', 'paid']))
-                                                    <a href="{{ route('invoices.create', $invoice->id) }}"
-                                                        class="btn btn-primary btn-sm rounded-pill shadow-sm mt-1">
-                                                        <i class="fas fa-plus"></i> Create Invoice
-                                                    </a>
-                                                @endif
-                                            </div>
+                                            <a href="{{ route('admin.proforma-invoices.show', $invoice->id) }}" class="btn btn-info btn-sm rounded-pill shadow-sm">
+                                                <i class="fas fa-eye"></i> View Details
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty

@@ -63,13 +63,6 @@
                     </div>
 
                     @auth
-                        {{-- @if (session('error'))
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong>Peringatan:</strong> {{ session('error') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif --}}
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" id="memberDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -127,6 +120,21 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Shopping Cart Icon -->
+                @auth
+                    @if (Auth::user()->type === 'distributor')
+                        <div class="nav-item">
+                            <a href="{{ route('quotations.cart') }}" class="nav-link">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span id="cart-count" class="badge bg-primary rounded-pill">
+                                    {{ session('quotation_cart') ? count(session('quotation_cart')) : 0 }}
+                                </span>
+                            </a>
+
+                        </div>
+                    @endif
+                @endauth
 
                 @if (auth()->check())
                     <div class="dropdown">

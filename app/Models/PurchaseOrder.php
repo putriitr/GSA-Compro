@@ -21,8 +21,9 @@ class PurchaseOrder extends Model
     // Relasi ke model Quotation
     public function quotation()
     {
-        return $this->belongsTo(Quotation::class);
+        return $this->belongsTo(Quotation::class, 'quotation_id');
     }
+
 
     // Relasi ke model User (distributor yang membuat PO)
     public function user()
@@ -30,7 +31,7 @@ class PurchaseOrder extends Model
         return $this->belongsTo(User::class);
     }
     public function proformaInvoice()
-{
-    return $this->hasOne(ProformaInvoice::class);
-}
+    {
+        return $this->hasOne(ProformaInvoice::class);
+    }
 }

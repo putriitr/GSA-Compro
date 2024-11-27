@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\File;
 
 class ProformaInvoiceAdminController extends Controller
 {
+    public function show($id)
+    {
+        $proformaInvoice = ProformaInvoice::with('purchaseOrder.quotation')->findOrFail($id);
+
+        return view('Admin.ProformaInvoice.show', compact('proformaInvoice'));
+    }
     public function index(Request $request)
     {
         // Ambil keyword pencarian dari input pengguna
@@ -64,8 +70,7 @@ class ProformaInvoiceAdminController extends Controller
     public function store(Request $request, $purchaseOrderId)
     {
         $request->validate([
-            'pi_number' => 'required|unique:proforma_invoices',
-            'pi_date' => 'required|date',
+            'installments' => 'required|integer|min:1',
             'dp' => 'nullable|numeric|min:0|max:100', // Validasi DP sebagai persentase
             'vendor_name' => 'required|string',
             'vendor_address' => 'required|string',
@@ -73,6 +78,12 @@ class ProformaInvoiceAdminController extends Controller
             'products' => 'required|array',
         ]);
         $purchaseOrder = PurchaseOrder::with('quotation', 'user')->findOrFail($purchaseOrderId);
+        // Ambil nomor terakhir dari Proforma Invoice
+        $lastPiNumber = ProformaInvoice::max('id'); // Ambil ID terakhir sebagai dasar increment
+        $nextPiNumber = str_pad($lastPiNumber + 1, 3, '0', STR_PAD_LEFT); // Format dengan leading zero (001, 002, ...)
+
+        // Format PI Number untuk Database
+        $piFormatted = sprintf("%s", $nextPiNumber); // Format sederhana, hanya angka increment
 
         // Ambil grand total dari quotation
         $grandTotalIncludePPN = $purchaseOrder->quotation->total_after_discount + ($purchaseOrder->quotation->total_after_discount * ($purchaseOrder->quotation->ppn / 100));
@@ -94,19 +105,19 @@ class ProformaInvoiceAdminController extends Controller
 
         // Format Nomor PO dan PI dengan format yang diminta
         $poNumberFormatted = sprintf("%s/SPO/%s/%s/%s", $purchaseOrder->po_number, $singkatanNamaPerusahaan, $tanggalRomawi, $tahun);
-        $piNumberFormatted = sprintf("%s/PI-AGS-%s/%s/%s", $request->pi_number, $singkatanNamaPerusahaan, $tanggalRomawi, $tahun);
+        $piNumberFormatted = sprintf("%s/PI-AGS-%s/%s/%s", $piFormatted, $singkatanNamaPerusahaan, $tanggalRomawi, $tahun);
 
 
         // Buat Proforma Invoice
         $proformaInvoice = ProformaInvoice::create([
             'purchase_order_id' => $purchaseOrderId,
-            'pi_number' => $request->pi_number,
-            'pi_date' => $request->pi_date,
+            'pi_number' => $piFormatted, // Simpan nomor sederhana di database
+            'pi_date' => now(), // Tanggal otomatis
             'subtotal' => $request->subtotal,
             'ppn' => $request->ppn,
             'grand_total_include_ppn' => $request->grand_total_include_ppn,
             'dp' => $dpAmount, // Simpan nominal DP
-
+            'installments' => $request->installments,
         ]);
 
         // Generate PDF
@@ -139,5 +150,63 @@ class ProformaInvoiceAdminController extends Controller
         $proformaInvoice->update(['file_path' => 'pdfs/' . $filename]);
 
         return redirect()->route('admin.proforma-invoices.index')->with('success', 'Proforma Invoice created and PDF generated successfully.');
+    }
+    public function approveRejectPayment(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'remarks' => 'nullable|string|max:500',
+            'action' => 'required|in:approve,reject',
+            'next_payment_percentage' => 'nullable|numeric|min:1|max:100',
+        ]);
+
+        // Ambil Proforma Invoice dengan relasi ke Purchase Order dan Quotation
+        $proformaInvoice = ProformaInvoice::with('purchaseOrder.quotation')->findOrFail($id);
+
+        if ($request->action === 'approve') {
+            // Tambah jumlah pembayaran yang sudah selesai
+            $proformaInvoice->payments_completed++;
+            $proformaInvoice->last_payment_status = 'approved';
+
+            // Hitung jumlah pembayaran berikutnya jika next_payment_percentage diisi
+            if ($request->filled('next_payment_percentage')) {
+                // Pastikan Quotation ada
+                if (!$proformaInvoice->purchaseOrder || !$proformaInvoice->purchaseOrder->quotation) {
+                    return redirect()->back()->with('error', 'Quotation data not found for this Proforma Invoice.');
+                }
+
+                $percentage = $request->input('next_payment_percentage');
+                $proformaInvoice->next_payment_amount = $percentage;
+
+                // Hitung jumlah pembayaran berikutnya berdasarkan subtotal
+                $subtotal = $proformaInvoice->purchaseOrder->quotation->subtotal_price;
+                $nextPaymentAmount = ($subtotal * $percentage) / 100;
+                $proformaInvoice->next_payment_amount = $nextPaymentAmount;
+            }
+
+            // Update status Proforma Invoice
+            if ($proformaInvoice->payments_completed >= $proformaInvoice->installments) {
+                $proformaInvoice->status = 'paid';
+            } else {
+                $proformaInvoice->status = 'partially_paid';
+            }
+        } elseif ($request->action === 'reject') {
+            // Jika pembayaran ditolak, ubah status menjadi 'rejected'
+            $proformaInvoice->last_payment_status = 'rejected';
+        }
+
+        // Simpan remarks jika ada
+        $proformaInvoice->remarks = $request->input('remarks');
+
+        // Simpan perubahan Proforma Invoice ke database
+        $proformaInvoice->save();
+
+        // Redirect jika status sudah 'paid'
+        if ($proformaInvoice->status === 'paid') {
+            return redirect()->back()
+                ->with('success', 'Final payment approved successfully.');
+        }
+        // Redirect kembali ke halaman detail Proforma Invoice
+        return redirect()->back()->with('success', 'Pembayaran berhasil ' . ($request->action === 'approve' ? 'disetujui' : 'ditolak') . '.');
     }
 }

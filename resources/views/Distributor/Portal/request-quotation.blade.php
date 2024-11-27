@@ -28,8 +28,22 @@
                         </a>
                     </div>
                 </div>
+                <!-- Form Pencarian -->
+                <form method="GET" action="{{ route('distribution.request-quotation') }}" class="mb-4">
+                    <div class="row g-3">
+                        <div class="col-md-5">
+                            <input type="text" name="search" class="form-control"
+                                placeholder="Cari Nomor Pengajuan atau Status" value="{{ request('search') }}">
+                        </div>
+                        <div class="col-md-1">
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-search me-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
 
-                <p>{{ __('messages.req_quo') }}</p>
+                {{-- <p>{{ __('messages.req_quo') }}</p> --}}
 
                 <!-- Quotation Requests Table -->
                 <br>
@@ -44,13 +58,13 @@
                                         </th>
                                         <th style="width: 20%; border-right: 1px solid #dee2e6;">
                                             {{ __('messages.nomor_pengajuan') }}</th>
-                                        <th style="width: 35%; border-right: 1px solid #dee2e6;">
-                                            {{ __('messages.produk_name') }}</th>
-                                        <th style="width: 10%; border-right: 1px solid #dee2e6;">
-                                            {{ __('messages.quantity') }}</th>
                                         <th style="width: 15%; border-right: 1px solid #dee2e6;">
+                                            {{ __('messages.date') }}</th>
+                                        <th style="width: 30%; border-right: 1px solid #dee2e6;">
+                                            {{ __('messages.topik') }}</th>
+                                        <th style="width: 10%; border-right: 1px solid #dee2e6;">
                                             {{ __('messages.status') }}</th>
-                                        <th style="width: 15%; border-right: 1px solid #dee2e6;">{{ __('messages.aksi') }}
+                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.aksi') }}
                                         </th>
                                     </tr>
                                 </thead>
@@ -59,22 +73,16 @@
                                         <tr class="text-center">
                                             <td>{{ $key + 1 }}</td>
                                             <td>{{ $quotation->nomor_pengajuan ?? 'Nomor pengajuan tidak tersedia' }}</td>
-                                            <td>
-                                                @foreach ($quotation->quotationProducts as $product)
-                                                    {{ $product->equipment_name ?? 'Produk tidak tersedia' }} <br>
-                                                @endforeach
+                                            <td class="text-center">
+                                                {{ $quotation->created_at->format('d M Y') ?? 'Tanggal tidak tersedia' }}
                                             </td>
-                                            <td>
-                                                @foreach ($quotation->quotationProducts as $product)
-                                                    {{ $product->quantity }} <br>
-                                                @endforeach
-                                            </td>
+                                            <td class="text-center">{{ $quotation->topik ?? 'Topik tidak tersedia' }}</td>
                                             <td>
                                                 <span
                                                     class="badge
-                        @if ($quotation->status === 'cancelled') bg-danger
-                        @elseif ($quotation->status === 'quotation') bg-success
-                        @else bg-warning @endif">
+                                                    @if ($quotation->status === 'cancelled') bg-danger
+                                                    @elseif ($quotation->status === 'quotation') bg-success
+                                                    @else bg-warning @endif">
                                                     {{ ucfirst($quotation->status) }}
                                                 </span>
                                             </td>
@@ -82,7 +90,15 @@
                                             <!-- Actions -->
                                             <td class="text-center">
                                                 <a href="{{ route('quotations.show', $quotation->id) }}"
-                                                    class="btn btn-sm btn-info">{{ __('messages.view') }}</a>
+                                                    class="btn btn-sm btn-info">{{ __('messages.view') }}
+                                                </a>
+                                                <!-- Tombol Download PDF -->
+                                                @if ($quotation->pdf_path)
+                                                    <a href="{{ asset($quotation->pdf_path) }}" download
+                                                        class="btn btn-secondary btn-sm rounded-pill">
+                                                        <i class="fas fa-download me-2"></i>{{ __('messages.unduh') }}
+                                                    </a>
+                                                @endif
 
                                                 @if ($quotation->status === 'pending')
                                                     <form action="{{ route('quotations.cancel', $quotation->id) }}"
@@ -94,14 +110,18 @@
                                                             {{ __('messages.batal') }}
                                                         </button>
                                                     </form>
-                                                @elseif($quotation->status === 'quotation')
-                                                    <!-- Tampilkan tombol Nego jika status adalah 'quotation' dan belum ada PO -->
-                                                    @if (!$quotation->purchaseOrder)
+                                                @elseif ($quotation->status === 'quotation' && !$quotation->purchaseOrder)
+                                                    <!-- Tampilkan tombol Nego hanya jika status negosiasi bukan 'accepted' -->
+                                                    @if (!$quotation->negotiation || $quotation->negotiation->status !== 'accepted')
                                                         <a href="{{ route('distributor.quotations.negotiations.create', $quotation->id) }}"
-                                                            class="btn btn-sm btn-warning">Nego</a>
-                                                        <a href="{{ route('quotations.create_po', $quotation->id) }}"
-                                                            class="btn btn-sm btn-success">Create PO</a>
+                                                            class="btn btn-warning btn-sm rounded-pill">
+                                                            <i class="fas fa-handshake"></i> Nego
+                                                        </a>
                                                     @endif
+                                                    <a href="{{ route('quotations.create_po', $quotation->id) }}"
+                                                        class="btn btn-success btn-sm rounded-pill">
+                                                        <i class="fas fa-file-invoice-dollar"></i> Create PO
+                                                    </a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -113,6 +133,10 @@
                                     @endforelse
                                 </tbody>
                             </table>
+                            <!-- Pagination -->
+                            <div class="mt-4 d-flex justify-content-center">
+                                {{ $quotations->links('pagination::bootstrap-4') }}
+                            </div>
                         </div>
                     </div>
                 </div>

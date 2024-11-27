@@ -33,11 +33,13 @@
                         <p>Anda belum memiliki Purchase Order. Silakan lihat Quotation Anda dan ajukan quotation untuk
                             memulai
                             proses.</p>
-                        <a href="{{ route('distribution.request-quotation') }}" class="btn btn-primary">{{ __('messages.your_quotation') }}</a>
+                        <a href="{{ route('distribution.request-quotation') }}"
+                            class="btn btn-primary">{{ __('messages.your_quotation') }}</a>
                     </div>
                 @else
                     <div class="mb-3">
-                        <a href="{{ route('distribution.request-quotation') }}" class="btn btn-primary">{{ __('messages.your_quotation') }}</a>
+                        <a href="{{ route('distribution.request-quotation') }}"
+                            class="btn btn-primary">{{ __('messages.your_quotation') }}</a>
                     </div>
 
                     <!-- PO Table -->
@@ -49,10 +51,12 @@
                                         <tr>
                                             <th style="width: 5%; border-right: 1px solid #dee2e6;">{{ __('messages.id') }}
                                             </th>
-                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.po_number') }}</th>
-                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.po_date') }}</th>
+                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">
+                                                {{ __('messages.po_number') }}</th>
+                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">
+                                                {{ __('messages.po_date') }}</th>
                                             <th style="width: 15%; border-right: 1px solid #dee2e6;">
-                                                {{ __('messages.status') }}</th>
+                                                {{ __('messages.quo_number') }}</th>
                                             <th style="width: 40%; border-right: 1px solid #dee2e6;">
                                                 {{ __('messages.aksi') }}</th>
                                         </tr>
@@ -62,22 +66,20 @@
                                             <tr class="text-center">
                                                 <td>{{ $po->id }}</td>
                                                 <td>{{ $po->po_number }}</td>
-                                                <td>{{ $po->po_date }}</td>
-                                                <td>{{ ucfirst($po->status) }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($po->po_date)->format('d M Y') }}</td>
+                                                <td>{{ $po->quotation->quotation_number ?? 'N/A' }}</td>
                                                 <td>
                                                     <a href="{{ route('quotations.show', $po->quotation_id) }}"
-                                                        class="btn btn-info btn-sm">{{ __('messages.quotation') }}</a>
-                                                    <!-- Kondisi berdasarkan status dan keberadaan Proforma Invoice -->
-                                                    @if ($po->status === 'pending')
-                                                        <br><span class="text-muted small">PO masih dalam peninjauan</span>
-                                                    @elseif ($po->status === 'approved')
-                                                        @if ($po->proformaInvoice)
-                                                            <a href="{{ route('distributor.proforma-invoices.index', $po->proformaInvoice->id) }}"
-                                                                class="btn btn-success btn-sm">{{ __('messages.proforma_invoice') }}</a>
-                                                        @else
-                                                            <span class="text-muted">Proforma Invoice akan segera
-                                                                dikirim</span>
-                                                        @endif
+                                                        class="btn btn-info btn-sm">
+                                                        <i class="fas fa-eye"></i> {{ __('messages.quotation') }}
+                                                    </a>
+                                                    @if ($po->proformaInvoice)
+                                                        <a href="{{ route('distributor.proforma-invoices.index', $po->proformaInvoice->id) }}"
+                                                            class="btn btn-primary btn-sm rounded-pill shadow-sm">
+                                                            <i class="fas fa-file-invoice"></i> {{ __('messages.proforma_invoice') }}
+                                                        </a>
+                                                    @else
+                                                        <span class="text-muted">Proforma Invoice akan segera dikirim</span>
                                                     @endif
                                                 </td>
                                             </tr>

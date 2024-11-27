@@ -15,7 +15,6 @@ class QuotationNegotiation extends Model
     // Kolom yang dapat diisi (mass assignable)
     protected $fillable = [
         'quotation_id',
-        'negotiated_price',
         'status',
         'notes',
         'admin_notes',
@@ -24,6 +23,6 @@ class QuotationNegotiation extends Model
     // Relasi ke model Quotation
     public function quotation()
     {
-        return $this->belongsTo(Quotation::class);
+        return $this->belongsTo(Quotation::class, 'quotation_id');
     }
 }

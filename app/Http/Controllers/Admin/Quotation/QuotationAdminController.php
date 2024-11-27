@@ -85,7 +85,6 @@ class QuotationAdminController extends Controller
         $request->validate([
             'recipient_company' => 'required|string|max:255',
             'recipient_contact_person' => 'required|string|max:255',
-            'quotation_number' => 'required|string|max:255',
             'quotation_date' => 'required|date',
             'discount' => 'nullable|numeric',
             'ppn' => 'nullable|numeric',
@@ -100,6 +99,16 @@ class QuotationAdminController extends Controller
         ]);
 
         $quotation = Quotation::with('user')->findOrFail($id);
+
+        // Cek apakah quotation_number kosong atau sudah ada
+        if (empty($quotation->quotation_number)) {
+            // Ambil nomor terakhir dari quotation
+            $lastQuotationNumber = Quotation::max('id'); // Ambil ID terakhir
+            $nextQuotationNumber = str_pad($lastQuotationNumber + 1, 3, '0', STR_PAD_LEFT); // Format menjadi 001, 002, dst.
+        } else {
+            // Jika sudah ada, gunakan nomor yang ada
+            $nextQuotationNumber = $quotation->quotation_number;
+        }
 
         // Ambil singkatan dari nama perusahaan tanpa "PT" atau "CV"
         $namaPerusahaan = $quotation->user->nama_perusahaan ?? 'Perusahaan';
@@ -192,7 +201,7 @@ class QuotationAdminController extends Controller
         $quotation->update([
             'recipient_company' => $request->input('recipient_company'),
             'recipient_contact_person' => $request->input('recipient_contact_person'),
-            'quotation_number' => $request->input('quotation_number'),
+            'quotation_number' => $nextQuotationNumber, // Nomor quotation otomatis
             'quotation_date' => $request->input('quotation_date'),
             'subtotal_price' => $subtotal,
             'discount' => $request->input('discount', 0),
@@ -229,9 +238,6 @@ class QuotationAdminController extends Controller
 
         return redirect()->route('admin.quotations.index')->with('success', 'Quotation updated and PDF generated successfully.');
     }
-
-
-
 
     /**
      * Upload a file for a specific quotation.

@@ -274,6 +274,7 @@ return [
     'end_date' => 'Selesai',
     'date' => 'Tanggal',
     'cart' => 'Keranjang',
+    'topik' => 'Topik',
 
     'pi_number' => 'Nomor PI',
     'pi_date' => 'Tanggal PI',

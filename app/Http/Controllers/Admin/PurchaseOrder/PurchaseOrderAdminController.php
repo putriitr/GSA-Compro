@@ -18,7 +18,6 @@ class PurchaseOrderAdminController extends Controller
         $purchaseOrders = PurchaseOrder::with('user', 'quotation')
             ->when($keyword, function ($query) use ($keyword) {
                 $query->where('po_number', 'like', "%{$keyword}%")
-                    ->orWhere('status', 'like', "%{$keyword}%")
                     ->orWhereHas('user', function ($q) use ($keyword) {
                         $q->where('name', 'like', "%{$keyword}%");
                     });
@@ -50,5 +49,21 @@ class PurchaseOrderAdminController extends Controller
         $purchaseOrder = PurchaseOrder::findOrFail($id);
         $purchaseOrder->update(['status' => 'rejected']);
         return redirect()->route('admin.purchase-orders.index')->with('success', 'Purchase Order rejected.');
+    }
+    // Update PO Number
+    public function updatePoNumber(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'po_number' => 'required|string|unique:purchase_orders,po_number', // Nomor PO harus unik
+        ]);
+
+        // Temukan Purchase Order berdasarkan ID
+        $purchaseOrder = PurchaseOrder::findOrFail($id);
+
+        // Perbarui PO Number
+        $purchaseOrder->update(['po_number' => $request->po_number]);
+
+        return redirect()->route('admin.purchase-orders.index')->with('success', 'PO Number berhasil diperbarui.');
     }
 }

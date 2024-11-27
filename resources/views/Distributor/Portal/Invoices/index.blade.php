@@ -25,7 +25,6 @@
                         <i class="fas fa-arrow-left me-1"></i>{{ __('messages.back') }}
                     </a>
                 </div>
-                <p>{{ __('messages.req_quo') }}</p>
                 <div class="container mt-6 mb-0">
                     @if ($invoices->isEmpty())
                         <div class="alert alert-info">

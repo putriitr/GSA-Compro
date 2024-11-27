@@ -35,42 +35,50 @@
                             <table class="table table-hover mb-0">
                                 <thead style="background-color: #b0c4de;" class="text-dark text-center">
                                     <tr>
-                                        <th style="width: 5%; border-right: 1px solid #dee2e6;">{{ __('messages.id') }}</th>
-                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.quo_number') }}</th>
-                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.nego_price') }}</th>
-                                        <th style="width: 10%; border-right: 1px solid #dee2e6;">{{ __('messages.status') }}</th>
-                                        <th style="width: 25%; border-right: 1px solid #dee2e6;">{{ __('messages.note') }}</th>
-                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.admin_note') }}</th>
+                                        <th style="width: 5%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.id') }}</th>
+                                        <th style="width: 20%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.quo_number') }}</th>
+                                        <th style="width: 10%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.status') }}</th>
+                                        <th style="width: 25%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.note') }}</th>
+                                        <th style="width: 20%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.admin_note') }}</th>
+                                        <th style="width: 20%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.aksi') }}</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @forelse ($negotiations as $negotiation)
-                                        <tr class="text-center align-middle">
-                                            <td style="border-right: 1px solid #dee2e6;">{{ $negotiation->id }}</td>
-                                            <td style="border-right: 1px solid #dee2e6;">{{ $negotiation->quotation->quotation_number }}</td>
-                                            <td style="border-right: 1px solid #dee2e6;" class="text-success">
-                                                {{ number_format($negotiation->negotiated_price, 2) }}
-                                            </td>
-                                            <td style="border-right: 1px solid #dee2e6;">
-                                                <span class="badge
-                                                    @if ($negotiation->status === 'accepted') bg-success
-                                                    @elseif ($negotiation->status === 'In_progress') bg-warning
-                                                    @elseif ($negotiation->status === 'rejected') bg-danger
-                                                    @else bg-secondary
-                                                    @endif">
+                                <tbody style="background-color: #f9f9f9;">
+                                    @foreach($negotiations as $negotiation)
+                                        <tr style="vertical-align: middle;">
+                                            <td class="text-center">{{ $negotiation->id }}</td>
+                                            <td class="text-center">{{ $negotiation->quotation->quotation_number }}</td>
+                                            <td class="text-center">
+                                                <span class="badge {{ $negotiation->status == 'accepted' ? 'bg-success' : ($negotiation->status == 'rejected' ? 'bg-danger' : 'bg-warning') }} text-uppercase">
                                                     {{ ucfirst($negotiation->status) }}
                                                 </span>
                                             </td>
-                                            <td style="border-right: 1px solid #dee2e6;" class="text-muted">
-                                                {{ $negotiation->notes }}
+                                            <td class="text-center">{{ $negotiation->notes }}</td>
+                                            <td class="text-center">{{ $negotiation->admin_notes ?? 'N/A' }}</td>
+                                            <td class="text-center">
+                                                @if ($negotiation->status === 'accepted' && !$negotiation->quotation->purchaseOrder)
+                                                <!-- Tombol Create PO hanya muncul jika PO belum dibuat -->
+                                                <a href="{{ route('quotations.create_po', $negotiation->quotation->id) }}" class="btn btn-success btn-sm rounded-pill">
+                                                    <i class="fas fa-file-invoice-dollar"></i> Create PO
+                                                </a>
+                                                @elseif ($negotiation->status === 'pending' || $negotiation->status === 'in_progress')
+                                                    <!-- Tombol Nego -->
+                                                    <a href="{{ route('distributor.quotations.negotiations.create', $negotiation->quotation->id) }}" class="btn btn-warning btn-sm rounded-pill">
+                                                        <i class="fas fa-handshake"></i> Nego
+                                                    </a>
+                                                @endif
+
+                                                <!-- Tombol Download PDF -->
+                                                @if ($negotiation->quotation->pdf_path)
+                                                    <a href="{{ asset($negotiation->quotation->pdf_path) }}" download class="btn btn-secondary btn-sm rounded-pill">
+                                                        <i class="fas fa-download me-2"></i> Download PDF
+                                                    </a>
+                                                @else
+                                                    <span class="text-muted d-block mt-2">No PDF Available</span>
+                                                @endif
                                             </td>
-                                            <td class="text-muted">{{ $negotiation->admin_notes ?? 'N/A' }}</td>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="6" class="text-center text-muted py-4">{{ __('messages.blm_quo') }}</td>
-                                        </tr>
-                                    @endforelse
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
