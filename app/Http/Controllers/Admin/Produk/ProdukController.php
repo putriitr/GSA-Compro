@@ -73,7 +73,7 @@ class ProdukController extends Controller
 
         // Create a new Produk instance and fill it with the validated data
         $produk = new Produk;
-        $produk->fill($request->all());
+        $produk->fill($request->except(['gambar', 'video', 'file', 'document_certification_pdf', 'user_manual']));
         $produk->save();
 
         // Handle user manual upload
@@ -185,7 +185,7 @@ class ProdukController extends Controller
         ]);
 
         $produk = Produk::findOrFail($id);
-        $produk->fill($request->all());
+        $produk->fill($request->except(['gambar', 'video', 'file', 'document_certification_pdf', 'user_manual']));
         $produk->save();
 
 

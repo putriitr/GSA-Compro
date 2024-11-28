@@ -66,11 +66,10 @@
                             <div class="table-responsive">
                                 <table class="table table-striped table-hover">
                                     <thead class="thead-dark">
-                                        <tr>
+                                        <tr class="text-center">
                                             <th>ID</th>
                                             <th>Nama Produk</th>
                                             <th>Merk</th>
-                                            <th>Via</th>
                                             <th>Kategori</th>
                                             <th>Gambar</th>
                                             <th>Aksi</th>
@@ -79,11 +78,10 @@
                                     <tbody>
                                         @forelse ($produks as $produk)
                                             <tr>
-                                                <td>{{ $produk->id }}</td>
+                                                <td class="text-center">{{ $produk->id }}</td>
                                                 <td class="text-truncate" style="max-width: 150px;">{{ $produk->nama }}</td>
-                                                <td class="text-truncate" style="max-width: 100px;">{{ $produk->merk }}</td>
-                                                <td>{{ ucfirst($produk->via) }}</td>
-                                                <td>{{ $produk->kategori->nama }}</td>
+                                                <td class="text-center text-truncate" style="max-width: 100px;">{{ $produk->merk }}</td>
+                                                <td class="text-center">{{ $produk->kategori->nama }}</td>
                                                 <td>
                                                     @foreach ($produk->images as $image)
                                                         <img src="{{ asset($image->gambar) }}" class="img-fluid w-100"
@@ -91,7 +89,7 @@
                                                             style="max-width: 250px; height: auto;">
                                                     @endforeach
                                                 </td>
-                                                <td>
+                                                <td class="text-center">
                                                     <a href="{{ route('admin.produk.show', $produk->id) }}"
                                                         class="btn btn-info btn-sm">Tampilkan</a>
                                                     <a href="{{ route('admin.produk.edit', $produk->id) }}"

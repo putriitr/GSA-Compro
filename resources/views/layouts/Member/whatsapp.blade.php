@@ -3,8 +3,8 @@
 @endphp
 
 <!-- WhatsApp Floating Button -->
-<div id="whatsapp-button" class="whatsapp-float">
-    <i class="fab fa-whatsapp fa-3x"></i>
+<div id="whatsapp-button" class="whatsapp-float" style="bottom: 100px;">
+    <i class="fab fa-whatsapp fa"></i>
 </div>
 
 <div id="chat-form" class="chat-form hidden">
@@ -38,13 +38,13 @@
     .whatsapp-float {
         position: fixed;
         bottom: 20px;
-        right: 20px;
+        right: 30px;
         z-index: 1000;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         background-color: #25D366;
         border-radius: 50%;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -54,7 +54,7 @@
     }
 
     .whatsapp-float i {
-        font-size: 45px;
+        font-size: 30px;
     }
 
     .whatsapp-float:hover {
