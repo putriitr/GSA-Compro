@@ -19,7 +19,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-receipt fa-10x"></i>
+                                <i class="fa fa-quote-left fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.pro_quo') }}</a>
                             <p class="mb-0">{{ __('messages.pro_quo_desc') }}</p>
@@ -35,7 +35,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-conversation fa-10x"></i>
+                                <i class="fa fa-handshake fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.nego') }}</a>
                             <p class="mb-0">{{ __('messages.nego_desc') }}</p>
@@ -51,7 +51,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-cart fa-10x"></i>
+                                <i class="fa fa-shopping-cart fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.po') }}</a>
                             <p class="mb-0">{{ __('messages.po_desc') }}</p>
@@ -70,7 +70,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-file fa-10x"></i>
+                                <i class="fa fa-file-invoice fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.proforma_invoice') }}</a>
                             <p class="mb-0">{{ __('messages.pi_desc') }}</p>
@@ -86,7 +86,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-receipt doc fa-10x"></i>
+                                <i class="fa fa-file-invoice-dollar fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.invoice') }}</a>
                             <p class="mb-0">{{ __('messages.invoice_desc') }}</p>
@@ -97,14 +97,12 @@
                     </div>
                 </div>
 
-
-
                 <!-- Ticketing -->
                 <div class="col-md-6 col-lg-4 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-support fa-10x"></i>
+                                <i class="fa fa-headset fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.ticketing') }}</a>
                             <p class="mb-0">{{ __('messages.ticketing_desc') }}</p>

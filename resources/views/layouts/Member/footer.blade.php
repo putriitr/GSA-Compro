@@ -36,22 +36,22 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                     <!-- Phone Number -->
                     @if(!empty($compro->whatsapp_1))
                         <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->whatsapp_1) }}" class="footer-link mb-3">
-                            <i class="fab fa-whatsapp fa-2x"></i> {{ $compro->whatsapp_1 }}
+                            <i class="fab fa-whatsapp fa"></i> {{ $compro->whatsapp_1 }}
                         </a>
                     @else
                         <p class="footer-text">
-                            <i class="fab fa-whatsapp fa-2x"></i> {{ __('messages.phone_not_available') }}
+                            <i class="fab fa-whatsapp fa"></i> {{ __('messages.phone_not_available') }}
                         </p>
                     @endif
 
                     <!-- WhatsApp -->
                     @if(!empty($compro->whatsapp_2))
                         <a href="https://wa.me/{{ preg_replace('/\D/', '', $compro->whatsapp_2) }}" class="footer-link mb-3">
-                            <i class="fab fa-whatsapp fa-2x"></i> {{ $compro->whatsapp_2 }}
+                            <i class="fab fa-whatsapp fa"></i> {{ $compro->whatsapp_2 }}
                         </a>
                     @else
                         <p class="footer-text">
-                            <i class="fab fa-whatsapp fa-2x"></i> {{ __('messages.whatsapp_not_available') }}
+                            <i class="fab fa-whatsapp fa"></i> {{ __('messages.whatsapp_not_available') }}
                         </p>
                     @endif
                 </div>
@@ -100,7 +100,7 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
                         <div class="opening-clock flex-shrink-0">
                             <p class="mb-0">
                                 <a href="https://wa.me/6281390069009" class="footer-link mb-3">
-                                    <i class="fab fa-whatsapp fa-2x"></i> +62 813-9006-9009
+                                    <i class="fab fa-whatsapp fa-"></i> +62 813-9006-9009
                                 </a>
                             </p>
                         </div>
@@ -144,10 +144,10 @@ $brand = \App\Models\BrandPartner::where('type', 'brand', 'nama')->get();
 <a href="#" class="btn btn-primary btn-lg-square back-to-top" style="display: none;"><i class="fa fa-arrow-up"></i></a>
 
 <!-- JavaScript Libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="{{ asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{ asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{ asset('assets/js/3.6.0.jquery.min.js')}}"></script>
+<script src="{{ asset('assets/js/owl.carousel.min.js')}}"></script>
 <script src="{{ asset('assets/lib/wow/wow.min.js')}}"></script>
 <script src="{{ asset('assets/lib/easing/easing.min.js')}}"></script>
 <script src="{{ asset('assets/lib/waypoints/waypoints.min.js')}}"></script>

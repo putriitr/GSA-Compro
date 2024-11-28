@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice #{{ $invoice->invoice_number }}</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap"
+        rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -153,7 +154,8 @@
         </div>
 
         <p>Dear {{ $vendor_name }},</p>
-        <p>We are pleased to present the following invoice based on your purchase order <strong>{{ $poNumberFormatted }}</strong> : </p>
+        <p>We are pleased to present the following invoice based on your purchase order
+            <strong>{{ $poNumberFormatted }}</strong> : </p>
 
         <!-- Products Table -->
         <table class="table">
@@ -171,17 +173,22 @@
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>
-                            {{ $product->equipment_name }}
                             @if ($invoice->type === 'dp')
-                                <br>
+                                <!-- Keterangan DP -->
                                 <small><em>(Uang muka:
-                                    {{ number_format(($invoice->proformaInvoice->dp / $invoice->proformaInvoice->grand_total_include_ppn) * 100, 2) }}%)</em></small>
-                            @elseif ($invoice->type === 'next_payment')
+                                        {{ number_format(($invoice->proformaInvoice->dp / $invoice->proformaInvoice->grand_total_include_ppn) * 100, 2) }}%)</em></small>
                                 <br>
+                            @elseif ($invoice->type === 'next_payment')
+                                <!-- Keterangan Next Payment -->
                                 <small><em>(Pembayaran termin
-                                    {{ $invoice->proformaInvoice->payments_completed }} dari {{ $invoice->proformaInvoice->installments }} termin
-                                    - Persentase: {{ number_format(($invoice->percentage), 2) }}%)</em></small>
+                                        {{ $invoice->proformaInvoice->payments_completed + 1 }} dari
+                                        {{ $invoice->proformaInvoice->installments }} termin
+                                        - Persentase: {{ number_format($invoice->percentage, 2) }}%)</em></small>
+                                <br>
                             @endif
+
+                            <!-- Nama Produk -->
+                            {{ $product->equipment_name }}
                         </td>
                         <td>{{ $product->quantity }}</td>
                         <td>{{ $product->merk_type }}</td>
@@ -189,16 +196,17 @@
                     </tr>
                 @endforeach
 
+                <!-- Row untuk Subtotal, PPN, dan Grand Total -->
                 <tr class="total-row">
-                    <td colspan="4">Subtotal</td>
+                    <td colspan="4">Sub Total</td>
                     <td>{{ number_format($invoice->subtotal, 2) }}</td>
                 </tr>
                 <tr class="total-row">
-                    <td colspan="4">PPN (%)</td>
+                    <td colspan="4">PPN</td>
                     <td>{{ number_format($invoice->ppn, 2) }}</td>
                 </tr>
                 <tr class="total-row">
-                    <td colspan="4"><strong>Grand Total (Including PPN)</strong></td>
+                    <td colspan="4"><strong>Grand Total Include PPN</strong></td>
                     <td><strong>{{ number_format($invoice->grand_total_include_ppn, 2) }}</strong></td>
                 </tr>
             </tbody>
@@ -212,7 +220,8 @@
             <div class="payment-info">
                 <p>Kindly remit payment to :</p>
                 <p class="company-info">PT. Gudang Solusi Acommerce</p>
-                <p>Bank Address : Bizpark Jababeka, Jl. Niaga Industri Selatan 2 Blok QQ2 No.6, Kel. Pasirsari, Kec. Cikarang Selatan, Kab. Bekasi, Prov. Jawa Barat, 17532</p>
+                <p>Bank Address : Bizpark Jababeka, Jl. Niaga Industri Selatan 2 Blok QQ2 No.6, Kel. Pasirsari, Kec.
+                    Cikarang Selatan, Kab. Bekasi, Prov. Jawa Barat, 17532</p>
             </div>
             <br>
             <div class="signature">

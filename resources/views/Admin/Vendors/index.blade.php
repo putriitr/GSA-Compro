@@ -47,10 +47,11 @@
                                     <tr>
                                         <td>{{ $vendor->name }}</td>
                                         <td>{{ $vendor->email }}</td>
-                                        <td>{{ $vendor->company_name }}</td>
-                                        <td>{{ $vendor->phone_number }}</td>
-                                        <td>{{ $vendor->address }}</td>
+                                        <td>{{ $vendor->nama_perusahaan }}</td>
+                                        <td>{{ $vendor->no_telp }}</td>
+                                        <td>{{ $vendor->alamat }}</td>
                                         <td>
+                                            <a href="{{ route('admin.vendors.show', $vendor->id) }}" class="btn btn-info btn-sm">Lihat</a>
                                             <a href="{{ route('admin.vendors.edit', $vendor->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                             <form action="{{ route('admin.vendors.destroy', $vendor->id) }}" method="POST" style="display:inline-block;">
                                                 @csrf

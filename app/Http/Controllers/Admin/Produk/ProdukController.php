@@ -15,6 +15,9 @@ use Illuminate\Support\Str;
 
 class ProdukController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request)
     {
         // Ambil keyword pencarian dan kategori dari input pengguna
@@ -24,7 +27,7 @@ class ProdukController extends Controller
         // Query produk dengan pencarian, kategori, dan pagination
         $produks = Produk::when($keyword, function ($query) use ($keyword) {
             $query->where('nama', 'like', "%{$keyword}%")
-                  ->orWhere('merk', 'like', "%{$keyword}%");
+                ->orWhere('merk', 'like', "%{$keyword}%");
         })->when($kategoriId, function ($query) use ($kategoriId) {
             $query->where('kategori_id', $kategoriId);
         })->paginate(10);
@@ -32,8 +35,9 @@ class ProdukController extends Controller
         // Ambil semua kategori untuk dropdown filter
         $kategori = Kategori::all();
 
-        return view('admin.produk.index', compact('produks', 'kategori', 'keyword', 'kategoriId'));
+        return view('Admin.Produk.index', compact('produks', 'kategori', 'keyword', 'kategoriId'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,7 +45,7 @@ class ProdukController extends Controller
     public function create()
     {
         $kategori = Kategori::all();
-        return view('admin.produk.create', (compact('kategori')));
+        return view('Admin.Produk.create', (compact('kategori')));
     }
 
     /**
@@ -57,7 +61,6 @@ class ProdukController extends Controller
             'kegunaan' => 'required|string',
             'deskripsi' => 'required',
             'spesifikasi' => 'required',
-            'tentang_produk' => 'required|string',
             'kategori_id' => 'required|exists:kategori,id',
             'gambar.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:15000',
             'video.*' => 'nullable|file|mimes:mp4,avi,mkv|max:50000',
@@ -139,6 +142,8 @@ class ProdukController extends Controller
                 ]);
             }
         }
+
+
         return redirect()->route('admin.produk.index')->with('success', 'Produk created successfully.');
     }
 
@@ -150,19 +155,17 @@ class ProdukController extends Controller
     {
         $produk = Produk::findOrFail($id);
         $kategori = Kategori::all();
-        return view('admin.produk.edit', compact('produk', 'kategori'));
+        return view('Admin.Produk.edit', compact('produk', 'kategori'));
     }
 
     public function show($id)
     {
         $produk = Produk::with('images', 'videos', 'documentCertificationsProduk', 'brosur')->findOrFail($id);
-
-        $produk->spesifikasi = !empty($produk->spesifikasi)
-        ? explode("\n", $produk->spesifikasi) // Ganti "\n" sesuai pemisah di database
-        : [];
-        
-        return view('admin.produk.show', compact('produk'));
+        return view('Admin.Produk.show', compact('produk'));
     }
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -173,7 +176,6 @@ class ProdukController extends Controller
             'nama' => 'required|string|max:255',
             'merk' => 'required|string|max:255',
             'kegunaan' => 'required',
-            'tentang_produk' => 'required|string',
             'kategori_id' => 'required|exists:kategori,id',
             'gambar.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:15000',
             'video.*' => 'nullable|file|mimes:mp4,avi,mkv|max:50000',
@@ -239,6 +241,8 @@ class ProdukController extends Controller
             }
         }
 
+
+
         // Handle video upload
         if ($request->hasFile('video')) {
             foreach ($request->file('video') as $videoFile) {
@@ -256,6 +260,10 @@ class ProdukController extends Controller
         // Handle images upload
         if ($request->hasFile('gambar')) {
             foreach ($request->file('gambar') as $imgProduk) {
+                if (is_array($imgProduk)) {
+                    // Pastikan untuk memeriksa jika data ini array
+                    continue;
+                }
                 $slug = Str::slug(pathinfo($imgProduk->getClientOriginalName(), PATHINFO_FILENAME));
                 $newImageName = time() . '_' . $slug . '.' . $imgProduk->getClientOriginalExtension();
                 $imgProduk->move('uploads/produk/', $newImageName);

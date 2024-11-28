@@ -31,6 +31,7 @@ return [
     'portal' => 'Portal',
     'portal_member' => 'Member Portal',
     'portal_partner' => 'Business Partner Portal',
+    'portal_vendor' => 'Vendor Portal',
     'bahasa' => 'Bahasa',
     'english' => 'English',
     'user' => 'Our Users',

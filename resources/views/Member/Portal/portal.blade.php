@@ -16,7 +16,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-package fa-10x"></i>
+                                <i class="fa fa-box fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.my_product') }}</a>
                             <p class="mb-0">{{ __('messages.my_product_desc') }}</p>
@@ -30,7 +30,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-book fa-10x"></i>
+                                <i class="fa fa-book fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.user_manual') }}</a>
                             <p class="mb-0">{{ __('messages.user_manual_desc') }}</p>
@@ -44,7 +44,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-file doc fa-10x"></i>
+                                <i class="fa fa-file-alt fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.doc_cert') }}</a>
                             <p class="mb-0">{{ __('messages.doc_cert_desc') }}</p>
@@ -61,7 +61,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-video fa-10x"></i>
+                                <i class="fa fa-video fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.tutor') }}</a>
                             <p class="mb-0">{{ __('messages.tutor_desc') }}</p>
@@ -75,7 +75,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content text-center">
                             <div class="mb-4">
-                                <i class="bx bx-support fa-10x"></i>
+                                <i class="fa fa-headset fa-7x me-2"></i>
                             </div>
                             <h4 class="h4 d-inline-block mb-3">{{ __('messages.ticketing') }}</h4>
                             <p class="mb-0">{{ __('messages.ticketing_desc') }}</p>
@@ -92,7 +92,7 @@
                     <div class="service-item p-4" style="transition: all 0.3s ease;">
                         <div class="service-content">
                             <div class="mb-4">
-                                <i class="bx bx-help-circle fa-10x"></i>
+                                <i class="fa fa-question-circle fa-7x me-2"></i>
                             </div>
                             <a href="#" class="h4 d-inline-block mb-3">{{ __('messages.qna') }}</a>
                             <p class="mb-0">{{ __('messages.qna_desc') }}</p>

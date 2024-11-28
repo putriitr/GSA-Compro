@@ -77,6 +77,10 @@
                                     <a href="{{ route('distribution') }}"
                                         class="dropdown-item">{{ __('messages.portal_partner') }}</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('vendor.portal') }}"
+                                        class="dropdown-item">{{ __('messages.portal_vendor') }}</a>
+                                </li>
                             </ul>
                         </div>
                     @endauth

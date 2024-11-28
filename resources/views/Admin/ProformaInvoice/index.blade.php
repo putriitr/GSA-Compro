@@ -42,8 +42,10 @@
                                     <th class="text-center">PI Date</th>
                                     <th class="text-center">PO Number</th>
                                     <th class="text-center">Quotation Number</th>
+
                                     <th class="text-center">Distributor</th>
                                     <th class="text-center">Subtotal</th>
+
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -55,11 +57,13 @@
                                         <td class="text-center">
                                             {{ \Carbon\Carbon::parse($invoice->pi_date)->format('d M Y') }}</td>
                                         <td class="text-center">{{ $invoice->purchaseOrder->po_number }}</td>
-                                        <td class="text-center">{{ $invoice->purchaseOrder->quotation->quotation_number ?? 'N/A' }}</td>
+                                        <td class="text-center">
+                                            {{ $invoice->purchaseOrder->quotation->quotation_number ?? 'N/A' }}</td>
                                         <td class="text-center">{{ $invoice->purchaseOrder->user->name }}</td>
                                         <td class="text-center">Rp{{ number_format($invoice->subtotal, 2) }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.proforma-invoices.show', $invoice->id) }}" class="btn btn-info btn-sm rounded-pill shadow-sm">
+                                            <a href="{{ route('admin.proforma-invoices.show', $invoice->id) }}"
+                                                class="btn btn-info btn-sm rounded-pill shadow-sm">
                                                 <i class="fas fa-eye"></i> View Details
                                             </a>
                                         </td>

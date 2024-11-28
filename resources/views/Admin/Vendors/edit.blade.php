@@ -20,7 +20,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('vendors.update', $vendor->id) }}" method="POST">
+                <form action="{{ route('admin.vendors.update', $vendor->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group mb-3">
@@ -45,19 +45,6 @@
                         @if ($errors->has('company_name'))
                             <small class="text-danger">{{ $errors->first('company_name') }}</small>
                         @endif
-                    </div>
-
-                    <div class="form-group">
-                        <label for="business_field">Bidang Perusahaan</label>
-                        <select class="form-control" id="business_field" name="business_field" required>
-                            <option value="" disabled>-- Pilih Bidang Perusahaan --</option>
-                            @foreach ($businessFields as $field)
-                                <option value="{{ $field->id }}"
-                                    {{ old('business_field', $vendor->business_field) == $field->id ? 'selected' : '' }}>
-                                    {{ $field->name }}
-                                </option>
-                            @endforeach
-                        </select>
                     </div>
 
                     <div class="form-group mb-3">
@@ -89,7 +76,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-success">Perbaharui</button>
-                    <a href="{{ route('vendors.index') }}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{ route('admin.vendors.index') }}" class="btn btn-secondary">Kembali</a>
                 </form>
 
             </div>
@@ -125,7 +112,7 @@
                 success: function(response) {
                     if (response.success) {
                         alert('Vendor berhasil diperbarui');
-                        window.location.href = "{{ route('vendors.index') }}";
+                        window.location.href = "{{ route('admin.vendors.index') }}";
                     } else {
                         // Handle validation errors
                         $('#password_error').text(response.errors.password || '');

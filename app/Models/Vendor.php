@@ -10,9 +10,9 @@ use App\Models\Quotation;
 use App\Models\BidangPerusahaan;
 use App\Models\UserProduk;
 use App\Models\Location;
+use App\Models\Produk;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
-
 
 class Vendor extends Authenticatable
 {
@@ -38,7 +38,10 @@ class Vendor extends Authenticatable
         'nomor_telp_pic',
         'akta',
         'nib',
-        'verified'
+        'verified',
+        'loa',
+        'product_list',
+        // 'price_list'
     ];
 
     /**
@@ -67,27 +70,28 @@ class Vendor extends Authenticatable
         );
     }
 
-
-    public function bidangPerusahaan()
+    public function contracts()
     {
-        return $this->belongsTo(BidangPerusahaan::class, 'bidang_id');
+        return $this->hasMany(Contract::class);
     }
 
-    public function userProduk()
+    public function purchaseOrders()
     {
-        return $this->hasMany(UserProduk::class, 'user_id', 'id');
+        return $this->hasMany(PurchaseOrder::class);
     }
 
-    public function location()
+    public function invoices()
     {
-        return $this->belongsTo(Location::class, 'location_id');
+        return $this->hasMany(Invoice::class);
     }
-    public function isVerifiedDistributor(): bool
+
+    public function warranties()
     {
-        return $this->type === 'distributor' && $this->verified;
+        return $this->hasMany(Warranty::class);
     }
-    public function quotations()
+
+    public function products()
     {
-        return $this->hasMany(Quotation::class);
+        return $this->hasMany(Produk::class);
     }
 }

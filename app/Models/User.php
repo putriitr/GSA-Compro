@@ -61,10 +61,9 @@ class User extends Authenticatable
     protected function type(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => ["member", "admin", "distributor"][$value] ?? "member",
+            get: fn ($value) => ["member", "admin", "distributor", "vendor"][$value] ?? "member",
         );
     }
-
 
     public function bidangPerusahaan()
     {
@@ -80,14 +79,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Location::class, 'location_id');
     }
+
     public function isVerifiedDistributor(): bool
     {
         return $this->type === 'distributor' && $this->verified;
     }
+
     public function quotations()
     {
         return $this->hasMany(Quotation::class);
     }
-
-
 }

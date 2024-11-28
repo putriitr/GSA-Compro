@@ -40,19 +40,15 @@
                                 </tr>
                                 <tr>
                                     <th>Nama Perusahaan</th>
-                                    <td>{{ $vendor->company_name }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Sektor Perusahaan</th>
-                                    <td>{{ $vendor->companySector->name ?? '-' }}</td>
+                                    <td>{{ $vendor->nama_perusahaan }}</td>
                                 </tr>
                                 <tr>
                                     <th>Nomor Telepon</th>
-                                    <td>{{ $vendor->phone_number }}</td>
+                                    <td>{{ $vendor->no_telp }}</td>
                                 </tr>
                                 <tr>
                                     <th>Alamat</th>
-                                    <td>{{ $vendor->address }}</td>
+                                    <td>{{ $vendor->alamat }}</td>
                                 </tr>
                                 @if (isset($password))
                                     <tr>
@@ -66,43 +62,6 @@
                                 @endif
                             </tbody>
                         </table>
-
-                        {{-- <!-- Vendor's Products -->
-                        <div class="mb-3">
-                            <div class="card p-4 shadow">
-                                <div class="card-header">
-                                    <h4>Pemilik Produk</h4>
-                                </div>
-                                <div class="card-body">
-                                    @if ($vendor->userProducts->isEmpty())
-                                        <p>Vendor ini tidak memiliki produk.</p>
-                                    @else
-                                        <div class="row">
-                                            @foreach ($vendor->userProducts as $userProduct)
-                                                @php
-                                                    $firstImage = $userProduct->product->images->first();
-                                                    $imageSrc = $firstImage
-                                                        ? $firstImage->image
-                                                        : 'assets/img/default.jpg';
-                                                @endphp
-                                                <div class="col-md-3 mb-3">
-                                                    <div class="card">
-                                                        <img src="{{ asset($imageSrc) }}" class="card-img-top"
-                                                            alt="{{ $userProduct->product->name }}"
-                                                            style="height: 100px; object-fit: cover; width:100%;">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">{{ $userProduct->product->name }}</h5>
-                                                            <p class="card-text"><strong>Tanggal Pembelian :</strong>
-                                                                {{ $userProduct->purchase_date ?? 'N/A' }}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div> --}}
 
                         <!-- Back to Vendor List -->
                         <a href="{{ route('admin.vendors.index') }}" class="btn btn-secondary">Kembali ke Daftar Vendor</a>

@@ -24,6 +24,7 @@ class UserAccess
             'admin' => 'Halaman ini hanya dapat diakses oleh Admin.',
             'member' => 'Akses halaman ini khusus untuk Member terdaftar. Jika Anda belum menjadi member, silakan hubungi admin untuk pendaftaran.',
             'distributor' => 'Halaman ini hanya tersedia untuk Distributor. Daftarkan diri Anda sebagai distributor untuk melanjutkan akses.',
+            'vendor' => 'Akses halaman ini khusus untuk Vendor terdaftar. Jika Anda belum menjadi vendor, silakan hubungi admin untuk pendaftaran.',
             default => 'Anda tidak memiliki izin untuk mengakses halaman ini.',
         };
 

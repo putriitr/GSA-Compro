@@ -12,12 +12,11 @@
                 </ul>
             </div>
         @endif
-        <h2>Buat Proforma Invoice untuk PO Number #{{ $purchaseOrder->po_number }}</h2>
+        <h2>Buat Proforma Invoice untuk PO #{{ $purchaseOrder->po_number }}</h2>
 
         <!-- Form Proforma Invoice -->
         <form action="{{ route('admin.proforma-invoices.store', $purchaseOrder->id) }}" method="POST">
             @csrf
-
             <!-- Vendor Information -->
             <h4 class="mt-4" style="font-family: 'Poppins', sans-serif; color: #00796b;">Vendor Information</h4>
             <div class="mb-3">
@@ -107,7 +106,6 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-
             <!-- Installments Input -->
             <div class="mb-3">
                 <label for="installments" class="form-label">Jumlah Pembayaran (Installments)</label>

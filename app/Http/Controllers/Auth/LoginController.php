@@ -46,6 +46,8 @@ class LoginController extends Controller
                 return redirect('/');
             } elseif ($user->type == 'distributor') {
                 return redirect('/');
+            } elseif ($user->type == 'vendor') {
+                return redirect('/');
             }
         } else {
             // Authentication failed

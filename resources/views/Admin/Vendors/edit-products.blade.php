@@ -6,15 +6,15 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-header">
-                    <h2>Edit Produk untuk {{ $member->name }}</h2>
+                    <h2>Edit Produk untuk {{ $vendor->name }}</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('members.update-products', $member->id) }}" method="POST">
+                    <form action="{{ route('vendors.update-products', $vendor->id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
                         <div class="row">
-                            @foreach($member->userProduk as $userProduk)
+                            @foreach($vendor->userProduk as $userProduk)
                                 <div class="col-md-4 mb-4">
                                     <div class="card shadow-sm h-100">
                                         <div class="card-body d-flex flex-column">

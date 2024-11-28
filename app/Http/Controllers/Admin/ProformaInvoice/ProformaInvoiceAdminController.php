@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\File;
+use App\Models\Invoice;
 
 class ProformaInvoiceAdminController extends Controller
 {
@@ -187,14 +188,37 @@ class ProformaInvoiceAdminController extends Controller
             // Update status Proforma Invoice
             if ($proformaInvoice->payments_completed >= $proformaInvoice->installments) {
                 $proformaInvoice->status = 'paid';
+                // Perbarui semua invoice terkait menjadi 'paid'
+                Invoice::where('proforma_invoice_id', $proformaInvoice->id)
+                    ->update(['status' => 'paid']);
             } else {
                 $proformaInvoice->status = 'partially_paid';
+                // Cari invoice yang terkait dengan pembayaran saat ini
+                $currentInvoice = Invoice::where('proforma_invoice_id', $proformaInvoice->id)
+                    ->where('status', 'unpaid')
+                    ->orderBy('created_at', 'asc')
+                    ->first();
+
+                // Jika invoice ditemukan, ubah status menjadi 'paid'
+                if ($currentInvoice) {
+                    $currentInvoice->status = 'paid';
+                    $currentInvoice->save();
+                }
             }
         } elseif ($request->action === 'reject') {
             // Jika pembayaran ditolak, ubah status menjadi 'rejected'
             $proformaInvoice->last_payment_status = 'rejected';
-        }
+            // Cari invoice terkait dan ubah status menjadi 'rejected'
+            $currentInvoice = Invoice::where('proforma_invoice_id', $proformaInvoice->id)
+                ->where('status', 'unpaid')
+                ->orderBy('created_at', 'asc')
+                ->first();
 
+            if ($currentInvoice) {
+                $currentInvoice->status = 'rejected';
+                $currentInvoice->save();
+            }
+        }
         // Simpan remarks jika ada
         $proformaInvoice->remarks = $request->input('remarks');
 

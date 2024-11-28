@@ -48,7 +48,8 @@
     use App\Http\Controllers\Distribution\Portal\ProformaInvoiceDistributorController;
     use App\Http\Controllers\Admin\Admin\AdminController;
     use App\Http\Controllers\Distribution\Profile\ProfileDistributorController;
-    use App\Http\Controllers\Admin\Vendor\VendorController;
+    use App\Http\Controllers\Admin\Vendor\VendorAdminController;
+    use App\Http\Controllers\Vendor\VendorController;
 
 
     /*
@@ -190,6 +191,15 @@
         });
     });
 
+    // Vendor Routes (Authenticated Users with "vendor" role)
+    Route::middleware(['auth', 'user-access:vendor'])->group(function () {
+        Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+            Route::get('/portal/vendor', [VendorController::class, 'portal'])->name('vendor.portal');
+            Route::get('en/products/{vendorId}', [ProdukController::class, 'index'])->name('vendor.products.index');
+            Route::post('products/upload/{vendorId}', [ProdukController::class, 'upload'])->name('vendor.products.upload');
+        });
+    });
+
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
@@ -207,13 +217,19 @@
             Route::delete('/admin/{admin}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
             // CRUD Vendor
-            Route::get('/vendor', [VendorController::class, 'index'])->name('admin.vendors.index');
-            Route::get('/vendor/create', [VendorController::class, 'create'])->name('admin.vendors.create');
-            Route::post('/vendor', [VendorController::class, 'store'])->name('admin.vendors.store');
-            Route::get('/vendor/{vendor}/edit', [VendorController::class, 'edit'])->name('admin.vendors.edit');
-            Route::put('/vendor/{vendor}', [VendorController::class, 'update'])->name('admin.vendors.update');
-            Route::delete('/vendor/{vendor}', [VendorController::class, 'destroy'])->name('admin.vendors.destroy');
-            Route::get('/vendor/{vendor}', [VendorController::class, 'show'])->name('admin.vendors.show');
+            Route::get('/vendor', [VendorAdminController::class, 'index'])->name('admin.vendors.index');
+            Route::get('/vendor/create', [VendorAdminController::class, 'create'])->name('admin.vendors.create');
+            Route::post('/vendor', [VendorAdminController::class, 'store'])->name('admin.vendors.store');
+            Route::get('/vendor/{vendor}/edit', [VendorAdminController::class, 'edit'])->name('admin.vendors.edit');
+            Route::put('/vendor/{vendor}', [VendorAdminController::class, 'update'])->name('admin.vendors.update');
+            Route::delete('/vendor/{vendor}', [VendorAdminController::class, 'destroy'])->name('admin.vendors.destroy');
+            Route::get('/vendor/{vendor}', [VendorAdminController::class, 'show'])->name('admin.vendors.show');
+            Route::get('vendors/{id}/add-products', [VendorAdminController::class, 'addProducts'])->name('admin.vendors.add-products');
+            Route::post('vendors/{id}/store-products', [VendorAdminController::class, 'storeProducts'])->name('admin.vendors.store-products');
+            Route::get('vendors/{id}/edit-products', [VendorAdminController::class, 'editProducts'])->name('admin.vendors.edit-products');
+            Route::put('vendors/{id}/update-products', [VendorAdminController::class, 'updateProducts'])->name('admin.vendors.update-products');
+            Route::post('/vendors/{id}/update-password', [VendorAdminController::class, 'updatePassword'])->name('admin.vendors.updatePassword');
+            Route::post('/admin/validate-password', [VendorAdminController::class, 'validatePassword'])->name('admin.validatePassword');
 
             Route::resource('admin/activity/category-activity', CategoryActivityController::class)->names('admin.activity.category-activity');
             Route::put('/admin/activity/{activity}', [ActivityController::class, 'update'])->name('admin.activity.update');
@@ -259,7 +275,7 @@
             Route::get('/admin/proforma-invoices', [ProformaInvoiceAdminController::class, 'index'])->name('admin.proforma-invoices.index');
             Route::get('/admin/proforma-invoices/{id}', [ProformaInvoiceAdminController::class, 'show'])->name('admin.proforma-invoices.show');
             Route::put('/admin/proforma-invoices/{id}/approve-reject', [ProformaInvoiceAdminController::class, 'approveRejectPayment'])
-            ->name('admin.proforma-invoices.approve-reject');
+                ->name('admin.proforma-invoices.approve-reject');
 
             // Route untuk index dan pembuatan invoice
             Route::get('/invoices', [InvoiceAdminController::class, 'index'])->name('invoices.index');

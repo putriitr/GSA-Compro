@@ -31,6 +31,7 @@ return [
     'portal' => 'Portal',
     'portal_member' => 'Portal Member',
     'portal_partner' => 'Portal Mitra Bisnis',
+    'portal_vendor' => 'Portal Vendor',
     'bahasa' => 'Bahasa',
     'english' => 'English',
 
@@ -307,7 +308,6 @@ return [
     'create' => 'Buat Disini',
     'profile' => 'Profil',
     'logout' => 'Keluar',
-    'portal_distributor' => 'Portal Distributor',
     'company_name1' => 'Nama Perusahaan',
     'name' => 'Nama',
     'upload_doc1' => 'Unggah Akta Pendirian',

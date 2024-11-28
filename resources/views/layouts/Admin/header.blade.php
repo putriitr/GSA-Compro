@@ -8,7 +8,7 @@
     <link rel="icon" href="{{ asset('assets/img/logo-gsa2.png') }}" type="image/x-icon" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/fontawesome-free-6.7.1-web/css/all.css')}}">
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/css/admin/bootstrap.min.css') }}" />
