@@ -36,7 +36,7 @@
                                 <th style="width: 15%;">{{ __('messages.tanggal_tindakan') }}</th>
                                 <th style="width: 20%;">{{ __('messages.aksi') }}</th>
                             </tr>
-                            
+
                         </thead>
                     </table><br>
                 </div>

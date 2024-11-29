@@ -43,7 +43,7 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#admin-management">
                         <i class="fas fa-user"></i>
-                        <p>Admin</p>
+                        <p>Semua User</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="admin-management">
@@ -53,49 +53,16 @@
                                     <span class="sub-item">Semua Admin</span>
                                 </a>
                             </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#member-management">
-                        <i class="fas fa-user"></i>
-                        <p>Member</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="member-management">
-                        <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('members.index') }}">
                                     <span class="sub-item">Semua Member</span>
                                 </a>
                             </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#distributor-management">
-                        <i class="fas fa-user"></i>
-                        <p>Distributor</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="distributor-management">
-                        <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.distributors.index') }}">
                                     <span class="sub-item">Semua Distributor</span>
                                 </a>
                             </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#vendor-management">
-                        <i class="fas fa-user"></i>
-                        <p>Vendor</p>
-                        <span class="caret"></span>
-                    </a>
-                    <div class="collapse" id="vendor-management">
-                        <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.vendors.index') }}">
                                     <span class="sub-item">Semua Vendor</span>
@@ -250,25 +217,22 @@
                         </ul>
                     </div>
                 </li>
-
-                <!-- Guest Message Management -->
-                <li class="nav-section">
-                    <span class="sidebar-mini-icon">
-                        <i class="fa fa-ellipsis-h"></i>
-                    </span>
-                    <h4 class="text-section">Message</h4>
-                </li>
                 <li class="nav-item">
-                    <a data-bs-toggle="collapse" href="#message-management">
-                        <i class="fas fa-shopping-cart"></i>
-                        <p>Guest Message</p>
+                    <a data-bs-toggle="collapse" href="#pertanyaan-section">
+                        <i class="fa fa-question-circle"></i>
+                        <p>Pertanyaan</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="message-management">
+                    <div class="collapse" id="pertanyaan-section">
                         <ul class="nav nav-collapse">
                             <li>
+                                <a href="{{ route('admin.faq.index') }}">
+                                    <span class="sub-item">QnA Member</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('admin.guest-messages.index') }}">
-                                    <span class="sub-item">Semua Pesan</span>
+                                    <span class="sub-item">Guest Message</span>
                                 </a>
                             </li>
                         </ul>

@@ -1,4 +1,4 @@
-@include('layouts.member.header')
+@include('layouts.Member.header')
 
-@include('layouts.member.content')
+@include('layouts.Member.content')
 

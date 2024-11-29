@@ -28,7 +28,7 @@
                 <table class="table table-hover shadow-sm rounded">
                     <thead style="background: linear-gradient(135deg, #00796b, #004d40); color: #fff;">
                         <tr>
-                            <th class="text-center">ID</th>
+                            <th class="text-center">No</th>
                             <th class="text-center">Quotation Number</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Notes</th>

@@ -19,7 +19,7 @@
 
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-11">
+            <div class="col-lg-10">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0"><strong>{{ __('messages.daftar_po') }}</strong></h4>
                     <a href="{{ route('distribution') }}" class="btn btn-sm btn-outline-primary">
@@ -47,35 +47,35 @@
                         <div class="card-body p-0">
                             <div style="border-radius: 8px; overflow: hidden;">
                                 <table class="table table-border mb-0">
-                                    <thead style="background-color: #b0c4de;" class="text-dark text-center">
+                                    <thead style="background-color: #4C6B8C;" class="text-white text-center">
                                         <tr>
-                                            <th style="width: 5%; border-right: 1px solid #dee2e6;">{{ __('messages.id') }}
+                                            <th style="width: 5%; border-right: 1px solid #ddd;">{{ __('messages.id') }}
                                             </th>
-                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">
+                                            <th style="width: 20%; border-right: 1px solid #ddd;">
                                                 {{ __('messages.po_number') }}</th>
-                                            <th style="width: 20%; border-right: 1px solid #dee2e6;">
+                                            <th style="width: 20%; border-right: 1px solid #ddd;">
                                                 {{ __('messages.po_date') }}</th>
-                                            <th style="width: 15%; border-right: 1px solid #dee2e6;">
+                                            <th style="width: 20%; border-right: 1px solid #ddd;">
                                                 {{ __('messages.quo_number') }}</th>
-                                            <th style="width: 40%; border-right: 1px solid #dee2e6;">
+                                            <th style="width: 35%; border-right: 1px solid #ddd;">
                                                 {{ __('messages.aksi') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($purchaseOrders as $po)
                                             <tr class="text-center">
-                                                <td>{{ $po->id }}</td>
-                                                <td>{{ $po->po_number }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($po->po_date)->format('d M Y') }}</td>
-                                                <td>{{ $po->quotation->quotation_number ?? 'N/A' }}</td>
-                                                <td>
+                                                <td style="border: 1px solid #ddd;">{{ $po->id }}</td>
+                                                <td style="border: 1px solid #ddd;">{{ $po->po_number }}</td>
+                                                <td style="border: 1px solid #ddd;">{{ \Carbon\Carbon::parse($po->po_date)->format('d M Y') }}</td>
+                                                <td style="border: 1px solid #ddd;">{{ $po->quotation->quotation_number ?? 'N/A' }}</td>
+                                                <td style="border: 1px solid #ddd;">
                                                     <a href="{{ route('quotations.show', $po->quotation_id) }}"
-                                                        class="btn btn-info btn-sm">
+                                                        class="btn btn-success btn-sm">
                                                         <i class="fas fa-eye"></i> {{ __('messages.quotation') }}
                                                     </a>
                                                     @if ($po->proformaInvoice)
                                                         <a href="{{ route('distributor.proforma-invoices.index', $po->proformaInvoice->id) }}"
-                                                            class="btn btn-primary btn-sm rounded-pill shadow-sm">
+                                                            class="btn btn-warning btn-sm">
                                                             <i class="fas fa-file-invoice"></i> {{ __('messages.proforma_invoice') }}
                                                         </a>
                                                     @else

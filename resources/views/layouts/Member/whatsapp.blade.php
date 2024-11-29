@@ -11,7 +11,7 @@
     <!-- Customer Service Chat Box (Left Side) -->
     <div class="chat-box customer-service">
         <div class="chat-avatar">
-            <i class="bx bx-support"></i>
+            <i class="fa fa-headset"></i>
         </div>
         <div class="chat-content">
             <strong>{{ __('messages.wa_help') }}</strong>

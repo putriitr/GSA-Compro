@@ -1,4 +1,4 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
 <div class="container py-5">
@@ -16,19 +16,19 @@
             <p><strong><i class="fas fa-phone-square-alt me-2"></i>PIC Phone:</strong> {{ $distributor->nomor_telp_pic }}</p>
 
             <p>
-                <strong><i class="fas fa-file-alt me-2"></i>Akta Document:</strong> 
+                <strong><i class="fas fa-file-alt me-2"></i>Akta Document:</strong>
                 <a href="{{ asset($distributor->akta) }}" target="_blank" class="text-primary">
                     <i class="fas fa-eye me-2"></i>View Document
                 </a>
             </p>
             <p>
-                <strong><i class="fas fa-file-alt me-2"></i>NIB Document:</strong> 
+                <strong><i class="fas fa-file-alt me-2"></i>NIB Document:</strong>
                 <a href="{{ asset($distributor->nib) }}" target="_blank" class="text-primary">
                     <i class="fas fa-eye me-2"></i>View Document
                 </a>
             </p>
 
-            <p><strong><i class="fas fa-check-circle me-2"></i>Status:</strong> 
+            <p><strong><i class="fas fa-check-circle me-2"></i>Status:</strong>
                 <span class="badge {{ $distributor->verified ? 'bg-success' : 'bg-warning' }}">
                     {{ $distributor->verified ? 'Approved' : 'Pending' }}
                 </span>

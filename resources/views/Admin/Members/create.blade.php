@@ -1,4 +1,4 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
 <div class="container mt-5">
@@ -83,7 +83,7 @@
                                 <option value="" disabled selected>Pilih Lokasi</option>
                                 @foreach($locations as $location)
                                     <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>
-                                        {{ $location->name }}
+                                        {{ $location->province }}
                                     </option>
                                 @endforeach
                             </select>

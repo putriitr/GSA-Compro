@@ -1,4 +1,4 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
 <div class="container mt-5">
@@ -68,13 +68,13 @@
 
                         <div class="form-group">
                             <label for="gambar" class="font-weight-bold">Gambar atau PDF (opsional)</label>
-                        
+
                             @if ($inspeksi->gambar)
                                 <div class="mb-3">
                                     @php
                                         $fileExtension = pathinfo($inspeksi->gambar, PATHINFO_EXTENSION);
                                     @endphp
-                        
+
                                     @if (in_array($fileExtension, ['jpg', 'jpeg', 'png']))
                                         <!-- Display image -->
                                         <img src="{{ asset('storage/' . $inspeksi->gambar) }}" alt="Inspection Image" class="img-fluid" width="150">
@@ -85,11 +85,11 @@
                                     @endif
                                 </div>
                             @endif
-                        
+
                             <input type="file" name="gambar" class="form-control-file">
                         </div>
-                        
-                        
+
+
 
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">Perbaharui Teknisi</button>

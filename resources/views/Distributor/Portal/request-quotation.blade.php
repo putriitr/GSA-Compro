@@ -16,7 +16,7 @@
 
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-11">
+            <div class="col-lg-10">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0"><strong>{{ __('messages.pilih_quo') }}</strong></h4>
                     <div class="d-flex">
@@ -43,41 +43,37 @@
                     </div>
                 </form>
 
-                {{-- <p>{{ __('messages.req_quo') }}</p> --}}
-
                 <!-- Quotation Requests Table -->
                 <br>
                 <div class="border-0" style="border-radius: 8px; overflow: hidden;">
                     <div class="card-body p-0">
                         <h4><strong>{{ __('messages.daftar_quo') }}</strong></h4>
                         <div style="border-radius: 8px; overflow: hidden;">
-                            <table class="table table-border mb-0">
-                                <thead style="background-color: #b0c4de;" class="text-dark text-center">
+                            <table class="table table-border mb-0" style="border-collapse: collapse;">
+                                <thead style="background-color: #4C6B8C;" class="text-white text-center">
                                     <tr>
-                                        <th style="width: 5%; border-right: 1px solid #dee2e6;">{{ __('messages.id') }}
-                                        </th>
-                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">
+                                        <th style="width: 5%; border-right: 1px solid #ddd;">{{ __('messages.id') }}</th>
+                                        <th style="width: 20%; border-right: 1px solid #ddd;">
                                             {{ __('messages.nomor_pengajuan') }}</th>
-                                        <th style="width: 15%; border-right: 1px solid #dee2e6;">
+                                        <th style="width: 15%; border-right: 1px solid #ddd;">
                                             {{ __('messages.date') }}</th>
-                                        <th style="width: 30%; border-right: 1px solid #dee2e6;">
+                                        <th style="width: 30%; border-right: 1px solid #ddd;">
                                             {{ __('messages.topik') }}</th>
-                                        <th style="width: 10%; border-right: 1px solid #dee2e6;">
+                                        <th style="width: 10%; border-right: 1px solid #ddd;">
                                             {{ __('messages.status') }}</th>
-                                        <th style="width: 20%; border-right: 1px solid #dee2e6;">{{ __('messages.aksi') }}
-                                        </th>
+                                        <th style="width: 20%; border-right: 1px solid #ddd;">{{ __('messages.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse($quotations as $key => $quotation)
                                         <tr class="text-center">
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $quotation->nomor_pengajuan ?? 'Nomor pengajuan tidak tersedia' }}</td>
-                                            <td class="text-center">
+                                            <td style="border: 1px solid #ddd;">{{ $key + 1 }}</td>
+                                            <td style="border: 1px solid #ddd;">{{ $quotation->nomor_pengajuan ?? 'Nomor pengajuan tidak tersedia' }}</td>
+                                            <td class="text-center" style="border: 1px solid #ddd;">
                                                 {{ $quotation->created_at->format('d M Y') ?? 'Tanggal tidak tersedia' }}
                                             </td>
-                                            <td class="text-center">{{ $quotation->topik ?? 'Topik tidak tersedia' }}</td>
-                                            <td>
+                                            <td class="text-center" style="border: 1px solid #ddd;">{{ $quotation->topik ?? 'Topik tidak tersedia' }}</td>
+                                            <td style="border: 1px solid #ddd;">
                                                 <span
                                                     class="badge
                                                     @if ($quotation->status === 'cancelled') bg-danger
@@ -88,14 +84,14 @@
                                             </td>
 
                                             <!-- Actions -->
-                                            <td class="text-center">
+                                            <td class="text-center" style="border: 1px solid #ddd;">
                                                 <a href="{{ route('quotations.show', $quotation->id) }}"
                                                     class="btn btn-sm btn-info">{{ __('messages.view') }}
                                                 </a>
                                                 <!-- Tombol Download PDF -->
                                                 @if ($quotation->pdf_path)
                                                     <a href="{{ asset($quotation->pdf_path) }}" download
-                                                        class="btn btn-secondary btn-sm rounded-pill">
+                                                        class="btn btn-warning btn-sm rounded-pill">
                                                         <i class="fas fa-download me-2"></i>{{ __('messages.unduh') }}
                                                     </a>
                                                 @endif

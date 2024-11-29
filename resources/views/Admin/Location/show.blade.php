@@ -1,4 +1,4 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
 <div class="container mt-5">
@@ -6,12 +6,7 @@
 
     <div class="card shadow-lg">
         <div class="card-body">
-            <h5 class="card-title">{{ $location->name }}</h5>
-            @if($location->image)
-                <div class="mb-3">
-                    <img src="{{ asset('assets/img/' . $location->image) }}" alt="{{ $location->name }}" width="200">
-                </div>
-            @endif
+            <h5 class="card-title">{{ $location->province }}</h5>
             <p class="card-text"><strong>Lintang :</strong> {{ $location->latitude }}</p>
             <p class="card-text"><strong>Bujur :</strong> {{ $location->longitude }}</p>
 

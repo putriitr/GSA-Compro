@@ -33,29 +33,29 @@
                         <!-- Membungkus tabel dengan div untuk mengaktifkan border-radius -->
                         <div style="border-radius: 8px; overflow: hidden;">
                             <table class="table table-hover mb-0">
-                                <thead style="background-color: #b0c4de;" class="text-dark text-center">
+                                <thead style="background-color: #4C6B8C;" class="text-white text-center">
                                     <tr>
-                                        <th style="width: 5%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.id') }}</th>
-                                        <th style="width: 20%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.quo_number') }}</th>
-                                        <th style="width: 10%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.status') }}</th>
-                                        <th style="width: 25%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.note') }}</th>
-                                        <th style="width: 20%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.admin_note') }}</th>
-                                        <th style="width: 20%; border-right: 1px solid #dee2e6; vertical-align:middle;">{{ __('messages.aksi') }}</th>
+                                        <th style="width: 5%; border-right: 1px solid #ddd; vertical-align:middle;">{{ __('messages.id') }}</th>
+                                        <th style="width: 20%; border-right: 1px solid #ddd; vertical-align:middle;">{{ __('messages.quo_number') }}</th>
+                                        <th style="width: 10%; border-right: 1px solid #ddd; vertical-align:middle;">{{ __('messages.status') }}</th>
+                                        <th style="width: 25%; border-right: 1px solid #ddd; vertical-align:middle;">{{ __('messages.note') }}</th>
+                                        <th style="width: 20%; border-right: 1px solid #ddd; vertical-align:middle;">{{ __('messages.admin_note') }}</th>
+                                        <th style="width: 20%; border-right: 1px solid #ddd; vertical-align:middle;">{{ __('messages.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody style="background-color: #f9f9f9;">
                                     @foreach($negotiations as $negotiation)
                                         <tr style="vertical-align: middle;">
-                                            <td class="text-center">{{ $negotiation->id }}</td>
-                                            <td class="text-center">{{ $negotiation->quotation->quotation_number }}</td>
-                                            <td class="text-center">
+                                            <td class="text-center" style="border: 1px solid #ddd;">{{ $negotiation->id }}</td>
+                                            <td class="text-center" style="border: 1px solid #ddd;">{{ $negotiation->quotation->quotation_number }}</td>
+                                            <td class="text-center" style="border: 1px solid #ddd;">
                                                 <span class="badge {{ $negotiation->status == 'accepted' ? 'bg-success' : ($negotiation->status == 'rejected' ? 'bg-danger' : 'bg-warning') }} text-uppercase">
                                                     {{ ucfirst($negotiation->status) }}
                                                 </span>
                                             </td>
-                                            <td class="text-center">{{ $negotiation->notes }}</td>
-                                            <td class="text-center">{{ $negotiation->admin_notes ?? 'N/A' }}</td>
-                                            <td class="text-center">
+                                            <td class="text-center" style="border: 1px solid #ddd;">{{ $negotiation->notes }}</td>
+                                            <td class="text-center" style="border: 1px solid #ddd;">{{ $negotiation->admin_notes ?? 'N/A' }}</td>
+                                            <td class="text-center" style="border: 1px solid #ddd;">
                                                 @if ($negotiation->status === 'accepted' && !$negotiation->quotation->purchaseOrder)
                                                 <!-- Tombol Create PO hanya muncul jika PO belum dibuat -->
                                                 <a href="{{ route('quotations.create_po', $negotiation->quotation->id) }}" class="btn btn-success btn-sm rounded-pill">
@@ -70,7 +70,7 @@
 
                                                 <!-- Tombol Download PDF -->
                                                 @if ($negotiation->quotation->pdf_path)
-                                                    <a href="{{ asset($negotiation->quotation->pdf_path) }}" download class="btn btn-secondary btn-sm rounded-pill">
+                                                    <a href="{{ asset($negotiation->quotation->pdf_path) }}" download class="btn btn-warning btn-sm rounded-pill">
                                                         <i class="fas fa-download me-2"></i> Download PDF
                                                     </a>
                                                 @else

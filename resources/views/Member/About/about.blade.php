@@ -1,4 +1,4 @@
-@extends('layouts.member.master')
+@extends('layouts.Member.master')
 
 @section('content')
     <!-- Header Start -->
@@ -111,7 +111,7 @@
                         </div>
                         <div class="rounded bg-primary p-4 position-absolute d-flex justify-content-center align-items-center"
                             style="width: 70%; height: 60px; top: -30px; left: 50%; transform: translateX(-50%);">
-                            <h4 class="mb-0 text-white text-center">Selling Advanced Product</h4>
+                            <h4 class="mb-0 text-white text-center">{{ __('messages.selling_product') }}</h4>
                         </div>
                     </div>
                 </div>
@@ -202,54 +202,97 @@
                 <p class="mb-0">{{ __('messages.customer_desc') }}</p>
             </div>
             <div id="map"
-            style="margin-left: auto; margin-right: auto; width: 100%; height: 500px; border-radius: 10px; overflow: hidden;">
+                style="margin-left: auto; margin-right: auto; width: 100%; height: 500px; border-radius: 10px; overflow: hidden;">
+            </div>
         </div>
-    </div>
     </div><br><br>
     <!-- Map End -->
 
     <!-- Include Leaflet.js and Pulse Icon -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ asset('assets/css/location-leaflet.css') }}" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-pulse-icon@1.0.0/dist/L.Icon.Pulse.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="{{ asset('assets/js/location-leaflet.js') }}"></script>
     <script src="https://unpkg.com/leaflet-pulse-icon@1.0.0/dist/L.Icon.Pulse.js"></script>
+    <link rel="stylesheet" href="{{ asset('assets/fontawesome-free-6.7.1-web/css/all.css') }}" />
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Inisialisasi peta
-            var map = L.map('map').setView([-1.8694501185333308, 115.36224445532018], 5);
+        // Inisialisasi peta
+        var map = L.map('map').setView([-1.8694501185333308, 115.36224445532018], 5);
 
-            // Menambahkan layer tile ke peta
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 18,
-                attribution: '© OpenStreetMap'
+        //tile layer dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Terjemahan dari server untuk konten popup
+        let translationTemplate =
+            `{{ __('messages.members_in_province', ['count' => ':count', 'province' => ':province']) }}`;
+
+        function addMarker(lat, lng, province, userCount, users) {
+            // Membuat ikon FontAwesome untuk marker
+            var fontAwesomeIcon = L.divIcon({
+                className: 'fa-icon-marker', // Kelas CSS untuk ikon
+                html: '<i class="fas fa-map-marker-alt" style="font-size: 24px; color: #ff5733;"></i>', // Ganti dengan ikon FontAwesome yang Anda inginkan
+                iconSize: [30, 30], // Ukuran ikon
+                iconAnchor: [15, 30], // Penempatan ikon (tengah bagian bawah)
+                popupAnchor: [0, -30] // Penempatan popup
+            });
+
+            var marker = L.marker([lat, lng], {
+                icon: fontAwesomeIcon // Terapkan ikon FontAwesome
             }).addTo(map);
 
-            // Ambil data lokasi dari backend menggunakan AJAX (contoh menggunakan jQuery)
-            $.ajax({
-                url: '/path/to/your/api/locations', // Gantilah dengan URL API Anda
-                method: 'GET',
-                success: function(data) {
-                    // Asumsikan data berbentuk array objek: [{latitude, longitude, name, image_url}, ...]
-                    data.forEach(function(location) {
-                        // Menambahkan marker ke peta dengan informasi dari data
-                        var marker = L.marker([location.latitude, location.longitude]).addTo(
-                                map)
-                            .bindPopup(
-                                `<div style="display: flex; align-items: center;">
-                                    <img src="${location.image_url}" alt="Image" style="width: 50px; height: 50px; margin-right: 10px;">
-                                    <div>
-                                        <b>${location.name}</b>
-                                    </div>
-                                </div>`
-                            );
-                    });
-                },
-                error: function(error) {
-                    console.error('Error fetching locations:', error);
-                }
+            // Buat daftar pengguna
+            let userList = '<ul>';
+            users.forEach(function(user) {
+                userList += `<li>${user.nama_perusahaan} (Became a Member on: ${user.created_at})</li>`;
             });
-        });
+            userList += '</ul>';
+
+            // Terjemahan dinamis
+            let popupText = translationTemplate
+                .replace(':count', userCount)
+                .replace(':province', province);
+
+            // Konten popup untuk marker
+            marker.bindPopup(`
+        <div class="info-window">
+            <h3 class="popup-title">${province}</h3>
+            <p class="popup-description">${popupText}</p>
+            ${userList}
+        </div>
+    `);
+
+            // Tooltip
+            marker.bindTooltip(`<div>${province}</div>`, {
+                permanent: false,
+                direction: 'top',
+                offset: [0, -20],
+                className: 'marker-tooltip'
+            });
+
+            marker.on('mouseover', function(e) {
+                this.openTooltip();
+            });
+            marker.on('mouseout', function(e) {
+                this.closeTooltip();
+            });
+        }
+
+        fetch("{{ url('/locations') }}")
+            .then(response => response.json())
+            .then(data => {
+                console.log("Received Data:", data); // Debugging to check data
+                data.forEach(location => {
+                    if (location.user_count > 0) {
+                        console.log("Adding marker for:", location.province, "with", location.user_count,
+                            "users.");
+                        addMarker(location.latitude, location.longitude, location.province, location.user_count,
+                            location.user_data);
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
     </script>
 
     <style>

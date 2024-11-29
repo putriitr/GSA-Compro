@@ -1,4 +1,4 @@
-@extends('layouts.member.master3')
+@extends('layouts.Member.master3')
 
 @section('content')
     <!DOCTYPE html>

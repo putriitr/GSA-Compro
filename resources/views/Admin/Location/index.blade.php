@@ -1,10 +1,10 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h2 class="h4">Lokasi Pengguna</h2>
+            <h3><strong>Lokasi Pengguna</strong></h3>
             <a href="{{ route('admin.location.create') }}" class="btn btn-primary">Tambah Lokasi Baru</a>
         </div>
 
@@ -24,7 +24,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <th>Gambar</th>
                                 <th>Lintang</th>
                                 <th>Bujur</th>
                                 <th class="text-center">Aksi</th>
@@ -34,10 +33,7 @@
                             @foreach($locations as $location)
                                 <tr>
                                     <td>{{ $location->id }}</td>
-                                    <td>{{ $location->name }}</td>
-                                    <td>
-                                        <img src="{{ asset($location->image_url) }}" alt="{{ $location->name }}" width="100">
-                                    </td>
+                                    <td>{{ $location->province }}</td>
                                     <td>{{ $location->latitude }}</td>
                                     <td>{{ $location->longitude }}</td>
                                     <td class="text-center">

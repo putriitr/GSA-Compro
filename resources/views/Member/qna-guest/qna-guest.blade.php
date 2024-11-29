@@ -18,17 +18,20 @@
                                 <div class="accordion" id="qnaAccordion-{{ $qnaguest->id }}">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="heading{{ $qnaguest->id }}">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#collapse{{ $qnaguest->id }}" aria-expanded="false" aria-controls="collapse{{ $qnaguest->id }}">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse{{ $qnaguest->id }}"
+                                                aria-expanded="false" aria-controls="collapse{{ $qnaguest->id }}">
                                                 {{ $qnaguest->pertanyaan }}
                                             </button>
                                         </h2>
-                                        <div id="collapse{{ $qnaguest->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $qnaguest->id }}"
+                                        <div id="collapse{{ $qnaguest->id }}" class="accordion-collapse collapse"
+                                            aria-labelledby="heading{{ $qnaguest->id }}"
                                             data-bs-parent="#qnaAccordion-{{ $qnaguest->id }}">
                                             <div class="accordion-body">
                                                 <p>{{ $qnaguest->jawaban }}</p>
-                                                @if($qnaguest->image)
-                                                    <img src="{{ asset($qnaguest->image) }}" alt="Image related to Qna Guest" class="img-fluid mt-3">
+                                                @if ($qnaguest->image)
+                                                    <img src="{{ asset($qnaguest->image) }}"
+                                                        alt="Image related to Qna Guest" class="img-fluid mt-3">
                                                 @endif
                                             </div>
                                         </div>

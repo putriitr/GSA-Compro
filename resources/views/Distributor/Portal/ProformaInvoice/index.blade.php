@@ -20,7 +20,7 @@
 
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-12">
+            <div class="col-lg-10">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="mb-0"><strong>{{ __('messages.daftar_pi') }}</strong></h4>
                     <a href="{{ route('distribution') }}" class="btn btn-sm btn-outline-primary">
@@ -51,47 +51,47 @@
                     <div class="card shadow border-0" style="border-radius: 8px; overflow: hidden;">
                         <div class="table-responsive card-body p-0" style="overflow-x:auto;">
                             <table class="table table-bordered table-hover mb-0">
-                                <thead style="background-color: #b0c4de;" class="text-dark text-center">
+                                <thead style="background-color: #4C6B8C;" class="text-white text-center">
                                     <tr>
                                         <th class="text-center"
-                                            style="width: 5%; border-right: 1px solid #dee2e6; vertical-align: middle;">
+                                            style="width: 5%; border-right: 1px solid #ddd; vertical-align: middle;">
                                             {{ __('messages.id') }}</th>
                                         <th class="text-center"
-                                            style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">
+                                            style="width: 10%; border-right: 1px solid #ddd; vertical-align: middle;">
                                             {{ __('messages.pi_number') }}</th>
                                         <th class="text-center"
-                                            style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">
+                                            style="width: 10%; border-right: 1px solid #ddd; vertical-align: middle;">
                                             {{ __('messages.pi_date') }}</th>
                                         <th class="text-center"
-                                            style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">
+                                            style="width: 10%; border-right: 1px solid #ddd; vertical-align: middle;">
                                             {{ __('messages.po_number') }}</th>
                                         <th class="text-center"
-                                            style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">
+                                            style="width: 15%; border-right: 1px solid #ddd; vertical-align: middle;">
                                             {{ __('messages.quo_number') }}</th>
                                         <th class="text-center"
-                                            style="width: 10%; border-right: 1px solid #dee2e6; vertical-align: middle;">
+                                            style="width: 10%; border-right: 1px solid #ddd; vertical-align: middle;">
                                             {{ __('messages.subtotal') }}</th>
                                         <th class="text-center"
-                                            style="width: 20%; border-right: 1px solid #dee2e6; vertical-align: middle;">
+                                            style="width: 15%; border-right: 1px solid #ddd; vertical-align: middle;">
                                             {{ __('messages.aksi') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($proformaInvoices as $invoice)
                                         <tr>
-                                            <td class="text-center">{{ $invoice->id }}</td>
-                                            <td class="text-center">{{ $invoice->pi_number }}</td>
-                                            <td class="text-center">
+                                            <td class="text-center" style="border: 1px solid #ddd;">{{ $invoice->id }}</td>
+                                            <td class="text-center" style="border: 1px solid #ddd;">{{ $invoice->pi_number }}</td>
+                                            <td class="text-center" style="border: 1px solid #ddd;">
                                                 {{ \Carbon\Carbon::parse($invoice->pi_date)->format('d M Y') }}</td>
-                                            <td class="text-center">{{ $invoice->purchaseOrder->po_number }}</td>
-                                            <td class="text-center">
+                                            <td class="text-center" style="border: 1px solid #ddd;">{{ $invoice->purchaseOrder->po_number }}</td>
+                                            <td class="text-center" style="border: 1px solid #ddd;">
                                                 {{ $invoice->purchaseOrder->quotation->quotation_number ?? 'N/A' }}</td>
-                                            <td class="text-center">{{ number_format($invoice->subtotal, 2) }}</td>
-                                            <td class="text-center">
+                                            <td class="text-center" style="border: 1px solid #ddd;">{{ number_format($invoice->subtotal, 2) }}</td>
+                                            <td class="text-center" style="border: 1px solid #ddd;">
                                                 <!-- Button to go to detail page -->
                                                 <a href="{{ route('distributor.proforma-invoices.show', $invoice->id) }}"
-                                                    class="btn btn-info btn-sm rounded-pill shadow-sm">
-                                                    <i class="fas fa-eye"></i> {{ __('messages.show_more') }}
+                                                    class="btn btn-info btn-sm">
+                                                    <i class="fas fa-eye"></i> {{ __('messages.proforma_invoice') }}
                                                 </a>
                                             </td>
                                         </tr>

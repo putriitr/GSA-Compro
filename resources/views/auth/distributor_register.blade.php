@@ -33,7 +33,8 @@
                                 <p class="login-card-description">{{ __('messages.register_desc') }}</p>
 
                                 <!-- Form Register -->
-                                <form action="{{ route('distributors.register') }}" method="POST" class="w-100" enctype="multipart/form-data">
+                                <form action="{{ route('distributors.register') }}" method="POST" class="w-100"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <!-- Name & Email Field -->
                                     <div class="row">
@@ -151,7 +152,10 @@
                                     <!-- Akta Document Upload Field -->
                                     <div class="form-group mb-3">
                                         <label for="akta" class="form-label">{{ __('messages.upload_doc1') }}</label>
-                                        <input type="file" id="akta" name="akta" class="form-control"
+                                        <input type="file" id="akta" name="akta"
+                                            style="display: block; width: 100%; padding: 10px; font-size: 14px;
+                  border: 1px solid #ccc; border-radius: 5px; background-color: #d5dae2;
+                  cursor: pointer;"
                                             required>
                                         @error('akta')
                                             <small class="text-danger">{{ $message }}</small>
@@ -161,7 +165,10 @@
                                     <!-- NIB Document Upload Field -->
                                     <div class="form-group mb-3">
                                         <label for="nib" class="form-label">{{ __('messages.upload_doc2') }}</label>
-                                        <input type="file" id="nib" name="nib" class="form-control"
+                                        <input type="file" id="nib" name="nib"
+                                            style="display: block; width: 100%; padding: 10px; font-size: 14px;
+                  border: 1px solid #ccc; border-radius: 5px; background-color: #d5dae2;
+                  cursor: pointer;"
                                             required>
                                         @error('nib')
                                             <small class="text-danger">{{ $message }}</small>
@@ -177,7 +184,8 @@
 
                                 <div class="form-prompt-wrapper d-flex justify-content-center mb-4 mt-3">
                                     <div class="register-distributor">{{ __('messages.login_acc') }}
-                                        <a href="{{ route('login') }}" class="" style="color: #5bc0de;"> {{ __('messages.login_here') }}</a>
+                                        <a href="{{ route('login') }}" class="" style="color: #5bc0de;">
+                                            {{ __('messages.login_here') }}</a>
                                     </div>
                                 </div>
                             </div>

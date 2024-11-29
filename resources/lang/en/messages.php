@@ -276,7 +276,8 @@ return [
     'end_date' => 'End Date',
     'date' => 'Date',
     'cart' => 'Cart',
-    'topik' => 'Topics',
+    'topik' => 'Request Quotation Topics',
+    'selling_product' => 'Selling Advanced Product',
 
     'login_desc' => 'Login to Your Account',
     'register_desc' => 'Create Your Distributor Account',

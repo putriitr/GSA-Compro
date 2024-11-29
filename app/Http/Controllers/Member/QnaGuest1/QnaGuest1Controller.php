@@ -11,6 +11,6 @@ class QnaGuest1Controller extends Controller
     public function index()
     {
         $qnaguests = QnaGuest::all(); // Ambil data QnA Guest
-        return view('member.qna-guest.qna-guest', compact('qnaguests'));
+        return view('Member.qna-guest.qna-guest', compact('qnaguests'));
     }
 }

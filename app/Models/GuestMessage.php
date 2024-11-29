@@ -17,11 +17,12 @@ class GuestMessage extends Model
      * @var array
      */
     protected $fillable = [
-        'nama',
+        'first_name',
+        'last_name',
         'email',
-        'perusahaan',
-        'no_wa',
-        'pesan',
-        'ip_address'
+        'phone',
+        'company',
+        'subject',
+        'message'
     ];
 }

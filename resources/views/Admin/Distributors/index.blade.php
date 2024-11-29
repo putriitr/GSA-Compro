@@ -1,4 +1,4 @@
-@extends('layouts.admin.master')
+@extends('layouts.Admin.master')
 
 @section('content')
     <div class="container py-5">
@@ -21,7 +21,7 @@
                         <h1 class="card-title">Daftar Distributor</h1>
                         <a href="{{ route('members.create') }}" class="btn btn-primary">Tambah Distributor</a>
                     </div>
-                    <div class="card-body p-0">
+                    <div class="card-body">
                         <!-- Form Pencarian -->
                         <form action="{{ route('admin.distributors.index') }}" method="GET" class="m-3">
                             <div class="col-md-6">
