@@ -39,6 +39,9 @@
                         </div>
                     </div>
                 </div>
+                <a href="{{ route('member.activity') }}" class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-chevron-left me-1" style="color: #6196FF;"></i> {{ __('messages.back') }}
+                </a>
             @endif
         </div>
     </div>

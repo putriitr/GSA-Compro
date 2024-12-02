@@ -20,7 +20,7 @@ style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(
             <div class="col-lg-9">
                 <div class="card shadow-sm border-0 rounded">
                     <div class="card-header bg-primary text-center">
-                        <h4 class="text-black wow fadeInDown"><strong>Formulir Pengajuan Tiket Layanan<strong></h4>
+                        <h4 class="text-black wow fadeInDown"><strong>{{ __('messages.form_pengajuan') }}<strong></h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('distribution.tickets.store') }}" method="POST" enctype="multipart/form-data">

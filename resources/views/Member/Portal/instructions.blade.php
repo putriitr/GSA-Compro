@@ -3,7 +3,12 @@
 @section('content')
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb"
-        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/page-header.jpg') }}');">
+        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+           url('{{ asset('assets/img/bg-1.jpg') }}');
+           background-size: cover;
+           background-position: center;
+           width: 100%;
+           height: 400px;">
         <div class="container text-center py-5" style="max-width: 900px;">
             <h3 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.user_manual') }}</h3>
             <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">

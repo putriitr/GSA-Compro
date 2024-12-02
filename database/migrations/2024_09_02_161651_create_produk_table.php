@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('user_manual')->nullable();
             $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
             $table->timestamps();
-            $table->foreignId('vendor_id')->constrained()->onDelete('cascade');
         });
     }
 

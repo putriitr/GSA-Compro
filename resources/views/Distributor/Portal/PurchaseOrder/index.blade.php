@@ -51,13 +51,13 @@
                                         <tr>
                                             <th style="width: 5%; border-right: 1px solid #ddd;">{{ __('messages.id') }}
                                             </th>
-                                            <th style="width: 20%; border-right: 1px solid #ddd;">
+                                            <th style="width: 15%; border-right: 1px solid #ddd;">
                                                 {{ __('messages.po_number') }}</th>
-                                            <th style="width: 20%; border-right: 1px solid #ddd;">
+                                            <th style="width: 15%; border-right: 1px solid #ddd;">
                                                 {{ __('messages.po_date') }}</th>
-                                            <th style="width: 20%; border-right: 1px solid #ddd;">
+                                            <th style="width: 15%; border-right: 1px solid #ddd;">
                                                 {{ __('messages.quo_number') }}</th>
-                                            <th style="width: 35%; border-right: 1px solid #ddd;">
+                                            <th style="width: 50%; border-right: 1px solid #ddd;">
                                                 {{ __('messages.aksi') }}</th>
                                         </tr>
                                     </thead>
@@ -79,7 +79,7 @@
                                                             <i class="fas fa-file-invoice"></i> {{ __('messages.proforma_invoice') }}
                                                         </a>
                                                     @else
-                                                        <span class="text-muted">Proforma Invoice akan segera dikirim</span>
+                                                        <span class="btn btn-warning">Proforma Invoice akan segera dikirim</span>
                                                     @endif
                                                 </td>
                                             </tr>

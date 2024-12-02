@@ -86,13 +86,13 @@
                                             <!-- Actions -->
                                             <td class="text-center" style="border: 1px solid #ddd;">
                                                 <a href="{{ route('quotations.show', $quotation->id) }}"
-                                                    class="btn btn-sm btn-info">{{ __('messages.view') }}
+                                                    class="btn btn-sm btn-info"><i class="fas fa-eye"></i> {{ __('messages.view') }}
                                                 </a>
                                                 <!-- Tombol Download PDF -->
                                                 @if ($quotation->pdf_path)
                                                     <a href="{{ asset($quotation->pdf_path) }}" download
                                                         class="btn btn-warning btn-sm rounded-pill">
-                                                        <i class="fas fa-download me-2"></i>{{ __('messages.unduh') }}
+                                                        <i class="fas fa-download me-2"></i>{{ __('messages.unduh1') }}
                                                     </a>
                                                 @endif
 
@@ -116,7 +116,7 @@
                                                     @endif
                                                     <a href="{{ route('quotations.create_po', $quotation->id) }}"
                                                         class="btn btn-success btn-sm rounded-pill">
-                                                        <i class="fas fa-file-invoice-dollar"></i> Create PO
+                                                        <i class="fas fa-file-invoice-dollar"></i> PO
                                                     </a>
                                                 @endif
                                             </td>

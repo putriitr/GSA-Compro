@@ -95,7 +95,7 @@
                                 <div class="blog-content p-4">
                                     @php
                                         $name = $produk->nama;
-                                        $limitedName = strlen($name) > 22 ? substr($name, 0, 22) . '..' : $name;
+                                        $limitedName = strlen($name) > 26 ? substr($name, 0, 26) . '..' : $name;
                                     @endphp
                                     <h4 class="mb-3">{{ $limitedName }}</h4>
                                     <div class="d-flex justify-content-between align-items-center">
@@ -136,7 +136,7 @@
 
 <script>
     function toggleButtonText(button) {
-        const showText = '{{ __('messages.show_all_categories') }}';
+        const showText = '{{ __('messages.show_more_categories') }}';
         const hideText = '{{ __('messages.show_less_categories') }}';
 
         if (button.textContent.trim() === showText) {

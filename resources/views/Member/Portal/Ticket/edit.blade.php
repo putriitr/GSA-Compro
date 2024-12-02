@@ -20,7 +20,7 @@
                                 <label for="jenis_layanan" class="form-label"><i class="fas fa-cogs me-2"></i>{{ __('messages.jenis_layanan') }}</label>
                                 <select name="jenis_layanan" id="jenis_layanan" class="form-control">
                                     <option value="Permintaan Data"
-                                        {{ $ticket->jenis_layanan == 'Permintaan Data' ? 'selected' : '' }}>{{ __('messages.permintaan_data') }}}
+                                        {{ $ticket->jenis_layanan == 'Permintaan Data' ? 'selected' : '' }}>{{ __('messages.permintaan_data') }}
                                     </option>
                                     <option value="Maintanance"
                                         {{ $ticket->jenis_layanan == 'Maintanance' ? 'selected' : '' }}>{{ __('messages.maintenance') }}</option>

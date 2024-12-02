@@ -25,7 +25,7 @@ return new class extends Migration
             $table->unsignedBigInteger('location_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->enum('role', ['member', 'distributor']);
+            $table->enum('role', ['member', 'distributor', 'admin']);
 
             $table->foreign('bidang_id')->references('id')->on('bidang_perusahaan')->onDelete('cascade');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');

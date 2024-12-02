@@ -76,14 +76,16 @@
                 <h4 class="mt-4">Aksi</h4>
                 <div class="d-flex flex-column gap-2">
                     <!-- View & Download PDF -->
-                    <a href="{{ asset($proformaInvoice->file_path) }}" target="_blank"
-                        class="btn btn-info btn-sm rounded-pill shadow-sm">
-                        <i class="fas fa-file-pdf"></i> View PDF
-                    </a>
-                    <a href="{{ asset($proformaInvoice->file_path) }}" download
-                        class="btn btn-secondary btn-sm rounded-pill shadow-sm">
-                        <i class="fas fa-download"></i> Download PDF
-                    </a>
+                    <div class="mt-2">
+                        <a href="{{ asset($proformaInvoice->file_path) }}" target="_blank"
+                            class="btn btn-info btn-sm rounded-pill shadow-sm">
+                            <i class="fas fa-file-pdf"></i> View PDF
+                        </a>
+                        <a href="{{ asset($proformaInvoice->file_path) }}" download
+                            class="btn btn-secondary btn-sm rounded-pill shadow-sm">
+                            <i class="fas fa-download"></i> Download PDF
+                        </a>
+                    </div>
 
                     <!-- Payment Proofs -->
                     @if (!empty($proformaInvoice->payment_proof_paths))

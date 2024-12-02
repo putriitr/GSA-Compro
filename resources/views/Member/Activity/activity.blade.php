@@ -35,7 +35,7 @@
                 <!-- Showing X-Y of Z -->
                 <div class="col-md-4 d-flex align-items-center">
                     @if ($activities->count() > 0)
-                        <p class="mb-0">Menampilkan {{ $activities->firstItem() }} - {{ $activities->lastItem() }} dari
+                        <p class="mb-0">{{ __('messages.showing') }} {{ $activities->firstItem() }} - {{ $activities->lastItem() }} {{ __('messages.from') }}
                             {{ $activities->total() }}
                         </p>
                     @else
@@ -46,11 +46,11 @@
                 <div class="col-md-8 d-flex justify-content-end align-items-center">
                     <div class="d-flex align-items-center">
                         <label for="sort-by" class="mb-0 me-4" style="display: inline-block; white-space: nowrap;">
-                            Urut berdasarkan :
+                            {{ __('messages.sort_by') }} :
                         </label>
                         <select id="sort-by" class="form-select form-select-sm">
-                            <option value="newest">Terbaru</option>
-                            <option value="latest">Terlama</option>
+                            <option value="newest">{{ __('messages.newest') }}</option>
+                            <option value="latest">{{ __('messages.latest') }}</option>
                         </select>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                                 <a href="#" class="h4 d-inline-block mb-4">{{ $activity->title }}</a>
                                 <p class="mb-4">{{ Str::limit($activity->description, 40) }}</p>
                                 <a href="{{ route('member.activity.detail-act', $activity->id) }}"
-                                    class="btn btn-primary rounded-pill py-2 px-4">Read More <i
+                                    class="btn btn-primary rounded-pill py-2 px-4">{{ __('messages.show_more') }} <i
                                         class="fas fa-arrow-right ms-2"></i></a>
                             </div>
                         </div>

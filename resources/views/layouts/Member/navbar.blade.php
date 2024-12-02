@@ -46,8 +46,8 @@
                             @foreach ($activeMetas as $type => $metas)
                                 <div class="nav-item dropdown">
                                     @foreach ($metas as $meta)
-                                        <a href="{{ route('member.meta.index') }}"
-                                            class="dropdown-item">{{ __('messages.meta') }}</a>
+                                    <a href="{{ route('member.meta.show', $meta->slug) }}"
+                                        class="dropdown-item">{{ $meta->title }}</a>
                                     @endforeach
                                 </div>
                             @endforeach

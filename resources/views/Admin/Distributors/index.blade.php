@@ -19,7 +19,6 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h1 class="card-title">Daftar Distributor</h1>
-                        <a href="{{ route('members.create') }}" class="btn btn-primary">Tambah Distributor</a>
                     </div>
                     <div class="card-body">
                         <!-- Form Pencarian -->

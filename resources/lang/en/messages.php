@@ -112,6 +112,8 @@ return [
     'newest' => 'Newest',
     'latest' => 'Latest',
     'explore_product' => 'Explore Product',
+    'showing' => 'Showing',
+    'from' => 'from',
 
     'qna_top' => 'Have Any Problem?',
     'qna_bottom' => 'Questions and Answers',
@@ -179,7 +181,7 @@ return [
     'phone_number' => 'Phone Number',
     'company' => 'Company',
     'location' => 'Location',
-    'purchase_date' => 'Date of purchase',
+    'purchase_date' => 'Purchase Date',
     'no_data_found' => 'No data found.',
     'export_to_excel' => 'Export to Excel',
     'number'=> 'Number',
@@ -306,4 +308,6 @@ return [
     'daftar_tiket' => 'Your Ticket History',
     'create_tiket' => 'Create New',
     'create_quo' => 'Add Product',
+    'create_po' => 'Create PO',
+    'create_po_for_quo' => 'Create PO for Quotation',
 ];

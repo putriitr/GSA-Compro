@@ -3,7 +3,7 @@
 @section('content')
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <div class="card shadow-lg border-0 rounded-lg">
                     <div class="card-header text-center bg-primary text-white">
                         <h4 class="mb-0"><strong>Negotiate Quotation #{{ $quotation->quotation_number }}</strong></h4>

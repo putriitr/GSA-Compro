@@ -7,19 +7,19 @@
                 <!-- Card Wrapper for User Profile -->
                 <div class="card shadow-lg border-0 rounded-lg">
                     <div class="card-header bg-primary text-white text-center py-4">
-                        <h2 class="mb-0" style="font-weight: bold;">Profil Pengguna</h2>
+                        <h2 class="mb-0" style="font-weight: bold;">Profil Akun Member</h2>
                     </div>
                     <div class="card-body p-4">
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    <i class="bx bx-user"></i> {{ __('messages.name') }} :
+                                    <i class="fas fa-user me-2"></i> {{ __('messages.name') }} :
                                 </label>
                                 <p class="text-muted">{{ $user->name }}</p>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    <i class="bx bx-envelope"></i> Email :
+                                    <i class="fas fa-envelope me-2"></i> Email :
                                 </label>
                                 <p class="text-muted">{{ $user->email }}</p>
                             </div>
@@ -28,13 +28,13 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    <i class="bx bx-building-house"></i> {{ __('messages.nama_perusahaan') }} :
+                                    <i class="fas fa-building me-2"></i> {{ __('messages.nama_perusahaan') }} :
                                 </label>
                                 <p class="text-muted">{{ $user->nama_perusahaan ?? 'N/A' }}</p>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    <i class="bx bx-briefcase"></i> {{ __('messages.bidang_perusahaan') }} :
+                                    <i class="fas fa-briefcase me-2"></i> {{ __('messages.bidang_perusahaan') }} :
                                 </label>
                                 <p class="text-muted">{{ $user->bidangPerusahaan->name ?? 'N/A' }}</p>
                             </div>
@@ -43,13 +43,13 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    <i class="bx bx-phone"></i> {{ __('messages.phone') }} :
+                                    <i class="fas fa-phone-alt me-2"></i> {{ __('messages.phone') }} :
                                 </label>
                                 <p class="text-muted">{{ $user->no_telp ?? 'N/A' }}</p>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label fw-bold">
-                                    <i class="bx bx-map"></i> {{ __('messages.address') }} :
+                                    <i class="fas fa-map-marker-alt me-2"></i> {{ __('messages.address') }} :
                                 </label>
                                 <p class="text-muted">{{ $user->alamat ?? 'N/A' }}</p>
                             </div>
@@ -59,7 +59,7 @@
                         @if (auth()->check())
                             <a href="{{ auth()->user()->type === 'member' ? route('profile.edit') : route('distributor.profile.edit') }}"
                                 class="btn btn-primary px-4 py-2">
-                                <i class="bx bx-pencil"></i> Edit Profil
+                                <i class="fas fa-edit me-2"></i> Edit Profil
                             </a>
                         @endif
                     </div>

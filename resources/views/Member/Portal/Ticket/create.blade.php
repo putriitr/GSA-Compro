@@ -1,7 +1,7 @@
 @extends('layouts.Member.master')
 
 @section('content')
-    <div class="container-fluid bg-breadcrumb"
+    {{-- <div class="container-fluid bg-breadcrumb"
         style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('assets/img/page-header.jpg') }}');">
         <div class="container text-center py-5" style="max-width: 900px;">
             <h3 class="text-white display-3 mb-4 wow fadeInDown" data-wow-delay="0.1s">{{ __('messages.create_your_ticket') }}
@@ -12,11 +12,11 @@
                 <li class="breadcrumb-item active text-primary">{{ __('messages.create_your_ticket') }}</li>
             </ol>
         </div>
-    </div>
+    </div> --}}
 
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <div class="card shadow-sm border-0 rounded">
                     <div class="card-header bg-primary text-center">
                         <h4 class="text-black wow fadeInDown"><strong>{{ __('messages.form_pengajuan') }}</strong></h4>
