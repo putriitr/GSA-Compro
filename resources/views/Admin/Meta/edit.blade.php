@@ -75,5 +75,5 @@
 </div>
 @endsection
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.12/css/froala_editor.pkgd.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/4.0.12/js/froala_editor.pkgd.min.js"></script>
+<link href="{{ asset('assets/css/admin/froala_editor.pkgd.min.css')}}" rel="stylesheet" type="text/css" />
+<script src="{{ asset('assets/js/admin/froala_editor.pkgd.min.js')}}"></script>

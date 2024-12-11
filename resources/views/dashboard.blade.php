@@ -42,7 +42,7 @@
     </div>
 
     <!-- Statistics Chart -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('assets/js/admin/chart.js')}}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Data untuk Grafik Kunjungan Harian
